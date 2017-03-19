@@ -1,0 +1,1667 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22FAC22B93C1BCA4F860FF7D /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AE958B7145189E8683D1FB /* libPods-ZKChatTests.a */; };
+		7E290E7B1E605539004552F3 /* ZKBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290E7A1E605539004552F3 /* ZKBaseCell.m */; };
+		7E290E7E1E605583004552F3 /* ZKUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290E7D1E605583004552F3 /* ZKUserInfoCell.m */; };
+		7E290E811E6059D2004552F3 /* avatar_50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E290E7F1E6059D2004552F3 /* avatar_50.png */; };
+		7E290E821E6059D2004552F3 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E290E801E6059D2004552F3 /* avatar.png */; };
+		7E290E851E6068FD004552F3 /* ZKNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290E841E6068FD004552F3 /* ZKNormalCell.m */; };
+		7E290E891E61506B004552F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E290E881E61506B004552F3 /* Assets.xcassets */; };
+		7E290E8C1E61614D004552F3 /* ZKContactResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290E8B1E61614D004552F3 /* ZKContactResultViewController.m */; };
+		7E290E8F1E616EE6004552F3 /* top_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E290E8D1E616EE6004552F3 /* top_back.png */; };
+		7E290E901E616EE6004552F3 /* top_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E290E8E1E616EE6004552F3 /* top_back@2x.png */; };
+		7E290E931E61722A004552F3 /* ZKRecentUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290E921E61722A004552F3 /* ZKRecentUserCell.m */; };
+		7E290E971E61751D004552F3 /* NSDate+DDAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290E961E61751D004552F3 /* NSDate+DDAddition.m */; };
+		7E290E991E617593004552F3 /* ZKIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E290E981E617593004552F3 /* ZKIcon.png */; };
+		7E290E9C1E61761C004552F3 /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290E9B1E61761C004552F3 /* UIView+Addition.m */; };
+		7E290EA01E619ABC004552F3 /* ZKChattingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290E9F1E619ABC004552F3 /* ZKChattingMainViewController.m */; };
+		7E290EA21E61A6D9004552F3 /* connect_alert_mac@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E290EA11E61A6D9004552F3 /* connect_alert_mac@2x.png */; };
+		7E290EA41E61A8AD004552F3 /* mac_logined@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E290EA31E61A8AD004552F3 /* mac_logined@2x.png */; };
+		7E290EA81E61AB82004552F3 /* QRCode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E290EA71E61AB82004552F3 /* QRCode@2x.png */; };
+		7E290EAA1E61AB8B004552F3 /* ShowAlbum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E290EA91E61AB8B004552F3 /* ShowAlbum@2x.png */; };
+		7E290EAE1E61ACF4004552F3 /* Profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E290EAD1E61ACF4004552F3 /* Profile@2x.png */; };
+		7E290EB31E61BA73004552F3 /* ZKContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290EB21E61BA73004552F3 /* ZKContactCell.m */; };
+		7E290EB61E61BFB8004552F3 /* ZKPublicProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290EB51E61BFB8004552F3 /* ZKPublicProfileViewController.m */; };
+		7E290EBA1E62F268004552F3 /* ZKUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290EB91E62F268004552F3 /* ZKUserEntity.m */; };
+		7E290EBD1E62F386004552F3 /* ZKBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290EBC1E62F386004552F3 /* ZKBaseEntity.m */; };
+		7E290EC01E62F505004552F3 /* NSDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290EBF1E62F505004552F3 /* NSDictionary+Safe.m */; };
+		7E290ED11E62FDA1004552F3 /* IMBaseDefine.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290EC41E62FDA1004552F3 /* IMBaseDefine.pb.m */; };
+		7E290ED21E62FDA1004552F3 /* IMBuddy.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290EC61E62FDA1004552F3 /* IMBuddy.pb.m */; };
+		7E290ED31E62FDA1004552F3 /* IMGroup.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290EC81E62FDA1004552F3 /* IMGroup.pb.m */; };
+		7E290ED41E62FDA1004552F3 /* IMLogin.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290ECA1E62FDA1004552F3 /* IMLogin.pb.m */; };
+		7E290ED51E62FDA1004552F3 /* IMMessage.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290ECC1E62FDA1004552F3 /* IMMessage.pb.m */; };
+		7E290ED61E62FDA1004552F3 /* IMOther.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290ECE1E62FDA1004552F3 /* IMOther.pb.m */; };
+		7E290ED71E62FDA1004552F3 /* IMSwitchService.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290ED01E62FDA1004552F3 /* IMSwitchService.pb.m */; };
+		7E290EDA1E63009F004552F3 /* ZKGroupEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290ED91E63009F004552F3 /* ZKGroupEntity.m */; };
+		7E290EDD1E63030E004552F3 /* ZKUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290EDC1E63030E004552F3 /* ZKUtil.m */; };
+		7E290EE01E630F71004552F3 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E290EDF1E630F71004552F3 /* NSString+Additions.m */; };
+		7E31E3561E69A54900EA69DE /* ZKEmotionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3551E69A54900EA69DE /* ZKEmotionsViewController.m */; };
+		7E31E35A1E69A83700EA69DE /* EmotionsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3591E69A83700EA69DE /* EmotionsModule.m */; };
+		7E31E35D1E69A92300EA69DE /* emotions.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E35C1E69A92300EA69DE /* emotions.bundle */; };
+		7E31E3611E6A76EA00EA69DE /* ChattingModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3601E6A76EA00EA69DE /* ChattingModule.m */; };
+		7E31E3651E6AB1CD00EA69DE /* ZKMessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3641E6AB1CD00EA69DE /* ZKMessageEntity.m */; };
+		7E31E3681E6AB32800EA69DE /* ZKSessionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3671E6AB32800EA69DE /* ZKSessionEntity.m */; };
+		7E31E36C1E6ABF1400EA69DE /* RecordingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E36B1E6ABF1400EA69DE /* RecordingView.m */; };
+		7E31E36F1E6ACC5A00EA69DE /* cancel_send_record.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E36D1E6ACC5A00EA69DE /* cancel_send_record.png */; };
+		7E31E3701E6ACC5A00EA69DE /* cancel_send_record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E36E1E6ACC5A00EA69DE /* cancel_send_record@2x.png */; };
+		7E31E3731E6ACCB700EA69DE /* recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3711E6ACCB700EA69DE /* recording.png */; };
+		7E31E3741E6ACCB700EA69DE /* recording@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3721E6ACCB700EA69DE /* recording@2x.png */; };
+		7E31E3771E6ACCEE00EA69DE /* volumn.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3751E6ACCEE00EA69DE /* volumn.png */; };
+		7E31E3781E6ACCEE00EA69DE /* volumn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3761E6ACCEE00EA69DE /* volumn@2x.png */; };
+		7E31E37B1E6ACED200EA69DE /* record_too_short.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3791E6ACED200EA69DE /* record_too_short.png */; };
+		7E31E37C1E6ACED200EA69DE /* record_too_short@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E37A1E6ACED200EA69DE /* record_too_short@2x.png */; };
+		7E31E3801E6ADEFB00EA69DE /* ZKPhotosCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E37F1E6ADEFB00EA69DE /* ZKPhotosCache.m */; };
+		7E31E3881E6AE19D00EA69DE /* JSDismissiveTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3831E6AE19D00EA69DE /* JSDismissiveTextView.m */; };
+		7E31E3891E6AE19D00EA69DE /* JSMessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3851E6AE19D00EA69DE /* JSMessageInputView.m */; };
+		7E31E38A1E6AE19D00EA69DE /* JSMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3871E6AE19D00EA69DE /* JSMessageTextView.m */; };
+		7E31E38D1E6AE4AD00EA69DE /* NSString+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E38C1E6AE4AD00EA69DE /* NSString+JSMessagesView.m */; };
+		7E31E3901E6AE5ED00EA69DE /* chatBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E38E1E6AE5ED00EA69DE /* chatBg.png */; };
+		7E31E3911E6AE5ED00EA69DE /* chatBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E38F1E6AE5ED00EA69DE /* chatBg@2x.png */; };
+		7E31E3961E6AE65D00EA69DE /* UIColor+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3931E6AE65D00EA69DE /* UIColor+JSMessagesView.m */; };
+		7E31E3971E6AE65D00EA69DE /* UIImage+JSMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3951E6AE65D00EA69DE /* UIImage+JSMessagesView.m */; };
+		7E31E39A1E6B0FCD00EA69DE /* record_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3981E6B0FCD00EA69DE /* record_normal.png */; };
+		7E31E39B1E6B0FCD00EA69DE /* record_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3991E6B0FCD00EA69DE /* record_normal@2x.png */; };
+		7E31E39D1E6B104E00EA69DE /* chat_bubble_pre_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E39C1E6B104E00EA69DE /* chat_bubble_pre_image@2x.png */; };
+		7E31E3A21E6B14C700EA69DE /* emotion.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E39E1E6B14C700EA69DE /* emotion.png */; };
+		7E31E3A31E6B14C700EA69DE /* emotion@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E39F1E6B14C700EA69DE /* emotion@2x.png */; };
+		7E31E3A41E6B14C700EA69DE /* utility.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3A01E6B14C700EA69DE /* utility.png */; };
+		7E31E3A51E6B14C700EA69DE /* utility@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3A11E6B14C700EA69DE /* utility@2x.png */; };
+		7E31E3A81E6BEBCB00EA69DE /* UIImage+UIImageAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3A71E6BEBCB00EA69DE /* UIImage+UIImageAddition.m */; };
+		7E31E3AB1E6BECA200EA69DE /* ZKPublicProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3AA1E6BECA200EA69DE /* ZKPublicProfileCell.m */; };
+		7E31E3AE1E6C0A1400EA69DE /* shielded.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3AC1E6C0A1400EA69DE /* shielded.png */; };
+		7E31E3AF1E6C0A1400EA69DE /* shielded@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3AD1E6C0A1400EA69DE /* shielded@2x.png */; };
+		7E31E3B21E6D8F4600EA69DE /* ZKChattingEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3B11E6D8F4600EA69DE /* ZKChattingEditViewController.m */; };
+		7E31E3B51E6DA15F00EA69DE /* ZKPersonEditControllectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3B41E6DA15F00EA69DE /* ZKPersonEditControllectionCell.m */; };
+		7E31E3B81E6DA21600EA69DE /* delImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3B61E6DA21600EA69DE /* delImage.png */; };
+		7E31E3B91E6DA21600EA69DE /* delImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3B71E6DA21600EA69DE /* delImage@2x.png */; };
+		7E31E3BC1E6DA29D00EA69DE /* tt_group_manager_add_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3BA1E6DA29D00EA69DE /* tt_group_manager_add_user.png */; };
+		7E31E3BD1E6DA29D00EA69DE /* tt_group_manager_add_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3BB1E6DA29D00EA69DE /* tt_group_manager_add_user@2x.png */; };
+		7E31E3C01E6DA2A900EA69DE /* tt_group_manager_delete_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3BE1E6DA2A900EA69DE /* tt_group_manager_delete_user.png */; };
+		7E31E3C11E6DA2A900EA69DE /* tt_group_manager_delete_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3BF1E6DA2A900EA69DE /* tt_group_manager_delete_user@2x.png */; };
+		7E31E3C41E6DA73C00EA69DE /* ZKGroupInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3C31E6DA73C00EA69DE /* ZKGroupInfoCell.m */; };
+		7E31E3C91E756E3A00EA69DE /* input_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3C51E756E3A00EA69DE /* input_normal.png */; };
+		7E31E3CA1E756E3A00EA69DE /* input_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3C61E756E3A00EA69DE /* input_normal@2x.png */; };
+		7E31E3D01E75913200EA69DE /* DDDataInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3CF1E75913200EA69DE /* DDDataInputStream.m */; };
+		7E60318C1E533AA3005239C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60318B1E533AA3005239C4 /* main.m */; };
+		7E60318F1E533AA3005239C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60318E1E533AA3005239C4 /* AppDelegate.m */; };
+		7E60319D1E533AA5005239C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E60319B1E533AA5005239C4 /* LaunchScreen.storyboard */; };
+		7E6031A81E533AA7005239C4 /* ZKChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031A71E533AA7005239C4 /* ZKChatTests.m */; };
+		7E6031B31E533AA7005239C4 /* ZKChatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031B21E533AA7005239C4 /* ZKChatUITests.m */; };
+		7E6031C81E534734005239C4 /* ZKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031C71E534734005239C4 /* ZKBaseViewController.m */; };
+		7E6031CC1E534770005239C4 /* ZKBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031CB1E534770005239C4 /* ZKBaseTableViewController.m */; };
+		7E6031D01E5347CA005239C4 /* ZKBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031CF1E5347CA005239C4 /* ZKBaseNavigationController.m */; };
+		7E6031D71E548E10005239C4 /* ZKMultipleSectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031D61E548E10005239C4 /* ZKMultipleSectionTableViewController.m */; };
+		7E6031DB1E55E013005239C4 /* ZKBaseSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031DA1E55E013005239C4 /* ZKBaseSearchTableViewController.m */; };
+		7E6031E01E57374C005239C4 /* ZKBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031DF1E57374C005239C4 /* ZKBaseTabBarController.m */; };
+		7E6031E41E574757005239C4 /* ZKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031E31E574757005239C4 /* ZKLoginViewController.m */; };
+		7E6031E81E5B20EC005239C4 /* ZKMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031E71E5B20EC005239C4 /* ZKMessageViewController.m */; };
+		7E6031ED1E5C7486005239C4 /* ZKRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031EC1E5C7486005239C4 /* ZKRootViewController.m */; };
+		7E6031F11E5DC7BF005239C4 /* ZKContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031F01E5DC7BF005239C4 /* ZKContactViewController.m */; };
+		7E6031F51E5DC842005239C4 /* ZKMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031F41E5DC842005239C4 /* ZKMyViewController.m */; };
+		7E6031FC1E5DD5D9005239C4 /* conversation_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6031F81E5DD5D9005239C4 /* conversation_selected.png */; };
+		7E6031FD1E5DD5D9005239C4 /* conversation_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6031F91E5DD5D9005239C4 /* conversation_selected@2x.png */; };
+		7E6031FE1E5DD5D9005239C4 /* conversation.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6031FA1E5DD5D9005239C4 /* conversation.png */; };
+		7E6031FF1E5DD5D9005239C4 /* conversation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6031FB1E5DD5D9005239C4 /* conversation@2x.png */; };
+		7E60320A1E5DD816005239C4 /* contact_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6032061E5DD816005239C4 /* contact_selected.png */; };
+		7E60320B1E5DD816005239C4 /* contact_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6032071E5DD816005239C4 /* contact_selected@2x.png */; };
+		7E60320C1E5DD816005239C4 /* contact.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6032081E5DD816005239C4 /* contact.png */; };
+		7E60320D1E5DD816005239C4 /* contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6032091E5DD816005239C4 /* contact@2x.png */; };
+		7E6032121E5DD8A8005239C4 /* myprofile_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60320E1E5DD8A8005239C4 /* myprofile_selected.png */; };
+		7E6032131E5DD8A8005239C4 /* myprofile_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60320F1E5DD8A8005239C4 /* myprofile_selected@2x.png */; };
+		7E6032141E5DD8A8005239C4 /* myprofile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6032101E5DD8A8005239C4 /* myprofile.png */; };
+		7E6032151E5DD8A8005239C4 /* myprofile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6032111E5DD8A8005239C4 /* myprofile@2x.png */; };
+		7E6032191E5DD92B005239C4 /* ZKFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6032181E5DD92B005239C4 /* ZKFindViewController.m */; };
+		7E60321C1E5DDA51005239C4 /* tab_nav_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60321A1E5DDA51005239C4 /* tab_nav_select.png */; };
+		7E60321D1E5DDA51005239C4 /* tab_nav_select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60321B1E5DDA51005239C4 /* tab_nav_select@2x.png */; };
+		7E6032201E5DDA5A005239C4 /* tab_nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60321E1E5DDA5A005239C4 /* tab_nav.png */; };
+		7E6032211E5DDA5A005239C4 /* tab_nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60321F1E5DDA5A005239C4 /* tab_nav@2x.png */; };
+		7E6981F61E7ABFB90005B29A /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6981F51E7ABFB90005B29A /* RuntimeStatus.m */; };
+		7E6981F91E7AC4FE0005B29A /* DDChatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6981F81E7AC4FE0005B29A /* DDChatBaseCell.m */; };
+		7E6981FE1E7AC6F60005B29A /* MenuImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6981FD1E7AC6F60005B29A /* MenuImageView.m */; };
+		7E6982021E7ACAB60005B29A /* ZKBubbleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6982011E7ACAB60005B29A /* ZKBubbleModule.m */; };
+		7E6982061E7AD1620005B29A /* UILabel+VerticalAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6982051E7AD1620005B29A /* UILabel+VerticalAlign.m */; };
+		7E6982091E7AD35A0005B29A /* DDChatTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6982081E7AD35A0005B29A /* DDChatTextCell.m */; };
+		7ED4935D1E646F0C0083BCD4 /* ZKChattingUtilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4935C1E646F0C0083BCD4 /* ZKChattingUtilityViewController.m */; };
+		7ED493621E64721B0083BCD4 /* chat_pick_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4935F1E64721B0083BCD4 /* chat_pick_photo@2x.png */; };
+		7ED493631E64721B0083BCD4 /* chat_shake_pc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED493601E64721B0083BCD4 /* chat_shake_pc@2x.png */; };
+		7ED493641E64721B0083BCD4 /* chat_take_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED493611E64721B0083BCD4 /* chat_take_photo@2x.png */; };
+		7ED493671E6474510083BCD4 /* ZKChattingImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED493661E6474510083BCD4 /* ZKChattingImagePreviewViewController.m */; };
+		DD908472DD40B857490979A0 /* libPods-ZKChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D94E683078ADACFA9C473 /* libPods-ZKChat.a */; };
+		EAE7D4347B166B6242C4FAC9 /* libPods-ZKChatUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F5CB65A6D641071851F964 /* libPods-ZKChatUITests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7E6031A41E533AA6005239C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E60317F1E533AA2005239C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E6031861E533AA3005239C4;
+			remoteInfo = ZKChat;
+		};
+		7E6031AF1E533AA7005239C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E60317F1E533AA2005239C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E6031861E533AA3005239C4;
+			remoteInfo = ZKChat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1E6D94E683078ADACFA9C473 /* libPods-ZKChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A0655867CDC5C64F2769A75 /* Pods-ZKChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChatUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChatUITests/Pods-ZKChatUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6234E7D269E1852A720D3158 /* Pods-ZKChatUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChatUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChatUITests/Pods-ZKChatUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7E290E791E605539004552F3 /* ZKBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKBaseCell.h; sourceTree = "<group>"; };
+		7E290E7A1E605539004552F3 /* ZKBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBaseCell.m; sourceTree = "<group>"; };
+		7E290E7C1E605583004552F3 /* ZKUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKUserInfoCell.h; sourceTree = "<group>"; };
+		7E290E7D1E605583004552F3 /* ZKUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKUserInfoCell.m; sourceTree = "<group>"; };
+		7E290E7F1E6059D2004552F3 /* avatar_50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar_50.png; sourceTree = "<group>"; };
+		7E290E801E6059D2004552F3 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
+		7E290E831E6068FD004552F3 /* ZKNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKNormalCell.h; sourceTree = "<group>"; };
+		7E290E841E6068FD004552F3 /* ZKNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKNormalCell.m; sourceTree = "<group>"; };
+		7E290E881E61506B004552F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7E290E8A1E61614D004552F3 /* ZKContactResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKContactResultViewController.h; sourceTree = "<group>"; };
+		7E290E8B1E61614D004552F3 /* ZKContactResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKContactResultViewController.m; sourceTree = "<group>"; };
+		7E290E8D1E616EE6004552F3 /* top_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_back.png; sourceTree = "<group>"; };
+		7E290E8E1E616EE6004552F3 /* top_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_back@2x.png"; sourceTree = "<group>"; };
+		7E290E911E61722A004552F3 /* ZKRecentUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKRecentUserCell.h; sourceTree = "<group>"; };
+		7E290E921E61722A004552F3 /* ZKRecentUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRecentUserCell.m; sourceTree = "<group>"; };
+		7E290E951E61751D004552F3 /* NSDate+DDAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DDAddition.h"; sourceTree = "<group>"; };
+		7E290E961E61751D004552F3 /* NSDate+DDAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DDAddition.m"; sourceTree = "<group>"; };
+		7E290E981E617593004552F3 /* ZKIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZKIcon.png; sourceTree = "<group>"; };
+		7E290E9A1E61761C004552F3 /* UIView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
+		7E290E9B1E61761C004552F3 /* UIView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
+		7E290E9E1E619ABC004552F3 /* ZKChattingMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChattingMainViewController.h; sourceTree = "<group>"; };
+		7E290E9F1E619ABC004552F3 /* ZKChattingMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChattingMainViewController.m; sourceTree = "<group>"; };
+		7E290EA11E61A6D9004552F3 /* connect_alert_mac@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "connect_alert_mac@2x.png"; sourceTree = "<group>"; };
+		7E290EA31E61A8AD004552F3 /* mac_logined@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mac_logined@2x.png"; sourceTree = "<group>"; };
+		7E290EA71E61AB82004552F3 /* QRCode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCode@2x.png"; sourceTree = "<group>"; };
+		7E290EA91E61AB8B004552F3 /* ShowAlbum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShowAlbum@2x.png"; sourceTree = "<group>"; };
+		7E290EAD1E61ACF4004552F3 /* Profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Profile@2x.png"; sourceTree = "<group>"; };
+		7E290EB11E61BA73004552F3 /* ZKContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKContactCell.h; sourceTree = "<group>"; };
+		7E290EB21E61BA73004552F3 /* ZKContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKContactCell.m; sourceTree = "<group>"; };
+		7E290EB41E61BFB8004552F3 /* ZKPublicProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKPublicProfileViewController.h; sourceTree = "<group>"; };
+		7E290EB51E61BFB8004552F3 /* ZKPublicProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKPublicProfileViewController.m; sourceTree = "<group>"; };
+		7E290EB81E62F268004552F3 /* ZKUserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKUserEntity.h; sourceTree = "<group>"; };
+		7E290EB91E62F268004552F3 /* ZKUserEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKUserEntity.m; sourceTree = "<group>"; };
+		7E290EBB1E62F386004552F3 /* ZKBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKBaseEntity.h; sourceTree = "<group>"; };
+		7E290EBC1E62F386004552F3 /* ZKBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBaseEntity.m; sourceTree = "<group>"; };
+		7E290EBE1E62F505004552F3 /* NSDictionary+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Safe.h"; sourceTree = "<group>"; };
+		7E290EBF1E62F505004552F3 /* NSDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Safe.m"; sourceTree = "<group>"; };
+		7E290EC31E62FDA1004552F3 /* IMBaseDefine.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBaseDefine.pb.h; sourceTree = "<group>"; };
+		7E290EC41E62FDA1004552F3 /* IMBaseDefine.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMBaseDefine.pb.m; sourceTree = "<group>"; };
+		7E290EC51E62FDA1004552F3 /* IMBuddy.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBuddy.pb.h; sourceTree = "<group>"; };
+		7E290EC61E62FDA1004552F3 /* IMBuddy.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMBuddy.pb.m; sourceTree = "<group>"; };
+		7E290EC71E62FDA1004552F3 /* IMGroup.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMGroup.pb.h; sourceTree = "<group>"; };
+		7E290EC81E62FDA1004552F3 /* IMGroup.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMGroup.pb.m; sourceTree = "<group>"; };
+		7E290EC91E62FDA1004552F3 /* IMLogin.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMLogin.pb.h; sourceTree = "<group>"; };
+		7E290ECA1E62FDA1004552F3 /* IMLogin.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMLogin.pb.m; sourceTree = "<group>"; };
+		7E290ECB1E62FDA1004552F3 /* IMMessage.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMMessage.pb.h; sourceTree = "<group>"; };
+		7E290ECC1E62FDA1004552F3 /* IMMessage.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMMessage.pb.m; sourceTree = "<group>"; };
+		7E290ECD1E62FDA1004552F3 /* IMOther.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOther.pb.h; sourceTree = "<group>"; };
+		7E290ECE1E62FDA1004552F3 /* IMOther.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOther.pb.m; sourceTree = "<group>"; };
+		7E290ECF1E62FDA1004552F3 /* IMSwitchService.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMSwitchService.pb.h; sourceTree = "<group>"; };
+		7E290ED01E62FDA1004552F3 /* IMSwitchService.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMSwitchService.pb.m; sourceTree = "<group>"; };
+		7E290ED81E63009F004552F3 /* ZKGroupEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKGroupEntity.h; sourceTree = "<group>"; };
+		7E290ED91E63009F004552F3 /* ZKGroupEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKGroupEntity.m; sourceTree = "<group>"; };
+		7E290EDB1E63030E004552F3 /* ZKUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKUtil.h; sourceTree = "<group>"; };
+		7E290EDC1E63030E004552F3 /* ZKUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKUtil.m; sourceTree = "<group>"; };
+		7E290EDE1E630F71004552F3 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		7E290EDF1E630F71004552F3 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		7E31E3541E69A54900EA69DE /* ZKEmotionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKEmotionsViewController.h; sourceTree = "<group>"; };
+		7E31E3551E69A54900EA69DE /* ZKEmotionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEmotionsViewController.m; sourceTree = "<group>"; };
+		7E31E3581E69A83700EA69DE /* EmotionsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionsModule.h; sourceTree = "<group>"; };
+		7E31E3591E69A83700EA69DE /* EmotionsModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionsModule.m; sourceTree = "<group>"; };
+		7E31E35C1E69A92300EA69DE /* emotions.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = emotions.bundle; sourceTree = "<group>"; };
+		7E31E35F1E6A76EA00EA69DE /* ChattingModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattingModule.h; sourceTree = "<group>"; };
+		7E31E3601E6A76EA00EA69DE /* ChattingModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattingModule.m; sourceTree = "<group>"; };
+		7E31E3631E6AB1CD00EA69DE /* ZKMessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMessageEntity.h; sourceTree = "<group>"; };
+		7E31E3641E6AB1CD00EA69DE /* ZKMessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMessageEntity.m; sourceTree = "<group>"; };
+		7E31E3661E6AB32800EA69DE /* ZKSessionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSessionEntity.h; sourceTree = "<group>"; };
+		7E31E3671E6AB32800EA69DE /* ZKSessionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSessionEntity.m; sourceTree = "<group>"; };
+		7E31E36A1E6ABF1400EA69DE /* RecordingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingView.h; sourceTree = "<group>"; };
+		7E31E36B1E6ABF1400EA69DE /* RecordingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingView.m; sourceTree = "<group>"; };
+		7E31E36D1E6ACC5A00EA69DE /* cancel_send_record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel_send_record.png; sourceTree = "<group>"; };
+		7E31E36E1E6ACC5A00EA69DE /* cancel_send_record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_send_record@2x.png"; sourceTree = "<group>"; };
+		7E31E3711E6ACCB700EA69DE /* recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recording.png; sourceTree = "<group>"; };
+		7E31E3721E6ACCB700EA69DE /* recording@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recording@2x.png"; sourceTree = "<group>"; };
+		7E31E3751E6ACCEE00EA69DE /* volumn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volumn.png; sourceTree = "<group>"; };
+		7E31E3761E6ACCEE00EA69DE /* volumn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volumn@2x.png"; sourceTree = "<group>"; };
+		7E31E3791E6ACED200EA69DE /* record_too_short.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_too_short.png; sourceTree = "<group>"; };
+		7E31E37A1E6ACED200EA69DE /* record_too_short@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_too_short@2x.png"; sourceTree = "<group>"; };
+		7E31E37E1E6ADEFB00EA69DE /* ZKPhotosCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKPhotosCache.h; sourceTree = "<group>"; };
+		7E31E37F1E6ADEFB00EA69DE /* ZKPhotosCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKPhotosCache.m; sourceTree = "<group>"; };
+		7E31E3821E6AE19D00EA69DE /* JSDismissiveTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDismissiveTextView.h; sourceTree = "<group>"; };
+		7E31E3831E6AE19D00EA69DE /* JSDismissiveTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDismissiveTextView.m; sourceTree = "<group>"; };
+		7E31E3841E6AE19D00EA69DE /* JSMessageInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSMessageInputView.h; sourceTree = "<group>"; };
+		7E31E3851E6AE19D00EA69DE /* JSMessageInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSMessageInputView.m; sourceTree = "<group>"; };
+		7E31E3861E6AE19D00EA69DE /* JSMessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSMessageTextView.h; sourceTree = "<group>"; };
+		7E31E3871E6AE19D00EA69DE /* JSMessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSMessageTextView.m; sourceTree = "<group>"; };
+		7E31E38B1E6AE4AD00EA69DE /* NSString+JSMessagesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JSMessagesView.h"; sourceTree = "<group>"; };
+		7E31E38C1E6AE4AD00EA69DE /* NSString+JSMessagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JSMessagesView.m"; sourceTree = "<group>"; };
+		7E31E38E1E6AE5ED00EA69DE /* chatBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatBg.png; sourceTree = "<group>"; };
+		7E31E38F1E6AE5ED00EA69DE /* chatBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatBg@2x.png"; sourceTree = "<group>"; };
+		7E31E3921E6AE65D00EA69DE /* UIColor+JSMessagesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JSMessagesView.h"; sourceTree = "<group>"; };
+		7E31E3931E6AE65D00EA69DE /* UIColor+JSMessagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JSMessagesView.m"; sourceTree = "<group>"; };
+		7E31E3941E6AE65D00EA69DE /* UIImage+JSMessagesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JSMessagesView.h"; sourceTree = "<group>"; };
+		7E31E3951E6AE65D00EA69DE /* UIImage+JSMessagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JSMessagesView.m"; sourceTree = "<group>"; };
+		7E31E3981E6B0FCD00EA69DE /* record_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_normal.png; sourceTree = "<group>"; };
+		7E31E3991E6B0FCD00EA69DE /* record_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_normal@2x.png"; sourceTree = "<group>"; };
+		7E31E39C1E6B104E00EA69DE /* chat_bubble_pre_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_bubble_pre_image@2x.png"; sourceTree = "<group>"; };
+		7E31E39E1E6B14C700EA69DE /* emotion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emotion.png; sourceTree = "<group>"; };
+		7E31E39F1E6B14C700EA69DE /* emotion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emotion@2x.png"; sourceTree = "<group>"; };
+		7E31E3A01E6B14C700EA69DE /* utility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = utility.png; sourceTree = "<group>"; };
+		7E31E3A11E6B14C700EA69DE /* utility@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "utility@2x.png"; sourceTree = "<group>"; };
+		7E31E3A61E6BEBCB00EA69DE /* UIImage+UIImageAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UIImageAddition.h"; sourceTree = "<group>"; };
+		7E31E3A71E6BEBCB00EA69DE /* UIImage+UIImageAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UIImageAddition.m"; sourceTree = "<group>"; };
+		7E31E3A91E6BECA200EA69DE /* ZKPublicProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKPublicProfileCell.h; sourceTree = "<group>"; };
+		7E31E3AA1E6BECA200EA69DE /* ZKPublicProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKPublicProfileCell.m; sourceTree = "<group>"; };
+		7E31E3AC1E6C0A1400EA69DE /* shielded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shielded.png; sourceTree = "<group>"; };
+		7E31E3AD1E6C0A1400EA69DE /* shielded@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shielded@2x.png"; sourceTree = "<group>"; };
+		7E31E3B01E6D8F4600EA69DE /* ZKChattingEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChattingEditViewController.h; sourceTree = "<group>"; };
+		7E31E3B11E6D8F4600EA69DE /* ZKChattingEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChattingEditViewController.m; sourceTree = "<group>"; };
+		7E31E3B31E6DA15F00EA69DE /* ZKPersonEditControllectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKPersonEditControllectionCell.h; sourceTree = "<group>"; };
+		7E31E3B41E6DA15F00EA69DE /* ZKPersonEditControllectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKPersonEditControllectionCell.m; sourceTree = "<group>"; };
+		7E31E3B61E6DA21600EA69DE /* delImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delImage.png; sourceTree = "<group>"; };
+		7E31E3B71E6DA21600EA69DE /* delImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delImage@2x.png"; sourceTree = "<group>"; };
+		7E31E3BA1E6DA29D00EA69DE /* tt_group_manager_add_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_group_manager_add_user.png; sourceTree = "<group>"; };
+		7E31E3BB1E6DA29D00EA69DE /* tt_group_manager_add_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tt_group_manager_add_user@2x.png"; sourceTree = "<group>"; };
+		7E31E3BE1E6DA2A900EA69DE /* tt_group_manager_delete_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_group_manager_delete_user.png; sourceTree = "<group>"; };
+		7E31E3BF1E6DA2A900EA69DE /* tt_group_manager_delete_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tt_group_manager_delete_user@2x.png"; sourceTree = "<group>"; };
+		7E31E3C21E6DA73C00EA69DE /* ZKGroupInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKGroupInfoCell.h; sourceTree = "<group>"; };
+		7E31E3C31E6DA73C00EA69DE /* ZKGroupInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKGroupInfoCell.m; sourceTree = "<group>"; };
+		7E31E3C51E756E3A00EA69DE /* input_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = input_normal.png; sourceTree = "<group>"; };
+		7E31E3C61E756E3A00EA69DE /* input_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_normal@2x.png"; sourceTree = "<group>"; };
+		7E31E3CE1E75913200EA69DE /* DDDataInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDDataInputStream.h; sourceTree = "<group>"; };
+		7E31E3CF1E75913200EA69DE /* DDDataInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDDataInputStream.m; sourceTree = "<group>"; };
+		7E6031871E533AA3005239C4 /* ZKChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E60318B1E533AA3005239C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7E60318D1E533AA3005239C4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7E60318E1E533AA3005239C4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7E60319C1E533AA5005239C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7E60319E1E533AA6005239C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E6031A31E533AA6005239C4 /* ZKChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZKChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E6031A71E533AA7005239C4 /* ZKChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKChatTests.m; sourceTree = "<group>"; };
+		7E6031A91E533AA7005239C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E6031AE1E533AA7005239C4 /* ZKChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZKChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E6031B21E533AA7005239C4 /* ZKChatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKChatUITests.m; sourceTree = "<group>"; };
+		7E6031B41E533AA7005239C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E6031C61E534734005239C4 /* ZKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKBaseViewController.h; sourceTree = "<group>"; };
+		7E6031C71E534734005239C4 /* ZKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBaseViewController.m; sourceTree = "<group>"; };
+		7E6031CA1E534770005239C4 /* ZKBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKBaseTableViewController.h; sourceTree = "<group>"; };
+		7E6031CB1E534770005239C4 /* ZKBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBaseTableViewController.m; sourceTree = "<group>"; };
+		7E6031CE1E5347CA005239C4 /* ZKBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKBaseNavigationController.h; sourceTree = "<group>"; };
+		7E6031CF1E5347CA005239C4 /* ZKBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBaseNavigationController.m; sourceTree = "<group>"; };
+		7E6031D51E548E10005239C4 /* ZKMultipleSectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMultipleSectionTableViewController.h; sourceTree = "<group>"; };
+		7E6031D61E548E10005239C4 /* ZKMultipleSectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMultipleSectionTableViewController.m; sourceTree = "<group>"; };
+		7E6031D91E55E013005239C4 /* ZKBaseSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKBaseSearchTableViewController.h; sourceTree = "<group>"; };
+		7E6031DA1E55E013005239C4 /* ZKBaseSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBaseSearchTableViewController.m; sourceTree = "<group>"; };
+		7E6031DE1E57374C005239C4 /* ZKBaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKBaseTabBarController.h; sourceTree = "<group>"; };
+		7E6031DF1E57374C005239C4 /* ZKBaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBaseTabBarController.m; sourceTree = "<group>"; };
+		7E6031E21E574757005239C4 /* ZKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKLoginViewController.h; sourceTree = "<group>"; };
+		7E6031E31E574757005239C4 /* ZKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKLoginViewController.m; sourceTree = "<group>"; };
+		7E6031E61E5B20EC005239C4 /* ZKMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMessageViewController.h; sourceTree = "<group>"; };
+		7E6031E71E5B20EC005239C4 /* ZKMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMessageViewController.m; sourceTree = "<group>"; };
+		7E6031EB1E5C7486005239C4 /* ZKRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKRootViewController.h; sourceTree = "<group>"; };
+		7E6031EC1E5C7486005239C4 /* ZKRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRootViewController.m; sourceTree = "<group>"; };
+		7E6031EF1E5DC7BF005239C4 /* ZKContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKContactViewController.h; sourceTree = "<group>"; };
+		7E6031F01E5DC7BF005239C4 /* ZKContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKContactViewController.m; sourceTree = "<group>"; };
+		7E6031F31E5DC842005239C4 /* ZKMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMyViewController.h; sourceTree = "<group>"; };
+		7E6031F41E5DC842005239C4 /* ZKMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMyViewController.m; sourceTree = "<group>"; };
+		7E6031F81E5DD5D9005239C4 /* conversation_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = conversation_selected.png; sourceTree = "<group>"; };
+		7E6031F91E5DD5D9005239C4 /* conversation_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "conversation_selected@2x.png"; sourceTree = "<group>"; };
+		7E6031FA1E5DD5D9005239C4 /* conversation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = conversation.png; sourceTree = "<group>"; };
+		7E6031FB1E5DD5D9005239C4 /* conversation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "conversation@2x.png"; sourceTree = "<group>"; };
+		7E6032041E5DD710005239C4 /* ZKConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKConfig.h; sourceTree = "<group>"; };
+		7E6032051E5DD741005239C4 /* ZKConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKConstant.h; sourceTree = "<group>"; };
+		7E6032061E5DD816005239C4 /* contact_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact_selected.png; sourceTree = "<group>"; };
+		7E6032071E5DD816005239C4 /* contact_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact_selected@2x.png"; sourceTree = "<group>"; };
+		7E6032081E5DD816005239C4 /* contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact.png; sourceTree = "<group>"; };
+		7E6032091E5DD816005239C4 /* contact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact@2x.png"; sourceTree = "<group>"; };
+		7E60320E1E5DD8A8005239C4 /* myprofile_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myprofile_selected.png; sourceTree = "<group>"; };
+		7E60320F1E5DD8A8005239C4 /* myprofile_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myprofile_selected@2x.png"; sourceTree = "<group>"; };
+		7E6032101E5DD8A8005239C4 /* myprofile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myprofile.png; sourceTree = "<group>"; };
+		7E6032111E5DD8A8005239C4 /* myprofile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myprofile@2x.png"; sourceTree = "<group>"; };
+		7E6032171E5DD92B005239C4 /* ZKFindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKFindViewController.h; sourceTree = "<group>"; };
+		7E6032181E5DD92B005239C4 /* ZKFindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKFindViewController.m; sourceTree = "<group>"; };
+		7E60321A1E5DDA51005239C4 /* tab_nav_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_nav_select.png; sourceTree = "<group>"; };
+		7E60321B1E5DDA51005239C4 /* tab_nav_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_nav_select@2x.png"; sourceTree = "<group>"; };
+		7E60321E1E5DDA5A005239C4 /* tab_nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_nav.png; sourceTree = "<group>"; };
+		7E60321F1E5DDA5A005239C4 /* tab_nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_nav@2x.png"; sourceTree = "<group>"; };
+		7E6981F41E7ABFB90005B29A /* RuntimeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeStatus.h; sourceTree = "<group>"; };
+		7E6981F51E7ABFB90005B29A /* RuntimeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeStatus.m; sourceTree = "<group>"; };
+		7E6981F71E7AC4FE0005B29A /* DDChatBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDChatBaseCell.h; sourceTree = "<group>"; };
+		7E6981F81E7AC4FE0005B29A /* DDChatBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDChatBaseCell.m; sourceTree = "<group>"; };
+		7E6981FB1E7AC5AB0005B29A /* DDChatCellProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDChatCellProtocol.h; sourceTree = "<group>"; };
+		7E6981FC1E7AC6F60005B29A /* MenuImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuImageView.h; sourceTree = "<group>"; };
+		7E6981FD1E7AC6F60005B29A /* MenuImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuImageView.m; sourceTree = "<group>"; };
+		7E6982001E7ACAB60005B29A /* ZKBubbleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKBubbleModule.h; sourceTree = "<group>"; };
+		7E6982011E7ACAB60005B29A /* ZKBubbleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBubbleModule.m; sourceTree = "<group>"; };
+		7E6982041E7AD1620005B29A /* UILabel+VerticalAlign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+VerticalAlign.h"; sourceTree = "<group>"; };
+		7E6982051E7AD1620005B29A /* UILabel+VerticalAlign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+VerticalAlign.m"; sourceTree = "<group>"; };
+		7E6982071E7AD35A0005B29A /* DDChatTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDChatTextCell.h; sourceTree = "<group>"; };
+		7E6982081E7AD35A0005B29A /* DDChatTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDChatTextCell.m; sourceTree = "<group>"; };
+		7ED4935B1E646F0C0083BCD4 /* ZKChattingUtilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChattingUtilityViewController.h; sourceTree = "<group>"; };
+		7ED4935C1E646F0C0083BCD4 /* ZKChattingUtilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChattingUtilityViewController.m; sourceTree = "<group>"; };
+		7ED4935F1E64721B0083BCD4 /* chat_pick_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_pick_photo@2x.png"; sourceTree = "<group>"; };
+		7ED493601E64721B0083BCD4 /* chat_shake_pc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_shake_pc@2x.png"; sourceTree = "<group>"; };
+		7ED493611E64721B0083BCD4 /* chat_take_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_take_photo@2x.png"; sourceTree = "<group>"; };
+		7ED493651E6474510083BCD4 /* ZKChattingImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChattingImagePreviewViewController.h; sourceTree = "<group>"; };
+		7ED493661E6474510083BCD4 /* ZKChattingImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChattingImagePreviewViewController.m; sourceTree = "<group>"; };
+		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
+		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
+		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
+		7ED4936B1E671CCB0083BCD4 /* libHPGrowingTextView.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHPGrowingTextView.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/HPGrowingTextView/libHPGrowingTextView.a"; sourceTree = "<group>"; };
+		7ED4936C1E671CCB0083BCD4 /* libLCActionSheet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLCActionSheet.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/LCActionSheet/libLCActionSheet.a"; sourceTree = "<group>"; };
+		7ED4936D1E671CCB0083BCD4 /* libMasonry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMasonry.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/Masonry/libMasonry.a"; sourceTree = "<group>"; };
+		7ED4936E1E671CCB0083BCD4 /* libMBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMBProgressHUD.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/MBProgressHUD/libMBProgressHUD.a"; sourceTree = "<group>"; };
+		7ED4936F1E671CCB0083BCD4 /* libMWPhotoBrowser.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMWPhotoBrowser.a; path = "Pods/../build/Debug-iphoneos/MWPhotoBrowser/libMWPhotoBrowser.a"; sourceTree = "<group>"; };
+		7ED493701E671CCB0083BCD4 /* libPods-ZKChatTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ZKChatTests.a"; path = "Pods/../build/Debug-iphoneos/libPods-ZKChatTests.a"; sourceTree = "<group>"; };
+		7ED493711E671CCB0083BCD4 /* libPods-ZKChatUITests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ZKChatUITests.a"; path = "Pods/../build/Debug-iphoneos/libPods-ZKChatUITests.a"; sourceTree = "<group>"; };
+		7ED493721E671CCB0083BCD4 /* libProtocolBuffers.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libProtocolBuffers.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/ProtocolBuffers/libProtocolBuffers.a"; sourceTree = "<group>"; };
+		7ED493731E671CCB0083BCD4 /* libPSTCollectionView.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPSTCollectionView.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/PSTCollectionView/libPSTCollectionView.a"; sourceTree = "<group>"; };
+		7ED493741E671CCB0083BCD4 /* libSCLAlertView-Objective-C.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSCLAlertView-Objective-C.a"; path = "Pods/../build/Debug-iphoneos/SCLAlertView-Objective-C/libSCLAlertView-Objective-C.a"; sourceTree = "<group>"; };
+		7ED493751E671CCB0083BCD4 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/SDWebImage/libSDWebImage.a"; sourceTree = "<group>"; };
+		7ED493761E671CCB0083BCD4 /* libSVWebViewController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSVWebViewController.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/SVWebViewController/libSVWebViewController.a"; sourceTree = "<group>"; };
+		7ED493771E671CCB0083BCD4 /* libTTTAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTTTAttributedLabel.a; path = "Pods/../build/Debug-iphoneos/TTTAttributedLabel/libTTTAttributedLabel.a"; sourceTree = "<group>"; };
+		7ED493781E671CCB0083BCD4 /* libXHImageViewer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXHImageViewer.a; path = "Pods/../build/Debug-iphoneos/XHImageViewer/libXHImageViewer.a"; sourceTree = "<group>"; };
+		84AE958B7145189E8683D1FB /* libPods-ZKChatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKChatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89DE95995185031F4183B5E6 /* Pods-ZKChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChat/Pods-ZKChat.release.xcconfig"; sourceTree = "<group>"; };
+		A8B14379A7C4B56E4443F165 /* Pods-ZKChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChatTests/Pods-ZKChatTests.release.xcconfig"; sourceTree = "<group>"; };
+		C0F5CB65A6D641071851F964 /* libPods-ZKChatUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKChatUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5589CF789A8E9838CE4A9E1 /* Pods-ZKChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChatTests/Pods-ZKChatTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F82B48862F7EA6B033678197 /* Pods-ZKChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChat/Pods-ZKChat.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7E6031841E533AA3005239C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD908472DD40B857490979A0 /* libPods-ZKChat.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E6031A01E533AA6005239C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22FAC22B93C1BCA4F860FF7D /* libPods-ZKChatTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E6031AB1E533AA7005239C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAE7D4347B166B6242C4FAC9 /* libPods-ZKChatUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A7F21B599F00A26E798431E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7ED493681E671CCB0083BCD4 /* libAFNetworking.a */,
+				7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */,
+				7ED4936A1E671CCB0083BCD4 /* libFMDB.a */,
+				7ED4936B1E671CCB0083BCD4 /* libHPGrowingTextView.a */,
+				7ED4936C1E671CCB0083BCD4 /* libLCActionSheet.a */,
+				7ED4936D1E671CCB0083BCD4 /* libMasonry.a */,
+				7ED4936E1E671CCB0083BCD4 /* libMBProgressHUD.a */,
+				7ED4936F1E671CCB0083BCD4 /* libMWPhotoBrowser.a */,
+				7ED493701E671CCB0083BCD4 /* libPods-ZKChatTests.a */,
+				7ED493711E671CCB0083BCD4 /* libPods-ZKChatUITests.a */,
+				7ED493721E671CCB0083BCD4 /* libProtocolBuffers.a */,
+				7ED493731E671CCB0083BCD4 /* libPSTCollectionView.a */,
+				7ED493741E671CCB0083BCD4 /* libSCLAlertView-Objective-C.a */,
+				7ED493751E671CCB0083BCD4 /* libSDWebImage.a */,
+				7ED493761E671CCB0083BCD4 /* libSVWebViewController.a */,
+				7ED493771E671CCB0083BCD4 /* libTTTAttributedLabel.a */,
+				7ED493781E671CCB0083BCD4 /* libXHImageViewer.a */,
+				1E6D94E683078ADACFA9C473 /* libPods-ZKChat.a */,
+				84AE958B7145189E8683D1FB /* libPods-ZKChatTests.a */,
+				C0F5CB65A6D641071851F964 /* libPods-ZKChatUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7E290E781E6054EC004552F3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7E6982031E7AD08E0005B29A /* Base */,
+				7E6981FA1E7AC59C0005B29A /* Chat */,
+				7E290E7C1E605583004552F3 /* ZKUserInfoCell.h */,
+				7E290E7D1E605583004552F3 /* ZKUserInfoCell.m */,
+				7E290E831E6068FD004552F3 /* ZKNormalCell.h */,
+				7E290E841E6068FD004552F3 /* ZKNormalCell.m */,
+				7E290E911E61722A004552F3 /* ZKRecentUserCell.h */,
+				7E290E921E61722A004552F3 /* ZKRecentUserCell.m */,
+				7E290EB11E61BA73004552F3 /* ZKContactCell.h */,
+				7E290EB21E61BA73004552F3 /* ZKContactCell.m */,
+				7E31E3A91E6BECA200EA69DE /* ZKPublicProfileCell.h */,
+				7E31E3AA1E6BECA200EA69DE /* ZKPublicProfileCell.m */,
+				7E31E3B31E6DA15F00EA69DE /* ZKPersonEditControllectionCell.h */,
+				7E31E3B41E6DA15F00EA69DE /* ZKPersonEditControllectionCell.m */,
+				7E31E3C21E6DA73C00EA69DE /* ZKGroupInfoCell.h */,
+				7E31E3C31E6DA73C00EA69DE /* ZKGroupInfoCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		7E290E941E61750C004552F3 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				7E6982041E7AD1620005B29A /* UILabel+VerticalAlign.h */,
+				7E6982051E7AD1620005B29A /* UILabel+VerticalAlign.m */,
+				7E31E3A61E6BEBCB00EA69DE /* UIImage+UIImageAddition.h */,
+				7E31E3A71E6BEBCB00EA69DE /* UIImage+UIImageAddition.m */,
+				7E31E3921E6AE65D00EA69DE /* UIColor+JSMessagesView.h */,
+				7E31E3931E6AE65D00EA69DE /* UIColor+JSMessagesView.m */,
+				7E31E3941E6AE65D00EA69DE /* UIImage+JSMessagesView.h */,
+				7E31E3951E6AE65D00EA69DE /* UIImage+JSMessagesView.m */,
+				7E31E38B1E6AE4AD00EA69DE /* NSString+JSMessagesView.h */,
+				7E31E38C1E6AE4AD00EA69DE /* NSString+JSMessagesView.m */,
+				7E290EDE1E630F71004552F3 /* NSString+Additions.h */,
+				7E290EDF1E630F71004552F3 /* NSString+Additions.m */,
+				7E290EBE1E62F505004552F3 /* NSDictionary+Safe.h */,
+				7E290EBF1E62F505004552F3 /* NSDictionary+Safe.m */,
+				7E290E951E61751D004552F3 /* NSDate+DDAddition.h */,
+				7E290E961E61751D004552F3 /* NSDate+DDAddition.m */,
+				7E290E9A1E61761C004552F3 /* UIView+Addition.h */,
+				7E290E9B1E61761C004552F3 /* UIView+Addition.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		7E290E9D1E619A82004552F3 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				7E290E9E1E619ABC004552F3 /* ZKChattingMainViewController.h */,
+				7E290E9F1E619ABC004552F3 /* ZKChattingMainViewController.m */,
+				7ED4935B1E646F0C0083BCD4 /* ZKChattingUtilityViewController.h */,
+				7ED4935C1E646F0C0083BCD4 /* ZKChattingUtilityViewController.m */,
+				7ED493651E6474510083BCD4 /* ZKChattingImagePreviewViewController.h */,
+				7ED493661E6474510083BCD4 /* ZKChattingImagePreviewViewController.m */,
+				7E31E3541E69A54900EA69DE /* ZKEmotionsViewController.h */,
+				7E31E3551E69A54900EA69DE /* ZKEmotionsViewController.m */,
+				7E31E3B01E6D8F4600EA69DE /* ZKChattingEditViewController.h */,
+				7E31E3B11E6D8F4600EA69DE /* ZKChattingEditViewController.m */,
+			);
+			name = Chatting;
+			sourceTree = "<group>";
+		};
+		7E290EC11E62FD76004552F3 /* Exist */ = {
+			isa = PBXGroup;
+			children = (
+				7E31E3811E6AE18900EA69DE /* JSMessage */,
+				7E290EC21E62FD8D004552F3 /* ProtocolBuffers */,
+			);
+			name = Exist;
+			sourceTree = "<group>";
+		};
+		7E290EC21E62FD8D004552F3 /* ProtocolBuffers */ = {
+			isa = PBXGroup;
+			children = (
+				7E290EC31E62FDA1004552F3 /* IMBaseDefine.pb.h */,
+				7E290EC41E62FDA1004552F3 /* IMBaseDefine.pb.m */,
+				7E290EC51E62FDA1004552F3 /* IMBuddy.pb.h */,
+				7E290EC61E62FDA1004552F3 /* IMBuddy.pb.m */,
+				7E290EC71E62FDA1004552F3 /* IMGroup.pb.h */,
+				7E290EC81E62FDA1004552F3 /* IMGroup.pb.m */,
+				7E290EC91E62FDA1004552F3 /* IMLogin.pb.h */,
+				7E290ECA1E62FDA1004552F3 /* IMLogin.pb.m */,
+				7E290ECB1E62FDA1004552F3 /* IMMessage.pb.h */,
+				7E290ECC1E62FDA1004552F3 /* IMMessage.pb.m */,
+				7E290ECD1E62FDA1004552F3 /* IMOther.pb.h */,
+				7E290ECE1E62FDA1004552F3 /* IMOther.pb.m */,
+				7E290ECF1E62FDA1004552F3 /* IMSwitchService.pb.h */,
+				7E290ED01E62FDA1004552F3 /* IMSwitchService.pb.m */,
+			);
+			name = ProtocolBuffers;
+			sourceTree = "<group>";
+		};
+		7E31E3571E69A80700EA69DE /* Emotions */ = {
+			isa = PBXGroup;
+			children = (
+				7E31E3581E69A83700EA69DE /* EmotionsModule.h */,
+				7E31E3591E69A83700EA69DE /* EmotionsModule.m */,
+			);
+			name = Emotions;
+			sourceTree = "<group>";
+		};
+		7E31E35B1E69A90900EA69DE /* Bundle */ = {
+			isa = PBXGroup;
+			children = (
+				7E31E35C1E69A92300EA69DE /* emotions.bundle */,
+			);
+			name = Bundle;
+			sourceTree = "<group>";
+		};
+		7E31E35E1E6A76C600EA69DE /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				7E31E35F1E6A76EA00EA69DE /* ChattingModule.h */,
+				7E31E3601E6A76EA00EA69DE /* ChattingModule.m */,
+			);
+			name = Chatting;
+			sourceTree = "<group>";
+		};
+		7E31E3621E6AB10C00EA69DE /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				7E290EB81E62F268004552F3 /* ZKUserEntity.h */,
+				7E290EB91E62F268004552F3 /* ZKUserEntity.m */,
+				7E290EBB1E62F386004552F3 /* ZKBaseEntity.h */,
+				7E290EBC1E62F386004552F3 /* ZKBaseEntity.m */,
+				7E290ED81E63009F004552F3 /* ZKGroupEntity.h */,
+				7E290ED91E63009F004552F3 /* ZKGroupEntity.m */,
+				7E31E3631E6AB1CD00EA69DE /* ZKMessageEntity.h */,
+				7E31E3641E6AB1CD00EA69DE /* ZKMessageEntity.m */,
+				7E31E3661E6AB32800EA69DE /* ZKSessionEntity.h */,
+				7E31E3671E6AB32800EA69DE /* ZKSessionEntity.m */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
+		7E31E37D1E6ADED800EA69DE /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				7E31E37E1E6ADEFB00EA69DE /* ZKPhotosCache.h */,
+				7E31E37F1E6ADEFB00EA69DE /* ZKPhotosCache.m */,
+			);
+			name = Photo;
+			sourceTree = "<group>";
+		};
+		7E31E3811E6AE18900EA69DE /* JSMessage */ = {
+			isa = PBXGroup;
+			children = (
+				7E31E3821E6AE19D00EA69DE /* JSDismissiveTextView.h */,
+				7E31E3831E6AE19D00EA69DE /* JSDismissiveTextView.m */,
+				7E31E3841E6AE19D00EA69DE /* JSMessageInputView.h */,
+				7E31E3851E6AE19D00EA69DE /* JSMessageInputView.m */,
+				7E31E3861E6AE19D00EA69DE /* JSMessageTextView.h */,
+				7E31E3871E6AE19D00EA69DE /* JSMessageTextView.m */,
+			);
+			name = JSMessage;
+			sourceTree = "<group>";
+		};
+		7E31E3CD1E75911400EA69DE /* TCP */ = {
+			isa = PBXGroup;
+			children = (
+				7E31E3CE1E75913200EA69DE /* DDDataInputStream.h */,
+				7E31E3CF1E75913200EA69DE /* DDDataInputStream.m */,
+			);
+			name = TCP;
+			sourceTree = "<group>";
+		};
+		7E60317E1E533AA2005239C4 = {
+			isa = PBXGroup;
+			children = (
+				7E6031891E533AA3005239C4 /* ZKChat */,
+				7E6031A61E533AA6005239C4 /* ZKChatTests */,
+				7E6031B11E533AA7005239C4 /* ZKChatUITests */,
+				7E6031881E533AA3005239C4 /* Products */,
+				E62A760B64A249D77718C26A /* Pods */,
+				0A7F21B599F00A26E798431E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7E6031881E533AA3005239C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031871E533AA3005239C4 /* ZKChat.app */,
+				7E6031A31E533AA6005239C4 /* ZKChatTests.xctest */,
+				7E6031AE1E533AA7005239C4 /* ZKChatUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7E6031891E533AA3005239C4 /* ZKChat */ = {
+			isa = PBXGroup;
+			children = (
+				7E6981F31E7ABF910005B29A /* GlobalData */,
+				7E290EC11E62FD76004552F3 /* Exist */,
+				7E290E941E61750C004552F3 /* Category */,
+				7E6032031E5DD6E9005239C4 /* Config */,
+				7E6031C41E534472005239C4 /* Commucation */,
+				7E6031C31E53436E005239C4 /* View */,
+				7E31E3621E6AB10C00EA69DE /* Entity */,
+				7E6031C21E534355005239C4 /* Model */,
+				7E6031C11E53434F005239C4 /* Util */,
+				7E6031C01E53433F005239C4 /* Controller */,
+				7E60318D1E533AA3005239C4 /* AppDelegate.h */,
+				7E60318E1E533AA3005239C4 /* AppDelegate.m */,
+				7E290E881E61506B004552F3 /* Assets.xcassets */,
+				7E60319B1E533AA5005239C4 /* LaunchScreen.storyboard */,
+				7E60319E1E533AA6005239C4 /* Info.plist */,
+				7E6031F61E5DD462005239C4 /* Resource */,
+				7E60318A1E533AA3005239C4 /* Supporting Files */,
+			);
+			path = ZKChat;
+			sourceTree = "<group>";
+		};
+		7E60318A1E533AA3005239C4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7E60318B1E533AA3005239C4 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7E6031A61E533AA6005239C4 /* ZKChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031A71E533AA7005239C4 /* ZKChatTests.m */,
+				7E6031A91E533AA7005239C4 /* Info.plist */,
+			);
+			path = ZKChatTests;
+			sourceTree = "<group>";
+		};
+		7E6031B11E533AA7005239C4 /* ZKChatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031B21E533AA7005239C4 /* ZKChatUITests.m */,
+				7E6031B41E533AA7005239C4 /* Info.plist */,
+			);
+			path = ZKChatUITests;
+			sourceTree = "<group>";
+		};
+		7E6031C01E53433F005239C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7E6032161E5DD8EF005239C4 /* Find */,
+				7E6031F21E5DC7E8005239C4 /* My */,
+				7E6031EE1E5DC792005239C4 /* Contact */,
+				7E6031EA1E5C745B005239C4 /* Root */,
+				7E6031E91E5C73C6005239C4 /* Login */,
+				7E6031E51E5B20C2005239C4 /* Message */,
+				7E6031E11E574205005239C4 /* Base */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		7E6031C11E53434F005239C4 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7E290EDB1E63030E004552F3 /* ZKUtil.h */,
+				7E290EDC1E63030E004552F3 /* ZKUtil.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		7E6031C21E534355005239C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7E6981FF1E7ACA800005B29A /* Bubble */,
+				7E31E3CD1E75911400EA69DE /* TCP */,
+				7E31E37D1E6ADED800EA69DE /* Photo */,
+				7E31E35E1E6A76C600EA69DE /* Chatting */,
+				7E31E3571E69A80700EA69DE /* Emotions */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7E6031C31E53436E005239C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E290E781E6054EC004552F3 /* Cell */,
+				7E31E36A1E6ABF1400EA69DE /* RecordingView.h */,
+				7E31E36B1E6ABF1400EA69DE /* RecordingView.m */,
+				7E6981FC1E7AC6F60005B29A /* MenuImageView.h */,
+				7E6981FD1E7AC6F60005B29A /* MenuImageView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7E6031C41E534472005239C4 /* Commucation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Commucation;
+			sourceTree = "<group>";
+		};
+		7E6031C51E5346FA005239C4 /* ZKBaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031C61E534734005239C4 /* ZKBaseViewController.h */,
+				7E6031C71E534734005239C4 /* ZKBaseViewController.m */,
+			);
+			name = ZKBaseViewController;
+			sourceTree = "<group>";
+		};
+		7E6031C91E53473D005239C4 /* ZKBaseTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031CA1E534770005239C4 /* ZKBaseTableViewController.h */,
+				7E6031CB1E534770005239C4 /* ZKBaseTableViewController.m */,
+				7E6031D51E548E10005239C4 /* ZKMultipleSectionTableViewController.h */,
+				7E6031D61E548E10005239C4 /* ZKMultipleSectionTableViewController.m */,
+			);
+			name = ZKBaseTableViewController;
+			sourceTree = "<group>";
+		};
+		7E6031CD1E53477E005239C4 /* ZKBaseNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031CE1E5347CA005239C4 /* ZKBaseNavigationController.h */,
+				7E6031CF1E5347CA005239C4 /* ZKBaseNavigationController.m */,
+			);
+			name = ZKBaseNavigationController;
+			sourceTree = "<group>";
+		};
+		7E6031D81E55DFD0005239C4 /* ZKBaseSearchTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031D91E55E013005239C4 /* ZKBaseSearchTableViewController.h */,
+				7E6031DA1E55E013005239C4 /* ZKBaseSearchTableViewController.m */,
+			);
+			name = ZKBaseSearchTableViewController;
+			sourceTree = "<group>";
+		};
+		7E6031DD1E57371A005239C4 /* ZKBaseTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031DE1E57374C005239C4 /* ZKBaseTabBarController.h */,
+				7E6031DF1E57374C005239C4 /* ZKBaseTabBarController.m */,
+			);
+			name = ZKBaseTabBarController;
+			sourceTree = "<group>";
+		};
+		7E6031E11E574205005239C4 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031DD1E57371A005239C4 /* ZKBaseTabBarController */,
+				7E6031D81E55DFD0005239C4 /* ZKBaseSearchTableViewController */,
+				7E6031CD1E53477E005239C4 /* ZKBaseNavigationController */,
+				7E6031C91E53473D005239C4 /* ZKBaseTableViewController */,
+				7E6031C51E5346FA005239C4 /* ZKBaseViewController */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		7E6031E51E5B20C2005239C4 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				7E290E9D1E619A82004552F3 /* Chatting */,
+				7E6031E61E5B20EC005239C4 /* ZKMessageViewController.h */,
+				7E6031E71E5B20EC005239C4 /* ZKMessageViewController.m */,
+			);
+			name = Message;
+			sourceTree = "<group>";
+		};
+		7E6031E91E5C73C6005239C4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031E21E574757005239C4 /* ZKLoginViewController.h */,
+				7E6031E31E574757005239C4 /* ZKLoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		7E6031EA1E5C745B005239C4 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031EB1E5C7486005239C4 /* ZKRootViewController.h */,
+				7E6031EC1E5C7486005239C4 /* ZKRootViewController.m */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
+		7E6031EE1E5DC792005239C4 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031EF1E5DC7BF005239C4 /* ZKContactViewController.h */,
+				7E6031F01E5DC7BF005239C4 /* ZKContactViewController.m */,
+				7E290E8A1E61614D004552F3 /* ZKContactResultViewController.h */,
+				7E290E8B1E61614D004552F3 /* ZKContactResultViewController.m */,
+				7E290EB41E61BFB8004552F3 /* ZKPublicProfileViewController.h */,
+				7E290EB51E61BFB8004552F3 /* ZKPublicProfileViewController.m */,
+			);
+			name = Contact;
+			sourceTree = "<group>";
+		};
+		7E6031F21E5DC7E8005239C4 /* My */ = {
+			isa = PBXGroup;
+			children = (
+				7E6031F31E5DC842005239C4 /* ZKMyViewController.h */,
+				7E6031F41E5DC842005239C4 /* ZKMyViewController.m */,
+			);
+			name = My;
+			sourceTree = "<group>";
+		};
+		7E6031F61E5DD462005239C4 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				7E31E35B1E69A90900EA69DE /* Bundle */,
+				7E6031F71E5DD474005239C4 /* Image */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		7E6031F71E5DD474005239C4 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				7ED4935E1E6471DD0083BCD4 /* Chatting */,
+				7E290EAD1E61ACF4004552F3 /* Profile@2x.png */,
+				7E290EA71E61AB82004552F3 /* QRCode@2x.png */,
+				7E290EA91E61AB8B004552F3 /* ShowAlbum@2x.png */,
+				7E290EA31E61A8AD004552F3 /* mac_logined@2x.png */,
+				7E290EA11E61A6D9004552F3 /* connect_alert_mac@2x.png */,
+				7E290E981E617593004552F3 /* ZKIcon.png */,
+				7E290E8D1E616EE6004552F3 /* top_back.png */,
+				7E290E8E1E616EE6004552F3 /* top_back@2x.png */,
+				7E290E7F1E6059D2004552F3 /* avatar_50.png */,
+				7E290E801E6059D2004552F3 /* avatar.png */,
+				7E60321E1E5DDA5A005239C4 /* tab_nav.png */,
+				7E60321F1E5DDA5A005239C4 /* tab_nav@2x.png */,
+				7E60321A1E5DDA51005239C4 /* tab_nav_select.png */,
+				7E60321B1E5DDA51005239C4 /* tab_nav_select@2x.png */,
+				7E60320E1E5DD8A8005239C4 /* myprofile_selected.png */,
+				7E60320F1E5DD8A8005239C4 /* myprofile_selected@2x.png */,
+				7E6032101E5DD8A8005239C4 /* myprofile.png */,
+				7E6032111E5DD8A8005239C4 /* myprofile@2x.png */,
+				7E6032061E5DD816005239C4 /* contact_selected.png */,
+				7E6032071E5DD816005239C4 /* contact_selected@2x.png */,
+				7E6032081E5DD816005239C4 /* contact.png */,
+				7E6032091E5DD816005239C4 /* contact@2x.png */,
+				7E6031F81E5DD5D9005239C4 /* conversation_selected.png */,
+				7E6031F91E5DD5D9005239C4 /* conversation_selected@2x.png */,
+				7E6031FA1E5DD5D9005239C4 /* conversation.png */,
+				7E6031FB1E5DD5D9005239C4 /* conversation@2x.png */,
+			);
+			name = Image;
+			sourceTree = "<group>";
+		};
+		7E6032031E5DD6E9005239C4 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				7E6032041E5DD710005239C4 /* ZKConfig.h */,
+				7E6032051E5DD741005239C4 /* ZKConstant.h */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		7E6032161E5DD8EF005239C4 /* Find */ = {
+			isa = PBXGroup;
+			children = (
+				7E6032171E5DD92B005239C4 /* ZKFindViewController.h */,
+				7E6032181E5DD92B005239C4 /* ZKFindViewController.m */,
+			);
+			name = Find;
+			sourceTree = "<group>";
+		};
+		7E6981F31E7ABF910005B29A /* GlobalData */ = {
+			isa = PBXGroup;
+			children = (
+				7E6981F41E7ABFB90005B29A /* RuntimeStatus.h */,
+				7E6981F51E7ABFB90005B29A /* RuntimeStatus.m */,
+			);
+			name = GlobalData;
+			sourceTree = "<group>";
+		};
+		7E6981FA1E7AC59C0005B29A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				7E6981F71E7AC4FE0005B29A /* DDChatBaseCell.h */,
+				7E6981F81E7AC4FE0005B29A /* DDChatBaseCell.m */,
+				7E6981FB1E7AC5AB0005B29A /* DDChatCellProtocol.h */,
+				7E6982071E7AD35A0005B29A /* DDChatTextCell.h */,
+				7E6982081E7AD35A0005B29A /* DDChatTextCell.m */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		7E6981FF1E7ACA800005B29A /* Bubble */ = {
+			isa = PBXGroup;
+			children = (
+				7E6982001E7ACAB60005B29A /* ZKBubbleModule.h */,
+				7E6982011E7ACAB60005B29A /* ZKBubbleModule.m */,
+			);
+			name = Bubble;
+			sourceTree = "<group>";
+		};
+		7E6982031E7AD08E0005B29A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7E290E791E605539004552F3 /* ZKBaseCell.h */,
+				7E290E7A1E605539004552F3 /* ZKBaseCell.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		7ED4935E1E6471DD0083BCD4 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				7E31E3C51E756E3A00EA69DE /* input_normal.png */,
+				7E31E3C61E756E3A00EA69DE /* input_normal@2x.png */,
+				7E31E3BE1E6DA2A900EA69DE /* tt_group_manager_delete_user.png */,
+				7E31E3BF1E6DA2A900EA69DE /* tt_group_manager_delete_user@2x.png */,
+				7E31E3BA1E6DA29D00EA69DE /* tt_group_manager_add_user.png */,
+				7E31E3BB1E6DA29D00EA69DE /* tt_group_manager_add_user@2x.png */,
+				7E31E3B61E6DA21600EA69DE /* delImage.png */,
+				7E31E3B71E6DA21600EA69DE /* delImage@2x.png */,
+				7E31E3AC1E6C0A1400EA69DE /* shielded.png */,
+				7E31E3AD1E6C0A1400EA69DE /* shielded@2x.png */,
+				7E31E39E1E6B14C700EA69DE /* emotion.png */,
+				7E31E39F1E6B14C700EA69DE /* emotion@2x.png */,
+				7E31E3A01E6B14C700EA69DE /* utility.png */,
+				7E31E3A11E6B14C700EA69DE /* utility@2x.png */,
+				7E31E39C1E6B104E00EA69DE /* chat_bubble_pre_image@2x.png */,
+				7E31E3981E6B0FCD00EA69DE /* record_normal.png */,
+				7E31E3991E6B0FCD00EA69DE /* record_normal@2x.png */,
+				7E31E38E1E6AE5ED00EA69DE /* chatBg.png */,
+				7E31E38F1E6AE5ED00EA69DE /* chatBg@2x.png */,
+				7E31E3791E6ACED200EA69DE /* record_too_short.png */,
+				7E31E37A1E6ACED200EA69DE /* record_too_short@2x.png */,
+				7E31E3751E6ACCEE00EA69DE /* volumn.png */,
+				7E31E3761E6ACCEE00EA69DE /* volumn@2x.png */,
+				7E31E3711E6ACCB700EA69DE /* recording.png */,
+				7E31E3721E6ACCB700EA69DE /* recording@2x.png */,
+				7E31E36D1E6ACC5A00EA69DE /* cancel_send_record.png */,
+				7E31E36E1E6ACC5A00EA69DE /* cancel_send_record@2x.png */,
+				7ED4935F1E64721B0083BCD4 /* chat_pick_photo@2x.png */,
+				7ED493601E64721B0083BCD4 /* chat_shake_pc@2x.png */,
+				7ED493611E64721B0083BCD4 /* chat_take_photo@2x.png */,
+			);
+			name = Chatting;
+			sourceTree = "<group>";
+		};
+		E62A760B64A249D77718C26A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F82B48862F7EA6B033678197 /* Pods-ZKChat.debug.xcconfig */,
+				89DE95995185031F4183B5E6 /* Pods-ZKChat.release.xcconfig */,
+				D5589CF789A8E9838CE4A9E1 /* Pods-ZKChatTests.debug.xcconfig */,
+				A8B14379A7C4B56E4443F165 /* Pods-ZKChatTests.release.xcconfig */,
+				6234E7D269E1852A720D3158 /* Pods-ZKChatUITests.debug.xcconfig */,
+				4A0655867CDC5C64F2769A75 /* Pods-ZKChatUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7E6031861E533AA3005239C4 /* ZKChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E6031B71E533AA7005239C4 /* Build configuration list for PBXNativeTarget "ZKChat" */;
+			buildPhases = (
+				726A3A873E4150ACCE0C8453 /* [CP] Check Pods Manifest.lock */,
+				7E6031831E533AA3005239C4 /* Sources */,
+				7E6031841E533AA3005239C4 /* Frameworks */,
+				7E6031851E533AA3005239C4 /* Resources */,
+				6980664A87AC00A15F7B7AE2 /* [CP] Embed Pods Frameworks */,
+				AFA094B1F93C56B63F2B68E4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZKChat;
+			productName = ZKChat;
+			productReference = 7E6031871E533AA3005239C4 /* ZKChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7E6031A21E533AA6005239C4 /* ZKChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E6031BA1E533AA7005239C4 /* Build configuration list for PBXNativeTarget "ZKChatTests" */;
+			buildPhases = (
+				3BBAB5CB0BB921E2F3346607 /* [CP] Check Pods Manifest.lock */,
+				7E60319F1E533AA6005239C4 /* Sources */,
+				7E6031A01E533AA6005239C4 /* Frameworks */,
+				7E6031A11E533AA6005239C4 /* Resources */,
+				6637CE4339888BC906A96900 /* [CP] Embed Pods Frameworks */,
+				BD5A02EB25310F16046AF6C4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E6031A51E533AA6005239C4 /* PBXTargetDependency */,
+			);
+			name = ZKChatTests;
+			productName = ZKChatTests;
+			productReference = 7E6031A31E533AA6005239C4 /* ZKChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7E6031AD1E533AA7005239C4 /* ZKChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E6031BD1E533AA7005239C4 /* Build configuration list for PBXNativeTarget "ZKChatUITests" */;
+			buildPhases = (
+				FC585B63DBEEC30762BE09C5 /* [CP] Check Pods Manifest.lock */,
+				7E6031AA1E533AA7005239C4 /* Sources */,
+				7E6031AB1E533AA7005239C4 /* Frameworks */,
+				7E6031AC1E533AA7005239C4 /* Resources */,
+				7F0291AFBD0DA96E8529D565 /* [CP] Embed Pods Frameworks */,
+				6D778DE6FB3F4ED006A18814 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E6031B01E533AA7005239C4 /* PBXTargetDependency */,
+			);
+			name = ZKChatUITests;
+			productName = ZKChatUITests;
+			productReference = 7E6031AE1E533AA7005239C4 /* ZKChatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7E60317F1E533AA2005239C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "张阔";
+				TargetAttributes = {
+					7E6031861E533AA3005239C4 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9385678HZ3;
+						ProvisioningStyle = Automatic;
+					};
+					7E6031A21E533AA6005239C4 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9385678HZ3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7E6031861E533AA3005239C4;
+					};
+					7E6031AD1E533AA7005239C4 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9385678HZ3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7E6031861E533AA3005239C4;
+					};
+				};
+			};
+			buildConfigurationList = 7E6031821E533AA2005239C4 /* Build configuration list for PBXProject "ZKChat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7E60317E1E533AA2005239C4;
+			productRefGroup = 7E6031881E533AA3005239C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7E6031861E533AA3005239C4 /* ZKChat */,
+				7E6031A21E533AA6005239C4 /* ZKChatTests */,
+				7E6031AD1E533AA7005239C4 /* ZKChatUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7E6031851E533AA3005239C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E60320B1E5DD816005239C4 /* contact_selected@2x.png in Resources */,
+				7E31E3AE1E6C0A1400EA69DE /* shielded.png in Resources */,
+				7E31E3C01E6DA2A900EA69DE /* tt_group_manager_delete_user.png in Resources */,
+				7E6032131E5DD8A8005239C4 /* myprofile_selected@2x.png in Resources */,
+				7E31E39B1E6B0FCD00EA69DE /* record_normal@2x.png in Resources */,
+				7E6032151E5DD8A8005239C4 /* myprofile@2x.png in Resources */,
+				7E31E3B91E6DA21600EA69DE /* delImage@2x.png in Resources */,
+				7E31E3C91E756E3A00EA69DE /* input_normal.png in Resources */,
+				7E60321C1E5DDA51005239C4 /* tab_nav_select.png in Resources */,
+				7E290EAE1E61ACF4004552F3 /* Profile@2x.png in Resources */,
+				7E31E3BC1E6DA29D00EA69DE /* tt_group_manager_add_user.png in Resources */,
+				7E31E3B81E6DA21600EA69DE /* delImage.png in Resources */,
+				7E31E37C1E6ACED200EA69DE /* record_too_short@2x.png in Resources */,
+				7E31E35D1E69A92300EA69DE /* emotions.bundle in Resources */,
+				7E31E39A1E6B0FCD00EA69DE /* record_normal.png in Resources */,
+				7E31E3A21E6B14C700EA69DE /* emotion.png in Resources */,
+				7E6031FE1E5DD5D9005239C4 /* conversation.png in Resources */,
+				7E6031FD1E5DD5D9005239C4 /* conversation_selected@2x.png in Resources */,
+				7E290EA21E61A6D9004552F3 /* connect_alert_mac@2x.png in Resources */,
+				7E290E8F1E616EE6004552F3 /* top_back.png in Resources */,
+				7E31E3771E6ACCEE00EA69DE /* volumn.png in Resources */,
+				7ED493621E64721B0083BCD4 /* chat_pick_photo@2x.png in Resources */,
+				7E290EA41E61A8AD004552F3 /* mac_logined@2x.png in Resources */,
+				7E31E3741E6ACCB700EA69DE /* recording@2x.png in Resources */,
+				7E31E37B1E6ACED200EA69DE /* record_too_short.png in Resources */,
+				7E31E3C11E6DA2A900EA69DE /* tt_group_manager_delete_user@2x.png in Resources */,
+				7E6031FC1E5DD5D9005239C4 /* conversation_selected.png in Resources */,
+				7E31E3AF1E6C0A1400EA69DE /* shielded@2x.png in Resources */,
+				7E6032121E5DD8A8005239C4 /* myprofile_selected.png in Resources */,
+				7E290EAA1E61AB8B004552F3 /* ShowAlbum@2x.png in Resources */,
+				7E31E3BD1E6DA29D00EA69DE /* tt_group_manager_add_user@2x.png in Resources */,
+				7E6031FF1E5DD5D9005239C4 /* conversation@2x.png in Resources */,
+				7E31E36F1E6ACC5A00EA69DE /* cancel_send_record.png in Resources */,
+				7E31E3701E6ACC5A00EA69DE /* cancel_send_record@2x.png in Resources */,
+				7E60320A1E5DD816005239C4 /* contact_selected.png in Resources */,
+				7E60320C1E5DD816005239C4 /* contact.png in Resources */,
+				7E6032141E5DD8A8005239C4 /* myprofile.png in Resources */,
+				7E31E3A41E6B14C700EA69DE /* utility.png in Resources */,
+				7ED493641E64721B0083BCD4 /* chat_take_photo@2x.png in Resources */,
+				7E290EA81E61AB82004552F3 /* QRCode@2x.png in Resources */,
+				7E31E3731E6ACCB700EA69DE /* recording.png in Resources */,
+				7E6032211E5DDA5A005239C4 /* tab_nav@2x.png in Resources */,
+				7ED493631E64721B0083BCD4 /* chat_shake_pc@2x.png in Resources */,
+				7E290E811E6059D2004552F3 /* avatar_50.png in Resources */,
+				7E290E891E61506B004552F3 /* Assets.xcassets in Resources */,
+				7E290E991E617593004552F3 /* ZKIcon.png in Resources */,
+				7E31E3CA1E756E3A00EA69DE /* input_normal@2x.png in Resources */,
+				7E60321D1E5DDA51005239C4 /* tab_nav_select@2x.png in Resources */,
+				7E60319D1E533AA5005239C4 /* LaunchScreen.storyboard in Resources */,
+				7E31E3901E6AE5ED00EA69DE /* chatBg.png in Resources */,
+				7E290E821E6059D2004552F3 /* avatar.png in Resources */,
+				7E31E3A31E6B14C700EA69DE /* emotion@2x.png in Resources */,
+				7E6032201E5DDA5A005239C4 /* tab_nav.png in Resources */,
+				7E31E39D1E6B104E00EA69DE /* chat_bubble_pre_image@2x.png in Resources */,
+				7E60320D1E5DD816005239C4 /* contact@2x.png in Resources */,
+				7E290E901E616EE6004552F3 /* top_back@2x.png in Resources */,
+				7E31E3A51E6B14C700EA69DE /* utility@2x.png in Resources */,
+				7E31E3781E6ACCEE00EA69DE /* volumn@2x.png in Resources */,
+				7E31E3911E6AE5ED00EA69DE /* chatBg@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E6031A11E533AA6005239C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E6031AC1E533AA7005239C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3BBAB5CB0BB921E2F3346607 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6637CE4339888BC906A96900 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZKChatTests/Pods-ZKChatTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6980664A87AC00A15F7B7AE2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZKChat/Pods-ZKChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D778DE6FB3F4ED006A18814 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZKChatUITests/Pods-ZKChatUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		726A3A873E4150ACCE0C8453 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7F0291AFBD0DA96E8529D565 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZKChatUITests/Pods-ZKChatUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFA094B1F93C56B63F2B68E4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZKChat/Pods-ZKChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD5A02EB25310F16046AF6C4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZKChatTests/Pods-ZKChatTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC585B63DBEEC30762BE09C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7E6031831E533AA3005239C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E6031F11E5DC7BF005239C4 /* ZKContactViewController.m in Sources */,
+				7E6031E01E57374C005239C4 /* ZKBaseTabBarController.m in Sources */,
+				7E290EDD1E63030E004552F3 /* ZKUtil.m in Sources */,
+				7E290ED61E62FDA1004552F3 /* IMOther.pb.m in Sources */,
+				7E31E3801E6ADEFB00EA69DE /* ZKPhotosCache.m in Sources */,
+				7ED4935D1E646F0C0083BCD4 /* ZKChattingUtilityViewController.m in Sources */,
+				7E6982061E7AD1620005B29A /* UILabel+VerticalAlign.m in Sources */,
+				7E290E851E6068FD004552F3 /* ZKNormalCell.m in Sources */,
+				7E6031E41E574757005239C4 /* ZKLoginViewController.m in Sources */,
+				7E290ED51E62FDA1004552F3 /* IMMessage.pb.m in Sources */,
+				7E6031D01E5347CA005239C4 /* ZKBaseNavigationController.m in Sources */,
+				7E290E931E61722A004552F3 /* ZKRecentUserCell.m in Sources */,
+				7E6032191E5DD92B005239C4 /* ZKFindViewController.m in Sources */,
+				7E31E3611E6A76EA00EA69DE /* ChattingModule.m in Sources */,
+				7E31E38A1E6AE19D00EA69DE /* JSMessageTextView.m in Sources */,
+				7E6031DB1E55E013005239C4 /* ZKBaseSearchTableViewController.m in Sources */,
+				7E290EBD1E62F386004552F3 /* ZKBaseEntity.m in Sources */,
+				7E31E3961E6AE65D00EA69DE /* UIColor+JSMessagesView.m in Sources */,
+				7E31E3B21E6D8F4600EA69DE /* ZKChattingEditViewController.m in Sources */,
+				7E290E9C1E61761C004552F3 /* UIView+Addition.m in Sources */,
+				7E290E971E61751D004552F3 /* NSDate+DDAddition.m in Sources */,
+				7E6982021E7ACAB60005B29A /* ZKBubbleModule.m in Sources */,
+				7E31E3971E6AE65D00EA69DE /* UIImage+JSMessagesView.m in Sources */,
+				7E31E3561E69A54900EA69DE /* ZKEmotionsViewController.m in Sources */,
+				7E6982091E7AD35A0005B29A /* DDChatTextCell.m in Sources */,
+				7E290EDA1E63009F004552F3 /* ZKGroupEntity.m in Sources */,
+				7E290E8C1E61614D004552F3 /* ZKContactResultViewController.m in Sources */,
+				7E31E3AB1E6BECA200EA69DE /* ZKPublicProfileCell.m in Sources */,
+				7E290ED11E62FDA1004552F3 /* IMBaseDefine.pb.m in Sources */,
+				7E290EB31E61BA73004552F3 /* ZKContactCell.m in Sources */,
+				7E290EE01E630F71004552F3 /* NSString+Additions.m in Sources */,
+				7E31E3681E6AB32800EA69DE /* ZKSessionEntity.m in Sources */,
+				7E60318F1E533AA3005239C4 /* AppDelegate.m in Sources */,
+				7E31E3651E6AB1CD00EA69DE /* ZKMessageEntity.m in Sources */,
+				7E290EB61E61BFB8004552F3 /* ZKPublicProfileViewController.m in Sources */,
+				7E290ED31E62FDA1004552F3 /* IMGroup.pb.m in Sources */,
+				7E6981FE1E7AC6F60005B29A /* MenuImageView.m in Sources */,
+				7E290EA01E619ABC004552F3 /* ZKChattingMainViewController.m in Sources */,
+				7E6031ED1E5C7486005239C4 /* ZKRootViewController.m in Sources */,
+				7E60318C1E533AA3005239C4 /* main.m in Sources */,
+				7E31E3C41E6DA73C00EA69DE /* ZKGroupInfoCell.m in Sources */,
+				7ED493671E6474510083BCD4 /* ZKChattingImagePreviewViewController.m in Sources */,
+				7E31E38D1E6AE4AD00EA69DE /* NSString+JSMessagesView.m in Sources */,
+				7E31E36C1E6ABF1400EA69DE /* RecordingView.m in Sources */,
+				7E290ED71E62FDA1004552F3 /* IMSwitchService.pb.m in Sources */,
+				7E6981F61E7ABFB90005B29A /* RuntimeStatus.m in Sources */,
+				7E290ED41E62FDA1004552F3 /* IMLogin.pb.m in Sources */,
+				7E6031F51E5DC842005239C4 /* ZKMyViewController.m in Sources */,
+				7E290EBA1E62F268004552F3 /* ZKUserEntity.m in Sources */,
+				7E31E3881E6AE19D00EA69DE /* JSDismissiveTextView.m in Sources */,
+				7E6031CC1E534770005239C4 /* ZKBaseTableViewController.m in Sources */,
+				7E31E35A1E69A83700EA69DE /* EmotionsModule.m in Sources */,
+				7E290E7E1E605583004552F3 /* ZKUserInfoCell.m in Sources */,
+				7E31E3D01E75913200EA69DE /* DDDataInputStream.m in Sources */,
+				7E6031E81E5B20EC005239C4 /* ZKMessageViewController.m in Sources */,
+				7E290EC01E62F505004552F3 /* NSDictionary+Safe.m in Sources */,
+				7E31E3A81E6BEBCB00EA69DE /* UIImage+UIImageAddition.m in Sources */,
+				7E290E7B1E605539004552F3 /* ZKBaseCell.m in Sources */,
+				7E31E3891E6AE19D00EA69DE /* JSMessageInputView.m in Sources */,
+				7E6031D71E548E10005239C4 /* ZKMultipleSectionTableViewController.m in Sources */,
+				7E31E3B51E6DA15F00EA69DE /* ZKPersonEditControllectionCell.m in Sources */,
+				7E290ED21E62FDA1004552F3 /* IMBuddy.pb.m in Sources */,
+				7E6981F91E7AC4FE0005B29A /* DDChatBaseCell.m in Sources */,
+				7E6031C81E534734005239C4 /* ZKBaseViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E60319F1E533AA6005239C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E6031A81E533AA7005239C4 /* ZKChatTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E6031AA1E533AA7005239C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E6031B31E533AA7005239C4 /* ZKChatUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7E6031A51E533AA6005239C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E6031861E533AA3005239C4 /* ZKChat */;
+			targetProxy = 7E6031A41E533AA6005239C4 /* PBXContainerItemProxy */;
+		};
+		7E6031B01E533AA7005239C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E6031861E533AA3005239C4 /* ZKChat */;
+			targetProxy = 7E6031AF1E533AA7005239C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7E60319B1E533AA5005239C4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E60319C1E533AA5005239C4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7E6031B51E533AA7005239C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7E6031B61E533AA7005239C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7E6031B81E533AA7005239C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F82B48862F7EA6B033678197 /* Pods-ZKChat.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9385678HZ3;
+				INFOPLIST_FILE = ZKChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/MWPhotoBrowser",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SCLAlertView-Objective-C",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/TTTAttributedLabel",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/XHImageViewer",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kafeihu.ZKChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E6031B91E533AA7005239C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89DE95995185031F4183B5E6 /* Pods-ZKChat.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9385678HZ3;
+				INFOPLIST_FILE = ZKChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/MWPhotoBrowser",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SCLAlertView-Objective-C",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/TTTAttributedLabel",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/XHImageViewer",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kafeihu.ZKChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7E6031BB1E533AA7005239C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5589CF789A8E9838CE4A9E1 /* Pods-ZKChatTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 9385678HZ3;
+				INFOPLIST_FILE = ZKChatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kafeihu.ZKChatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZKChat.app/ZKChat";
+			};
+			name = Debug;
+		};
+		7E6031BC1E533AA7005239C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8B14379A7C4B56E4443F165 /* Pods-ZKChatTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 9385678HZ3;
+				INFOPLIST_FILE = ZKChatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kafeihu.ZKChatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZKChat.app/ZKChat";
+			};
+			name = Release;
+		};
+		7E6031BE1E533AA7005239C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6234E7D269E1852A720D3158 /* Pods-ZKChatUITests.debug.xcconfig */;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 9385678HZ3;
+				INFOPLIST_FILE = ZKChatUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kafeihu.ZKChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ZKChat;
+			};
+			name = Debug;
+		};
+		7E6031BF1E533AA7005239C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A0655867CDC5C64F2769A75 /* Pods-ZKChatUITests.release.xcconfig */;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 9385678HZ3;
+				INFOPLIST_FILE = ZKChatUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kafeihu.ZKChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ZKChat;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7E6031821E533AA2005239C4 /* Build configuration list for PBXProject "ZKChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E6031B51E533AA7005239C4 /* Debug */,
+				7E6031B61E533AA7005239C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E6031B71E533AA7005239C4 /* Build configuration list for PBXNativeTarget "ZKChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E6031B81E533AA7005239C4 /* Debug */,
+				7E6031B91E533AA7005239C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E6031BA1E533AA7005239C4 /* Build configuration list for PBXNativeTarget "ZKChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E6031BB1E533AA7005239C4 /* Debug */,
+				7E6031BC1E533AA7005239C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E6031BD1E533AA7005239C4 /* Build configuration list for PBXNativeTarget "ZKChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E6031BE1E533AA7005239C4 /* Debug */,
+				7E6031BF1E533AA7005239C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7E60317F1E533AA2005239C4 /* Project object */;
+}
