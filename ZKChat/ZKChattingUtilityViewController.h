@@ -11,6 +11,5 @@
 @interface ZKChattingUtilityViewController : ZKBaseViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic,strong) UIImagePickerController *imagePicker;
 @property(nonatomic) NSInteger userId;
--(void)setShakeHidden;
 
 @end

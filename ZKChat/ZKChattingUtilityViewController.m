@@ -10,6 +10,7 @@
 #import <Masonry.h>
 #import "ZKConstant.h"
 #import "ZKChattingMainViewController.h"
+#import "ZKAlbumViewController.h"
 
 @interface ZKChattingUtilityViewController ()
 @property(nonatomic,strong)NSArray *itemsArray;
@@ -118,79 +119,17 @@
         make.height.mas_equalTo(13);
     }];
     
-    _rightView = [UIView new];
-    [self.view addSubview:_rightView];
-    [_rightView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(middleView.mas_right);
-        make.height.equalTo(ws.view);
-        make.top.equalTo(ws.view);
-        make.width.equalTo(ws.view).multipliedBy(0.25);
-    }];
-    
-    UIButton *shakeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_rightView addSubview:shakeBtn];
-    [shakeBtn setBackgroundImage:[UIImage imageNamed:@"chat_shake_pc"] forState:UIControlStateNormal];
-    [shakeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(_rightView);
-        make.top.mas_equalTo(15);
-        make.size.mas_equalTo(CGSizeMake(60, 60));
-    }];
-    [shakeBtn setClipsToBounds:YES];
-    [shakeBtn.layer setCornerRadius:5];
-    [shakeBtn.layer setBorderWidth:0.5];
-    [shakeBtn.layer setBorderColor:RGB(174, 177, 181).CGColor];
-    shakeBtn.backgroundColor=[UIColor whiteColor];
-    [shakeBtn addTarget:self action:@selector(shakePC:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *shakeLabel = [UILabel new];
-    [shakeLabel setText:@"抖动"];
-    [shakeLabel setTextAlignment:NSTextAlignmentCenter];
-    [shakeLabel setFont:systemFont(13)];
-    [shakeLabel setTextColor:RGB(174, 177, 181)];
-    [_rightView addSubview:shakeLabel];
-    [shakeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(shakeBtn);
-        make.top.mas_equalTo(shakeBtn.mas_bottom).offset(15);
-        make.width.equalTo(_rightView);
-        make.height.mas_equalTo(13);
-    }];
-    
-}
--(void)setShakeHidden
-{
-    if(self.userId){
-        [_rightView setHidden:NO];
-    }else{
-        [_rightView setHidden:YES];
-    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)shakePC:(id)sender
-{
-//    if([MTTUtil ifCanShake])
-//    {
-//        NSDate *date = [NSDate date];
-//        [MTTUtil setLastShakeTime:date];
-//        MTTShakeAPI *request = [MTTShakeAPI new];
-//        NSMutableArray *array = [NSMutableArray new];
-//        [array addObject:@(self.userId)];
-//        [request requestWithObject:array Completion:^(id response, NSError *error) {
-//        }];
-//        [[ChattingMainViewController shareInstance] sendPrompt:@"你向对方发送了一个抖动~"];
-//        NSString* nick = [RuntimeStatus instance].user.nick;
-//        NSDictionary *dict = @{@"nick":nick};
-//    }else{
-//        [[ChattingMainViewController shareInstance] sendPrompt:@"留条活路吧...别太频繁了"];
-//    }
-}
+
 -(void)choosePicture:(id)sender
 {
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     self.imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    //[self pushViewController:[AlbumViewController new] animated:YES];
+    [self pushViewController:[ZKAlbumViewController new] animated:YES];
 }
 -(void)takePicture:(id)sender
 {
@@ -211,18 +150,12 @@
         
     });
 }
-- (void) viewDidUnload
-{
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
-}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
-    
+
 }
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker
 {
@@ -232,8 +165,10 @@
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-//    if ([mediaType isEqualToString:( NSString *)kUTTypeImage]){
+//    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]){
     
+//    if([mediaType isEqualToString:(NSString *)kCIAttributeTypeImage]){
+        
         __block UIImage *theImage = nil;
         if ([picker allowsEditing]){
             theImage = [info objectForKey:UIImagePickerControllerEditedImage];
@@ -244,16 +179,16 @@
         UIImage *image = [self scaleImage:theImage toScale:0.3];
         NSData *imageData = UIImageJPEGRepresentation(image, (CGFloat)1.0);
         UIImage * m_selectImage = [UIImage imageWithData:imageData];
-        //__block MTTPhotoEnity *photo = [MTTPhotoEnity new];
-        //NSString *keyName = [[MTTPhotosCache sharedPhotoCache] getKeyName];
-        //photo.localPath=keyName;
+        __block ZKPhotoEnity *photo = [ZKPhotoEnity new];
+        NSString *keyName = [[ZKPhotosCache sharedPhotoCache] getKeyName];
+        photo.localPath=keyName;
         [picker dismissViewControllerAnimated:NO completion:nil];
         self.imagePicker=nil;
-//        [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:m_selectImage];
+        [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:m_selectImage];
 //    }
     
 }
-#pragma mark -
+
 #pragma mark 等比縮放image
 - (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
 {

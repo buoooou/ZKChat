@@ -89,6 +89,7 @@
 		7E31E3C91E756E3A00EA69DE /* input_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3C51E756E3A00EA69DE /* input_normal.png */; };
 		7E31E3CA1E756E3A00EA69DE /* input_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E3C61E756E3A00EA69DE /* input_normal@2x.png */; };
 		7E31E3D01E75913200EA69DE /* DDDataInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E3CF1E75913200EA69DE /* DDDataInputStream.m */; };
+		7E53D8481E8159BF0093C912 /* ZKAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8471E8159BF0093C912 /* ZKAlbumViewController.m */; };
 		7E60318C1E533AA3005239C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60318B1E533AA3005239C4 /* main.m */; };
 		7E60318F1E533AA3005239C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60318E1E533AA3005239C4 /* AppDelegate.m */; };
 		7E60319D1E533AA5005239C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E60319B1E533AA5005239C4 /* LaunchScreen.storyboard */; };
@@ -280,6 +281,8 @@
 		7E31E3C61E756E3A00EA69DE /* input_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_normal@2x.png"; sourceTree = "<group>"; };
 		7E31E3CE1E75913200EA69DE /* DDDataInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDDataInputStream.h; sourceTree = "<group>"; };
 		7E31E3CF1E75913200EA69DE /* DDDataInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDDataInputStream.m; sourceTree = "<group>"; };
+		7E53D8461E8159BF0093C912 /* ZKAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKAlbumViewController.h; sourceTree = "<group>"; };
+		7E53D8471E8159BF0093C912 /* ZKAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKAlbumViewController.m; sourceTree = "<group>"; };
 		7E6031871E533AA3005239C4 /* ZKChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E60318B1E533AA3005239C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7E60318D1E533AA3005239C4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -494,6 +497,8 @@
 				7E31E3551E69A54900EA69DE /* ZKEmotionsViewController.m */,
 				7E31E3B01E6D8F4600EA69DE /* ZKChattingEditViewController.h */,
 				7E31E3B11E6D8F4600EA69DE /* ZKChattingEditViewController.m */,
+				7E53D8461E8159BF0093C912 /* ZKAlbumViewController.h */,
+				7E53D8471E8159BF0093C912 /* ZKAlbumViewController.m */,
 			);
 			name = Chatting;
 			sourceTree = "<group>";
@@ -1330,6 +1335,7 @@
 				7E6031E01E57374C005239C4 /* ZKBaseTabBarController.m in Sources */,
 				7E290EDD1E63030E004552F3 /* ZKUtil.m in Sources */,
 				7E290ED61E62FDA1004552F3 /* IMOther.pb.m in Sources */,
+				7E53D8481E8159BF0093C912 /* ZKAlbumViewController.m in Sources */,
 				7E31E3801E6ADEFB00EA69DE /* ZKPhotosCache.m in Sources */,
 				7ED4935D1E646F0C0083BCD4 /* ZKChattingUtilityViewController.m in Sources */,
 				7E6982061E7AD1620005B29A /* UILabel+VerticalAlign.m in Sources */,

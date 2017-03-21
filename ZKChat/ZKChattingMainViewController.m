@@ -565,7 +565,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         self.ddUtility.view.frame=CGRectMake(0, self.view.size.height,FULL_WIDTH , 280);
         [self.view addSubview:self.ddUtility.view];
     }
-    [self.ddUtility setShakeHidden];
     
     if (_bottomShowComponent & DDShowKeyboard)
     {
