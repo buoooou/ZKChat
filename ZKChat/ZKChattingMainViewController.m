@@ -194,8 +194,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     //发送消息
     NSString* text = [self.chatInputView.textView text];
     
-    
-    
     NSString* parten = @"\\s";
     NSRegularExpression* reg = [NSRegularExpression regularExpressionWithPattern:parten options:NSRegularExpressionCaseInsensitive error:nil];
     NSString* checkoutText = [reg stringByReplacingMatchesInString:text options:NSMatchingReportProgress range:NSMakeRange(0, [text length]) withTemplate:@""];

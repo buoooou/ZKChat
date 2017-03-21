@@ -98,7 +98,7 @@
         
     }else if(indexPath.section==1){
         if(indexPath.row==0){
-            SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://tt.mogu.io/home/introduce?type=mobile"]];
+            SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:@"https://github.com/zhangkuo921112"]];
             [self.navigationController pushViewController:webViewController animated:YES];
         }else if(indexPath.row==1) {
         
