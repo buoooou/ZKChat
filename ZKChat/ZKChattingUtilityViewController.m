@@ -167,7 +167,7 @@
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
 //    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]){
     
-//    if([mediaType isEqualToString:(NSString *)kCIAttributeTypeImage]){
+    if([mediaType isEqualToString:(NSString *)kCIAttributeTypeImage]){
         
         __block UIImage *theImage = nil;
         if ([picker allowsEditing]){
@@ -185,7 +185,7 @@
         [picker dismissViewControllerAnimated:NO completion:nil];
         self.imagePicker=nil;
         [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:m_selectImage];
-//    }
+    }
     
 }
 
