@@ -8,7 +8,7 @@
 
 #import "ZKAlbumViewController.h"
 #import "ZKConstant.h"
-
+#import "ZKAlbumDetailsViewControll.h"
 @interface ZKAlbumViewController ()
 
 @end
@@ -106,9 +106,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    DDAlbumDetailsViewControll *details = [DDAlbumDetailsViewControll new];
-//    details.assetsGroup = [self.dataSource objectAtIndex:indexPath.row];
-//    [self pushViewController:details animated:YES];
+    ZKAlbumDetailsViewControll *details = [ZKAlbumDetailsViewControll new];
+    details.assetsGroup = [self.dataSource objectAtIndex:indexPath.row];
+    [self pushViewController:details animated:YES];
     
 }
 
