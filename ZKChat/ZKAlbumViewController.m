@@ -9,6 +9,8 @@
 #import "ZKAlbumViewController.h"
 #import "ZKConstant.h"
 #import "ZKAlbumDetailsViewControll.h"
+#import "ZKAlbumCell.h"
+
 @interface ZKAlbumViewController ()
 
 @end
@@ -33,10 +35,7 @@
     [super viewDidLoad];
     self.dataSource = [NSMutableArray new];
     self.assetsLibrary =  [[ALAssetsLibrary alloc] init];
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.frame];
-    tableView.delegate=self;
-    tableView.dataSource=self;
-    [self.view addSubview:tableView];
+
     void (^assetsGroupsEnumerationBlock)(ALAssetsGroup *,BOOL *) = ^(ALAssetsGroup *assetsGroup, BOOL *stop) {
         [assetsGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
         if (assetsGroup.numberOfAssets > 0)
@@ -44,7 +43,7 @@
             [self.dataSource addObject:assetsGroup];
         }
         if (stop) {
-            [tableView reloadData];
+            [self.tableView reloadData];
         }
         
     };
@@ -53,6 +52,7 @@
         NSLog(@"Error: %@", [error localizedDescription]);
     };
     
+    [self.tableView registerClass:[ZKAlbumCell class] forCellReuseIdentifier:@"DDAlbumsCellIdentifier"];
     
     [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:assetsGroupsEnumerationBlock failureBlock:assetsGroupsFailureBlock];
 
@@ -65,12 +65,13 @@
 }
 
 #pragma mark - UITableView DataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.1;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -80,29 +81,24 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString* identifier = @"DDAlbumsCellIdentifier";
-    UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+    ZKAlbumCell * cell = (ZKAlbumCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell)
     {
-        cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell =[[ZKAlbumCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         
     }
     NSString * name = [[self.dataSource objectAtIndex:indexPath.row]
                        valueForProperty:ALAssetsGroupPropertyName];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@  ( %ld )",name,(long)[[self.dataSource objectAtIndex:indexPath.row] numberOfAssets]];
-    [cell.textLabel setTextColor:RGB(145, 145, 145)];
-    [cell.textLabel setHighlightedTextColor:[UIColor whiteColor]];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    cell.nameLabel.text = [NSString stringWithFormat:@"%@  ( %ld )",name,(long)[[self.dataSource objectAtIndex:indexPath.row] numberOfAssets]];
 
-    [cell.imageView setImage:[UIImage imageWithCGImage:[[self.dataSource objectAtIndex:indexPath.row] posterImage]]] ;
+    cell.avatar.image =[UIImage imageWithCGImage:[[self.dataSource objectAtIndex:indexPath.row] posterImage]] ;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 70;
-}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

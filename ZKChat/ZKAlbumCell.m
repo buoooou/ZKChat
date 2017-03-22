@@ -1,17 +1,18 @@
 //
-//  ZKContactCell.m
+//  ZKAlbumCell.m
 //  ZKChat
 //
-//  Created by 张阔 on 2017/2/25.
+//  Created by 张阔 on 2017/3/22.
 //  Copyright © 2017年 张阔. All rights reserved.
 //
 
-#import "ZKContactCell.h"
+#import "ZKAlbumCell.h"
 #import <Masonry/Masonry.h>
 #import "ZKConstant.h"
 #import "UIImageView+WebCache.h"
 
-@implementation ZKContactCell
+@implementation ZKAlbumCell
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -20,13 +21,13 @@
         self.avatar = [[UIImageView alloc] init];
         [self.contentView addSubview:self.avatar];
         [self.avatar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(35, 35));
+            make.size.mas_equalTo(CGSizeMake(45, 45));
             make.centerY.equalTo(self.contentView);
             make.left.mas_equalTo(10);
         }];
         [self.avatar setContentMode:UIViewContentModeScaleAspectFill];
         [self.avatar setClipsToBounds:YES];
-        [self.avatar.layer setCornerRadius:2.0];
+        [self.avatar.layer setCornerRadius:5.0];
         
         self.nameLabel = [UILabel new];
         [self.contentView addSubview:self.nameLabel];
