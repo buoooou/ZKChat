@@ -31,7 +31,6 @@
     messageVC.tabBarItem.tag=100;
     [messageVC.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:RGB(26, 140, 242) forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
     messageVC.hidesBottomBarWhenPushed=YES;
-//    ZKBaseNavigationController *messageNavi=[[ZKBaseNavigationController alloc]initWithRootViewController:messageVC];
     
     //通讯录
     ZKContactViewController *contactVC=[[ZKContactViewController alloc]init];
@@ -40,8 +39,6 @@
     contactVC.tabBarItem.tag=100;
     [contactVC.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:RGB(26, 140, 242) forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
     contactVC.hidesBottomBarWhenPushed=YES;
-
-//    ZKBaseNavigationController *contactNavi=[[ZKBaseNavigationController alloc]initWithRootViewController:contactVC];
     
     //发现
     ZKFindViewController *findVC=[[ZKFindViewController alloc]init];
@@ -50,7 +47,6 @@
     findVC.tabBarItem.tag=100;
     [findVC.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:RGB(26, 140, 242) forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
     findVC.hidesBottomBarWhenPushed=YES;
-//    ZKBaseNavigationController *findNavi=[[ZKBaseNavigationController alloc]initWithRootViewController:findVC];
     
     //个人首页
     ZKMyViewController *myVC=[[ZKMyViewController alloc] init];
@@ -59,7 +55,7 @@
     myVC.tabBarItem.tag=100;
     [myVC.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:RGB(26, 140, 242) forKey:NSForegroundColorAttributeName] forState:UIControlStateSelected];
     myVC.hidesBottomBarWhenPushed=YES;
-//    ZKBaseNavigationController *myNavi=[[ZKBaseNavigationController alloc]initWithRootViewController:myVC];
+
     self.viewControllers=@[messageVC,contactVC,findVC,myVC];
     self.title=APP_NAME;
     self.delegate=self;

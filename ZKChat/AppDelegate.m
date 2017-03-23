@@ -29,9 +29,12 @@
 
     self.window.rootViewController = navRoot;
     
-    [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:RGB(26, 140, 242),NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
 
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

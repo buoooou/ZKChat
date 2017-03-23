@@ -22,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:ZKBG];
-//    self.navigationController.navigationBar.backgroundColor=[UIColor blackColor];
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     
@@ -32,21 +32,19 @@
         self.navigationItem.hidesBackButton =NO;
     }
 }
-//-(void)p_popViewController
-//{
-//    [self.navigationController popViewControllerAnimated:YES];
-//    
-//}
+
+-(void)p_popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 -(void)setTitle:(NSString *)title{
     
     [super setTitle:title];
     
     self.navigationItem.title =title;
-    self.navigationItem.titleView =nil;
-//self.navigationController.navigationBar.backgroundColor=[UIColor blackColor];
 }
-
 -(UINavigationItem*)navigationItem{
     
     if (self.tabBarController) {
@@ -54,6 +52,7 @@
     }
     return [super navigationItem];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

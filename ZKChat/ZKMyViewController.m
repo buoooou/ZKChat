@@ -52,15 +52,11 @@
 -(void)viewDidDisappear:(BOOL)animated{
     
     [super viewDidDisappear:animated];
-    
-    //self.tableView.contentInset =UIEdgeInsetsMake(0,0,0,0);
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-    
-//    self.tableView.contentInset =UIEdgeInsetsMake(64, 0, 49, 0);
 }
 
 #pragma table
