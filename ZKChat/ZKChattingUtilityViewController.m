@@ -11,6 +11,7 @@
 #import "ZKConstant.h"
 #import "ZKChattingMainViewController.h"
 #import "ZKAlbumViewController.h"
+#import <Photos/Photos.h> 
 
 @interface ZKChattingUtilityViewController ()
 @property(nonatomic,strong)NSArray *itemsArray;
@@ -129,7 +130,18 @@
 {
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     self.imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self pushViewController:[ZKAlbumViewController new] animated:YES];
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if (status == PHAuthorizationStatusRestricted ||
+        status == PHAuthorizationStatusDenied) {
+//        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+//        if ([[UIApplication sharedApplication]canOpenURL:url]) {
+//            [[UIApplication sharedApplication] openURL:url options:nil completionHandler:nil];
+//        }
+    }
+    if(status==PHAuthorizationStatusAuthorized){
+        [self pushViewController:[ZKAlbumViewController new] animated:YES];
+    }
+
 }
 -(void)takePicture:(id)sender
 {
@@ -139,7 +151,7 @@
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         }
         self.imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        if (self.imagePicker ) {
+        if (self.imagePicker) {
             [[ZKChattingMainViewController shareInstance].navigationController presentViewController:self.imagePicker animated:NO completion:nil];
         }else{
             self.imagePicker = [[UIImagePickerController alloc] init];
@@ -166,9 +178,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
 //    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]){
-    
-    if([mediaType isEqualToString:(NSString *)kCIAttributeTypeImage]){
-        
+
         __block UIImage *theImage = nil;
         if ([picker allowsEditing]){
             theImage = [info objectForKey:UIImagePickerControllerEditedImage];
@@ -184,8 +194,7 @@
         photo.localPath=keyName;
         [picker dismissViewControllerAnimated:NO completion:nil];
         self.imagePicker=nil;
-        [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:m_selectImage];
-    }
+//        [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:m_selectImage];
     
 }
 

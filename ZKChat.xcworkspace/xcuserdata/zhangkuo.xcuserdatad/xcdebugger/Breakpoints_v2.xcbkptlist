@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ZKChat/ZKChattingUtilityViewController.m"
-            timestampString = "511795437.137751"
+            filePath = "ZKChat/ZKChattingMainViewController.m"
+            timestampString = "511969828.785868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
+            landmarkName = "-p_textCell_tableView:cellForRowAtIndexPath:message:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -34,7 +34,7 @@
     // Do any additional setup after loading the view.
     //self.view.backgroundColor=[UIColor blueColor];
     self.dataSource=[[NSMutableArray alloc] initWithObjects:
-     @"华捷新闻，点击查看！",@"华捷新闻，点击查看！",@"华捷新闻，点击查看！",
+     @"张阔",@"张硕",@"张鑫",
      nil];
     //消息初始化
 }

@@ -35,7 +35,7 @@
             make.right.mas_equalTo(10);
             make.centerY.equalTo(self.contentView);
         }];
-        [self.nameLabel setFont:[UIFont systemFontOfSize:17.0]];
+        [self.nameLabel setFont:[UIFont systemFontOfSize:16.0]];
         [self.nameLabel setTextColor:[UIColor blackColor]];
         
         self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.frame];
