@@ -72,7 +72,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 
 - (UITableViewCell*)p_textCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message;
 - (UITableViewCell*)p_voiceCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message;
-//- (UITableViewCell*)p_promptCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(DDPromptEntity*)prompt;
+- (UITableViewCell*)p_promptCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(DDPromptEntity*)prompt;
 
 - (void)n_receiveMessage:(NSNotification*)notification;
 - (void)p_clickThRecordButton:(UIButton*)button;
@@ -113,8 +113,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     if (self) {
         // Custom initialization
         self.tableViewStyle = UITableViewStyleGrouped;
-//        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
     }
     return self;
 }
@@ -155,8 +153,11 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     UIView* headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ZKRefreshViewHeight)];
     [headView setBackgroundColor:[UIColor clearColor]];
     [self.tableView setTableHeaderView:headView];
-
-    [self scrollToBottomAnimated:NO];
+    //去分割线
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    //滚动
+    self.tableView.scrollEnabled=YES;
+   // [self scrollToBottomAnimated:NO];
     
 //    [self initScrollView];
     
@@ -352,7 +353,14 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     return height+10;
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.1;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.1;
+}
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -548,6 +556,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 {
     [self setValue:@(self.chatInputView.origin.y) forKeyPath:@"_inputViewY"];
 }
+
 - (void)textViewChanged
 {
     NSRange range = self.chatInputView.textView.selectedRange;

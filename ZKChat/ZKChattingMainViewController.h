@@ -18,7 +18,7 @@
 
 typedef void(^TimeCellAddBlock)(bool isok);
 
-@interface ZKChattingMainViewController : ZKBaseTableViewController<UITextViewDelegate, JSMessageInputViewDelegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate,ZKEmotionsViewControllerDelegate,UINavigationControllerDelegate>{
+@interface ZKChattingMainViewController : ZKBaseTableViewController<UITextViewDelegate, JSMessageInputViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate,ZKEmotionsViewControllerDelegate,UINavigationControllerDelegate>{
     RecordingView* _recordingView;
 }
 +(instancetype )shareInstance;

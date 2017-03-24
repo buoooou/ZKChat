@@ -36,7 +36,7 @@
 #define FULL_HEIGHT           (SCREEN_HEIGHT - ((SYSTEM_VERSION >= 7) ? 0 : STATUSBAR_HEIGHT))
 #define CONTENT_HEIGHT        (FULL_HEIGHT - NAVBAR_HEIGHT)
 
-#define ZKRefreshViewHeight 40.0f
+#define ZKRefreshViewHeight 10.0f
 
 //chatting
 #define LINK_SPLIT @"!@#$~link~#$@!"
