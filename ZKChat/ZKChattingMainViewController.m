@@ -142,22 +142,15 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [super viewDidLoad];
     [self notificationCenter];
     [self initialInput];
-    //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-    //                                                                          action:@selector(p_tapOnTableView:)];
-    //    [self.tableView addGestureRecognizer:tap];
-    
-    UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                          action:@selector(p_tapOnTableView:)];
-    pan.delegate = self;
-    [self.tableView addGestureRecognizer:pan];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(p_tapOnTableView:)];
+    [self.tableView addGestureRecognizer:tap];
     UIView* headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ZKRefreshViewHeight)];
     [headView setBackgroundColor:[UIColor clearColor]];
     [self.tableView setTableHeaderView:headView];
     //去分割线
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    //滚动
-    self.tableView.scrollEnabled=YES;
-   // [self scrollToBottomAnimated:NO];
+   [self scrollToBottomAnimated:NO];
     
 //    [self initScrollView];
     
