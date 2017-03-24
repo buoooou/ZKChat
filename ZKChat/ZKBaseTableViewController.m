@@ -20,6 +20,7 @@
     [self.view addSubview:self.tableView];
     [self.view setBackgroundColor:ZKBG];
     [self.tableView setBackgroundColor:ZKBG];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,6 +46,7 @@
     if (!_tableView) {
         CGRect tableViewFrame = self.view.bounds;
         tableViewFrame.size.height -= (self.navigationController.viewControllers.count > 1 ? 0 : (CGRectGetHeight(self.tabBarController.tabBar.bounds)));
+        tableViewFrame.size.height -=self.externHeight;
         _tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:self.tableViewStyle];
         _tableView.delegate = self;
         _tableView.dataSource = self;

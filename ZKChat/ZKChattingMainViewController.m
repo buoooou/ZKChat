@@ -113,6 +113,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     if (self) {
         // Custom initialization
         self.tableViewStyle = UITableViewStyleGrouped;
+        self.externHeight=DDINPUT_MIN_HEIGHT;
     }
     return self;
 }

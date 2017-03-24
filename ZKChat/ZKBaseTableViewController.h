@@ -19,6 +19,10 @@
  */
 @property (nonatomic, assign) UITableViewStyle tableViewStyle;
 /**
+ *  初始化init的时候设置tableView的高度差
+ */
+@property (nonatomic, assign) NSInteger externHeight;
+/**
  *数据源
  */
 @property (nonatomic,strong)NSMutableArray *dataSource;
