@@ -408,7 +408,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     //            [self.chatInputView.textView becomeFirstResponder];
     //    }
 }
-
 #pragma mark PrivateAPI
 
 - (UITableViewCell*)p_promptCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(DDPromptEntity*)prompt

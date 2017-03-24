@@ -106,7 +106,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
-//    self.tableView.scrollEnabled = NO;
+    self.tableView.scrollEnabled = NO;
     
     [self.view setBackgroundColor:ZKBG];
     [self.tableView setBackgroundColor:ZKBG];

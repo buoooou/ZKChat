@@ -25,7 +25,7 @@
         ZKContactResultViewController *contactResultController=[[ZKContactResultViewController alloc]init];
         self.searchResultController = contactResultController;
         self.tableViewStyle = UITableViewStylePlain;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }
