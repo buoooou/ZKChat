@@ -9,6 +9,8 @@
 #import "ZKUtil.h"
 #import "ZKUserEntity.h"
 #import "ZKGroupEntity.h"
+#import "ZKConstant.h"
+
 typedef NS_ENUM(SInt32, SessionType) {
     SessionTypeSessionTypeSingle = 1,
     SessionTypeSessionTypeGroup = 2,
@@ -68,4 +70,21 @@ typedef NS_ENUM(SInt32, SessionType) {
     }
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
++(CGSize)sizeTrans:(CGSize)size{
+    float width;
+    float height;
+    float imgWidth = size.width;
+    float imgHeight = size.height;
+    float radio = size.width/size.height;
+    if(radio>=1){
+        width = imgWidth > MAX_CHAT_TEXT_WIDTH ? MAX_CHAT_TEXT_WIDTH : imgWidth;
+        height = imgWidth > MAX_CHAT_TEXT_WIDTH ? (imgHeight * MAX_CHAT_TEXT_WIDTH / imgWidth):imgHeight;
+    }else{
+        height = imgHeight > MAX_CHAT_TEXT_WIDTH ? MAX_CHAT_TEXT_WIDTH : imgHeight;
+        width = imgHeight > MAX_CHAT_TEXT_WIDTH ? (imgWidth * MAX_CHAT_TEXT_WIDTH / imgHeight):imgWidth;
+    }
+    return CGSizeMake(width, height);
+}
+
 @end

@@ -7,6 +7,13 @@
 //
 
 #import "ChattingModule.h"
+#import "ZKMessageEntity.h"
+#import "NSDate+DDAddition.h"
+#import "ZKConstant.h"
+#import "DDChatTextCell.h"
+#import <SDWebImage/SDWebImageManager.h>
+#import "ZKUtil.h"
+
 static NSUInteger const showPromptGap = 300;
 @interface ChattingModule(privateAPI)
 - (NSUInteger)p_getMessageCount;
@@ -17,7 +24,7 @@ static NSUInteger const showPromptGap = 300;
 @implementation ChattingModule
 {
     //只是用来获取cell的高度的
-//    DDChatTextCell* _textCell;
+    DDChatTextCell* _textCell;
     
     NSUInteger _earliestDate;
     NSUInteger _lastestDate;
@@ -39,6 +46,85 @@ static NSUInteger const showPromptGap = 300;
     
     self.showingMessages = nil;
     self.showingMessages = [[NSMutableArray alloc] init];
+}
+- (void)addShowMessage:(ZKMessageEntity*)message
+{
+    if (![self.ids containsObject:@(message.msgID)]) {
+        if (message.msgTime - _lastestDate > showPromptGap)
+        {
+            _lastestDate = message.msgTime;
+            DDPromptEntity* prompt = [[DDPromptEntity alloc] init];
+            NSDate* date = [NSDate dateWithTimeIntervalSince1970:message.msgTime];
+            prompt.message = [date promptDateString];
+            [self.showingMessages addObject:prompt];
+            
+        }
+        NSArray *array = [[self class] p_spliteMessage:message];
+        [array enumerateObjectsUsingBlock:^(ZKMessageEntity* obj, NSUInteger idx, BOOL *stop) {
+           
+            [self.showingMessages addObject:obj];
+        //    [[self mutableArrayValueForKeyPath:@"showingMessages"] addObject:obj];
+        }];
+    }
+}
++ (NSArray*)p_spliteMessage:(ZKMessageEntity*)message
+{
+    message.msgContent = [message.msgContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSMutableArray* messageContentArray = [[NSMutableArray alloc] init];
+    
+    if ( [ message.msgContent rangeOfString:DD_MESSAGE_IMAGE_PREFIX].length > 0)
+    {
+        NSString* messageContent = [message msgContent];
+        if ([messageContent rangeOfString:DD_MESSAGE_IMAGE_PREFIX].length > 0 && [messageContent rangeOfString:DD_IMAGE_LOCAL_KEY].length > 0 && [messageContent rangeOfString:DD_IMAGE_URL_KEY].length > 0) {
+            ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:2 msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:messageContent toUserID:message.toUserID];
+            messageEntity.msgContentType = DDMessageTypeImage;
+            messageEntity.state = DDmessageSendSuccess;
+        }else{
+            
+            NSArray* tempMessageContent = [messageContent componentsSeparatedByString:DD_MESSAGE_IMAGE_PREFIX];
+            [tempMessageContent enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSString* content = (NSString*)obj;
+                if ([content length] > 0)
+                {
+                    NSRange suffixRange = [content rangeOfString:DD_MESSAGE_IMAGE_SUFFIX];
+                    if (suffixRange.length > 0)
+                    {
+                        //是图片,再拆分
+                        NSString* imageContent = [NSString stringWithFormat:@"%@%@",DD_MESSAGE_IMAGE_PREFIX,[content substringToIndex:suffixRange.location + suffixRange.length]];
+                        ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:1 msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:imageContent toUserID:message.toUserID];
+                        messageEntity.msgContentType = DDMessageTypeImage;
+                        messageEntity.state = DDmessageSendSuccess;
+                        [messageContentArray addObject:messageEntity];
+                        
+                        
+                        NSString* secondComponent = [content substringFromIndex:suffixRange.location + suffixRange.length];
+                        if (secondComponent.length > 0)
+                        {
+                            ZKMessageEntity* secondmessageEntity = [[ZKMessageEntity alloc] initWithMsgID:3 msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:secondComponent toUserID:message.toUserID];
+                            secondmessageEntity.msgContentType = DDMessageTypeText;
+                            secondmessageEntity.state = DDmessageSendSuccess;
+                            [messageContentArray addObject:secondmessageEntity];
+                        }
+                    }
+                    else
+                    {
+                        
+                        ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:4 msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:content toUserID:message.toUserID];
+                        messageEntity.state = DDmessageSendSuccess;
+                        [messageContentArray addObject:messageEntity];
+                    }
+                }
+            }];
+        }
+    }
+    
+    if ([messageContentArray count] == 0)
+    {
+        [messageContentArray addObject:message];
+    }
+    
+    return messageContentArray;
+    
 }
 -(void)getNewMsg:(DDChatLoadMoreHistoryCompletion)completion
 {
@@ -110,5 +196,45 @@ static NSUInteger const showPromptGap = 300;
 -(void)loadHostoryMessageFromServer:(NSUInteger)FromMsgID Completion:(DDChatLoadMoreHistoryCompletion)completion{
     [self loadHisToryMessageFromServer:FromMsgID loadCount:19 Completion:completion];
 }
+- (float)messageHeight:(ZKMessageEntity*)message
+{
+    
+    if (message.msgContentType == DDMessageTypeText ) {
+        if (!_textCell)
+        {
+            _textCell = [[DDChatTextCell alloc] init];
+        }
+        return [_textCell cellHeightForMessage:message];
+        
+    }else if (message.msgContentType == DDMessageTypeVoice )
+    {
+        return 60;
+    }else if(message.msgContentType == DDMessageTypeImage)
+    {
+        float height = 150;
+        NSString* urlString = message.msgContent;
+        urlString = [urlString stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_PREFIX withString:@""];
+        urlString = [urlString stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_SUFFIX withString:@""];
+        NSURL* url = [NSURL URLWithString:urlString];
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        if( [manager cachedImageExistsForURL:url]){
+            NSString *key = [manager cacheKeyForURL:url];
+            UIImage *curImg = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:key];
+            height = [ZKUtil sizeTrans:curImg.size].height;
+        }
+        float last_height = height+20;;
+        return last_height>60?last_height:60;
+    }
+    else if(message.msgContentType == DDMEssageEmotion){
+        return 133+20;
+    }
+    else
+    {
+        return 135;
+    }
+    
+}
+@end
+@implementation DDPromptEntity
 
 @end

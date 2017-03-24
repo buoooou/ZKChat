@@ -134,7 +134,8 @@ CGFloat const dd_bubbleUpDown = 20;                //气泡到上下边缘的距
             break;
     }
     // 设置头像和昵称
-    self.currentUserID=content.senderId;
+    //self.currentUserID=content.senderId;
+    self.currentUserID=@"zk";
 //    [[DDUserModule shareInstance] getUserForUserID:content.senderId Block:^(MTTUserEntity *user) {
 //        NSURL* avatarURL = [NSURL URLWithString:[user getAvatarUrl]];
         NSURL* avatarURL = [NSURL URLWithString:@""];

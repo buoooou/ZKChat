@@ -21,7 +21,7 @@
 #import "DDChatBaseCell.h"
 #import "RuntimeStatus.h"
 #import "DDChatTextCell.h"
-
+#import "DDPromptCell.h"
 
 typedef NS_ENUM(NSUInteger, DDBottomShowComponent)
 {
@@ -113,6 +113,8 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     if (self) {
         // Custom initialization
         self.tableViewStyle = UITableViewStyleGrouped;
+//        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
     }
     return self;
 }
@@ -153,7 +155,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     UIView* headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ZKRefreshViewHeight)];
     [headView setBackgroundColor:[UIColor clearColor]];
     [self.tableView setTableHeaderView:headView];
-    
+
     [self scrollToBottomAnimated:NO];
     
 //    [self initScrollView];
@@ -167,26 +169,33 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
                   forKeyPath:@"showingMessages"
                      options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew
                      context:NULL];
-    [self.module addObserver:self
-                  forKeyPath:@"MTTSessionEntity.sessionID"
-                     options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
-                     context:NULL];
+//    [self.module addObserver:self
+//                  forKeyPath:@"ZKSessionEntity.sessionID"
+//                     options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+//                     context:NULL];
     [self.navigationItem.titleView setUserInteractionEnabled:YES];
     self.view.backgroundColor=ZKBG;
     
-//    if([TheRuntime.user.nick isEqualToString:@"蝎紫"]){
-//        UIImageView *chatBgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//        [chatBgView setImage:[UIImage imageNamed:@"chatBg"]];
-//        [self.view insertSubview:chatBgView atIndex:0];
-//        self.tableView.backgroundView =chatBgView;
-//    }
+    if([TheRuntime.user.nick isEqualToString:@"蝎紫"]){
+        UIImageView *chatBgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [chatBgView setImage:[UIImage imageNamed:@"chatBg"]];
+        [self.view insertSubview:chatBgView atIndex:0];
+        self.tableView.backgroundView =chatBgView;
+    }
     
-//    [self setupBackgroundImage:[UIImage imageNamed:@"chatBg"]];
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.isGotoAt = NO;
     self.ifScrollBottom = YES;
 
     
+}
+- (ChattingModule*)module
+{
+    if (!_module)
+    {
+        _module = [[ChattingModule alloc] init];
+    }
+    return _module;
 }
 
 - (void)textViewEnterSend
@@ -211,8 +220,21 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 //    } failure:^(NSString *errorDescripe) {
 //        DDLog(@"消息插入DB失败");
 //    }];
-//    [self sendMessage:text messageEntity:message];
+    [self sendMessage:text messageEntity:message];
+}
+
+-(void)sendMessage:(NSString *)msg messageEntity:(ZKMessageEntity *)message
+{
+    //    BOOL isGroup = [self.module.ZKSessionEntity isGroup];
+    //    [[DDMessageSendManager instance] sendMessage:message isGroup:isGroup Session:self.module.MTTSessionEntity  completion:^(ZKMessageEntity* theMessage,NSError *error) {
+    //        dispatch_async(dispatch_get_main_queue(), ^{
+    //            message.state= theMessage.state;
+    //            [self.tableView reloadData];
     [self scrollToBottomAnimated:YES];
+    //        });
+    //    } Error:^(NSError *error) {
+    //        [self.tableView reloadData];
+    //    }];
 }
 
 
@@ -336,8 +358,8 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     
     id object = self.module.showingMessages[indexPath.row];
     UITableViewCell* cell = nil;
-//    if ([object isKindOfClass:[ZKMessageEntity class]])
-//    {
+    if ([object isKindOfClass:[ZKMessageEntity class]])
+    {
         ZKMessageEntity* message = (ZKMessageEntity*)object;
 //        if (message.msgContentType == DDMessageTypeText ) {
             cell = [self p_textCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
@@ -357,17 +379,50 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 //            cell = [self p_textCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
 //        }
 //        
-//    }
-//    else if ([object isKindOfClass:[DDPromptEntity class]])
-//    {
-//        DDPromptEntity* prompt = (DDPromptEntity*)object;
-//        cell = [self p_promptCell_tableView:tableView cellForRowAtIndexPath:indexPath message:prompt];
-//    }
-    
+    }
+    else if ([object isKindOfClass:[DDPromptEntity class]])
+    {
+        DDPromptEntity* prompt = (DDPromptEntity*)object;
+        cell = [self p_promptCell_tableView:tableView cellForRowAtIndexPath:indexPath message:prompt];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if(scrollView.contentOffset.y + self.tableView.height >= self.tableView.contentSize.height - 100){
+        self.ifScrollBottom = YES;
+    }else{
+        self.ifScrollBottom = NO;
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    // 上拉弹出键盘
+    //    if (scrollView.contentOffset.y < scrollView.contentSize.height -scrollView.frame.size.height +scrollView.contentInset.bottom){
+    //        [self p_hideBottomComponent];
+    //    }
+    //    else if (scrollView.contentOffset.y > scrollView.contentSize.height -scrollView.frame.size.height +scrollView.contentInset.bottom +80) {
+    //            [self.chatInputView.textView becomeFirstResponder];
+    //    }
+}
+
 #pragma mark PrivateAPI
 
+- (UITableViewCell*)p_promptCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(DDPromptEntity*)prompt
+{
+    static NSString* identifier = @"DDPromptCellIdentifier";
+    DDPromptCell* cell = (DDPromptCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell)
+    {
+        cell = [[DDPromptCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    NSString* promptMessage = prompt.message;
+    [cell setprompt:promptMessage];
+    return cell;
+}
 
 - (UITableViewCell*)p_textCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message
 {
@@ -386,7 +441,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 //    }
 //    else
 //    {
-        [cell setLocation:DDBubbleLeft];
+        [cell setLocation:DDBubbleRight];
 //    }
     
 //    if (![[UnAckMessageManager instance] isInUnAckQueue:message] && message.state == DDMessageSending && [message isSendBySelf]) {
@@ -515,32 +570,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 //        }
     }
 }
-
-- (void)textViewEnterSend
-{
-    //发送消息
-    NSString* text = [self.chatInputView.textView text];
-    
-    NSString* parten = @"\\s";
-    NSRegularExpression* reg = [NSRegularExpression regularExpressionWithPattern:parten options:NSRegularExpressionCaseInsensitive error:nil];
-    NSString* checkoutText = [reg stringByReplacingMatchesInString:text options:NSMatchingReportProgress range:NSMakeRange(0, [text length]) withTemplate:@""];
-    if ([checkoutText length] == 0)
-    {
-        return;
-    }
-//    DDMessageContentType msgContentType = DDMessageTypeText;
-//    ZKMessageEntity *message = [ZKMessageEntity makeMessage:text Module:self.module MsgType:msgContentType];
-//    [self.tableView reloadData];
-//    [self.chatInputView.textView setText:nil];
-//    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-//        DDLog(@"消息插入DB成功");
-//    } failure:^(NSString *errorDescripe) {
-//        DDLog(@"消息插入DB失败");
-//    }];
-//    [self sendMessage:text messageEntity:message];
-}
-
-
 -(void)showUtilitys:(id)sender
 {
     [_recordButton setImage:[UIImage imageNamed:@"record_normal"] forState:UIControlStateNormal];

@@ -129,6 +129,7 @@
         }else if(row==1){
             [cell.textLabel setText:@"检查更新"];
             cell.detail.text=[NSString stringWithFormat:@"%@",ZKChatVerison];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             //[cell setUserInteractionEnabled:NO];
 //            if (self.hadUpdate) {
 //                [cell setUserInteractionEnabled:YES];

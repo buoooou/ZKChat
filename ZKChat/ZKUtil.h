@@ -15,4 +15,6 @@
 +(void)setDBVersion:(NSInteger)version;
 +(NSString *)getBubbleTypeLeft:(BOOL)left;
 +(void)setBubbleTypeLeft:(NSString *)bubbleType left:(BOOL)left;
++(struct CGSize)sizeTrans:(struct CGSize)size;
+
 @end

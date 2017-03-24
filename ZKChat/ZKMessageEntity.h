@@ -40,7 +40,9 @@ typedef NS_ENUM(NSUInteger, DDMessageState)
 //voice
 #define DD_IMAGE_LOCAL_KEY                  @"local"
 #define DD_IMAGE_URL_KEY                    @"url"
-
+//图片
+#define DD_MESSAGE_IMAGE_PREFIX             @"&$#@~^@[{:"
+#define DD_MESSAGE_IMAGE_SUFFIX             @":}]&$~@#@"
 //商品
 #define DD_COMMODITY_ORGPRICE               @"orgprice"
 #define DD_COMMODITY_PICURL                 @"picUrl"

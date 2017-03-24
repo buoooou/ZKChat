@@ -104,6 +104,8 @@
 		7E53D8731E81706C0093C912 /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8711E81706C0093C912 /* NSIndexSet+AQIsSetContiguous.m */; };
 		7E53D8761E8175010093C912 /* ImageGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8751E8175010093C912 /* ImageGridViewCell.m */; };
 		7E53D8791E82B21D0093C912 /* ZKAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8781E82B21D0093C912 /* ZKAlbumCell.m */; };
+		7E53D87B1E852EE60093C912 /* bubble.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7E53D87A1E852EE60093C912 /* bubble.bundle */; };
+		7E53D87E1E85396C0093C912 /* DDPromptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D87D1E85396C0093C912 /* DDPromptCell.m */; };
 		7E60318C1E533AA3005239C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60318B1E533AA3005239C4 /* main.m */; };
 		7E60318F1E533AA3005239C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60318E1E533AA3005239C4 /* AppDelegate.m */; };
 		7E60319D1E533AA5005239C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E60319B1E533AA5005239C4 /* LaunchScreen.storyboard */; };
@@ -328,6 +330,9 @@
 		7E53D8751E8175010093C912 /* ImageGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGridViewCell.m; sourceTree = "<group>"; };
 		7E53D8771E82B21D0093C912 /* ZKAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKAlbumCell.h; sourceTree = "<group>"; };
 		7E53D8781E82B21D0093C912 /* ZKAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKAlbumCell.m; sourceTree = "<group>"; };
+		7E53D87A1E852EE60093C912 /* bubble.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = bubble.bundle; sourceTree = "<group>"; };
+		7E53D87C1E85396C0093C912 /* DDPromptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPromptCell.h; sourceTree = "<group>"; };
+		7E53D87D1E85396C0093C912 /* DDPromptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPromptCell.m; sourceTree = "<group>"; };
 		7E6031871E533AA3005239C4 /* ZKChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E60318B1E533AA3005239C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7E60318D1E533AA3005239C4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -595,6 +600,7 @@
 		7E31E35B1E69A90900EA69DE /* Bundle */ = {
 			isa = PBXGroup;
 			children = (
+				7E53D87A1E852EE60093C912 /* bubble.bundle */,
 				7E31E35C1E69A92300EA69DE /* emotions.bundle */,
 			);
 			name = Bundle;
@@ -1015,6 +1021,8 @@
 		7E6981FA1E7AC59C0005B29A /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				7E53D87C1E85396C0093C912 /* DDPromptCell.h */,
+				7E53D87D1E85396C0093C912 /* DDPromptCell.m */,
 				7E6981F71E7AC4FE0005B29A /* DDChatBaseCell.h */,
 				7E6981F81E7AC4FE0005B29A /* DDChatBaseCell.m */,
 				7E6981FB1E7AC5AB0005B29A /* DDChatCellProtocol.h */,
@@ -1243,6 +1251,7 @@
 				7E31E3BD1E6DA29D00EA69DE /* tt_group_manager_add_user@2x.png in Resources */,
 				7E6031FF1E5DD5D9005239C4 /* conversation@2x.png in Resources */,
 				7E31E36F1E6ACC5A00EA69DE /* cancel_send_record.png in Resources */,
+				7E53D87B1E852EE60093C912 /* bubble.bundle in Resources */,
 				7E31E3701E6ACC5A00EA69DE /* cancel_send_record@2x.png in Resources */,
 				7E60320A1E5DD816005239C4 /* contact_selected.png in Resources */,
 				7E60320C1E5DD816005239C4 /* contact.png in Resources */,
@@ -1498,6 +1507,7 @@
 				7E31E35A1E69A83700EA69DE /* EmotionsModule.m in Sources */,
 				7E290E7E1E605583004552F3 /* ZKUserInfoCell.m in Sources */,
 				7E31E3D01E75913200EA69DE /* DDDataInputStream.m in Sources */,
+				7E53D87E1E85396C0093C912 /* DDPromptCell.m in Sources */,
 				7E6031E81E5B20EC005239C4 /* ZKMessageViewController.m in Sources */,
 				7E290EC01E62F505004552F3 /* NSDictionary+Safe.m in Sources */,
 				7E31E3A81E6BEBCB00EA69DE /* UIImage+UIImageAddition.m in Sources */,

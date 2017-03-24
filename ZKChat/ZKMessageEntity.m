@@ -85,17 +85,17 @@
     NSString* senderID = [RuntimeStatus instance].user.objID;
     MsgType msgType;
 //    if (module.ZKMessageEntity.sessionType == SessionTypeSessionTypeSingle ) {
-//        msgType =MsgTypeMsgTypeSingleText;
+        msgType =MsgTypeMsgTypeSingleText;
 //    }else
 //    {
-        msgType =MsgTypeMsgTypeGroupText;
+//        msgType =MsgTypeMsgTypeGroupText;
 //    }
 //    ZKMessageEntity* message = [[ZKMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:msgType msgTime:msgTime sessionID:module.ZKSessionEntity.sessionID senderID:senderID msgContent:content toUserID:module.ZKSessionEntity.sessionID];
      ZKMessageEntity* message = [[ZKMessageEntity alloc] initWithMsgID:@"ss" msgType:msgType msgTime:msgTime sessionID:@"zkzj" senderID:senderID msgContent:content toUserID:@"zkzs"];
     message.state = DDMessageSending;
     message.msgContentType=type;
     [module addShowMessage:message];
-    [module updateSessionUpdateTime:message.msgTime];
+//    [module updateSessionUpdateTime:message.msgTime];
     return message;
 }
 -(BOOL)isGroupMessage

@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ZKChat/ZKChattingMainViewController.m"
-            timestampString = "511367226.241158"
+            filePath = "ZKChat/ZKUtil.m"
+            timestampString = "512051027.73984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "-textViewEnterSend"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZKChat/ZKChattingMainViewController.m"
-            timestampString = "511969828.785868"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "375"
-            endingLineNumber = "375"
-            landmarkName = "-p_textCell_tableView:cellForRowAtIndexPath:message:"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "+setBubbleTypeLeft:left:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
