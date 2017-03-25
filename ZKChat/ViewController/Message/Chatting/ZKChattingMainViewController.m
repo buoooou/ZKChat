@@ -22,6 +22,9 @@
 #import "RuntimeStatus.h"
 #import "DDChatTextCell.h"
 #import "DDPromptCell.h"
+#import "DDChatVoiceCell.h"
+#import "TouchDownGestureRecognizer.h"
+
 
 typedef NS_ENUM(NSUInteger, DDBottomShowComponent)
 {
@@ -91,7 +94,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 
 @implementation ZKChattingMainViewController
 {
-//    TouchDownGestureRecognizer* _touchDownGestureRecognizer;
+    TouchDownGestureRecognizer* _touchDownGestureRecognizer;
     NSString* _currentInputContent;
     UIButton *_recordButton;
     DDBottomShowComponent _bottomShowComponent;
@@ -191,7 +194,27 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     return _module;
 }
-
+- (void)textViewChanged
+{
+    NSRange range = self.chatInputView.textView.selectedRange;
+    NSInteger location = range.location;
+    __block NSString* text = [self.chatInputView.textView text];
+    if(location){
+        __block NSRange range = NSMakeRange(location-1, 1);
+        NSString* lastText =  [text substringWithRange:range];
+        //        if([lastText isEqualToString:@"@"]){
+        //            self.isGotoAt = YES;
+        //            ContactsViewController *contact = [ContactsViewController new];
+        //            contact.isFromAt=YES;
+        //            contact.selectUser =^(MTTUserEntity *user){
+        //                NSString *atName = [NSString stringWithFormat:@"@%@ ",user.nick];
+        //                text = [text stringByReplacingCharactersInRange:range withString:atName];
+        //                [self.chatInputView.textView setText:text];
+        //            };
+        //            [self.navigationController pushViewController:contact animated:YES];
+        //        }
+    }
+}
 - (void)textViewEnterSend
 {
     //发送消息
@@ -230,7 +253,91 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     //        [self.tableView reloadData];
     //    }];
 }
+#pragma mark RecordingDelegate
+- (void)recordingFinishedWithFileName:(NSString *)filePath time:(NSTimeInterval)interval
+{
+    NSMutableData* muData = [[NSMutableData alloc] init];
+    NSData* data = [NSData dataWithContentsOfFile:filePath];
+//    int length = [RecorderManager sharedManager].recordedTimeInterval;
+//    if (length < 1 )
+//    {
+//        DDLog(@"录音时间太短");
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [_recordingView setHidden:NO];
+//            [_recordingView setRecordingState:DDShowRecordTimeTooShort];
+//        });
+//        return;
+//    }
+//    else
+//    {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [_recordingView setHidden:YES];
+//        });
+//    }
+//    int8_t ch[4];
+//    for(int32_t i = 0;i<4;i++){
+//        ch[i] = ((length >> ((3 - i)*8)) & 0x0ff);
+//    }
+//    [muData appendBytes:ch length:4];
+//    [muData appendData:data];
+//    DDMessageContentType msgContentType = DDMessageTypeVoice;
+//    ZKMessageEntity* message = [ZKMessageEntity makeMessage:filePath Module:self.module MsgType:msgContentType];
+//    [self.tableView reloadData];
+//    [self scrollToBottomAnimated:YES];
+////    BOOL isGroup = [self.module.ZKMessageEntity isGroup];
+//    if (isGroup) {
+//        message.msgType=MsgTypeMsgTypeGroupAudio;
+//    }else
+//    {
+//        message.msgType = MsgTypeMsgTypeSingleAudio;
+//    }
+//    [message.info setObject:@(length) forKey:VOICE_LENGTH];
+//    [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self scrollToBottomAnimated:YES];
+//        [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
+//            NSLog(@"消息插入DB成功");
+//        } failure:^(NSString *errorDescripe) {
+//            NSLog(@"消息插入DB失败");
+//        }];
+//        
+//    });
+//    
+//    [[DDMessageSendManager instance] sendVoiceMessage:muData filePath:filePath forSessionID:self.module.MTTSessionEntity.sessionID isGroup:isGroup Message:message Session:self.module.MTTSessionEntity completion:^(MTTMessageEntity *theMessage, NSError *error) {
+//        if (!error)
+//        {
+//            DDLog(@"发送语音消息成功");
+//            [[PlayerManager sharedManager] playAudioWithFileName:@"msg.caf" playerType:DDSpeaker delegate:self];
+//            message.state = DDmessageSendSuccess;
+//            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+//                
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [_tableView reloadData];
+//                });
+//                
+//                
+//            }];
+//        }
+//        else
+//        {
+//            DDLog(@"发送语音消息失败");
+//            message.state = DDMessageSendFailure;
+//            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+//                
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [_tableView reloadData];
+//                });
+//                
+//            }];
+//            
+//        }
+//    }];
+}
 
+- (void)playingStoped
+{
+    
+}
 
 -(void)Edit:(id)sender
 {
@@ -362,12 +469,12 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     if ([object isKindOfClass:[ZKMessageEntity class]])
     {
         ZKMessageEntity* message = (ZKMessageEntity*)object;
-//        if (message.msgContentType == DDMessageTypeText ) {
+        if (message.msgContentType == DDMessageTypeText ) {
             cell = [self p_textCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
-//        }else if (message.msgContentType == DDMessageTypeVoice)
-//        {
-//            cell = [self p_voiceCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
-//        }
+        }else if (message.msgContentType == DDMessageTypeVoice)
+        {
+            cell = [self p_voiceCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
+        }
 //        else if(message.msgContentType == DDMessageTypeImage)
 //        {
 //            cell = [self p_imageCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
@@ -375,11 +482,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 //        {
 //            cell = [self p_emotionCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
 //        }
-//        else
-//        {
-//            cell = [self p_textCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
-//        }
-//        
+        else
+        {
+            cell = [self p_textCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
+        }
     }
     else if ([object isKindOfClass:[DDPromptEntity class]])
     {
@@ -408,6 +514,13 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     //            [self.chatInputView.textView becomeFirstResponder];
     //    }
 }
+
+#pragma JSMessageInputViewDelegate
+- (void)viewheightChanged:(float)height
+{
+    [self setValue:@(self.chatInputView.origin.y) forKeyPath:@"_inputViewY"];
+}
+
 #pragma mark PrivateAPI
 
 - (UITableViewCell*)p_promptCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(DDPromptEntity*)prompt
@@ -459,6 +572,232 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     
     return cell;
 }
+- (UITableViewCell*)p_voiceCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message
+{
+    static NSString* identifier = @"DDVoiceCellIdentifier";
+    DDChatBaseCell* cell = (DDChatBaseCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (!cell)
+    {
+        cell = [[DDChatVoiceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    cell.session =self.module.ZKSessionEntity;
+    NSString* myUserID = [RuntimeStatus instance].user.objID;
+    if ([message.senderId isEqualToString:myUserID])
+    {
+        [cell setLocation:DDBubbleRight];
+    }
+    else
+    {
+        [cell setLocation:DDBubbleLeft];
+    }
+    [cell setContent:message];
+    __weak DDChatVoiceCell* weakCell = (DDChatVoiceCell*)cell;
+    [(DDChatVoiceCell*)cell setTapInBubble:^{
+        //播放语音
+//        if ([[PlayerManager sharedManager] playingFileName:message.msgContent]) {
+//            [[PlayerManager sharedManager] stopPlaying];
+//        }else{
+//            NSString* fileName = message.msgContent;
+//            [[PlayerManager sharedManager] playAudioWithFileName:fileName delegate:self];
+//            [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
+//            [weakCell showVoicePlayed];
+//            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+//            }];
+//            
+//        }
+        
+    }];
+    
+    [(DDChatVoiceCell*)cell setEarphonePlay:^{
+        //听筒播放
+        NSString* fileName = message.msgContent;
+//        [[PlayerManager sharedManager] playAudioWithFileName:fileName playerType:DDEarPhone delegate:self];
+//        [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
+//        [weakCell showVoicePlayed];
+//        
+//        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+//            
+//        }];
+        
+    }];
+    
+    [(DDChatVoiceCell*)cell setSpeakerPlay:^{
+        //扬声器播放
+//        NSString* fileName = message.msgContent;
+//        [[PlayerManager sharedManager] playAudioWithFileName:fileName playerType:DDSpeaker delegate:self];
+//        [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
+//        [weakCell showVoicePlayed];
+//        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+//            
+//        }];
+        
+    }];
+    [(DDChatVoiceCell *)cell setSendAgain:^{
+        //重发
+        [weakCell showSending];
+        [weakCell sendVoiceAgain:message];
+    }];
+    return cell;
+}
+
+//- (UITableViewCell*)p_emotionCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message
+//{
+//    static NSString* identifier = @"DDEmotionCellIdentifier";
+//    DDEmotionCell* cell = (DDEmotionCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+//    if (!cell)
+//    {
+//        cell = [[DDEmotionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//    }
+//    cell.session =self.module.MTTSessionEntity;
+//    NSString* myUserID =[RuntimeStatus instance].user.objID;
+//    if ([message.senderId isEqualToString:myUserID])
+//    {
+//        [cell setLocation:DDBubbleRight];
+//    }
+//    else
+//    {
+//        [cell setLocation:DDBubbleLeft];
+//    }
+//    
+//    [cell setContent:message];
+//    __weak DDEmotionCell* weakCell = cell;
+//    
+//    [cell setSendAgain:^{
+//        [weakCell sendTextAgain:message];
+//        
+//    }];
+//    
+//    [cell setTapInBubble:^{
+//        
+//    }];
+//    return cell;
+//}
+//
+//
+//- (UITableViewCell*)p_imageCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message
+//{
+//    static NSString* identifier = @"DDImageCellIdentifier";
+//    DDChatImageCell* cell = (DDChatImageCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+//    if (!cell)
+//    {
+//        cell = [[DDChatImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//    }
+//    cell.session =self.module.MTTSessionEntity;
+//    NSString* myUserID =[RuntimeStatus instance].user.objID;
+//    if ([message.senderId isEqualToString:myUserID])
+//    {
+//        [cell setLocation:DDBubbleRight];
+//    }
+//    else
+//    {
+//        [cell setLocation:DDBubbleLeft];
+//    }
+//    
+//    [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+//        
+//    }];
+//    [cell setContent:message];
+//    __weak DDChatImageCell* weakCell = cell;
+//    
+//    [cell setSendAgain:^{
+//        [weakCell sendImageAgain:message];
+//        
+//    }];
+//    
+//    [cell setTapInBubble:^{
+//        NSString *originUrl =  message.msgContent;
+//        originUrl = [originUrl stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_PREFIX withString:@""];
+//        originUrl = [originUrl stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_SUFFIX withString:@""];
+//        NSURL* url = [NSURL URLWithString:originUrl];
+//        NSMutableArray *photos = [[NSMutableArray alloc]init];
+//        [self.module.showingMessages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//            if ([obj isKindOfClass:[MTTMessageEntity class]])
+//            {
+//                MTTMessageEntity* message = (MTTMessageEntity*)obj;
+//                NSURL* url;
+//                if(message.msgContentType == DDMessageTypeImage){
+//                    NSString* urlString = message.msgContent;
+//                    urlString = [urlString stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_PREFIX withString:@""];
+//                    urlString = [urlString stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_SUFFIX withString:@""];
+//                    if([urlString rangeOfString:@"\"local\" : "].length >0){
+//                        NSData* data = [urlString dataUsingEncoding:NSUTF8StringEncoding];
+//                        NSDictionary* dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//                        url = [NSURL URLWithString:dic[@"url"]];
+//                    }else{
+//                        url = [NSURL URLWithString:urlString];
+//                    }
+//                    if(url){
+//                        [photos addObject:url];
+//                    }
+//                }
+//            }
+//        }];
+//        DDChatImagePreviewViewController *preViewControll = [DDChatImagePreviewViewController new];
+//        NSMutableArray *array = [NSMutableArray array];
+//        [photos enumerateObjectsUsingBlock:^(NSURL *obj, NSUInteger idx, BOOL *stop) {
+//            [array addObject:[MWPhoto photoWithURL:obj]];
+//        }];
+//        preViewControll.photos=array;
+//        preViewControll.index=[photos indexOfObject:url];
+//        //        [preViewControll addChildViewController:preViewControll];
+//        
+//        [self presentViewController:preViewControll animated:YES completion:NULL];
+//    }];
+//    
+//    [cell setPreview:cell.tapInBubble];
+//    
+//    return cell;
+//}
+- (void)p_record:(UIButton*)button
+{
+    [self.chatInputView.recordButton setHighlighted:YES];
+    [self.chatInputView.buttonTitle setText:@"松开发送"];
+    if (![[self.view subviews] containsObject:_recordingView])
+    {
+        [self.view addSubview:_recordingView];
+    }
+    [_recordingView setHidden:NO];
+    [_recordingView setRecordingState:DDShowVolumnState];
+//    [[RecorderManager sharedManager] setDelegate:self];
+//    [[RecorderManager sharedManager] startRecording];
+    NSLog(@"record");
+}
+
+- (void)p_willCancelRecord:(UIButton*)button
+{
+    [_recordingView setHidden:NO];
+    [_recordingView setRecordingState:DDShowCancelSendState];
+    NSLog(@"will cancel record");
+}
+
+- (void)p_cancelRecord:(UIButton*)button
+{
+    [self.chatInputView.recordButton setHighlighted:NO];
+    [self.chatInputView.buttonTitle setText:@"按住说话"];
+    [_recordingView setHidden:YES];
+    //[[RecorderManager sharedManager] cancelRecording];
+    NSLog(@"cancel record");
+}
+
+- (void)p_sendRecord:(UIButton*)button
+{
+    [self.chatInputView.recordButton setHighlighted:NO];
+    [self.chatInputView.buttonTitle setText:@"按住说话"];
+     [_recordingView setHidden:YES];
+    //[[RecorderManager sharedManager] stopRecording];
+    NSLog(@"send record");
+}
+
+
+- (void)p_endCancelRecord:(UIButton*)button
+{
+    [_recordingView setHidden:NO];
+    [_recordingView setRecordingState:DDShowVolumnState];
+}
+
+
+
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -526,32 +865,31 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
                                        action:@selector(p_clickThRecordButton:)
                              forControlEvents:UIControlEventTouchUpInside];
     
+    _touchDownGestureRecognizer = [[TouchDownGestureRecognizer alloc] initWithTarget:self action:nil];
+    __weak ZKChattingMainViewController* weakSelf = self;
+    _touchDownGestureRecognizer.touchDown = ^{
+        [weakSelf p_record:nil];
+    };
     
-//    _touchDownGestureRecognizer = [[TouchDownGestureRecognizer alloc] initWithTarget:self action:nil];
-//    __weak ZKChattingMainViewController* weakSelf = self;
-//    _touchDownGestureRecognizer.touchDown = ^{
-//        [weakSelf p_record:nil];
-//    };
-//    
-//    _touchDownGestureRecognizer.moveInside = ^{
-//        [weakSelf p_endCancelRecord:nil];
-//    };
-//    
-//    _touchDownGestureRecognizer.moveOutside = ^{
-//        [weakSelf p_willCancelRecord:nil];
-//    };
-//    
-//    _touchDownGestureRecognizer.touchEnd = ^(BOOL inside){
-//        if (inside)
-//        {
-//            [weakSelf p_sendRecord:nil];
-//        }
-//        else
-//        {
-//            [weakSelf p_cancelRecord:nil];
-//        }
-//    };
-//    [self.chatInputView.recordButton addGestureRecognizer:_touchDownGestureRecognizer];
+    _touchDownGestureRecognizer.moveInside = ^{
+        [weakSelf p_endCancelRecord:nil];
+    };
+    
+    _touchDownGestureRecognizer.moveOutside = ^{
+        [weakSelf p_willCancelRecord:nil];
+    };
+    
+    _touchDownGestureRecognizer.touchEnd = ^(BOOL inside){
+        if (inside)
+        {
+            [weakSelf p_sendRecord:nil];
+        }
+        else
+        {
+            [weakSelf p_cancelRecord:nil];
+        }
+    };
+    [self.chatInputView.recordButton addGestureRecognizer:_touchDownGestureRecognizer];
     _recordingView = [[RecordingView alloc] initWithState:DDShowVolumnState];
     [_recordingView setHidden:YES];
     [_recordingView setCenter:CGPointMake(FULL_WIDTH/2, self.view.centerY)];
@@ -587,33 +925,8 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
 }
 
-#pragma JSMessageInputViewDelegate
-- (void)viewheightChanged:(float)height
-{
-    [self setValue:@(self.chatInputView.origin.y) forKeyPath:@"_inputViewY"];
-}
 
-- (void)textViewChanged
-{
-    NSRange range = self.chatInputView.textView.selectedRange;
-    NSInteger location = range.location;
-    __block NSString* text = [self.chatInputView.textView text];
-    if(location){
-        __block NSRange range = NSMakeRange(location-1, 1);
-        NSString* lastText =  [text substringWithRange:range];
-//        if([lastText isEqualToString:@"@"]){
-//            self.isGotoAt = YES;
-//            ContactsViewController *contact = [ContactsViewController new];
-//            contact.isFromAt=YES;
-//            contact.selectUser =^(MTTUserEntity *user){
-//                NSString *atName = [NSString stringWithFormat:@"@%@ ",user.nick];
-//                text = [text stringByReplacingCharactersInRange:range withString:atName];
-//                [self.chatInputView.textView setText:text];
-//            };
-//            [self.navigationController pushViewController:contact animated:YES];
-//        }
-    }
-}
+
 -(void)showUtilitys:(id)sender
 {
     [_recordButton setImage:[UIImage imageNamed:@"record_normal"] forState:UIControlStateNormal];

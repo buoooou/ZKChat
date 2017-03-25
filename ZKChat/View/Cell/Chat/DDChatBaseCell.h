@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, DDBubbleLocationType)
     DDBubbleRight
 };
 
-@interface DDChatBaseCell : ZKBaseCell<MenuImageViewDelegate,UIAlertViewDelegate,DDChatCellProtocol>
+@interface DDChatBaseCell : ZKBaseCell<MenuImageViewDelegate,DDChatCellProtocol>
 @property (nonatomic,assign)DDBubbleLocationType location;
 @property (nonatomic,retain)MenuImageView* bubbleImageView;
 @property (nonatomic,retain)UIImageView* userAvatar;

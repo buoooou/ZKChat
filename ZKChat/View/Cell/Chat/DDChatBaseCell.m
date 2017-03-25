@@ -13,11 +13,12 @@
 #import "UILabel+VerticalAlign.h"
 #import "ZKPublicProfileViewController.h"
 #import "ZKChattingMainViewController.h"
+#import "LCActionSheet.h"
 
 CGFloat const dd_avatarEdge = 10;                 //头像到边缘的距离
 CGFloat const dd_avatarBubbleGap = 5;             //头像和气泡之间的距离
 CGFloat const dd_bubbleUpDown = 20;                //气泡到上下边缘的距离
-@interface DDChatBaseCell ()
+@interface DDChatBaseCell ()<LCActionSheetDelegate>
 @property(copy)NSString *currentUserID;
 
 @end
@@ -92,15 +93,19 @@ CGFloat const dd_bubbleUpDown = 20;                //气泡到上下边缘的距
 }
 -(void)clickTheSendAgain
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"重发" message:@"是否重新发送此消息" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alert show];
+    LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:@"是否重新发送此消息"
+                                                      delegate:self
+                                             cancelButtonTitle:@"取消"
+                                             otherButtonTitles:@"确定", nil];
+    [actionSheet show];
     
 }
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+#pragma mark - LCActionSheetDelegate
+- (void)actionSheet:(LCActionSheet *)actionSheet didClickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        [self clickTheSendAgain:nil];
-    }
+        if(buttonIndex == 0){
+             [self clickTheSendAgain:nil];
+        }
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

@@ -20,6 +20,13 @@
 #define ZKGRAY RGB(153, 153, 153)
 #define ZKBLUE RGB(1, 175, 244)
 #define ZKCELLGRAY RGB(217, 217, 217)
+
+#if NEED_OUTPUT_LOG
+#define DDLog(xx, ...)                      NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#define DDLog(xx, ...)                 nil
+#endif
+
 // 屏幕高度
 #define SCREEN_HEIGHT         [[UIScreen mainScreen] bounds].size.height
 // 屏幕宽度
