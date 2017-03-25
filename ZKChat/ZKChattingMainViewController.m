@@ -391,7 +391,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     return cell;
 }
 
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     if(scrollView.contentOffset.y + self.tableView.height >= self.tableView.contentSize.height - 100){
@@ -461,7 +460,51 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     
     return cell;
 }
+#pragma mark - KVO
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    
+//    if ([keyPath isEqualToString:@"MTTSessionEntity.sessionID"]) {
+//        if ([change objectForKey:@"new"] !=nil) {
+//            [self setThisViewTitle:self.module.ZKSessionEntity.name];
+//        }
+//    }
+    if ([keyPath isEqualToString:@"showingMessages"]) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            if (self.hadLoadHistory == NO) {
+                [self scrollToBottomAnimated:NO];
+            }
+        });
+    }
+    if ([keyPath isEqualToString:@"_inputViewY"])
+    {
+        float maxY = FULL_HEIGHT - DDINPUT_MIN_HEIGHT;
+        float gap = maxY - _inputViewY;
+        [UIView animateWithDuration:0.25 animations:^{
+            self.tableView.contentInset = UIEdgeInsetsMake(self.tableView.contentInset.top, 0, gap+DDINPUT_MIN_HEIGHT, 0);
+            
+            if (_bottomShowComponent & DDShowEmotion)
+            {
+                [self.emotions.view setTop:self.chatInputView.bottom];
+            }
+            if (_bottomShowComponent & DDShowUtility)
+            {
+                [self.ddUtility.view setTop:self.chatInputView.bottom];
+            }
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        if (gap != 0)
+        {
+            [self scrollToBottomAnimated:NO];
+        }
+    }
+    
+}
 @end
 
 @implementation ZKChattingMainViewController(ChattingInput)
@@ -470,7 +513,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 {
     CGRect inputFrame = CGRectMake(0, CONTENT_HEIGHT - DDINPUT_MIN_HEIGHT + NAVBAR_HEIGHT,FULL_WIDTH,DDINPUT_MIN_HEIGHT);
     self.chatInputView = [[JSMessageInputView alloc] initWithFrame:inputFrame delegate:self];
-    [self.chatInputView setBackgroundColor:RGBA(249, 249, 249, 0.9)];
+    [self.chatInputView setBackgroundColor:RGB(249, 249, 249)];
     [self.view addSubview:self.chatInputView];
     [self.chatInputView.emotionbutton addTarget:self
                                          action:@selector(showEmotions:)
@@ -513,7 +556,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     _recordingView = [[RecordingView alloc] initWithState:DDShowVolumnState];
     [_recordingView setHidden:YES];
     [_recordingView setCenter:CGPointMake(FULL_WIDTH/2, self.view.centerY)];
-//    [self addObserver:self forKeyPath:@"_inputViewY" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self addObserver:self forKeyPath:@"_inputViewY" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
 }
 - (void)p_clickThRecordButton:(UIButton*)button
 {
