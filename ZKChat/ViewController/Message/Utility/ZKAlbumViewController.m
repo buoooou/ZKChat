@@ -8,7 +8,7 @@
 
 #import "ZKAlbumViewController.h"
 #import "ZKConstant.h"
-#import "ZKAlbumDetailsViewControll.h"
+#import "ZKAlbumDetailsViewController.h"
 #import "ZKAlbumCell.h"
 
 @interface ZKAlbumViewController ()
@@ -34,27 +34,17 @@
 {
     [super viewDidLoad];
     self.dataSource = [NSMutableArray new];
-    self.assetsLibrary =  [[ALAssetsLibrary alloc] init];
-
-    void (^assetsGroupsEnumerationBlock)(ALAssetsGroup *,BOOL *) = ^(ALAssetsGroup *assetsGroup, BOOL *stop) {
-        [assetsGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
-        if (assetsGroup.numberOfAssets > 0)
-        {
-            [self.dataSource addObject:assetsGroup];
-        }
-        if (stop) {
-            [self.tableView reloadData];
-        }
         
-    };
-    //查找相册失败block
-    void(^assetsGroupsFailureBlock)(NSError *) = ^(NSError *error) {
-        NSLog(@"Error: %@", [error localizedDescription]);
-    };
+    // 获得所有的自定义相簿
+    PHFetchResult<PHAssetCollection *> *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    // 遍历所有的自定义相簿
+    for (PHAssetCollection *assetCollection in assetCollections) {
+            [self.dataSource addObject:assetCollection];
+    }
+    
+    [self.tableView reloadData];
     
     [self.tableView registerClass:[ZKAlbumCell class] forCellReuseIdentifier:@"DDAlbumsCellIdentifier"];
-    
-    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:assetsGroupsEnumerationBlock failureBlock:assetsGroupsFailureBlock];
 
 }
 
@@ -87,11 +77,15 @@
         cell =[[ZKAlbumCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         
     }
-    NSString * name = [[self.dataSource objectAtIndex:indexPath.row]
-                       valueForProperty:ALAssetsGroupPropertyName];
-    cell.nameLabel.text = [NSString stringWithFormat:@"%@  ( %ld )",name,(long)[[self.dataSource objectAtIndex:indexPath.row] numberOfAssets]];
-
-    cell.avatar.image =[UIImage imageWithCGImage:[[self.dataSource objectAtIndex:indexPath.row] posterImage]] ;
+    PHAssetCollection* assetCollection=[self.dataSource objectAtIndex:indexPath.row];
+    NSString * name = assetCollection.localizedTitle;
+    PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+    cell.nameLabel.text = [NSString stringWithFormat:@"%@  ( %ld )",name,(long)[assets count]];
+    PHAsset *asset=[assets lastObject];
+    // 只会返回1张图片
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) contentMode:PHImageContentModeDefault options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        cell.avatar.image =result;
+    }];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,8 +96,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ZKAlbumDetailsViewControll *details = [ZKAlbumDetailsViewControll new];
-    details.assetsGroup = [self.dataSource objectAtIndex:indexPath.row];
+    ZKAlbumDetailsViewController *details = [ZKAlbumDetailsViewController new];
+    details.assetsCollection = [self.dataSource objectAtIndex:indexPath.row];
     [self pushViewController:details animated:YES];
     
 }

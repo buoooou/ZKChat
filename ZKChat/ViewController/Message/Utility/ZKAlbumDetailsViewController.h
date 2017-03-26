@@ -8,11 +8,10 @@
 
 #import "ZKBaseViewController.h"
 #import "AQGridView.h"
-#import <AssetsLibrary/AssetsLibrary.h>
-
+#import <Photos/Photos.h>
 @class ZKAlbumDetailsBottomBar;
-@interface ZKAlbumDetailsViewControll : ZKBaseViewController<AQGridViewDataSource,AQGridViewDelegate>
-@property(nonatomic,strong)ALAssetsGroup *assetsGroup;
+@interface ZKAlbumDetailsViewController : ZKBaseViewController<AQGridViewDataSource,AQGridViewDelegate>
+@property(nonatomic,strong)PHAssetCollection *assetsCollection;
 @property(nonatomic,strong)NSMutableArray *assetsArray;
 @property(nonatomic,strong)NSMutableArray *choosePhotosArray;
 @property(nonatomic,strong)AQGridView *gridView;

@@ -7,9 +7,8 @@
 //
 
 #import "ZKBaseTableViewController.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 
 @interface ZKAlbumViewController : ZKBaseTableViewController
-@property(nonatomic,strong) ALAssetsLibrary * assetsLibrary;
 
 @end

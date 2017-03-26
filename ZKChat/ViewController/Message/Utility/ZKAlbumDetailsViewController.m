@@ -6,7 +6,7 @@
 //  Copyright © 2017年 张阔. All rights reserved.
 //
 
-#import "ZKAlbumDetailsViewControll.h"
+#import "ZKAlbumDetailsViewController.h"
 #import "MWPhotoBrowser.h"
 #import "ZKAlbumDetailsBottomBar.h"
 #import "ZKConstant.h"
@@ -14,7 +14,7 @@
 #import "ZKChattingMainViewController.h"
 #import "ImageGridViewCell.h"
 
-@interface ZKAlbumDetailsViewControll ()<MWPhotoBrowserDelegate>
+@interface ZKAlbumDetailsViewController ()<MWPhotoBrowserDelegate>
 @property(nonatomic,strong)NSMutableArray *photos;
 @property(strong)NSMutableArray *selections;
 @property(strong)MWPhotoBrowser *photoBrowser;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation ZKAlbumDetailsViewControll
+@implementation ZKAlbumDetailsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,16 +45,15 @@
     [self.view addSubview:self.gridView];
     self.assetsArray = [NSMutableArray new];
     self.choosePhotosArray = [NSMutableArray new];
-    [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-        if(result) {
-            [_assetsArray addObject:result];
-            
-        }
-        if (stop)
-        {
-            [self.gridView reloadData];
-        }
-    }];
+    
+    PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:self.assetsCollection options:nil];
+    for (PHAsset *asset in assets) {
+        
+        [self.assetsArray addObject:asset];
+    }
+
+    [self.gridView reloadData];
+  
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(backToRoot)];
     self.navigationItem.rightBarButtonItem=item;
     self.bar = [[ZKAlbumDetailsBottomBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-45, FULL_WIDTH, 45)];
@@ -76,26 +75,15 @@
             [self.photoBrowser setCurrentPhotoIndex:0];
             weakSelf.photos = [NSMutableArray new];
             for (int i =0; i<[weakSelf.choosePhotosArray count]; i++) {
-                ALAsset *result = [weakSelf.choosePhotosArray objectAtIndex:i];
-                ALAssetRepresentation* representation = [result defaultRepresentation];
-                if (representation == nil) {
-                    CGImageRef ref = [result thumbnail];
-                    
-                    UIImage *img = [[UIImage alloc]initWithCGImage:ref];
-                    
-                    MWPhoto *photo =[MWPhoto photoWithImage:img];
-                    
+                PHAsset *asset = [weakSelf.choosePhotosArray objectAtIndex:i];
+
+                PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+                options.resizeMode=PHImageRequestOptionsResizeModeNone;
+                // 从asset中获得图片
+                [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                    MWPhoto *photo =[MWPhoto photoWithImage:result];
                     [self.photos addObject:photo];
-                }else
-                {
-                    
-                    CGImageRef ref = [[result defaultRepresentation] fullScreenImage];
-                    
-                    UIImage *img = [[UIImage alloc]initWithCGImage:ref];
-                    
-                    MWPhoto *photo =[MWPhoto photoWithImage:img];
-                    [self.photos addObject:photo];
-                }
+                }];
                 [self.selections addObject:@(1)];
             }
             
@@ -233,11 +221,16 @@
     }
     cell.isShowSelect=YES;
     cell.selectionGlowColor=[UIColor clearColor];
-    ALAsset *asset = [self.assetsArray objectAtIndex:index];
+    PHAsset *asset = [self.assetsArray objectAtIndex:index];
     
-    CGImageRef thum = [asset thumbnail];
-    UIImage* ti = [UIImage imageWithCGImage:thum];
-    cell.image = ti;
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+
+    options.resizeMode=PHImageRequestOptionsResizeModeNone;
+    // 从asset中获得图片
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth/2, asset.pixelWidth/2) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        cell.image = result;
+    }];
+
     cell.tag=index;
     if ([self.choosePhotosArray containsObject:asset]) {
         [cell setCellIsToHighlight:YES];
@@ -251,7 +244,7 @@
 {
     [gridView deselectItemAtIndex:index animated:YES];
     
-    ALAsset *asset = [self.assetsArray objectAtIndex:index];
+    PHAsset *asset = [self.assetsArray objectAtIndex:index];
     ImageGridViewCell *cell =(ImageGridViewCell *) [self.gridView cellForItemAtIndex:index];
     if ([self.choosePhotosArray containsObject:asset]) {
         [cell setCellIsToHighlight:NO];
@@ -311,6 +304,5 @@
     
     
 }
-
 
 @end
