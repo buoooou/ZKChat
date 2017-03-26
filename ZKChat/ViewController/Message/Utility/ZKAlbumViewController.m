@@ -83,7 +83,11 @@
     cell.nameLabel.text = [NSString stringWithFormat:@"%@  ( %ld )",name,(long)[assets count]];
     PHAsset *asset=[assets lastObject];
     // 只会返回1张图片
-    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) contentMode:PHImageContentModeDefault options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
+    options.resizeMode=PHImageRequestOptionsResizeModeNone;
+    
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeZero contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         cell.avatar.image =result;
     }];
     return cell;

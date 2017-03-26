@@ -76,18 +76,20 @@
             weakSelf.photos = [NSMutableArray new];
             for (int i =0; i<[weakSelf.choosePhotosArray count]; i++) {
                 PHAsset *asset = [weakSelf.choosePhotosArray objectAtIndex:i];
-
+                
                 PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+                options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
                 options.resizeMode=PHImageRequestOptionsResizeModeNone;
                 // 从asset中获得图片
-                [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(1000, 1000) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                     MWPhoto *photo =[MWPhoto photoWithImage:result];
                     [self.photos addObject:photo];
                 }];
+                
                 [self.selections addObject:@(1)];
             }
             
-            //[self.photoBrowser reloadData];
+           // [self.photoBrowser reloadData];
             UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, FULL_WIDTH, 50)];
             [toolView setBackgroundColor:RGBA(0, 0, 0, 0.7)];
             self.button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -224,10 +226,11 @@
     PHAsset *asset = [self.assetsArray objectAtIndex:index];
     
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
+    options.resizeMode=PHImageRequestOptionsResizeModeExact;
 
-    options.resizeMode=PHImageRequestOptionsResizeModeNone;
     // 从asset中获得图片
-    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth/2, asset.pixelWidth/2) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(CGRectGetWidth(cell.frame)*[UIScreen mainScreen].scale, CGRectGetHeight(cell.frame)*[UIScreen mainScreen].scale) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         cell.image = result;
     }];
 
