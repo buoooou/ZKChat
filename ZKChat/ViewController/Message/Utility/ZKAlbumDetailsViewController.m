@@ -78,10 +78,9 @@
                 PHAsset *asset = [weakSelf.choosePhotosArray objectAtIndex:i];
                 
                 PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-                options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
-                options.resizeMode=PHImageRequestOptionsResizeModeNone;
+                options.synchronous = NO;
                 // 从asset中获得图片
-                [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(1000, 1000) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                     MWPhoto *photo =[MWPhoto photoWithImage:result];
                     [self.photos addObject:photo];
                 }];
