@@ -81,14 +81,17 @@
                 options.synchronous = NO;
                 // 从asset中获得图片
                 [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                    
                     MWPhoto *photo =[MWPhoto photoWithImage:result];
+                    NSLog(@" 图片内容：%@ ",result);
                     [self.photos addObject:photo];
+                    
                 }];
                 
                 [self.selections addObject:@(1)];
             }
             
-           // [self.photoBrowser reloadData];
+            [self.photoBrowser reloadData];
             UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, FULL_WIDTH, 50)];
             [toolView setBackgroundColor:RGBA(0, 0, 0, 0.7)];
             self.button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -230,6 +233,7 @@
 
     // 从asset中获得图片
     [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(CGRectGetWidth(cell.frame)*[UIScreen mainScreen].scale, CGRectGetHeight(cell.frame)*[UIScreen mainScreen].scale) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        NSLog(@" 图片内容：%@ ",result);
         cell.image = result;
     }];
 
