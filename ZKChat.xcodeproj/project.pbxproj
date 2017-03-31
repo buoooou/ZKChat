@@ -222,6 +222,8 @@
 		7E60319D1E533AA5005239C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E60319B1E533AA5005239C4 /* LaunchScreen.storyboard */; };
 		7E6031A81E533AA7005239C4 /* ZKChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031A71E533AA7005239C4 /* ZKChatTests.m */; };
 		7E6031B31E533AA7005239C4 /* ZKChatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031B21E533AA7005239C4 /* ZKChatUITests.m */; };
+		7E9D10B91E8AA39A0094E0EA /* dd_image_send.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E9D10B71E8AA39A0094E0EA /* dd_image_send.png */; };
+		7E9D10BA1E8AA39A0094E0EA /* dd_image_send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E9D10B81E8AA39A0094E0EA /* dd_image_send@2x.png */; };
 		EAE7D4347B166B6242C4FAC9 /* libPods-ZKChatUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F5CB65A6D641071851F964 /* libPods-ZKChatUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -626,6 +628,8 @@
 		7E6031AE1E533AA7005239C4 /* ZKChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZKChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E6031B21E533AA7005239C4 /* ZKChatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKChatUITests.m; sourceTree = "<group>"; };
 		7E6031B41E533AA7005239C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E9D10B71E8AA39A0094E0EA /* dd_image_send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dd_image_send.png; sourceTree = "<group>"; };
+		7E9D10B81E8AA39A0094E0EA /* dd_image_send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_image_send@2x.png"; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -1473,6 +1477,8 @@
 		7ED4935E1E6471DD0083BCD4 /* Chatting */ = {
 			isa = PBXGroup;
 			children = (
+				7E9D10B71E8AA39A0094E0EA /* dd_image_send.png */,
+				7E9D10B81E8AA39A0094E0EA /* dd_image_send@2x.png */,
 				7E53D9B51E86A72D0093C912 /* cancel_send_record.png */,
 				7E53D9B61E86A72D0093C912 /* cancel_send_record@2x.png */,
 				7E53D9B71E86A72D0093C912 /* chat_bubble_pre_image@2x.png */,
@@ -1687,6 +1693,7 @@
 				7E53DA321E86A7930093C912 /* myprofile@2x.png in Resources */,
 				7E53DAF51E87F36F0093C912 /* select.png in Resources */,
 				7E53DA2A1E86A7930093C912 /* conversation_selected.png in Resources */,
+				7E9D10B91E8AA39A0094E0EA /* dd_image_send.png in Resources */,
 				7E53DA2D1E86A7930093C912 /* conversation@2x.png in Resources */,
 				7E53DA341E86A7930093C912 /* QRCode@2x.png in Resources */,
 				7E53D9F01E86A72D0093C912 /* dd_right_voice_three@2x.png in Resources */,
@@ -1727,6 +1734,7 @@
 				7E53D9E01E86A72D0093C912 /* cancel_send_record@2x.png in Resources */,
 				7E53DA2C1E86A7930093C912 /* conversation.png in Resources */,
 				7E53D9B41E86A5E40093C912 /* emotions.bundle in Resources */,
+				7E9D10BA1E8AA39A0094E0EA /* dd_image_send@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
