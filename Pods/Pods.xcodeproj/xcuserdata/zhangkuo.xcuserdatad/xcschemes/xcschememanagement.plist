@@ -34,17 +34,29 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>MWPhotoBrowser-MWPhotoBrowser.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
+=======
 		<key>MWPhotoBrowser.xcscheme</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+<<<<<<< Updated upstream
+		<key>MWPhotoBrowser.xcscheme</key>
+=======
 		<key>Masonry.xcscheme</key>
+>>>>>>> Stashed changes
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+<<<<<<< Updated upstream
+		<key>Masonry.xcscheme</key>
+=======
+		<key>PSTCollectionView.xcscheme</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -107,72 +119,128 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>1B9891708D9F9B504F2482EDDB834F6C</key>
+=======
+		<key>29E0C9DE3FF70395BE8E9E30B0707D10</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>250067F268130890EEE5BA4B2A227265</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2596169E954907C07413FA0DF674480A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
+=======
 		<key>2D4C1D1C81ED4586A5EE0C9EAF402B9A</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
+		<key>2596169E954907C07413FA0DF674480A</key>
+=======
+		<key>3837DEAF62D23E0B5A46F6E2C3DD212F</key>
+>>>>>>> Stashed changes
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+<<<<<<< Updated upstream
+		<key>2D4C1D1C81ED4586A5EE0C9EAF402B9A</key>
+=======
+		<key>3B744287C83AA0BA1A2115FDB6209EB3</key>
+>>>>>>> Stashed changes
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+<<<<<<< Updated upstream
 		<key>8614248BD8829D1939F9F1C24BB136EB</key>
+=======
+		<key>41C0243388658C05E0D621B9A09B99BA</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>8642CC820CE8C5B88C113D7F47AF4BC3</key>
+=======
+		<key>7DF11ADB88A0E7F937A19872D5724754</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>9255741624F9CC8B28837346C03AD7B9</key>
+=======
+		<key>8614248BD8829D1939F9F1C24BB136EB</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>9E033EDB5EC0819481B0546434FA577B</key>
+=======
+		<key>8642CC820CE8C5B88C113D7F47AF4BC3</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>C6C7885D4EA37F67352948122032D39C</key>
+=======
+		<key>9E033EDB5EC0819481B0546434FA577B</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>C791F0A928C1A8FE97074DFC9ACF4E75</key>
+=======
+		<key>B198E854FC51DD0BE353CF7F91476AD3</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>D31F2E1140FD881D5FEB76F35D954576</key>
+=======
+		<key>B63FDEF5AD6A5E7912946AD4D7BEC9B3</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>DBA6D79422217D2539AE068B7FD45F96</key>
+=======
+		<key>C791F0A928C1A8FE97074DFC9ACF4E75</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>E69BD70D7868B7D08C6767DEB19A818E</key>
+=======
+		<key>DBA6D79422217D2539AE068B7FD45F96</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+<<<<<<< Updated upstream
 		<key>EB621ED5154E93EF4EB561A45DBF3C66</key>
+=======
+		<key>E37C141AF883CEE3D5A8E4BB5D415B74</key>
+>>>>>>> Stashed changes
 		<dict>
 			<key>primary</key>
 			<true/>

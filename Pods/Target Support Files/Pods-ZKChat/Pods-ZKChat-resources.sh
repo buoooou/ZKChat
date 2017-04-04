@@ -77,7 +77,11 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+<<<<<<< Updated upstream
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle"
+=======
+  install_resource "MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle"
+>>>>>>> Stashed changes
   install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerBack.png"
   install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerBack@2x.png"
   install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerNext.png"
@@ -91,7 +95,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+<<<<<<< Updated upstream
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle"
+=======
+  install_resource "MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle"
+>>>>>>> Stashed changes
   install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerBack.png"
   install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerBack@2x.png"
   install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerNext.png"

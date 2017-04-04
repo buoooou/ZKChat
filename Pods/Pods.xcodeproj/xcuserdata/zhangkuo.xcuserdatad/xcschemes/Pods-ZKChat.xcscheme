@@ -14,7 +14,11 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
+<<<<<<< Updated upstream
                BlueprintIdentifier = '9255741624F9CC8B28837346C03AD7B9'
+=======
+               BlueprintIdentifier = '41C0243388658C05E0D621B9A09B99BA'
+>>>>>>> Stashed changes
                BlueprintName = 'Pods-ZKChat'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-ZKChat.a'>
