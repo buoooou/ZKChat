@@ -91,7 +91,7 @@
                 [self.selections addObject:@(1)];
             }
             
-            [self.photoBrowser reloadData];
+            //[self.photoBrowser reloadData];
             UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, FULL_WIDTH, 50)];
             [toolView setBackgroundColor:RGBA(0, 0, 0, 0.7)];
             self.button = [UIButton buttonWithType:UIButtonTypeCustom];
