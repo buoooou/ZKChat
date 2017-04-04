@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22FAC22B93C1BCA4F860FF7D /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AE958B7145189E8683D1FB /* libPods-ZKChatTests.a */; };
+		4418E0170666CA2AC439FEDC /* libPods-ZKChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D94E683078ADACFA9C473 /* libPods-ZKChat.a */; };
 		7E290E891E61506B004552F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E290E881E61506B004552F3 /* Assets.xcassets */; };
 		7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */; };
 		7E53D8BD1E86A2410093C912 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AD1E86A2400093C912 /* AQGridView.m */; };
@@ -660,6 +661,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4418E0170666CA2AC439FEDC /* libPods-ZKChat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

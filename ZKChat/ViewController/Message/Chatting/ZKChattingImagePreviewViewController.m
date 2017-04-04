@@ -130,26 +130,26 @@
 -(void)decodeQRImage
 {
     MWPhoto *curImage = [self.photos objectAtIndex:self.browser.currentIndex];
-    ZXImage *img = [[ZXImage alloc]initWithURL:curImage.photoURL];
+//    ZXImage *img = [[ZXImage alloc]initWithURL:curImage.photoURL];
     
-    ZXLuminanceSource *source = [[ZXCGImageLuminanceSource alloc] initWithZXImage:img];
-    ZXBinaryBitmap *bitmap = [ZXBinaryBitmap binaryBitmapWithBinarizer:[ZXHybridBinarizer binarizerWithSource:source]];
-    
-    NSError *error = nil;
-    
-    ZXDecodeHints *hints = [ZXDecodeHints hints];
-    
-    ZXMultiFormatReader *reader = [ZXMultiFormatReader reader];
-    ZXResult *result = [reader decode:bitmap
-                                hints:hints
-                                error:&error];
-    self.QRCodeResult = result.text;
+//    ZXLuminanceSource *source = [[ZXCGImageLuminanceSource alloc] initWithZXImage:img];
+//    ZXBinaryBitmap *bitmap = [ZXBinaryBitmap binaryBitmapWithBinarizer:[ZXHybridBinarizer binarizerWithSource:source]];
+//    
+//    NSError *error = nil;
+//    
+//    ZXDecodeHints *hints = [ZXDecodeHints hints];
+//    
+//    ZXMultiFormatReader *reader = [ZXMultiFormatReader reader];
+//    ZXResult *result = [reader decode:bitmap
+//                                hints:hints
+//                                error:&error];
+//    self.QRCodeResult = result.text;
 }
 -(void)saveImage
 {
     MWPhoto *curImage = [self.photos objectAtIndex:self.browser.currentIndex];
     UIImageView *imageview = [UIImageView new];
-    [imageview sd_setImageWithURL:curImage.photoURL];
+//    [imageview sd_setImageWithURL:curImage.photoURL];
     UIImageWriteToSavedPhotosAlbum(imageview.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
 }
 - (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
