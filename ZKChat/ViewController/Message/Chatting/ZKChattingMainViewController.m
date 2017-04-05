@@ -17,13 +17,16 @@
 #import "ZKUtil.h"
 #import "ZKPublicProfileViewController.h"
 #import "ZKChattingEditViewController.h"
+#import "ZKChattingImagePreviewViewController.h"
 #import "ZKMessageEntity.h"
 #import "DDChatBaseCell.h"
+#import "DDChatImageCell.h"
 #import "RuntimeStatus.h"
 #import "DDChatTextCell.h"
 #import "DDPromptCell.h"
 #import "DDChatVoiceCell.h"
 #import "TouchDownGestureRecognizer.h"
+#import "NSDictionary+JSON.h"
 
 
 typedef NS_ENUM(NSUInteger, DDBottomShowComponent)
@@ -253,6 +256,51 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     //        [self.tableView reloadData];
     //    }];
 }
+-(void)sendImageMessage:(ZKPhotoEnity *)photo Image:(UIImage *)image
+{
+    NSDictionary* messageContentDic = @{DD_IMAGE_LOCAL_KEY:photo.localPath};
+    NSString* messageContent = [messageContentDic jsonString];
+    
+    ZKMessageEntity *message = [ZKMessageEntity makeMessage:messageContent Module:self.module MsgType:DDMessageTypeImage];
+    [self.tableView reloadData];
+    [self scrollToBottomAnimated:YES];
+    NSData *photoData = UIImagePNGRepresentation(image);
+    [[ZKPhotosCache sharedPhotoCache] storePhoto:photoData forKey:photo.localPath toDisk:YES];
+    //[self.chatInputView.textView setText:@""];
+//    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
+//        DDLog(@"消息插入DB成功");
+//        
+//    } failure:^(NSString *errorDescripe) {
+//        DDLog(@"消息插入DB失败");
+//    }];
+    photo=nil;
+//    [[DDSendPhotoMessageAPI sharedPhotoCache] uploadImage:messageContentDic[DD_IMAGE_LOCAL_KEY] success:^(NSString *imageURL) {
+        [self scrollToBottomAnimated:YES];
+        message.state=DDMessageSending;
+        NSDictionary* tempMessageContent = [NSDictionary initWithJsonString:message.msgContent];
+        NSMutableDictionary* mutalMessageContent = [[NSMutableDictionary alloc] initWithDictionary:tempMessageContent];
+        [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
+        NSString* messageContent = [mutalMessageContent jsonString];
+        message.msgContent = messageContent;
+        [self sendMessage:imageURL messageEntity:message];
+//        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+//        }];
+    
+//    } failure:^(id error) {
+//        message.state = DDMessageSendFailure;
+//        //刷新DB
+//        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+//            if (result)
+//            {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [_tableView reloadData];
+//                });
+//           }
+//          }];
+//        
+//    }];
+}
+
 #pragma mark RecordingDelegate
 - (void)recordingFinishedWithFileName:(NSString *)filePath time:(NSTimeInterval)interval
 {
@@ -475,10 +523,11 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         {
             cell = [self p_voiceCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
         }
-//        else if(message.msgContentType == DDMessageTypeImage)
-//        {
-//            cell = [self p_imageCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
-//        }else if (message.msgContentType == DDMEssageEmotion)
+        else if(message.msgContentType == DDMessageTypeImage)
+        {
+            cell = [self p_imageCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
+        }
+        //else if (message.msgContentType == DDMEssageEmotion)
 //        {
 //            cell = [self p_emotionCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
 //        }
@@ -675,80 +724,80 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 //}
 //
 //
-//- (UITableViewCell*)p_imageCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message
-//{
-//    static NSString* identifier = @"DDImageCellIdentifier";
-//    DDChatImageCell* cell = (DDChatImageCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-//    if (!cell)
-//    {
-//        cell = [[DDChatImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-//    }
-//    cell.session =self.module.MTTSessionEntity;
-//    NSString* myUserID =[RuntimeStatus instance].user.objID;
-//    if ([message.senderId isEqualToString:myUserID])
-//    {
-//        [cell setLocation:DDBubbleRight];
-//    }
-//    else
-//    {
-//        [cell setLocation:DDBubbleLeft];
-//    }
-//    
-//    [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-//        
-//    }];
-//    [cell setContent:message];
-//    __weak DDChatImageCell* weakCell = cell;
-//    
-//    [cell setSendAgain:^{
-//        [weakCell sendImageAgain:message];
-//        
-//    }];
-//    
-//    [cell setTapInBubble:^{
-//        NSString *originUrl =  message.msgContent;
-//        originUrl = [originUrl stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_PREFIX withString:@""];
-//        originUrl = [originUrl stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_SUFFIX withString:@""];
-//        NSURL* url = [NSURL URLWithString:originUrl];
-//        NSMutableArray *photos = [[NSMutableArray alloc]init];
-//        [self.module.showingMessages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            if ([obj isKindOfClass:[MTTMessageEntity class]])
-//            {
-//                MTTMessageEntity* message = (MTTMessageEntity*)obj;
-//                NSURL* url;
-//                if(message.msgContentType == DDMessageTypeImage){
-//                    NSString* urlString = message.msgContent;
-//                    urlString = [urlString stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_PREFIX withString:@""];
-//                    urlString = [urlString stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_SUFFIX withString:@""];
-//                    if([urlString rangeOfString:@"\"local\" : "].length >0){
-//                        NSData* data = [urlString dataUsingEncoding:NSUTF8StringEncoding];
-//                        NSDictionary* dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//                        url = [NSURL URLWithString:dic[@"url"]];
-//                    }else{
-//                        url = [NSURL URLWithString:urlString];
-//                    }
-//                    if(url){
-//                        [photos addObject:url];
-//                    }
-//                }
-//            }
-//        }];
-//        DDChatImagePreviewViewController *preViewControll = [DDChatImagePreviewViewController new];
-//        NSMutableArray *array = [NSMutableArray array];
-//        [photos enumerateObjectsUsingBlock:^(NSURL *obj, NSUInteger idx, BOOL *stop) {
-//            [array addObject:[MWPhoto photoWithURL:obj]];
-//        }];
-//        preViewControll.photos=array;
-//        preViewControll.index=[photos indexOfObject:url];
-//        //        [preViewControll addChildViewController:preViewControll];
-//        
-//        [self presentViewController:preViewControll animated:YES completion:NULL];
-//    }];
-//    
-//    [cell setPreview:cell.tapInBubble];
-//    
-//    return cell;
-//}
+- (UITableViewCell*)p_imageCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message
+{
+    static NSString* identifier = @"DDImageCellIdentifier";
+    DDChatImageCell* cell = (DDChatImageCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell)
+    {
+        cell = [[DDChatImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    cell.session =self.module.ZKSessionEntity;
+    NSString* myUserID =[RuntimeStatus instance].user.objID;
+    if ([message.senderId isEqualToString:myUserID])
+    {
+        [cell setLocation:DDBubbleRight];
+    }
+    else
+    {
+        [cell setLocation:DDBubbleLeft];
+    }
+    
+   // [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+        
+   // }];
+    [cell setContent:message];
+    __weak DDChatImageCell* weakCell = cell;
+    
+    [cell setSendAgain:^{
+        [weakCell sendImageAgain:message];
+        
+    }];
+    
+    [cell setTapInBubble:^{
+        NSString *originUrl =  message.msgContent;
+        originUrl = [originUrl stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_PREFIX withString:@""];
+        originUrl = [originUrl stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_SUFFIX withString:@""];
+        NSURL* url = [NSURL URLWithString:originUrl];
+        NSMutableArray *photos = [[NSMutableArray alloc]init];
+        [self.module.showingMessages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isKindOfClass:[ZKMessageEntity class]])
+            {
+                ZKMessageEntity* message = (ZKMessageEntity*)obj;
+                NSURL* url;
+                if(message.msgContentType == DDMessageTypeImage){
+                    NSString* urlString = message.msgContent;
+                    urlString = [urlString stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_PREFIX withString:@""];
+                    urlString = [urlString stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_SUFFIX withString:@""];
+                    if([urlString rangeOfString:@"\"local\" : "].length >0){
+                        NSData* data = [urlString dataUsingEncoding:NSUTF8StringEncoding];
+                        NSDictionary* dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                        url = [NSURL URLWithString:dic[@"url"]];
+                    }else{
+                        url = [NSURL URLWithString:urlString];
+                    }
+                    if(url){
+                        [photos addObject:url];
+                    }
+                }
+            }
+        }];
+        ZKChattingImagePreviewViewController *preViewControll = [ZKChattingImagePreviewViewController new];
+        NSMutableArray *array = [NSMutableArray array];
+        [photos enumerateObjectsUsingBlock:^(NSURL *obj, NSUInteger idx, BOOL *stop) {
+            [array addObject:[MWPhoto photoWithURL:obj]];
+        }];
+        preViewControll.photos=array;
+        preViewControll.index=[photos indexOfObject:url];
+        //        [preViewControll addChildViewController:preViewControll];
+        
+        [self presentViewController:preViewControll animated:YES completion:NULL];
+    }];
+    
+    [cell setPreview:cell.tapInBubble];
+    
+    return cell;
+}
 - (void)p_record:(UIButton*)button
 {
     [self.chatInputView.recordButton setHighlighted:YES];
@@ -984,75 +1033,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         }];
         [self setValue:@(DDINPUT_TOP_FRAME.origin.y) forKeyPath:@"_inputViewY"];
     }
-    
-    // 判断最后一张照片是不是90s内
-    
-//    ALAssetsLibrary *assetsLibrary;
-//    assetsLibrary = [[ALAssetsLibrary alloc] init];
-//    __block NSDate *lastDate = [[NSDate alloc] initWithTimeInterval:-90 sinceDate:[NSDate date]];
-////    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-//        if (group) {
-//            [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-//                if (result) {
-//                    NSDate *date= [result valueForProperty:ALAssetPropertyDate];
-//                    if ([date compare:lastDate] == NSOrderedDescending) {
-//                        lastDate = date;
-//                        _lastPhoto = result;
-//                    }
-//                }
-//            }];
-//        }else{
-//            if(_lastPhoto && ([[ZKUtil getLastPhotoTime] compare:lastDate] != NSOrderedSame)){
-//                [ZKUtil setLastPhotoTime:lastDate];
-//                //10s后隐藏界面
-//                [self performSelector:@selector(removeImage) withObject:nil afterDelay:10];
-//                _preShow = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 70, SCREEN_HEIGHT-385, 67, 110)];
-//                [_preShow setTag:10000];
-//                [_preShow setUserInteractionEnabled:YES];
-//                UIImage *preShowBg = [UIImage imageNamed:@"chat_bubble_pre_image"];
-//                preShowBg = [preShowBg stretchableImageWithLeftCapWidth:8 topCapHeight:8];
-//                [_preShow setImage:preShowBg];
-//                
-//                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOnPreShow:)];
-//                [_preShow addGestureRecognizer:tap];
-//                
-//                UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(4, 5, 60, 30)];
-//                [label setText:@"你可能要发送的图片:"];
-//                [label setFont:systemFont(12)];
-//                [label setNumberOfLines:0];
-//                
-//                UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(4, 40, 60, 60)];
-//                UIImage *image=[UIImage imageWithCGImage:_lastPhoto.aspectRatioThumbnail];
-//                [imgView setImage:image];
-//                [imgView setContentMode:UIViewContentModeScaleAspectFill];
-//                [imgView setClipsToBounds:YES];
-//                [imgView.layer setBorderColor:RGB(229, 229, 229).CGColor];
-//                [imgView.layer setBorderWidth:1];
-//                [imgView.layer setCornerRadius:5];
-//                [_preShow addSubview:label];
-//                [_preShow addSubview:imgView];
-//                [self.view addSubview:_preShow];
-//                
-//                _preShowPhoto = [ZKPhotoEnity new];
-//                ALAssetRepresentation* representation = [_lastPhoto defaultRepresentation];
-//                NSURL* url = [representation url];
-//                _preShowPhoto.localPath=url.absoluteString;
-//                _preShowImage = nil;
-//                if (representation == nil) {
-//                    CGImageRef thum = [_lastPhoto aspectRatioThumbnail];
-//                    _preShowImage = [[UIImage alloc]initWithCGImage:thum];
-//                }else
-//                {
-//                    _preShowImage =[[UIImage alloc]initWithCGImage:[[_lastPhoto defaultRepresentation] fullScreenImage]];
-//                }
-//                NSString *keyName = [[ZKPhotosCache sharedPhotoCache] getKeyName];
-//                
-//                _preShowPhoto.localPath=keyName;
-//            }
-//        }
-//    } failureBlock:^(NSError *error) {
-//        NSLog(@"Group not found!\n");
-//    }];
     
 }
 

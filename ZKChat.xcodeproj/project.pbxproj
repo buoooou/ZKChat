@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22FAC22B93C1BCA4F860FF7D /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AE958B7145189E8683D1FB /* libPods-ZKChatTests.a */; };
 		4418E0170666CA2AC439FEDC /* libPods-ZKChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D94E683078ADACFA9C473 /* libPods-ZKChat.a */; };
 		7E290E891E61506B004552F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E290E881E61506B004552F3 /* Assets.xcassets */; };
 		7E364AB51E93C56B00BD36C1 /* dd_image_send.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E364AB11E93C56B00BD36C1 /* dd_image_send.png */; };
 		7E364AB61E93C56B00BD36C1 /* dd_image_send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E364AB21E93C56B00BD36C1 /* dd_image_send@2x.png */; };
 		7E364AB71E93C56B00BD36C1 /* unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E364AB31E93C56B00BD36C1 /* unselected.png */; };
 		7E364AB81E93C56B00BD36C1 /* unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E364AB41E93C56B00BD36C1 /* unselected@2x.png */; };
+		7E364ABB1E952A6400BD36C1 /* DDChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E364ABA1E952A6400BD36C1 /* DDChatImageCell.m */; };
+		7E364ABE1E952BD400BD36C1 /* NSDictionary+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E364ABD1E952BD400BD36C1 /* NSDictionary+JSON.m */; };
 		7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */; };
 		7E53D8BD1E86A2410093C912 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AD1E86A2400093C912 /* AQGridView.m */; };
 		7E53D8BE1E86A2410093C912 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8B11E86A2400093C912 /* AQGridViewAnimatorItem.m */; };
@@ -225,7 +226,6 @@
 		7E60319D1E533AA5005239C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E60319B1E533AA5005239C4 /* LaunchScreen.storyboard */; };
 		7E6031A81E533AA7005239C4 /* ZKChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031A71E533AA7005239C4 /* ZKChatTests.m */; };
 		7E6031B31E533AA7005239C4 /* ZKChatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031B21E533AA7005239C4 /* ZKChatUITests.m */; };
-		EAE7D4347B166B6242C4FAC9 /* libPods-ZKChatUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F5CB65A6D641071851F964 /* libPods-ZKChatUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,6 +254,10 @@
 		7E364AB21E93C56B00BD36C1 /* dd_image_send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dd_image_send@2x.png"; path = "Resource/Image/Chatting/dd_image_send@2x.png"; sourceTree = "<group>"; };
 		7E364AB31E93C56B00BD36C1 /* unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unselected.png; path = Resource/Image/Chatting/unselected.png; sourceTree = "<group>"; };
 		7E364AB41E93C56B00BD36C1 /* unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unselected@2x.png"; path = "Resource/Image/Chatting/unselected@2x.png"; sourceTree = "<group>"; };
+		7E364AB91E952A6400BD36C1 /* DDChatImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDChatImageCell.h; path = View/Cell/Chat/DDChatImageCell.h; sourceTree = "<group>"; };
+		7E364ABA1E952A6400BD36C1 /* DDChatImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDChatImageCell.m; path = View/Cell/Chat/DDChatImageCell.m; sourceTree = "<group>"; };
+		7E364ABC1E952BD400BD36C1 /* NSDictionary+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+JSON.h"; path = "CateGory/NSDictionary+JSON.h"; sourceTree = "<group>"; };
+		7E364ABD1E952BD400BD36C1 /* NSDictionary+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+JSON.m"; path = "CateGory/NSDictionary+JSON.m"; sourceTree = "<group>"; };
 		7E53D8A91E86A0BE0093C912 /* RuntimeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuntimeStatus.h; path = GlobalData/RuntimeStatus.h; sourceTree = "<group>"; };
 		7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RuntimeStatus.m; path = GlobalData/RuntimeStatus.m; sourceTree = "<group>"; };
 		7E53D8AC1E86A2400093C912 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Exist/AQGridView/AQGridView.h; sourceTree = "<group>"; };
@@ -638,20 +642,12 @@
 		7ED4936C1E671CCB0083BCD4 /* libLCActionSheet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLCActionSheet.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/LCActionSheet/libLCActionSheet.a"; sourceTree = "<group>"; };
 		7ED4936D1E671CCB0083BCD4 /* libMasonry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMasonry.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/Masonry/libMasonry.a"; sourceTree = "<group>"; };
 		7ED4936E1E671CCB0083BCD4 /* libMBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMBProgressHUD.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/MBProgressHUD/libMBProgressHUD.a"; sourceTree = "<group>"; };
-		7ED4936F1E671CCB0083BCD4 /* libMWPhotoBrowser.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMWPhotoBrowser.a; path = "Pods/../build/Debug-iphoneos/MWPhotoBrowser/libMWPhotoBrowser.a"; sourceTree = "<group>"; };
-		7ED493701E671CCB0083BCD4 /* libPods-ZKChatTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ZKChatTests.a"; path = "Pods/../build/Debug-iphoneos/libPods-ZKChatTests.a"; sourceTree = "<group>"; };
-		7ED493711E671CCB0083BCD4 /* libPods-ZKChatUITests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ZKChatUITests.a"; path = "Pods/../build/Debug-iphoneos/libPods-ZKChatUITests.a"; sourceTree = "<group>"; };
 		7ED493721E671CCB0083BCD4 /* libProtocolBuffers.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libProtocolBuffers.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/ProtocolBuffers/libProtocolBuffers.a"; sourceTree = "<group>"; };
 		7ED493731E671CCB0083BCD4 /* libPSTCollectionView.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPSTCollectionView.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/PSTCollectionView/libPSTCollectionView.a"; sourceTree = "<group>"; };
-		7ED493741E671CCB0083BCD4 /* libSCLAlertView-Objective-C.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSCLAlertView-Objective-C.a"; path = "Pods/../build/Debug-iphoneos/SCLAlertView-Objective-C/libSCLAlertView-Objective-C.a"; sourceTree = "<group>"; };
 		7ED493751E671CCB0083BCD4 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/SDWebImage/libSDWebImage.a"; sourceTree = "<group>"; };
 		7ED493761E671CCB0083BCD4 /* libSVWebViewController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSVWebViewController.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/SVWebViewController/libSVWebViewController.a"; sourceTree = "<group>"; };
-		7ED493771E671CCB0083BCD4 /* libTTTAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTTTAttributedLabel.a; path = "Pods/../build/Debug-iphoneos/TTTAttributedLabel/libTTTAttributedLabel.a"; sourceTree = "<group>"; };
-		7ED493781E671CCB0083BCD4 /* libXHImageViewer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXHImageViewer.a; path = "Pods/../build/Debug-iphoneos/XHImageViewer/libXHImageViewer.a"; sourceTree = "<group>"; };
-		84AE958B7145189E8683D1FB /* libPods-ZKChatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKChatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DE95995185031F4183B5E6 /* Pods-ZKChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChat/Pods-ZKChat.release.xcconfig"; sourceTree = "<group>"; };
 		A8B14379A7C4B56E4443F165 /* Pods-ZKChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChatTests/Pods-ZKChatTests.release.xcconfig"; sourceTree = "<group>"; };
-		C0F5CB65A6D641071851F964 /* libPods-ZKChatUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKChatUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5589CF789A8E9838CE4A9E1 /* Pods-ZKChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChatTests/Pods-ZKChatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F82B48862F7EA6B033678197 /* Pods-ZKChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChat/Pods-ZKChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -669,7 +665,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22FAC22B93C1BCA4F860FF7D /* libPods-ZKChatTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,7 +672,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAE7D4347B166B6242C4FAC9 /* libPods-ZKChatUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,19 +688,11 @@
 				7ED4936C1E671CCB0083BCD4 /* libLCActionSheet.a */,
 				7ED4936D1E671CCB0083BCD4 /* libMasonry.a */,
 				7ED4936E1E671CCB0083BCD4 /* libMBProgressHUD.a */,
-				7ED4936F1E671CCB0083BCD4 /* libMWPhotoBrowser.a */,
-				7ED493701E671CCB0083BCD4 /* libPods-ZKChatTests.a */,
-				7ED493711E671CCB0083BCD4 /* libPods-ZKChatUITests.a */,
 				7ED493721E671CCB0083BCD4 /* libProtocolBuffers.a */,
 				7ED493731E671CCB0083BCD4 /* libPSTCollectionView.a */,
-				7ED493741E671CCB0083BCD4 /* libSCLAlertView-Objective-C.a */,
 				7ED493751E671CCB0083BCD4 /* libSDWebImage.a */,
 				7ED493761E671CCB0083BCD4 /* libSVWebViewController.a */,
-				7ED493771E671CCB0083BCD4 /* libTTTAttributedLabel.a */,
-				7ED493781E671CCB0083BCD4 /* libXHImageViewer.a */,
 				1E6D94E683078ADACFA9C473 /* libPods-ZKChat.a */,
-				84AE958B7145189E8683D1FB /* libPods-ZKChatTests.a */,
-				C0F5CB65A6D641071851F964 /* libPods-ZKChatUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -762,6 +748,8 @@
 				7E53DABB1E86AC4A0093C912 /* UILabel+VerticalAlign.m */,
 				7E53DABC1E86AC4A0093C912 /* UIView+Addition.h */,
 				7E53DABD1E86AC4A0093C912 /* UIView+Addition.m */,
+				7E364ABC1E952BD400BD36C1 /* NSDictionary+JSON.h */,
+				7E364ABD1E952BD400BD36C1 /* NSDictionary+JSON.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1452,6 +1440,8 @@
 				7E53DAD01E86AC830093C912 /* DDChatVoiceCell.m */,
 				7E53DAD11E86AC830093C912 /* DDPromptCell.h */,
 				7E53DAD21E86AC830093C912 /* DDPromptCell.m */,
+				7E364AB91E952A6400BD36C1 /* DDChatImageCell.h */,
+				7E364ABA1E952A6400BD36C1 /* DDChatImageCell.m */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -1994,12 +1984,14 @@
 				7E53DAC11E86AC4A0093C912 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
 				7E60318C1E533AA3005239C4 /* main.m in Sources */,
 				7E53D94F1E86A2BA0093C912 /* buffer.c in Sources */,
+				7E364ABB1E952A6400BD36C1 /* DDChatImageCell.m in Sources */,
 				7E53D96E1E86A2BA0093C912 /* scal.c in Sources */,
 				7E53DA611E86A9880093C912 /* ZKBaseTableViewController.m in Sources */,
 				7E53D99A1E86A3E10093C912 /* IMBuddy.pb.m in Sources */,
 				7E53D9611E86A2BA0093C912 /* kiss_fftr.c in Sources */,
 				7E53D99C1E86A3E10093C912 /* IMLogin.pb.m in Sources */,
 				7E53D9771E86A2BA0093C912 /* window.c in Sources */,
+				7E364ABE1E952BD400BD36C1 /* NSDictionary+JSON.m in Sources */,
 				7E53D9531E86A2BA0093C912 /* exc_20_32_table.c in Sources */,
 				7E53D8BF1E86A2410093C912 /* AQGridViewCell.m in Sources */,
 				7E53D9641E86A2BA0093C912 /* lsp_tables_nb.c in Sources */,

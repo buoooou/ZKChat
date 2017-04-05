@@ -281,27 +281,26 @@
     HUD.labelText = @"正在发送";
     
     [HUD showAnimated:YES whileExecutingBlock:^{
-//        if ([self.photos count] >0) {
-//            NSMutableArray *tmp = [NSMutableArray new];
-//            [self.selections enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//                if ([obj boolValue]) {
-//                    [tmp addObject:@(idx)];
-//                }
-//            }];
-//            [tmp enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//                NSInteger index = [obj integerValue];
-//                MWPhoto *newPhoto = [self.photos objectAtIndex:index];
-//                
-//                MTTPhotoEnity *photo = [MTTPhotoEnity new];
-//                NSString *keyName = [[MTTPhotosCache sharedPhotoCache] getKeyName];
-//                NSData *photoData = UIImagePNGRepresentation(newPhoto.image);
-//                [[MTTPhotosCache sharedPhotoCache] storePhoto:photoData forKey:keyName toDisk:YES];
-//                photo.localPath=keyName;
-//                photo.image=newPhoto.image;
-//                [[ChattingMainViewController shareInstance] sendImageMessage:photo Image:photo.image];
-//            }];
-//        }
-//        [button setEnabled:YES];
+        if ([self.photos count] >0) {
+            NSMutableArray *tmp = [NSMutableArray new];
+            [self.selections enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                if ([obj boolValue]) {
+                    [tmp addObject:@(idx)];
+                }
+            }];
+            [tmp enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSInteger index = [obj integerValue];
+                MWPhoto *newPhoto = [self.photos objectAtIndex:index];
+                ZKPhotoEnity *photo = [ZKPhotoEnity new];
+                NSString *keyName = [[ZKPhotosCache sharedPhotoCache] getKeyName];
+                NSData *photoData = UIImagePNGRepresentation(newPhoto.underlyingImage);
+                [[ZKPhotosCache sharedPhotoCache] storePhoto:photoData forKey:keyName toDisk:YES];
+                photo.localPath=keyName;
+                photo.image=newPhoto.underlyingImage;
+                [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:photo.image];
+            }];
+        }
+        [button setEnabled:YES];
     } completionBlock:^{
         [HUD removeFromSuperview];
         [self.navigationController popToViewController:[ZKChattingMainViewController shareInstance] animated:YES];
