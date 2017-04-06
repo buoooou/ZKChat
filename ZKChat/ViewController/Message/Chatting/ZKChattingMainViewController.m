@@ -245,13 +245,13 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 
 -(void)sendMessage:(NSString *)msg messageEntity:(ZKMessageEntity *)message
 {
-    //    BOOL isGroup = [self.module.ZKSessionEntity isGroup];
+         //BOOL isGroup = [self.module.ZKSessionEntity isGroup];
     //    [[DDMessageSendManager instance] sendMessage:message isGroup:isGroup Session:self.module.MTTSessionEntity  completion:^(ZKMessageEntity* theMessage,NSError *error) {
-    //        dispatch_async(dispatch_get_main_queue(), ^{
+//            dispatch_async(dispatch_get_main_queue(), ^{
     //            message.state= theMessage.state;
-    //            [self.tableView reloadData];
+                [self.tableView reloadData];
     [self scrollToBottomAnimated:YES];
-    //        });
+//            });
     //    } Error:^(NSError *error) {
     //        [self.tableView reloadData];
     //    }];
@@ -266,7 +266,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self scrollToBottomAnimated:YES];
     NSData *photoData = UIImagePNGRepresentation(image);
     [[ZKPhotosCache sharedPhotoCache] storePhoto:photoData forKey:photo.localPath toDisk:YES];
-    //[self.chatInputView.textView setText:@""];
+    [self.chatInputView.textView setText:@""];
 //    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
 //        DDLog(@"消息插入DB成功");
 //        
@@ -279,10 +279,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         message.state=DDMessageSending;
         NSDictionary* tempMessageContent = [NSDictionary initWithJsonString:message.msgContent];
         NSMutableDictionary* mutalMessageContent = [[NSMutableDictionary alloc] initWithDictionary:tempMessageContent];
-        [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
-        NSString* messageContent = [mutalMessageContent jsonString];
-        message.msgContent = messageContent;
-        [self sendMessage:imageURL messageEntity:message];
+//        [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
+//        NSString* messageContent = [mutalMessageContent jsonString];
+//        message.msgContent = messageContent;
+        [self sendMessage:@"" messageEntity:message];
 //        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
 //        }];
     
@@ -734,14 +734,14 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     cell.session =self.module.ZKSessionEntity;
     NSString* myUserID =[RuntimeStatus instance].user.objID;
-    if ([message.senderId isEqualToString:myUserID])
-    {
+//    if ([message.senderId isEqualToString:myUserID])
+//    {
         [cell setLocation:DDBubbleRight];
-    }
-    else
-    {
-        [cell setLocation:DDBubbleLeft];
-    }
+//    }
+//    else
+//    {
+//        [cell setLocation:DDBubbleLeft];
+//    }
     
    // [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
         

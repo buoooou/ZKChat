@@ -123,25 +123,24 @@
                 HUD.labelText = @"正在发送";
                 
                 [HUD showAnimated:YES whileExecutingBlock:^{
-//                    for (int i = 0; i<[weakSelf.choosePhotosArray count]; i++) {
-//                        ZKPhotoEnity *photo = [MTTPhotoEnity new];
-//                        ALAsset *asset = [weakSelf.choosePhotosArray objectAtIndex:i];
-//                        ALAssetRepresentation* representation = [asset defaultRepresentation];
-//                        NSURL* url = [representation url];
-//                        photo.localPath=url.absoluteString;
-//                        UIImage *image = nil;
-//                        if (representation == nil) {
-//                            CGImageRef thum = [asset aspectRatioThumbnail];
-//                            image = [[UIImage alloc]initWithCGImage:thum];
-//                        }else
-//                        {
-//                            image =[[UIImage alloc]initWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
-//                        }
-//                        NSString *keyName = [[MTTPhotosCache sharedPhotoCache] getKeyName];
-//                        
-//                        photo.localPath=keyName;
-//                        [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:image];
-//                    }
+                    for (int i = 0; i<[weakSelf.choosePhotosArray count]; i++) {
+                        ZKPhotoEnity *photo = [ZKPhotoEnity new];
+                        
+                        PHAsset *asset = [weakSelf.choosePhotosArray objectAtIndex:i];
+                        
+                        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+                        options.synchronous = NO;
+                        // 从asset中获得图片
+                        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                            
+                            NSString *keyName = [[ZKPhotosCache sharedPhotoCache] getKeyName];
+                            photo.localPath=keyName;
+                            [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:result];
+                            
+                        }];
+                        
+
+                    }
                     
                 } completionBlock:^{
                     [HUD removeFromSuperview];
