@@ -118,7 +118,7 @@
 - (CGSize)sizeForContent:(ZKMessageEntity*)content
 {
     float height = 150;
-    float width = 60;
+    float width = 100;
     NSString* urlString = content.msgContent;
     urlString = [urlString stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_PREFIX withString:@""];
     urlString = [urlString stringByReplacingOccurrencesOfString:DD_MESSAGE_IMAGE_SUFFIX withString:@""];

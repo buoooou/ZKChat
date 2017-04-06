@@ -138,10 +138,7 @@
                             [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:result];
                             
                         }];
-                        
-
                     }
-                    
                 } completionBlock:^{
                     [HUD removeFromSuperview];
                     [weakSelf.navigationController popToViewController:[ZKChattingMainViewController shareInstance] animated:YES];
