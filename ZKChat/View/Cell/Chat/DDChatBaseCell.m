@@ -144,7 +144,7 @@ CGFloat const dd_bubbleUpDown = 20;                //气泡到上下边缘的距
 //    [[DDUserModule shareInstance] getUserForUserID:content.senderId Block:^(MTTUserEntity *user) {
 //        NSURL* avatarURL = [NSURL URLWithString:[user getAvatarUrl]];
         NSURL* avatarURL = [NSURL URLWithString:@""];
-        [self.userAvatar sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"user_placeholder"]];
+        [self.userAvatar sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"avatar"]];
 //        [self.userName setText:user.nick];
      [self.userName setText:@"sdak"];
 //    }];
