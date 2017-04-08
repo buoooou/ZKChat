@@ -789,7 +789,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         }];
         preViewControll.photos=array;
         preViewControll.index=[photos indexOfObject:url];
-        //        [preViewControll addChildViewController:preViewControll];
+          //      [preViewControll addChildViewController:preViewControll];
         
         [self presentViewController:preViewControll animated:YES completion:NULL];
     }];

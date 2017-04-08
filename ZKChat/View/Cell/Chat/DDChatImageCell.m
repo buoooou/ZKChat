@@ -113,7 +113,17 @@
     
     
 }
-#pragma mark -
+#pragma mark -MWPhotoBrowser
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < self.photos.count) {
+        return [self.photos objectAtIndex:index];
+    }
+    return nil;
+}
 #pragma mark DDChatCellProtocol Protocol
 - (CGSize)sizeForContent:(ZKMessageEntity*)content
 {

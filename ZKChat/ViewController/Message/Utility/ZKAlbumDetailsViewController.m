@@ -65,12 +65,15 @@
             }
             [weakSelf.selections removeAllObjects];
             self.photoBrowser = [[MWPhotoBrowser alloc] initWithDelegate:weakSelf];
-            self.photoBrowser.displayActionButton = NO;
-            self.photoBrowser.displayNavArrows = NO;
-            self.photoBrowser.wantsFullScreenLayout = YES;
-//            self.photoBrowser.delayToHideElements=4;
-            self.photoBrowser.zoomPhotosToFill = YES;
-            self.photoBrowser.displaySelectionButtons = YES;
+            
+            self.photoBrowser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
+            self.photoBrowser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)
+            self.photoBrowser.displaySelectionButtons = NO; // Whether selection buttons are shown on each image (defaults to NO)
+            self.photoBrowser.zoomPhotosToFill = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+            self.photoBrowser.alwaysShowControls = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
+            self.photoBrowser.enableGrid = YES; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
+            self.photoBrowser.startOnGrid = NO; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
+            self.photoBrowser.autoPlayOnAppear = NO; // Auto-play first video
             
             [self.photoBrowser setCurrentPhotoIndex:0];
             weakSelf.photos = [NSMutableArray new];
@@ -87,11 +90,11 @@
                     [self.photos addObject:photo];
                     
                 }];
-                
+
                 [self.selections addObject:@(1)];
             }
-            
-            //[self.photoBrowser reloadData];
+
+//            [self.photoBrowser reloadData];
             UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, FULL_WIDTH, 50)];
             [toolView setBackgroundColor:RGBA(0, 0, 0, 0.7)];
             self.button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -101,7 +104,6 @@
             [self.button setBackgroundImage:[UIImage imageNamed:@"dd_image_send"] forState:UIControlStateNormal];
             [self.button setBackgroundImage:[UIImage imageNamed:@"dd_image_send"] forState:UIControlStateSelected];
             
-            [self.button addTarget:self action:@selector(sendPhotos:) forControlEvents:UIControlEventTouchUpInside];
             NSString *string = [NSString stringWithFormat:@"%@",self.button.titleLabel.text];
             CGSize feelSize = [string sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(190,0)];
             float  feelWidth = feelSize.width;
@@ -111,6 +113,9 @@
             [toolView addSubview:self.button];
             [self.photoBrowser.view addSubview:toolView];
             [self pushViewController:self.photoBrowser animated:YES];
+            [self.photoBrowser showNextPhotoAnimated:YES];
+            [self.photoBrowser showPreviousPhotoAnimated:YES];
+
             
         }else
         {
@@ -266,44 +271,4 @@
 {
     return CGSizeMake(75, 80);
 }
--(IBAction)sendPhotos:(id)sender
-{
-    UIButton *button =(UIButton *)sender;
-    [button setEnabled:NO];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.photoBrowser.view addSubview:HUD];
-    
-    HUD.dimBackground = YES;
-    HUD.labelText = @"正在发送";
-    
-    [HUD showAnimated:YES whileExecutingBlock:^{
-        if ([self.photos count] >0) {
-            NSMutableArray *tmp = [NSMutableArray new];
-            [self.selections enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                if ([obj boolValue]) {
-                    [tmp addObject:@(idx)];
-                }
-            }];
-            [tmp enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                NSInteger index = [obj integerValue];
-                MWPhoto *newPhoto = [self.photos objectAtIndex:index];
-                ZKPhotoEnity *photo = [ZKPhotoEnity new];
-                NSString *keyName = [[ZKPhotosCache sharedPhotoCache] getKeyName];
-                NSData *photoData = UIImagePNGRepresentation(newPhoto.underlyingImage);
-                [[ZKPhotosCache sharedPhotoCache] storePhoto:photoData forKey:keyName toDisk:YES];
-                photo.localPath=keyName;
-                photo.image=newPhoto.underlyingImage;
-                [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:photo.image];
-            }];
-        }
-        [button setEnabled:YES];
-    } completionBlock:^{
-        [HUD removeFromSuperview];
-        [self.navigationController popToViewController:[ZKChattingMainViewController shareInstance] animated:YES];
-        [button setEnabled:YES];
-    }];
-    
-    
-}
-
 @end
