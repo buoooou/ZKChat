@@ -42,7 +42,7 @@ CGFloat const dd_bubbleUpDown = 20;                //气泡到上下边缘的距
         [self.userAvatar setUserInteractionEnabled:YES];
         [self.userAvatar setContentMode:UIViewContentModeScaleAspectFill];
         [self.userAvatar setClipsToBounds:YES];
-        [self.userAvatar.layer setCornerRadius:20];
+        [self.userAvatar.layer setCornerRadius:0];
         [self.contentView addSubview:self.userAvatar];
         
         self.userName = [UILabel new];
