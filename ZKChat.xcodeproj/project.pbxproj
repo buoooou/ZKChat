@@ -15,6 +15,7 @@
 		7E364AB81E93C56B00BD36C1 /* unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E364AB41E93C56B00BD36C1 /* unselected@2x.png */; };
 		7E364ABB1E952A6400BD36C1 /* DDChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E364ABA1E952A6400BD36C1 /* DDChatImageCell.m */; };
 		7E364ABE1E952BD400BD36C1 /* NSDictionary+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E364ABD1E952BD400BD36C1 /* NSDictionary+JSON.m */; };
+		7E44A9851E9A53A200A825B1 /* DDEmotionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9841E9A53A200A825B1 /* DDEmotionCell.m */; };
 		7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */; };
 		7E53D8BD1E86A2410093C912 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AD1E86A2400093C912 /* AQGridView.m */; };
 		7E53D8BE1E86A2410093C912 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8B11E86A2400093C912 /* AQGridViewAnimatorItem.m */; };
@@ -258,6 +259,8 @@
 		7E364ABA1E952A6400BD36C1 /* DDChatImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDChatImageCell.m; path = View/Cell/Chat/DDChatImageCell.m; sourceTree = "<group>"; };
 		7E364ABC1E952BD400BD36C1 /* NSDictionary+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+JSON.h"; path = "CateGory/NSDictionary+JSON.h"; sourceTree = "<group>"; };
 		7E364ABD1E952BD400BD36C1 /* NSDictionary+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+JSON.m"; path = "CateGory/NSDictionary+JSON.m"; sourceTree = "<group>"; };
+		7E44A9831E9A53A200A825B1 /* DDEmotionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDEmotionCell.h; path = View/Cell/Chat/DDEmotionCell.h; sourceTree = "<group>"; };
+		7E44A9841E9A53A200A825B1 /* DDEmotionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDEmotionCell.m; path = View/Cell/Chat/DDEmotionCell.m; sourceTree = "<group>"; };
 		7E53D8A91E86A0BE0093C912 /* RuntimeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuntimeStatus.h; path = GlobalData/RuntimeStatus.h; sourceTree = "<group>"; };
 		7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RuntimeStatus.m; path = GlobalData/RuntimeStatus.m; sourceTree = "<group>"; };
 		7E53D8AC1E86A2400093C912 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Exist/AQGridView/AQGridView.h; sourceTree = "<group>"; };
@@ -1442,6 +1445,8 @@
 				7E53DAD21E86AC830093C912 /* DDPromptCell.m */,
 				7E364AB91E952A6400BD36C1 /* DDChatImageCell.h */,
 				7E364ABA1E952A6400BD36C1 /* DDChatImageCell.m */,
+				7E44A9831E9A53A200A825B1 /* DDEmotionCell.h */,
+				7E44A9841E9A53A200A825B1 /* DDEmotionCell.m */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -1988,6 +1993,7 @@
 				7E53D96E1E86A2BA0093C912 /* scal.c in Sources */,
 				7E53DA611E86A9880093C912 /* ZKBaseTableViewController.m in Sources */,
 				7E53D99A1E86A3E10093C912 /* IMBuddy.pb.m in Sources */,
+				7E44A9851E9A53A200A825B1 /* DDEmotionCell.m in Sources */,
 				7E53D9611E86A2BA0093C912 /* kiss_fftr.c in Sources */,
 				7E53D99C1E86A3E10093C912 /* IMLogin.pb.m in Sources */,
 				7E53D9771E86A2BA0093C912 /* window.c in Sources */,

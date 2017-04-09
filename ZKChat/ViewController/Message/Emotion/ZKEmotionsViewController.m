@@ -10,6 +10,7 @@
 #import "ZKConstant.h"
 #import "EmotionsModule.h"
 #import <Masonry.h>
+#import "ZKChattingMainViewController.h"
 
 #define  keyboardHeight 180
 #define  facialViewWidth 300
@@ -123,11 +124,11 @@
 }
 -(void)selectedFacialView:(NSString*)str
 {
-//    if ([str isEqualToString:@"delete"]) {
-//        [[ZKChattingMainViewController shareInstance] deleteEmojiFace];
-//        return;
-//    }
-//    [[ZKChattingMainViewController shareInstance] insertEmojiFace:str];
+    if ([str isEqualToString:@"delete"]) {
+        [[ZKChattingMainViewController shareInstance] deleteEmojiFace];
+        return;
+    }
+    [[ZKChattingMainViewController shareInstance] insertEmojiFace:str];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {

@@ -31,7 +31,7 @@ typedef void(^TimeCellAddBlock)(bool isok);
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
 @property (nonatomic, strong) NSMutableArray* images;
 @property (nonatomic, strong) UIImageView* preShow;
-@property (nonatomic, strong) ALAsset *lastPhoto;
+//@property (nonatomic, strong) ALAsset *lastPhoto;
 @property (nonatomic, strong) ZKPhotoEnity *preShowPhoto;
 @property (nonatomic, strong) UIImage *preShowImage;
 @property (nonatomic, strong) NSString *phoneNumber;

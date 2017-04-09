@@ -25,8 +25,10 @@
 #import "DDChatTextCell.h"
 #import "DDPromptCell.h"
 #import "DDChatVoiceCell.h"
+#import "DDEmotionCell.h"
 #import "TouchDownGestureRecognizer.h"
 #import "NSDictionary+JSON.h"
+#import "EmotionsModule.h"
 
 
 typedef NS_ENUM(NSUInteger, DDBottomShowComponent)
@@ -404,7 +406,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 }
 -(void)removeImage
 {
-    _lastPhoto = nil;
     [_preShow removeFromSuperview];
 }
 - (void)p_hideBottomComponent
@@ -527,10 +528,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         {
             cell = [self p_imageCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
         }
-        //else if (message.msgContentType == DDMEssageEmotion)
-//        {
-//            cell = [self p_emotionCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
-//        }
+        else if (message.msgContentType == DDMEssageEmotion)
+        {
+            cell = [self p_emotionCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
+        }
         else
         {
             cell = [self p_textCell_tableView:tableView cellForRowAtIndexPath:indexPath message:message];
@@ -595,7 +596,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         cell.contentLabel.delegate = self;
     }
     cell.session =self.module.ZKSessionEntity;
-//    NSString* myUserID = [RuntimeStatus instance].user.objID;
+    NSString* myUserID = [RuntimeStatus instance].user.objID;
 //    if ([message.senderId isEqualToString:myUserID])
 //    {
 //        [cell setLocation:DDBubbleRight];
@@ -690,40 +691,40 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     return cell;
 }
 
-//- (UITableViewCell*)p_emotionCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message
-//{
-//    static NSString* identifier = @"DDEmotionCellIdentifier";
-//    DDEmotionCell* cell = (DDEmotionCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-//    if (!cell)
-//    {
-//        cell = [[DDEmotionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-//    }
-//    cell.session =self.module.MTTSessionEntity;
-//    NSString* myUserID =[RuntimeStatus instance].user.objID;
+- (UITableViewCell*)p_emotionCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message
+{
+    static NSString* identifier = @"DDEmotionCellIdentifier";
+    DDEmotionCell* cell = (DDEmotionCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell)
+    {
+        cell = [[DDEmotionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    cell.session =self.module.ZKSessionEntity;
+    NSString* myUserID =[RuntimeStatus instance].user.objID;
 //    if ([message.senderId isEqualToString:myUserID])
 //    {
 //        [cell setLocation:DDBubbleRight];
 //    }
 //    else
 //    {
-//        [cell setLocation:DDBubbleLeft];
+        [cell setLocation:DDBubbleLeft];
 //    }
-//    
-//    [cell setContent:message];
-//    __weak DDEmotionCell* weakCell = cell;
-//    
-//    [cell setSendAgain:^{
-//        [weakCell sendTextAgain:message];
-//        
-//    }];
-//    
-//    [cell setTapInBubble:^{
-//        
-//    }];
-//    return cell;
-//}
-//
-//
+    
+    [cell setContent:message];
+    __weak DDEmotionCell* weakCell = cell;
+    
+    [cell setSendAgain:^{
+        [weakCell sendTextAgain:message];
+        
+    }];
+    
+    [cell setTapInBubble:^{
+        
+    }];
+    return cell;
+}
+
+
 - (UITableViewCell*)p_imageCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(ZKMessageEntity*)message
 {
     static NSString* identifier = @"DDImageCellIdentifier";
@@ -845,8 +846,57 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [_recordingView setRecordingState:DDShowVolumnState];
 }
 
+#pragma mark DDEmotionViewCOntroller Delegate
+- (void)emotionViewClickSendButton
+{
+    [self textViewEnterSend];
+}
 
-
+- (void)levelMeterChanged:(float)levelMeter
+{
+    [_recordingView setVolume:levelMeter];
+}
+#pragma mark - EmojiFace Funcation
+-(void)insertEmojiFace:(NSString *)string
+{
+    DDMessageContentType msgContentType = DDMEssageEmotion;
+    ZKMessageEntity *message = [ZKMessageEntity makeMessage:string Module:self.module MsgType:msgContentType];
+    [self.tableView reloadData];
+    //[self.chatInputView.textView setText:nil];
+//    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
+//        DDLog(@"消息插入DB成功");
+//    } failure:^(NSString *errorDescripe) {
+//        DDLog(@"消息插入DB失败");
+//    }];
+    [self sendMessage:string messageEntity:message];
+    
+}
+-(void)deleteEmojiFace
+{
+    EmotionsModule* emotionModule = [EmotionsModule shareInstance];
+    NSString* toDeleteString = nil;
+    if (self.chatInputView.textView.text.length == 0)
+    {
+        return;
+    }
+    if (self.chatInputView.textView.text.length == 1)
+    {
+        self.chatInputView.textView.text = @"";
+    }
+    else
+    {
+        toDeleteString = [self.chatInputView.textView.text substringFromIndex:self.chatInputView.textView.text.length - 1];
+        int length = [emotionModule.emotionLength[toDeleteString] intValue];
+        if (length == 0)
+        {
+            toDeleteString = [self.chatInputView.textView.text substringFromIndex:self.chatInputView.textView.text.length - 2];
+            length = [emotionModule.emotionLength[toDeleteString] intValue];
+        }
+        length = length == 0 ? 1 : length;
+        self.chatInputView.textView.text = [self.chatInputView.textView.text substringToIndex:self.chatInputView.textView.text.length - length];
+    }
+    
+}
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -1038,7 +1088,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 
 -(void)removeImage
 {
-    _lastPhoto = nil;
     [_preShow removeFromSuperview];
 }
 
