@@ -79,19 +79,10 @@
             weakSelf.photos = [NSMutableArray new];
             for (int i =0; i<[weakSelf.choosePhotosArray count]; i++) {
                 PHAsset *asset = [weakSelf.choosePhotosArray objectAtIndex:i];
-                
-                PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-                options.resizeMode=PHImageRequestOptionsResizeModeNone;
-                options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
-                // 从asset中获得图片
-                [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    
-                    MWPhoto *photo =[MWPhoto photoWithImage:result];
-                    NSLog(@" 图片内容：%@",result);
-                    [self.photos addObject:photo];
-                    
-                }];
 
+                    MWPhoto *photo =[MWPhoto photoWithAsset:asset targetSize:CGSizeMake(asset.pixelHeight, asset.pixelWidth)];
+                    [self.photos addObject:photo];
+                
                 [self.selections addObject:@(1)];
             }
 
@@ -300,6 +291,7 @@
                 photo.localPath=keyName;
                 photo.image=newPhoto.underlyingImage;
                 [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:photo.image];
+                
             }];
         }
         [button setEnabled:YES];

@@ -266,7 +266,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self scrollToBottomAnimated:YES];
     NSData *photoData = UIImagePNGRepresentation(image);
     [[ZKPhotosCache sharedPhotoCache] storePhoto:photoData forKey:photo.localPath toDisk:YES];
-    [self.chatInputView.textView setText:@""];
+  //  [self.chatInputView.textView setText:@""];
 //    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
 //        DDLog(@"消息插入DB成功");
 //        
