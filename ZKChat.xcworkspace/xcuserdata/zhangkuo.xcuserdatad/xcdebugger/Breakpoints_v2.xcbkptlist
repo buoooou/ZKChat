@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZKChat/ViewController/Message/Chatting/ZKChattingMainViewController.m"
-            timestampString = "513432704.486842"
+            timestampString = "513441017.059162"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "877"
-            endingLineNumber = "877"
+            startingLineNumber = "886"
+            endingLineNumber = "886"
             landmarkName = "-deleteEmojiFace"
             landmarkType = "7">
          </BreakpointContent>

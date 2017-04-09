@@ -150,9 +150,11 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [super viewDidLoad];
     [self notificationCenter];
     [self initialInput];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                              action:@selector(p_tapOnTableView:)];
-    [self.tableView addGestureRecognizer:tap];
+    UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(p_tapOnTableView:)];
+    pan.delegate = self;
+    [self.tableView addGestureRecognizer:pan];
+    
     UIView* headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ZKRefreshViewHeight)];
     [headView setBackgroundColor:[UIColor clearColor]];
     [self.tableView setTableHeaderView:headView];
@@ -160,7 +162,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
    [self scrollToBottomAnimated:NO];
     
-//    [self initScrollView];
+  //  [self initScrollView];
     
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"myprofile"]
                                                              style:UIBarButtonItemStylePlain
@@ -564,7 +566,14 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     //            [self.chatInputView.textView becomeFirstResponder];
     //    }
 }
-
+#pragma mark UIGesture Delegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    if ([gestureRecognizer.view isEqual:self.tableView])
+    {
+        return YES;
+    }
+    return NO;
+}
 #pragma JSMessageInputViewDelegate
 - (void)viewheightChanged:(float)height
 {
@@ -1183,4 +1192,11 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         [self p_hideBottomComponent];
     }
 }
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    [self p_tapOnTableView:gestureRecognizer];
+    return YES;
+}
+
 @end
