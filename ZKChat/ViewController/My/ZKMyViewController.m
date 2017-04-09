@@ -11,7 +11,7 @@
 #import "ZKUserInfoCell.h"
 #import "ZKNormalCell.h"
 #import "ZKPublicProfileViewController.h"
-
+#import "ZKNotification.h"
 
 @interface ZKMyViewController ()
 
@@ -227,7 +227,7 @@
         if(buttonIndex == 0){
 //            LogoutAPI *logout = [LogoutAPI new];
 //            [logout requestWithObject:nil Completion:NULL];
-            //[MTTNotification postNotification:DDNotificationLogout userInfo:nil object:nil];
+            [ZKNotification postNotification:@"Notification_user_logout" userInfo:nil object:nil];
         }
     }
     if(actionSheet.tag == 10001){
