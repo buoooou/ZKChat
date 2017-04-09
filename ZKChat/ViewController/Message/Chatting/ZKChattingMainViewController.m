@@ -703,11 +703,11 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     NSString* myUserID =[RuntimeStatus instance].user.objID;
 //    if ([message.senderId isEqualToString:myUserID])
 //    {
-//        [cell setLocation:DDBubbleRight];
+        [cell setLocation:DDBubbleRight];
 //    }
 //    else
 //    {
-        [cell setLocation:DDBubbleLeft];
+//        [cell setLocation:DDBubbleLeft];
 //    }
     
     [cell setContent:message];
