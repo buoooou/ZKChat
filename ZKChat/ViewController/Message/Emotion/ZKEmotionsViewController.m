@@ -80,13 +80,13 @@
     [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * page, 0)];
 }
 
-- (void)clickTheSendButton:(id)sender
-{
-    if (self.delegate)
-    {
-        [self.delegate emotionViewClickSendButton];
-    }
-}
+//- (void)clickTheSendButton:(id)sender
+//{
+//    if (self.delegate)
+//    {
+//        [self.delegate emotionViewClickSendButton];
+//    }
+//}
 - (void)p_loadFacialViewWithRow:(NSUInteger)page CGSize:(CGSize)size
 {
     NSArray* emotions = [NSArray arrayWithArray:[EmotionsModule shareInstance].emotionUnicodeDic.allKeys];

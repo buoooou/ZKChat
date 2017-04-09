@@ -846,16 +846,16 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [_recordingView setRecordingState:DDShowVolumnState];
 }
 
-#pragma mark DDEmotionViewCOntroller Delegate
-- (void)emotionViewClickSendButton
-{
-    [self textViewEnterSend];
-}
-
-- (void)levelMeterChanged:(float)levelMeter
-{
-    [_recordingView setVolume:levelMeter];
-}
+//#pragma mark DDEmotionViewController Delegate
+//- (void)emotionViewClickSendButton
+//{
+//    [self textViewEnterSend];
+//}
+//
+//- (void)levelMeterChanged:(float)levelMeter
+//{
+//    [_recordingView setVolume:levelMeter];
+//}
 #pragma mark - EmojiFace Funcation
 -(void)insertEmojiFace:(NSString *)string
 {
@@ -1105,7 +1105,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         self.emotions = [ZKEmotionsViewController new];
         [self.emotions.view setBackgroundColor:[UIColor whiteColor]];
         self.emotions.view.frame=DDCOMPONENT_BOTTOM;
-        self.emotions.delegate = self;
+//        self.emotions.delegate = self;
         [self.view addSubview:self.emotions.view];
     }
     if (_bottomShowComponent & DDShowKeyboard)

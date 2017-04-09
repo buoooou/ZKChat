@@ -7,15 +7,15 @@
 //
 
 #import "ZKBaseViewController.h"
-@protocol ZKEmotionsViewControllerDelegate<NSObject>
-
-- (void)emotionViewClickSendButton;
-
-@end
+//@protocol ZKEmotionsViewControllerDelegate<NSObject>
+//
+//- (void)emotionViewClickSendButton;
+//
+//@end
 @interface ZKEmotionsViewController : ZKBaseViewController<UIScrollViewDelegate>
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UIPageControl *pageControl;
 @property(strong)NSArray *emotions;
 @property(assign)BOOL isOpen;
-@property(nonatomic,assign)id<ZKEmotionsViewControllerDelegate>delegate;
+//@property(nonatomic,assign)id<ZKEmotionsViewControllerDelegate>delegate;
 @end
