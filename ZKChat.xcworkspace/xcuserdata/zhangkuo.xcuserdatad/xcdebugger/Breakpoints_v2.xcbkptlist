@@ -57,22 +57,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ZKChat/View/Cell/Chat/DDChatImageCell.m"
-            timestampString = "513352576.570826"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "-showPreview:index:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ZKChat/ViewController/Message/Chatting/ZKChattingMainViewController.m"
             timestampString = "513353505.448462"
             startingColumnNumber = "9223372036854775807"
@@ -90,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZKChat/ViewController/Message/Utility/ZKAlbumDetailsViewController.m"
-            timestampString = "513356200.88563"
+            timestampString = "513401250.002898"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "-photoBrowser:photoAtIndex:"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "-sendPhotos:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,45 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ZKChat/ViewController/Message/Utility/ZKAlbumDetailsViewController.m"
-            timestampString = "513356200.88563"
+            filePath = "ZKChat/ViewController/Message/Chatting/ZKChattingMainViewController.m"
+            timestampString = "513401257.821668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "-photoBrowser:photoAtIndex:selectedChanged:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZKChat/ViewController/Message/Utility/ZKAlbumDetailsViewController.m"
-            timestampString = "513356200.88563"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "-photoBrowser:isPhotoSelectedAtIndex:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZKChat/ViewController/Message/Utility/ZKAlbumDetailsViewController.m"
-            timestampString = "513356200.88563"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-photoBrowser:titleForPhotoAtIndex:"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "-sendImageMessage:Image:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -81,12 +81,13 @@
                 PHAsset *asset = [weakSelf.choosePhotosArray objectAtIndex:i];
                 
                 PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-                options.synchronous = NO;
+                options.resizeMode=PHImageRequestOptionsResizeModeNone;
+                options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
                 // 从asset中获得图片
-                [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                     
                     MWPhoto *photo =[MWPhoto photoWithImage:result];
-                    NSLog(@" 图片内容：%@ ",result);
+                    NSLog(@" 图片内容：%@",result);
                     [self.photos addObject:photo];
                     
                 }];
@@ -103,7 +104,7 @@
             [self.button setTitle:[NSString stringWithFormat:@"发送(%ld)",[self.photos count]] forState:UIControlStateSelected];
             [self.button setBackgroundImage:[UIImage imageNamed:@"dd_image_send"] forState:UIControlStateNormal];
             [self.button setBackgroundImage:[UIImage imageNamed:@"dd_image_send"] forState:UIControlStateSelected];
-            
+            [self.button addTarget:self action:@selector(sendPhotos:) forControlEvents:UIControlEventTouchUpInside];
             NSString *string = [NSString stringWithFormat:@"%@",self.button.titleLabel.text];
             CGSize feelSize = [string sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(190,0)];
             float  feelWidth = feelSize.width;
@@ -234,7 +235,6 @@
 
     // 从asset中获得图片
     [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(CGRectGetWidth(cell.frame)*[UIScreen mainScreen].scale, CGRectGetHeight(cell.frame)*[UIScreen mainScreen].scale) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-        NSLog(@" 图片内容：%@ ",result);
         cell.image = result;
     }];
 
@@ -270,5 +270,45 @@
 - (CGSize) portraitGridCellSizeForGridView: (AQGridView *) gridView
 {
     return CGSizeMake(75, 80);
+}
+-(IBAction)sendPhotos:(id)sender
+{
+    UIButton *button =(UIButton *)sender;
+    [button setEnabled:NO];
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.photoBrowser.view addSubview:HUD];
+    
+    HUD.dimBackground = YES;
+    HUD.labelText = @"正在发送";
+    
+    [HUD showAnimated:YES whileExecutingBlock:^{
+        if ([self.photos count] >0) {
+            NSMutableArray *tmp = [NSMutableArray new];
+            [self.selections enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                if ([obj boolValue]) {
+                    [tmp addObject:@(idx)];
+                }
+            }];
+            [tmp enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSInteger index = [obj integerValue];
+                MWPhoto *newPhoto = [self.photos objectAtIndex:index];
+                
+                ZKPhotoEnity *photo = [ZKPhotoEnity new];
+                NSString *keyName = [[ZKPhotosCache sharedPhotoCache] getKeyName];
+                NSData *photoData = UIImagePNGRepresentation(newPhoto.underlyingImage);
+                [[ZKPhotosCache sharedPhotoCache] storePhoto:photoData forKey:keyName toDisk:YES];
+                photo.localPath=keyName;
+                photo.image=newPhoto.underlyingImage;
+                [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:photo.image];
+            }];
+        }
+        [button setEnabled:YES];
+    } completionBlock:^{
+        [HUD removeFromSuperview];
+        [self.navigationController popToViewController:[ZKChattingMainViewController shareInstance] animated:YES];
+        [button setEnabled:YES];
+    }];
+    
+    
 }
 @end
