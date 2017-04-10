@@ -83,7 +83,6 @@
 //防重复登录被踢出
 -(void)logoutNotification:(NSNotification*)notification{
     
-    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -111,7 +110,10 @@
     
     self.navigationController.interactivePopGestureRecognizer.enabled =YES;
 }
-
+-(void)dealloc{
+    
+    self.navigationController.interactivePopGestureRecognizer.delegate =nil;
+}
 
 
 @end

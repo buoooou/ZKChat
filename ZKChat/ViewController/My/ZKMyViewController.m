@@ -185,12 +185,12 @@
     }else if(indexPath.section == 1){
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if (indexPath.row==0) {
-            [self clearCache];
+            [self clearCache:nil];
         }else if(indexPath.row == 1){
             [self goUpdatePage];
         }
     }else{
-        [self logOut];
+        [self logOut:nil];
     }
 }
 -(void)goUserInfoProfile{
@@ -198,7 +198,7 @@
 
     [self pushViewController:userInfoVC animated:YES];
 }
--(void)clearCache{
+-(void)clearCache:(id)sender{
     LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:@"是否清理图片缓存?"
                                                       delegate:self
                                              cancelButtonTitle:@"取消"
@@ -209,7 +209,7 @@
 -(void)goUpdatePage{
 
 }
--(void)logOut{
+-(void)logOut:(id)sender{
     LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:@"退出不会删除任何历史数据,下次登录依然可以使用本账号!"
                                                       delegate:self
                                              cancelButtonTitle:@"取消"
@@ -219,24 +219,24 @@
     actionSheet.tag = 10000;
     [actionSheet show];
 }
+#pragma mark - LCActionSheet Delegate
 
-#pragma mark - LCActionSheetDelegate
-- (void)actionSheet:(LCActionSheet *)actionSheet didClickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(LCActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"clickedButtonAtIndex: %d", (int)buttonIndex);
     if(actionSheet.tag == 10000){
-        if(buttonIndex == 0){
-//            LogoutAPI *logout = [LogoutAPI new];
-//            [logout requestWithObject:nil Completion:NULL];
+        if(buttonIndex == 1){
+            //            LogoutAPI *logout = [LogoutAPI new];
+            //            [logout requestWithObject:nil Completion:NULL];
             [ZKNotification postNotification:@"Notification_user_logout" userInfo:nil object:nil];
         }
     }
     if(actionSheet.tag == 10001){
         if(buttonIndex == 0){
-//            [[MTTPhotosCache sharedPhotoCache] clearAllCache:^(bool isfinish) {
-//                if (isfinish) {
-//                    NSLog(@"11");
-//                }
-//            }];
+            //            [[MTTPhotosCache sharedPhotoCache] clearAllCache:^(bool isfinish) {
+            //                if (isfinish) {
+            //                    NSLog(@"11");
+            //                }
+            //            }];
         }
     }
 }
