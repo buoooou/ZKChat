@@ -12,5 +12,21 @@
 @implementation ZKAFNetworkingClient
 
 
++(void) jsonFormPOSTRequest:(NSString *)url param:(NSDictionary *)param success:(void (^)(id))success failure:(void (^)(NSError *))failure{
 
+    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+    
+    [manager POST:url parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        failure(error);
+    }];
+    
+
+}
 @end
