@@ -194,7 +194,7 @@
         photo.localPath=keyName;
         [picker dismissViewControllerAnimated:NO completion:nil];
         self.imagePicker=nil;
-       // [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:m_selectImage];
+        [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:m_selectImage];
     
 }
 
