@@ -52,22 +52,6 @@
     }
     return _dataSource;
 }
-//- (UITableView *)tableView {
-//    if (!_tableView) {
-//        CGRect tableViewFrame = self.view.bounds;
-//        tableViewFrame.size.height -= (self.navigationController.viewControllers.count > 1 ? 0 : (CGRectGetHeight(self.tabBarController.tabBar.bounds)));
-//        _tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:self.tableViewStyle];
-//        _tableView.delegate = self;
-//        _tableView.dataSource = self;
-//        if (self.tableViewStyle == UITableViewStyleGrouped) {
-//            UIView *backgroundView = [[UIView alloc] initWithFrame:_tableView.bounds];
-//            backgroundView.backgroundColor = _tableView.backgroundColor;
-//            _tableView.backgroundView = backgroundView;
-//        }
-//        
-//    }
-//    return _tableView;
-//}
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     // in subClass
