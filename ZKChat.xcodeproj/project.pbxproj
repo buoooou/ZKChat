@@ -19,6 +19,7 @@
 		7E44A9881E9A80CC00A825B1 /* ZKNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9871E9A80CC00A825B1 /* ZKNotification.m */; };
 		7E44A98A1E9A81AC00A825B1 /* ZKConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9891E9A81AC00A825B1 /* ZKConstant.m */; };
 		7E44A98D1E9BC5BC00A825B1 /* ZKDatabaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A98C1E9BC5BC00A825B1 /* ZKDatabaseUtil.m */; };
+		7E44A9911E9BCF2B00A825B1 /* ZKAFNetworkingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9901E9BCF2B00A825B1 /* ZKAFNetworkingClient.m */; };
 		7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */; };
 		7E53D8BD1E86A2410093C912 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AD1E86A2400093C912 /* AQGridView.m */; };
 		7E53D8BE1E86A2410093C912 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8B11E86A2400093C912 /* AQGridViewAnimatorItem.m */; };
@@ -269,6 +270,8 @@
 		7E44A9891E9A81AC00A825B1 /* ZKConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKConstant.m; path = Config/ZKConstant.m; sourceTree = "<group>"; };
 		7E44A98B1E9BC5BC00A825B1 /* ZKDatabaseUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDatabaseUtil.h; path = Util/ZKDatabaseUtil.h; sourceTree = "<group>"; };
 		7E44A98C1E9BC5BC00A825B1 /* ZKDatabaseUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDatabaseUtil.m; path = Util/ZKDatabaseUtil.m; sourceTree = "<group>"; };
+		7E44A98F1E9BCF2B00A825B1 /* ZKAFNetworkingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAFNetworkingClient.h; path = Util/Http/ZKAFNetworkingClient.h; sourceTree = "<group>"; };
+		7E44A9901E9BCF2B00A825B1 /* ZKAFNetworkingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAFNetworkingClient.m; path = Util/Http/ZKAFNetworkingClient.m; sourceTree = "<group>"; };
 		7E53D8A91E86A0BE0093C912 /* RuntimeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuntimeStatus.h; path = GlobalData/RuntimeStatus.h; sourceTree = "<group>"; };
 		7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RuntimeStatus.m; path = GlobalData/RuntimeStatus.m; sourceTree = "<group>"; };
 		7E53D8AC1E86A2400093C912 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Exist/AQGridView/AQGridView.h; sourceTree = "<group>"; };
@@ -885,6 +888,15 @@
 			name = TCP;
 			sourceTree = "<group>";
 		};
+		7E44A98E1E9BCEFE00A825B1 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				7E44A98F1E9BCF2B00A825B1 /* ZKAFNetworkingClient.h */,
+				7E44A9901E9BCF2B00A825B1 /* ZKAFNetworkingClient.m */,
+			);
+			name = Http;
+			sourceTree = "<group>";
+		};
 		7E53D8491E816BEB0093C912 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -1266,6 +1278,7 @@
 		7E6031C11E53434F005239C4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				7E44A98E1E9BCEFE00A825B1 /* Http */,
 				7E53DA821E86AA990093C912 /* ZKUtil.h */,
 				7E53DA831E86AA990093C912 /* ZKUtil.m */,
 				7E44A9861E9A80CC00A825B1 /* ZKNotification.h */,
@@ -1925,6 +1938,7 @@
 				7E53DA931E86AB730093C912 /* ZKBubbleModule.m in Sources */,
 				7E53D99F1E86A3E10093C912 /* IMSwitchService.pb.m in Sources */,
 				7E53DA621E86A9880093C912 /* ZKBaseViewController.m in Sources */,
+				7E44A9911E9BCF2B00A825B1 /* ZKAFNetworkingClient.m in Sources */,
 				7E53DA4E1E86A9120093C912 /* ZKRootViewController.m in Sources */,
 				7E53DAC21E86AC4A0093C912 /* NSString+Additions.m in Sources */,
 				7E53D9551E86A2BA0093C912 /* exc_5_64_table.c in Sources */,
