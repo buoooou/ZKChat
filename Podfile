@@ -6,13 +6,13 @@ target 'ZKChat' do
   # use_frameworks!
 
   # Pods for ZKChat
-  pod 'MBProgressHUD', '~> 0.8'
+  pod 'MBProgressHUD', '~> 0.9'
   pod 'Masonry'
   pod 'SDWebImage', '~> 3.8'
   pod 'LCActionSheet'
   pod 'ProtocolBuffers', '~> 1.9.4'
   pod 'FMDB'
-  pod 'MWPhotoBrowser'
+  pod 'MWPhotoBrowser','~> 2.1.2'
   pod 'SVWebViewController'
   pod 'ZXingObjC'
   pod 'HPGrowingTextView' , '~> 1.1'

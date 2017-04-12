@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4418E0170666CA2AC439FEDC /* libPods-ZKChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E6D94E683078ADACFA9C473 /* libPods-ZKChat.a */; };
+		765DC2B37DEB6A5D1852484F /* libPods-ZKChatUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A41EB9CC746B9FB17288E0DA /* libPods-ZKChatUITests.a */; };
 		7E290E891E61506B004552F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E290E881E61506B004552F3 /* Assets.xcassets */; };
 		7E364AB51E93C56B00BD36C1 /* dd_image_send.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E364AB11E93C56B00BD36C1 /* dd_image_send.png */; };
 		7E364AB61E93C56B00BD36C1 /* dd_image_send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E364AB21E93C56B00BD36C1 /* dd_image_send@2x.png */; };
@@ -231,6 +232,7 @@
 		7E60319D1E533AA5005239C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E60319B1E533AA5005239C4 /* LaunchScreen.storyboard */; };
 		7E6031A81E533AA7005239C4 /* ZKChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031A71E533AA7005239C4 /* ZKChatTests.m */; };
 		7E6031B31E533AA7005239C4 /* ZKChatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031B21E533AA7005239C4 /* ZKChatUITests.m */; };
+		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,6 +256,7 @@
 		1E6D94E683078ADACFA9C473 /* libPods-ZKChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A0655867CDC5C64F2769A75 /* Pods-ZKChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChatUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChatUITests/Pods-ZKChatUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6234E7D269E1852A720D3158 /* Pods-ZKChatUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChatUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChatUITests/Pods-ZKChatUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKChatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E290E881E61506B004552F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E364AB11E93C56B00BD36C1 /* dd_image_send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dd_image_send.png; path = Resource/Image/Chatting/dd_image_send.png; sourceTree = "<group>"; };
 		7E364AB21E93C56B00BD36C1 /* dd_image_send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dd_image_send@2x.png"; path = "Resource/Image/Chatting/dd_image_send@2x.png"; sourceTree = "<group>"; };
@@ -661,6 +664,7 @@
 		7ED493751E671CCB0083BCD4 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/SDWebImage/libSDWebImage.a"; sourceTree = "<group>"; };
 		7ED493761E671CCB0083BCD4 /* libSVWebViewController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSVWebViewController.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/SVWebViewController/libSVWebViewController.a"; sourceTree = "<group>"; };
 		89DE95995185031F4183B5E6 /* Pods-ZKChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChat/Pods-ZKChat.release.xcconfig"; sourceTree = "<group>"; };
+		A41EB9CC746B9FB17288E0DA /* libPods-ZKChatUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKChatUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B14379A7C4B56E4443F165 /* Pods-ZKChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChatTests/Pods-ZKChatTests.release.xcconfig"; sourceTree = "<group>"; };
 		D5589CF789A8E9838CE4A9E1 /* Pods-ZKChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChatTests/Pods-ZKChatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F82B48862F7EA6B033678197 /* Pods-ZKChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKChat/Pods-ZKChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -679,6 +683,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,6 +691,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				765DC2B37DEB6A5D1852484F /* libPods-ZKChatUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,6 +713,8 @@
 				7ED493751E671CCB0083BCD4 /* libSDWebImage.a */,
 				7ED493761E671CCB0083BCD4 /* libSVWebViewController.a */,
 				1E6D94E683078ADACFA9C473 /* libPods-ZKChat.a */,
+				6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */,
+				A41EB9CC746B9FB17288E0DA /* libPods-ZKChatUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -43,8 +43,8 @@ DEPENDENCIES:
   - HPGrowingTextView (~> 1.1)
   - LCActionSheet
   - Masonry
-  - MBProgressHUD (~> 0.8)
-  - MWPhotoBrowser
+  - MBProgressHUD (~> 0.9)
+  - MWPhotoBrowser (~> 2.1.2)
   - ProtocolBuffers (~> 1.9.4)
   - SDWebImage (~> 3.8)
   - SVWebViewController
@@ -66,6 +66,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
-PODFILE CHECKSUM: 03fb678502bc873556ad7eedb3e2ab0876ae014f
+PODFILE CHECKSUM: 841357aa4e8fcbf6fc9681ff559beddf3db50a5d
 
 COCOAPODS: 1.2.0.beta.1
