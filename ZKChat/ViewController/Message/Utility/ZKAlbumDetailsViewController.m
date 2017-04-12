@@ -10,7 +10,6 @@
 #import "MWPhotoBrowser.h"
 #import "ZKAlbumDetailsBottomBar.h"
 #import "ZKConstant.h"
-#import "MBProgressHUD.h"
 #import "ZKChattingMainViewController.h"
 #import "ImageGridViewCell.h"
 
@@ -113,13 +112,8 @@
         {
             //send picture
             if ([weakSelf.choosePhotosArray count] >0) {
-                MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:weakSelf.view];
-                [weakSelf.view addSubview:HUD];
                 
-                HUD.dimBackground = YES;
-                HUD.labelText = @"正在发送";
-                
-                [HUD showAnimated:YES whileExecutingBlock:^{
+                [self showHUDWithIndeterminateText:@"正在发送" whileExecutingBlock:^{
                     for (int i = 0; i<[weakSelf.choosePhotosArray count]; i++) {
                         ZKPhotoEnity *photo = [ZKPhotoEnity new];
                         
@@ -137,9 +131,9 @@
                         }];
                     }
                 } completionBlock:^{
-                    [HUD removeFromSuperview];
+                    [self removeHUD];
                     [weakSelf.navigationController popToViewController:[ZKChattingMainViewController shareInstance] animated:YES];
-                }];
+                } onView:weakSelf.view];
             }
         }
     };
@@ -266,13 +260,7 @@
 {
     UIButton *button =(UIButton *)sender;
     [button setEnabled:NO];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.photoBrowser.view addSubview:HUD];
-    
-    HUD.dimBackground = YES;
-    HUD.labelText = @"正在发送";
-    
-    [HUD showAnimated:YES whileExecutingBlock:^{
+    [self showHUDWithIndeterminateText:@"正在发送" whileExecutingBlock:^{
         if ([self.photos count] >0) {
             NSMutableArray *tmp = [NSMutableArray new];
             [self.selections enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -296,11 +284,10 @@
         }
         [button setEnabled:YES];
     } completionBlock:^{
-        [HUD removeFromSuperview];
+        [self removeHUD];
         [self.navigationController popToViewController:[ZKChattingMainViewController shareInstance] animated:YES];
         [button setEnabled:YES];
-    }];
-    
+    } onView:self.photoBrowser.view];
     
 }
 @end

@@ -27,15 +27,16 @@
 
 //文字提示框
 -(void)showHUDWithText:(NSString *)text;
--(void)showHUDWithText:(NSString *)text delay:(NSTimeInterval)delay;
+-(void)showHUDWithText:(NSString *)text whileExecutingBlock:(void (^)())block completionBlock:(void (^)())completion onView:(UIView *)view;
 //缓冲提示框
 -(void)showHUDWithIndeterminateText:(NSString *)text;
--(void)showHUDWithIndeterminateText:(NSString *)text delay:(NSTimeInterval)delay;
+-(void)showHUDWithIndeterminateText:(NSString *)text whileExecutingBlock:(void (^)())block completionBlock:(void (^)())completion onView:(UIView *)view;
+
 /**
  *隐藏所有HUD
  *
  */
--(void)hideHUD;
+-(void)removeHUD;
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
 @end

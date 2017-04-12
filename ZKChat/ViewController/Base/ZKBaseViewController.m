@@ -75,31 +75,35 @@
 }
 
 -(void)showHUDWithText:(NSString *)text{
-    [self showHUDWithText:text delay:1.5];
+    HUD=[self showHUDWithText:text mode:MBProgressHUDModeCustomView animate:MBProgressHUDAnimationFade delay:1.5];
+    [self.view addSubview:HUD];
 }
 -(void)showHUDWithIndeterminateText:(NSString *)text{
-    [self showHUDWithIndeterminateText:text delay:1.5];
-}
-
--(void)showHUDWithText:(NSString *)text delay:(NSTimeInterval)delay{
-    
-    HUD=[self showHUDWithText:text mode:MBProgressHUDModeCustomView animate:MBProgressHUDAnimationFade delay:delay];
-//    HUD.bezelView.backgroundColor=[UIColor blackColor];
-    HUD.backgroundColor=[UIColor blackColor];
-    HUD.labelColor=[UIColor whiteColor];
-
-//    HUD.label.textColor=[UIColor whiteColor];
+    HUD=[self showHUDWithText:text mode:MBProgressHUDModeIndeterminate animate:MBProgressHUDAnimationFade delay:1.5];
     [self.view addSubview:HUD];
 }
--(void)showHUDWithIndeterminateText:(NSString *)text delay:(NSTimeInterval)delay{
+
+-(void)showHUDWithText:(NSString *)text whileExecutingBlock:(void (^)())block completionBlock:(void (^)())completion onView:(UIView *)view
+{
     
-    HUD=[self showHUDWithText:text mode:MBProgressHUDModeIndeterminate animate:MBProgressHUDAnimationFade delay:delay];
-    [self.view addSubview:HUD];
+    HUD=[self showHUDWithText:text mode:MBProgressHUDModeCustomView animate:MBProgressHUDAnimationFade delay:1.5];;
+    HUD.dimBackground = YES;
+    HUD.labelText = text;
+    [view addSubview:HUD];
+    [HUD showAnimated:YES whileExecutingBlock:block completionBlock:completion];
+}
+-(void)showHUDWithIndeterminateText:(NSString *)text whileExecutingBlock:(void (^)())block completionBlock:(void (^)())completion onView:(UIView *)view{
+    
+    HUD = [self showHUDWithText:text mode:MBProgressHUDModeIndeterminate animate:MBProgressHUDAnimationFade delay:1.5];
+    HUD.dimBackground = YES;
+    HUD.labelText = text;
+    [view addSubview:HUD];
+    [HUD showAnimated:YES whileExecutingBlock:block completionBlock:completion];
 }
 
 -(MBProgressHUD *)showHUDWithText:(NSString *)text mode:(MBProgressHUDMode)mode animate:(MBProgressHUDAnimation)animation delay:(NSTimeInterval)delay
 {
-    [self hideHUD];
+    [self removeHUD];
     MBProgressHUD * hud=[[MBProgressHUD alloc] initWithView:self.view];
     hud.animationType=animation;
     
@@ -116,11 +120,10 @@
     return hud;
 }
 
--(void)hideHUD
+-(void)removeHUD
 {
     if (!HUD.isHidden) {
-//        [HUD hideAnimated:NO];
-        [HUD hide:NO];
+        [HUD removeFromSuperview];
     }
     
 }
