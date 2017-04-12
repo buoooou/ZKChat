@@ -8,7 +8,7 @@
 
 #import "ZKLoginViewController.h"
 #import "ZKRootViewController.h"
-
+#import "ZKAFNetworkingClient.h"
 
 @interface ZKLoginViewController ()
 @property (nonatomic,strong) UIButton *button;
@@ -48,8 +48,14 @@
 -(void)logInButtonPressed{
 
     [self showHUDWithIndeterminateText:@"请稍后..."];
-    ZKRootViewController *rootController=[[ZKRootViewController alloc]init];
-    [self pushViewController:rootController animated:YES];
+//    [ZKAFNetworkingClient jsonFormPOSTRequest:@"http://88.2.3.4/" param:nil success:^(id result){
+        ZKRootViewController *rootController=[[ZKRootViewController alloc]init];
+        [self pushViewController:rootController animated:YES];
+//    } failure:^(NSError * error){
+//        NSLog(@" %& ", error);
+       // [self showHUDWithText:@"登录失败"];
+//    }];
+    
     [self removeHUD];
 }
 

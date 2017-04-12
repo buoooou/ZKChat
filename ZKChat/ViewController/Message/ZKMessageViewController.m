@@ -41,7 +41,6 @@
     self.dataSource=[[NSMutableArray alloc] initWithObjects:
                      @"华捷新闻，点击查看！",@"华捷新闻，点击查看！",@"华捷新闻，点击查看！",
                      nil];
-    
     [self.tableView registerClass:[ZKBaseCell class] forCellReuseIdentifier:@"ZKPCStatusCellIdentifier"];
     [self.tableView registerClass:[ZKRecentUserCell class] forCellReuseIdentifier:@"ZKRecentUserCellIdentifier"];
 }

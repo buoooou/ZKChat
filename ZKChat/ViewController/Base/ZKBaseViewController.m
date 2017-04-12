@@ -68,16 +68,11 @@
     [self.view insertSubview:backgroundImageView atIndex:0];
 }
 
-
--(void)showLoading
-{
-    [self showHUDWithIndeterminateText:@""];
-}
-
 -(void)showHUDWithText:(NSString *)text{
     HUD=[self showHUDWithText:text mode:MBProgressHUDModeCustomView animate:MBProgressHUDAnimationFade];
     [self.view addSubview:HUD];
     [HUD show:YES];
+    [HUD hide:YES afterDelay:1.5];
 }
 -(void)showHUDWithIndeterminateText:(NSString *)text{
     HUD=[self showHUDWithText:text mode:MBProgressHUDModeIndeterminate animate:MBProgressHUDAnimationFade];
@@ -85,13 +80,6 @@
     [HUD show:YES];
 }
 
--(void)showHUDWithText:(NSString *)text whileExecutingBlock:(void (^)())block completionBlock:(void (^)())completion onView:(UIView *)view
-{
-    
-    HUD=[self showHUDWithText:text mode:MBProgressHUDModeCustomView animate:MBProgressHUDAnimationFade];
-    [view addSubview:HUD];
-    [HUD showAnimated:YES whileExecutingBlock:block completionBlock:completion];
-}
 -(void)showHUDWithIndeterminateText:(NSString *)text whileExecutingBlock:(void (^)())block completionBlock:(void (^)())completion onView:(UIView *)view{
     
     HUD = [self showHUDWithText:text mode:MBProgressHUDModeIndeterminate animate:MBProgressHUDAnimationFade];
