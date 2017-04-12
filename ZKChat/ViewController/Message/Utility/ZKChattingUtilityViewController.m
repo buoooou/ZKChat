@@ -128,8 +128,11 @@
 
 -(void)choosePicture:(id)sender
 {
-    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    dispatch_async(dispatch_get_main_queue(), ^{
     self.imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
     if (status == PHAuthorizationStatusRestricted ||
         status == PHAuthorizationStatusDenied) {
@@ -141,7 +144,7 @@
     if(status==PHAuthorizationStatusAuthorized){
         [self pushViewController:[ZKAlbumViewController new] animated:YES];
     }
-
+    });
 }
 -(void)takePicture:(id)sender
 {
@@ -179,23 +182,22 @@
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
 //    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]){
 
-        __block UIImage *theImage = nil;
-        if ([picker allowsEditing]){
-            theImage = [info objectForKey:UIImagePickerControllerEditedImage];
-        } else {
-            theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    __block UIImage *theImage = nil;
+    if ([picker allowsEditing]){
+        theImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    } else {
+        theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
             
-        }
-        UIImage *image = [self scaleImage:theImage toScale:0.3];
-        NSData *imageData = UIImageJPEGRepresentation(image, (CGFloat)1.0);
-        UIImage * m_selectImage = [UIImage imageWithData:imageData];
-        __block ZKPhotoEnity *photo = [ZKPhotoEnity new];
-        NSString *keyName = [[ZKPhotosCache sharedPhotoCache] getKeyName];
-        photo.localPath=keyName;
-        [picker dismissViewControllerAnimated:NO completion:nil];
-        self.imagePicker=nil;
-        [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:m_selectImage];
-    
+    }
+    UIImage *image = [self scaleImage:theImage toScale:0.3];
+    NSData *imageData = UIImageJPEGRepresentation(image, (CGFloat)1.0);
+    UIImage * m_selectImage = [UIImage imageWithData:imageData];
+    __block ZKPhotoEnity *photo = [ZKPhotoEnity new];
+    NSString *keyName = [[ZKPhotosCache sharedPhotoCache] getKeyName];
+    photo.localPath=keyName;
+    [picker dismissViewControllerAnimated:NO completion:nil];
+    self.imagePicker=nil;
+    [[ZKChattingMainViewController shareInstance] sendImageMessage:photo Image:m_selectImage];
 }
 
 #pragma mark 等比縮放image
