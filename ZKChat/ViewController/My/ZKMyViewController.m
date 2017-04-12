@@ -225,9 +225,14 @@
     NSLog(@"clickedButtonAtIndex: %d", (int)buttonIndex);
     if(actionSheet.tag == 10000){
         if(buttonIndex == 1){
-            //            LogoutAPI *logout = [LogoutAPI new];
-            //            [logout requestWithObject:nil Completion:NULL];
-            [ZKNotification postNotification:@"Notification_user_logout" userInfo:nil object:nil];
+            [self showHUDWithIndeterminateText:@"正在退出..." whileExecutingBlock:^{
+                //            LogoutAPI *logout = [LogoutAPI new];
+                //            [logout requestWithObject:nil Completion:NULL];
+                [ZKNotification postNotification:@"Notification_user_logout" userInfo:nil object:nil];
+            } completionBlock:^{
+                [self removeHUD];
+            } onView:self.view];
+            
         }
     }
     if(actionSheet.tag == 10001){

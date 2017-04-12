@@ -75,18 +75,18 @@
 }
 
 -(void)showHUDWithText:(NSString *)text{
-    HUD=[self showHUDWithText:text mode:MBProgressHUDModeCustomView animate:MBProgressHUDAnimationFade delay:1.5];
+    HUD=[self showHUDWithText:text mode:MBProgressHUDModeCustomView animate:MBProgressHUDAnimationFade];
     [self.view addSubview:HUD];
 }
 -(void)showHUDWithIndeterminateText:(NSString *)text{
-    HUD=[self showHUDWithText:text mode:MBProgressHUDModeIndeterminate animate:MBProgressHUDAnimationFade delay:1.5];
+    HUD=[self showHUDWithText:text mode:MBProgressHUDModeIndeterminate animate:MBProgressHUDAnimationFade];
     [self.view addSubview:HUD];
 }
 
 -(void)showHUDWithText:(NSString *)text whileExecutingBlock:(void (^)())block completionBlock:(void (^)())completion onView:(UIView *)view
 {
     
-    HUD=[self showHUDWithText:text mode:MBProgressHUDModeCustomView animate:MBProgressHUDAnimationFade delay:1.5];;
+    HUD=[self showHUDWithText:text mode:MBProgressHUDModeCustomView animate:MBProgressHUDAnimationFade];
     HUD.dimBackground = YES;
     HUD.labelText = text;
     [view addSubview:HUD];
@@ -94,14 +94,14 @@
 }
 -(void)showHUDWithIndeterminateText:(NSString *)text whileExecutingBlock:(void (^)())block completionBlock:(void (^)())completion onView:(UIView *)view{
     
-    HUD = [self showHUDWithText:text mode:MBProgressHUDModeIndeterminate animate:MBProgressHUDAnimationFade delay:1.5];
+    HUD = [self showHUDWithText:text mode:MBProgressHUDModeIndeterminate animate:MBProgressHUDAnimationFade];
     HUD.dimBackground = YES;
     HUD.labelText = text;
     [view addSubview:HUD];
     [HUD showAnimated:YES whileExecutingBlock:block completionBlock:completion];
 }
 
--(MBProgressHUD *)showHUDWithText:(NSString *)text mode:(MBProgressHUDMode)mode animate:(MBProgressHUDAnimation)animation delay:(NSTimeInterval)delay
+-(MBProgressHUD *)showHUDWithText:(NSString *)text mode:(MBProgressHUDMode)mode animate:(MBProgressHUDAnimation)animation
 {
     [self removeHUD];
     MBProgressHUD * hud=[[MBProgressHUD alloc] initWithView:self.view];
@@ -114,7 +114,6 @@
     
     hud.delegate = self;
 //    [hud showAnimated:YES];
-    [hud hide:YES afterDelay:delay];
 //    [hud hideAnimated:YES afterDelay:delay];
     hud.removeFromSuperViewOnHide = YES;
     return hud;

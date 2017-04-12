@@ -47,10 +47,10 @@
 
 -(void)logInButtonPressed{
 
+    [self showHUDWithIndeterminateText:@"请稍后..."];
     ZKRootViewController *rootController=[[ZKRootViewController alloc]init];
-    
-   [self pushViewController:rootController animated:YES];
-    
+    [self pushViewController:rootController animated:YES];
+    [self removeHUD];
 }
 
 - (void)didReceiveMemoryWarning {
