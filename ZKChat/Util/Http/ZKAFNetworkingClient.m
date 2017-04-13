@@ -7,9 +7,45 @@
 //
 
 #import "ZKAFNetworkingClient.h"
-
+#import "NSDictionary+Safe.h"
+#import "ZKConstant.h"
 
 @implementation ZKAFNetworkingClient
++(void) handleRequest:(id)result
+              success:(void (^)(id))success
+              failure:(void (^)(NSError *))failure
+{
+    
+    if (![result isKindOfClass:[NSDictionary class]]) {
+        NSError * error = [NSError errorWithDomain:@"data formate is invalid" code:-1000 userInfo:nil];
+        failure(error);
+        return;
+    }
+    NSInteger code =[[[result safeObjectForKey:@"status"] objectForKey:@"code"] integerValue];
+    NSString *msg =[[result safeObjectForKey:@"status"] objectForKey:@"msg"];
+    if (1001 == code)
+    {
+        id object = [result valueForKey:@"result"];
+        object = isNull(object) ? result : object;
+        success(object);
+    }
+    else
+    {
+        
+        if (msg)
+        {
+            NSError* error = [NSError errorWithDomain:msg code:code userInfo:nil];
+            failure(error);
+        }
+        else
+        {
+            failure(nil);
+        }
+    }
+    
+    
+}
+
 +(void) jsonFormPOSTRequest:(NSString *)url param:(NSDictionary *)param success:(void (^)(id))success failure:(void (^)(NSError *))failure{
 
     AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
@@ -18,11 +54,14 @@
         
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-       
-        success(responseObject);
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@<------",string);
+        [ZKAFNetworkingClient handleRequest:responseDictionary success:success failure:failure];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        if([error.domain isEqualToString:NSURLErrorDomain])
+            error = [NSError errorWithDomain:@"没有网络连接。" code:-100 userInfo:nil];
         failure(error);
     }];
 }
@@ -32,8 +71,13 @@
     [manager GET:url parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        success(responseObject);
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@<------",string);
+        [ZKAFNetworkingClient handleRequest:responseDictionary success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if([error.domain isEqualToString:NSURLErrorDomain])
+            error = [NSError errorWithDomain:@"没有网络连接。" code:-100 userInfo:nil];
         failure(error);
     }];
 

@@ -12,6 +12,9 @@
 
 #define APP_NAME @"ZKChat"
 #define ZKChatVerison @"1.0.0"
+
+#define isNull(x)             (!x || [x isKindOfClass:[NSNull class]])
+
 //快速定义一个weakSelf 用于block
 #define ZK_WEAKSELF(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
@@ -27,6 +30,7 @@
 #else
 #define DDLog(xx, ...)                 nil
 #endif
+
 
 // 屏幕高度
 #define SCREEN_HEIGHT         [[UIScreen mainScreen] bounds].size.height
