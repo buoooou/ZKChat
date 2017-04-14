@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZKUserEntity.h"
 #define TheRuntime [RuntimeStatus instance]
-
-@class ZKUserEntity;
 
 @interface RuntimeStatus : NSObject
 

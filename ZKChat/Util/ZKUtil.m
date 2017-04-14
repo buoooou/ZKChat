@@ -39,11 +39,27 @@ typedef NS_ENUM(SInt32, SessionType) {
     [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"preShowImageTime"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
+#pragma db
 +(void)setDBVersion:(NSInteger)version
 {
     [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"dbVersion"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
++(NSInteger)getDBVersion
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"dbVersion"];
+}
++(void)setLastDBVersion:(NSInteger)version
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"lastDbVersion"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(NSInteger)getLastDBVersion
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"lastDbVersion"];
+}
+
 #pragma mark - 气泡功能
 +(NSString *)getBubbleTypeLeft:(BOOL)left
 {

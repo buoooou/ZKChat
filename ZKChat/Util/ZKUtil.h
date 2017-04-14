@@ -12,9 +12,14 @@
 +(NSString *)changeOriginalToLocalID:(UInt32)orignalID SessionType:(int)sessionType;
 +(NSDate *)getLastPhotoTime;
 +(void)setLastPhotoTime:(NSDate *)date;
-+(void)setDBVersion:(NSInteger)version;
 +(NSString *)getBubbleTypeLeft:(BOOL)left;
 +(void)setBubbleTypeLeft:(NSString *)bubbleType left:(BOOL)left;
 +(struct CGSize)sizeTrans:(struct CGSize)size;
+
+#pragma db
++(void)setDBVersion:(NSInteger)version;
++(NSInteger)getDBVersion;
++(void)setLastDBVersion:(NSInteger)version;
++(NSInteger)getLastDBVersion;
 
 @end
