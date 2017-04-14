@@ -9,6 +9,10 @@
 #import "AppDelegate.h"
 #import "ZKLoginViewController.h"
 #import "ZKConstant.h"
+#import "NSDictionary+Safe.h"
+#import "ZKSessionEntity.h"
+#import "ZKChattingMainViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -66,7 +70,28 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
-
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSString *error_str = [NSString stringWithFormat: @"%@", error];
+    NSLog(@"获取令牌失败:  %@",error_str);
+}
+// 处理推送消息
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    UIApplicationState state =application.applicationState;
+    if ( state != UIApplicationStateBackground) {
+        return;
+    }
+    NSString *jsonString = [userInfo safeObjectForKey:@"custom"];
+    NSData* infoData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* info = [NSJSONSerialization JSONObjectWithData:infoData options:0 error:nil];
+    NSInteger from_id =[[info safeObjectForKey:@"from_id"] integerValue];
+    SessionType type = (SessionType)[[info safeObjectForKey:@"msg_type"] integerValue];
+    NSInteger group_id =[[info safeObjectForKey:@"group_id"] integerValue];
+    if (from_id) {
+        NSInteger sessionId = type==1?from_id:group_id;
+        ZKSessionEntity *session = [[ZKSessionEntity alloc] initWithSessionID:[ZKUtil changeOriginalToLocalID:(UInt32)sessionId SessionType:(int)type] type:type] ;
+        [[ZKChattingMainViewController shareInstance] showChattingContentForSession:session];
+    }
+}
 
 #pragma mark - Core Data stack
 

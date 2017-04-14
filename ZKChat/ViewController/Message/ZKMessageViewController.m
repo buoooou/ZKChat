@@ -113,7 +113,7 @@
 {
     if(indexPath.section == 0){
         static NSString* cellIdentifier = @"ZKPCStatusCellIdentifier";
-//        MTTPCStatusCell* cell = (MTTPCStatusCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//        ZKPCStatusCell* cell = (MTTPCStatusCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 //        if (!cell)
 //        {
 //            cell = [[MTTPCStatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
