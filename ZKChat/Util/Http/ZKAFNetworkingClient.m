@@ -10,6 +10,8 @@
 #import "NSDictionary+Safe.h"
 #import "ZKConstant.h"
 
+#define BLOCK_SAFE_RUN(block, ...) block ? block(__VA_ARGS__) : nil;
+
 @implementation ZKAFNetworkingClient
 +(void) handleRequest:(id)result
               success:(void (^)(id))success
@@ -18,7 +20,7 @@
     
     if (![result isKindOfClass:[NSDictionary class]]) {
         NSError * error = [NSError errorWithDomain:@"data formate is invalid" code:-1000 userInfo:nil];
-        failure(error);
+        BLOCK_SAFE_RUN(failure,error);
         return;
     }
     NSInteger code =[[[result safeObjectForKey:@"status"] objectForKey:@"code"] integerValue];
@@ -27,7 +29,7 @@
     {
         id object = [result valueForKey:@"result"];
         object = isNull(object) ? result : object;
-        success(object);
+        BLOCK_SAFE_RUN(success,object);
     }
     else
     {
@@ -35,7 +37,7 @@
         if (msg)
         {
             NSError* error = [NSError errorWithDomain:msg code:code userInfo:nil];
-            failure(error);
+            BLOCK_SAFE_RUN(failure,error);
         }
         else
         {
@@ -62,7 +64,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if([error.domain isEqualToString:NSURLErrorDomain])
             error = [NSError errorWithDomain:@"没有网络连接。" code:-100 userInfo:nil];
-        failure(error);
+        BLOCK_SAFE_RUN(failure,error);
     }];
 }
 +(void) jsonFormGETRequest:(NSString *)url param:(NSDictionary *)param success:(void (^)(id))success failure:(void (^)(NSError *))failure{
@@ -78,7 +80,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if([error.domain isEqualToString:NSURLErrorDomain])
             error = [NSError errorWithDomain:@"没有网络连接。" code:-100 userInfo:nil];
-        failure(error);
+        BLOCK_SAFE_RUN(failure,error);
     }];
 
 }
