@@ -12,6 +12,8 @@
 #import "NSDictionary+Safe.h"
 #import "ZKSessionEntity.h"
 #import "ZKChattingMainViewController.h"
+#import "RuntimeStatus.h"
+#import "ZKUtil.h"
 
 @interface AppDelegate ()
 
@@ -23,21 +25,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [RuntimeStatus instance];
     // 推送消息的注册方式
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         // for iOS 8
-//        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-//        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-//        [application registerForRemoteNotifications];
-        
         UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
-    } else {
-        // for iOS 7 or iOS 6
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-        [UIApplication registerForRemoteNotifications]
-   }
+
+    } 
     
     if( SYSTEM_VERSION >=8 ) {
         [[UINavigationBar appearance] setTranslucent:YES];
@@ -73,6 +69,11 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+ //   if ([[SessionModule instance]getAllUnreadMessageCount] == 0) {
+ //       [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+ //   }else{
+   //     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[[SessionModule instance]getAllUnreadMessageCount]];
+   // }
 }
 
 

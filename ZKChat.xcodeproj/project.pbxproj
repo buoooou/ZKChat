@@ -24,6 +24,7 @@
 		7E44A99C1EA0FC7800A825B1 /* ZKDatabaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A99B1EA0FC7800A825B1 /* ZKDatabaseUtil.m */; };
 		7E44A9A21EA1003F00A825B1 /* NSString+DDPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9A11EA1003F00A825B1 /* NSString+DDPath.m */; };
 		7E44A9A41EA258C700A825B1 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E44A9A31EA258C700A825B1 /* UserNotifications.framework */; };
+		7E44A9A91EA2631900A825B1 /* DDUserModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9A81EA2631900A825B1 /* DDUserModule.m */; };
 		7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */; };
 		7E53D8BD1E86A2410093C912 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AD1E86A2400093C912 /* AQGridView.m */; };
 		7E53D8BE1E86A2410093C912 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8B11E86A2400093C912 /* AQGridViewAnimatorItem.m */; };
@@ -283,6 +284,8 @@
 		7E44A9A01EA1003F00A825B1 /* NSString+DDPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+DDPath.h"; path = "CateGory/NSString+DDPath.h"; sourceTree = "<group>"; };
 		7E44A9A11EA1003F00A825B1 /* NSString+DDPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+DDPath.m"; path = "CateGory/NSString+DDPath.m"; sourceTree = "<group>"; };
 		7E44A9A31EA258C700A825B1 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		7E44A9A71EA2631900A825B1 /* DDUserModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDUserModule.h; path = Model/User/DDUserModule.h; sourceTree = "<group>"; };
+		7E44A9A81EA2631900A825B1 /* DDUserModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDUserModule.m; path = Model/User/DDUserModule.m; sourceTree = "<group>"; };
 		7E53D8A91E86A0BE0093C912 /* RuntimeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuntimeStatus.h; path = GlobalData/RuntimeStatus.h; sourceTree = "<group>"; };
 		7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RuntimeStatus.m; path = GlobalData/RuntimeStatus.m; sourceTree = "<group>"; };
 		7E53D8AC1E86A2400093C912 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Exist/AQGridView/AQGridView.h; sourceTree = "<group>"; };
@@ -937,6 +940,15 @@
 			name = DBUtil;
 			sourceTree = "<group>";
 		};
+		7E44A9A61EA262E100A825B1 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				7E44A9A71EA2631900A825B1 /* DDUserModule.h */,
+				7E44A9A81EA2631900A825B1 /* DDUserModule.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 		7E53D8491E816BEB0093C912 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -1330,6 +1342,7 @@
 		7E6031C21E534355005239C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7E44A9A61EA262E100A825B1 /* User */,
 				7E6981FF1E7ACA800005B29A /* Bubble */,
 				7E31E3CD1E75911400EA69DE /* TCP */,
 				7E31E37D1E6ADED800EA69DE /* Photo */,
@@ -2057,6 +2070,7 @@
 				7E53DAC11E86AC4A0093C912 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
 				7E60318C1E533AA3005239C4 /* main.m in Sources */,
 				7E53D94F1E86A2BA0093C912 /* buffer.c in Sources */,
+				7E44A9A91EA2631900A825B1 /* DDUserModule.m in Sources */,
 				7E364ABB1E952A6400BD36C1 /* DDChatImageCell.m in Sources */,
 				7E53D96E1E86A2BA0093C912 /* scal.c in Sources */,
 				7E53DA611E86A9880093C912 /* ZKBaseTableViewController.m in Sources */,
@@ -2243,6 +2257,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9385678HZ3;
 				INFOPLIST_FILE = ZKChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2264,6 +2279,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9385678HZ3;
 				INFOPLIST_FILE = ZKChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -9,3 +9,4 @@
 #import "ZKConstant.h"
 
 NSString * const DDNotificationLogout = @"Notification_user_logout";
+NSString * const DDNotificationUserLoginSuccess = @"Notification_user_login_success";

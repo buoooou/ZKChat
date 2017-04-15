@@ -8,8 +8,9 @@
 
 #import "RuntimeStatus.h"
 #import "ZKUserEntity.h"
-#import "AFHTTPSessionManager.h"
 #import "ZKUtil.h"
+#import "ZKAFNetworkingClient.h"
+#import "ZKConstant.h"
 
 @implementation RuntimeStatus
 
@@ -37,24 +38,25 @@
 
 -(void)checkUpdateVersion
 {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    [manager GET:@"http://tt.mogu.io/tt/ios.json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-        double version = [responseDictionary[@"version"] doubleValue];
-        [ZKUtil setDBVersion:[responseDictionary[@"dbVersion"] intValue]];
-        
-        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-        
-        double app_Version = [[infoDictionary objectForKey:@"CFBundleShortVersionString"] doubleValue];
-        if (app_Version < version) {
-            self.updateInfo =@{@"haveupdate":@(YES),@"url":responseDictionary[@"url"]};
-        }else{
-            self.updateInfo =@{@"haveupdate":@(NO),@"url":@" "};
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+    [ZKAFNetworkingClient jsonFormGETRequest:@"http://tt.mogu.io/tt/ios.json" param:nil success:^(id responseObject){
+
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+            double version = [responseDictionary[@"version"] doubleValue];
+            [ZKUtil setDBVersion:[responseDictionary[@"dbVersion"] intValue]];
+            
+            NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+            
+            double app_Version = [[infoDictionary objectForKey:@"CFBundleShortVersionString"] doubleValue];
+            if (app_Version < version) {
+                self.updateInfo =@{@"haveupdate":@(YES),@"url":responseDictionary[@"url"]};
+            }else{
+                self.updateInfo =@{@"haveupdate":@(NO),@"url":@" "};
+            }
+    } failure:^(NSError *error) {
+        DDLog(@" %@ ",error);
     }];
+
     
 }
 -(void)registerAPI
