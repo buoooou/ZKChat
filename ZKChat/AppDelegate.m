@@ -22,6 +22,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // 推送消息的注册方式
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        // for iOS 8
+//        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+//        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+//        [application registerForRemoteNotifications];
+        
+        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    } else {
+        // for iOS 7 or iOS 6
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+        [UIApplication registerForRemoteNotifications]
+   }
+    
+    if( SYSTEM_VERSION >=8 ) {
+        [[UINavigationBar appearance] setTranslucent:YES];
+    }
+    
     // 移除webview cache
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
