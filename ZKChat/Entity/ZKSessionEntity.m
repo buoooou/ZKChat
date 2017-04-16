@@ -7,6 +7,8 @@
 //
 
 #import "ZKSessionEntity.h"
+#import "DDUserModule.h"
+#import "DDGroupModule.h"
 
 @implementation ZKSessionEntity
 @synthesize  name;

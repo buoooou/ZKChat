@@ -25,6 +25,8 @@
 		7E44A9A21EA1003F00A825B1 /* NSString+DDPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9A11EA1003F00A825B1 /* NSString+DDPath.m */; };
 		7E44A9A41EA258C700A825B1 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E44A9A31EA258C700A825B1 /* UserNotifications.framework */; };
 		7E44A9A91EA2631900A825B1 /* DDUserModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9A81EA2631900A825B1 /* DDUserModule.m */; };
+		7E44A9AD1EA318F900A825B1 /* DDGroupModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9AC1EA318F900A825B1 /* DDGroupModule.m */; };
+		7E44A9B01EA31B0B00A825B1 /* ZKDatabaseUtil+Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9AF1EA31B0B00A825B1 /* ZKDatabaseUtil+Users.m */; };
 		7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */; };
 		7E53D8BD1E86A2410093C912 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AD1E86A2400093C912 /* AQGridView.m */; };
 		7E53D8BE1E86A2410093C912 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8B11E86A2400093C912 /* AQGridViewAnimatorItem.m */; };
@@ -286,6 +288,10 @@
 		7E44A9A31EA258C700A825B1 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		7E44A9A71EA2631900A825B1 /* DDUserModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDUserModule.h; path = Model/User/DDUserModule.h; sourceTree = "<group>"; };
 		7E44A9A81EA2631900A825B1 /* DDUserModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDUserModule.m; path = Model/User/DDUserModule.m; sourceTree = "<group>"; };
+		7E44A9AB1EA318F900A825B1 /* DDGroupModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDGroupModule.h; path = Model/Group/DDGroupModule.h; sourceTree = "<group>"; };
+		7E44A9AC1EA318F900A825B1 /* DDGroupModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDGroupModule.m; path = Model/Group/DDGroupModule.m; sourceTree = "<group>"; };
+		7E44A9AE1EA31B0B00A825B1 /* ZKDatabaseUtil+Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKDatabaseUtil+Users.h"; path = "Util/DBUtil/ZKDatabaseUtil+Users.h"; sourceTree = "<group>"; };
+		7E44A9AF1EA31B0B00A825B1 /* ZKDatabaseUtil+Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKDatabaseUtil+Users.m"; path = "Util/DBUtil/ZKDatabaseUtil+Users.m"; sourceTree = "<group>"; };
 		7E53D8A91E86A0BE0093C912 /* RuntimeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuntimeStatus.h; path = GlobalData/RuntimeStatus.h; sourceTree = "<group>"; };
 		7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RuntimeStatus.m; path = GlobalData/RuntimeStatus.m; sourceTree = "<group>"; };
 		7E53D8AC1E86A2400093C912 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Exist/AQGridView/AQGridView.h; sourceTree = "<group>"; };
@@ -936,6 +942,8 @@
 				7E44A99B1EA0FC7800A825B1 /* ZKDatabaseUtil.m */,
 				7E44A9971EA0FC4300A825B1 /* ZKDatabaseUtil+Message.h */,
 				7E44A9981EA0FC4300A825B1 /* ZKDatabaseUtil+Message.m */,
+				7E44A9AE1EA31B0B00A825B1 /* ZKDatabaseUtil+Users.h */,
+				7E44A9AF1EA31B0B00A825B1 /* ZKDatabaseUtil+Users.m */,
 			);
 			name = DBUtil;
 			sourceTree = "<group>";
@@ -947,6 +955,15 @@
 				7E44A9A81EA2631900A825B1 /* DDUserModule.m */,
 			);
 			name = User;
+			sourceTree = "<group>";
+		};
+		7E44A9AA1EA318CF00A825B1 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				7E44A9AB1EA318F900A825B1 /* DDGroupModule.h */,
+				7E44A9AC1EA318F900A825B1 /* DDGroupModule.m */,
+			);
+			name = Group;
 			sourceTree = "<group>";
 		};
 		7E53D8491E816BEB0093C912 /* Utility */ = {
@@ -1342,6 +1359,7 @@
 		7E6031C21E534355005239C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7E44A9AA1EA318CF00A825B1 /* Group */,
 				7E44A9A61EA262E100A825B1 /* User */,
 				7E6981FF1E7ACA800005B29A /* Bubble */,
 				7E31E3CD1E75911400EA69DE /* TCP */,
@@ -2008,6 +2026,7 @@
 				7E53DA871E86AAF00093C912 /* EmotionsModule.m in Sources */,
 				7E53D99D1E86A3E10093C912 /* IMMessage.pb.m in Sources */,
 				7E53D9661E86A2BA0093C912 /* mdf.c in Sources */,
+				7E44A9B01EA31B0B00A825B1 /* ZKDatabaseUtil+Users.m in Sources */,
 				7E53D9561E86A2BA0093C912 /* exc_8_128_table.c in Sources */,
 				7E53DA5F1E86A9880093C912 /* ZKBaseSearchTableViewController.m in Sources */,
 				7E53D95B1E86A2BA0093C912 /* gain_table_lbr.c in Sources */,
@@ -2076,6 +2095,7 @@
 				7E53DA611E86A9880093C912 /* ZKBaseTableViewController.m in Sources */,
 				7E53D99A1E86A3E10093C912 /* IMBuddy.pb.m in Sources */,
 				7E44A9A21EA1003F00A825B1 /* NSString+DDPath.m in Sources */,
+				7E44A9AD1EA318F900A825B1 /* DDGroupModule.m in Sources */,
 				7E44A9851E9A53A200A825B1 /* DDEmotionCell.m in Sources */,
 				7E44A9991EA0FC4300A825B1 /* ZKDatabaseUtil+Message.m in Sources */,
 				7E53D9611E86A2BA0093C912 /* kiss_fftr.c in Sources */,

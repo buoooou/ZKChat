@@ -9,7 +9,7 @@
 #import "DDUserModule.h"
 #import "ZKConstant.h"
 #import "ZKNotification.h"
-#import "ZKDatabaseUtil.h"
+#import "ZKDatabaseUtil+Users.h"
 
 
 @interface DDUserModule(PrivateAPI)
