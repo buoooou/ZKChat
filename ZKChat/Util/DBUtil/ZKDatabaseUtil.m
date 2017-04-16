@@ -498,6 +498,331 @@
         });
     }];
 }
+#pragma mark - Users
 
+- (void)insertAllUser:(NSArray*)users completion:(InsertsRecentContactsCOmplection)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        [_database beginTransaction];
+        __block BOOL isRollBack = NO;
+        @try {
+            
+            [users enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                ZKUserEntity* user = (ZKUserEntity *)obj;
+                if (user.userStatus == 3) {
+                    user.telphone=@"";
+                    user.email = @"";
+                    user.name=@"";
+                }
+                NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",TABLE_ALL_CONTACTS];
+                //ID,Name,Nick,Avatar,Role,updated,reserve1,reserve2
+                BOOL result = [_database executeUpdate:sql,user.objID,user.name,user.nick,user.avatar,user.departId,user.email,user.position,user.telphone,@(user.sex),user.lastUpdateTime,user.pyname,user.signature];
+                
+                if (!result)
+                {
+                    isRollBack = YES;
+                    *stop = YES;
+                }
+                
+                
+            }];
+            
+        }
+        @catch (NSException *exception) {
+            [_database rollback];
+        }
+        @finally {
+            if (isRollBack)
+            {
+                [_database rollback];
+                DDLog(@"insert to database failure content");
+                NSError* error = [NSError errorWithDomain:@"批量插入全部用户信息失败" code:0 userInfo:nil];
+                completion(error);
+            }
+            else
+            {
+                [_database commit];
+                completion(nil);
+            }
+        }
+    }];
+}
+
+- (void)getAllUsers:(LoadAllContactsComplection )completion
+{
+    
+    
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        if ([_database tableExists:TABLE_ALL_CONTACTS])
+        {
+            [_database setShouldCacheStatements:YES];
+            NSMutableArray* array = [[NSMutableArray alloc] init];
+            NSString* sqlString = [NSString stringWithFormat:@"SELECT * FROM %@ ",TABLE_ALL_CONTACTS];
+            FMResultSet* result = [_database executeQuery:sqlString];
+            ZKUserEntity* user = nil;
+            while ([result next])
+            {
+                user = [self userFromResult:result];
+                if (user.userStatus != 3) {
+                    [array addObject:user];
+                }
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(array,nil);
+            });
+        }
+    }];
+}
+
+- (void)getUserFromID:(NSString*)userID completion:(void(^)(ZKUserEntity *user))completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        if ([_database tableExists:TABLE_ALL_CONTACTS])
+        {
+            [_database setShouldCacheStatements:YES];
+            
+            NSString* sqlString = [NSString stringWithFormat:@"SELECT * FROM %@ where ID= ?",TABLE_ALL_CONTACTS];
+            
+            FMResultSet* result = [_database executeQuery:sqlString,userID];
+            
+            ZKUserEntity* user = nil;
+            while ([result next])
+            {
+                user = [self userFromResult:result];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(user);
+            });
+        }
+    }];
+}
+- (void)loadGroupByIDCompletion:(NSString *)groupID Block:(LoadRecentContactsComplection)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        if ([_database tableExists:TABLE_GROUPS])
+        {
+            [_database setShouldCacheStatements:YES];
+            
+            NSString* sqlString = [NSString stringWithFormat:@"SELECT * FROM %@ where ID= ? ",TABLE_GROUPS];
+            FMResultSet* result = [_database executeQuery:sqlString,groupID];
+            while ([result next])
+            {
+                ZKGroupEntity* group = [self groupFromResult:result];
+                [array addObject:group];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(array,nil);
+            });
+        }
+    }];
+}
+
+- (void)loadGroupsCompletion:(LoadRecentContactsComplection)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        if ([_database tableExists:TABLE_GROUPS])
+        {
+            [_database setShouldCacheStatements:YES];
+            
+            NSString* sqlString = [NSString stringWithFormat:@"SELECT * FROM %@",TABLE_GROUPS];
+            FMResultSet* result = [_database executeQuery:sqlString];
+            while ([result next])
+            {
+                ZKGroupEntity* group = [self groupFromResult:result];
+                [array addObject:group];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(array,nil);
+            });
+        }
+    }];
+}
+
+- (void)updateRecentGroup:(ZKGroupEntity *)group completion:(InsertsRecentContactsCOmplection)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        [_database beginTransaction];
+        __block BOOL isRollBack = NO;
+        @try {
+            NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ VALUES(?,?,?,?,?,?,?,?,?,?)",TABLE_GROUPS];
+            NSString *users = @"";
+            if ([group.groupUserIds count]>0) {
+                users=[group.groupUserIds componentsJoinedByString:@"-"];
+            }
+            BOOL result = [_database executeUpdate:sql,group.objID,group.avatar,@(group.groupType),group.name,group.groupCreatorId,users,group.lastMsg,@(group.lastUpdateTime),@(group.isShield),@(group.objectVersion)];
+            if (!result)
+            {
+                isRollBack = YES;
+            }
+            
+        }
+        @catch (NSException *exception) {
+            [_database rollback];
+        }
+        @finally {
+            if (isRollBack)
+            {
+                [_database rollback];
+                DDLog(@"insert to database failure content");
+                NSError* error = [NSError errorWithDomain:@"插入最近群失败" code:0 userInfo:nil];
+                completion(error);
+            }
+            else
+            {
+                [_database commit];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(nil);
+                });
+            }
+        }
+    }];
+}
+
+- (void)updateRecentSessions:(NSArray *)sessions completion:(InsertsRecentContactsCOmplection)completion{
+    
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        
+        [_database beginTransaction];
+        
+        __block BOOL isRollBack = NO;
+        @try {
+            
+            [sessions enumerateObjectsUsingBlock:^(ZKSessionEntity *session, NSUInteger idx, BOOL *stop) {
+                
+                NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ VALUES(?,?,?,?,?,?,?,?,?,?)",TABLE_RECENT_SESSION];
+                //ID Avatar GroupType Name CreatID Users  LastMessage
+                NSString *users = @"";
+                if ([session.sessionUsers count]>0) {
+                    users=[session.sessionUsers componentsJoinedByString:@"-"];
+                }
+                BOOL result = [_database executeUpdate:sql,session.sessionID,session.avatar,@(session.sessionType),session.name,@(session.timeInterval),@(session.isShield),users,@(session.unReadMsgCount),session.lastMsg,@(session.lastMsgID)];
+                
+                if (!result)
+                {
+                    isRollBack = YES;
+                    *stop = YES;
+                }
+            }];
+        }
+        @catch (NSException *exception) {
+            [_database rollback];
+        }
+        @finally {
+            if (isRollBack)
+            {
+                [_database rollback];
+                DDLog(@"insert to database failure content");
+                NSError* error = [NSError errorWithDomain:@"插入最近Session失败" code:0 userInfo:nil];
+                //                completion(error);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(error);
+                });
+            }
+            else
+            {
+                [_database commit];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(nil);
+                });
+            }
+        }
+    }];
+}
+
+- (void)updateRecentSession:(ZKSessionEntity *)session completion:(InsertsRecentContactsCOmplection)completion{
+    /*
+     ID text UNIQUE,Avatar text, Type integer, Name text,LastMessage Text,updated real,isshield intege  Users Text
+     */
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        [_database beginTransaction];
+        __block BOOL isRollBack = NO;
+        @try {
+            NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ VALUES(?,?,?,?,?,?,?,?,?,?)",TABLE_RECENT_SESSION];
+            //ID Avatar GroupType Name CreatID Users  LastMessage
+            NSString *users = @"";
+            if ([session.sessionUsers count]>0) {
+                users=[session.sessionUsers componentsJoinedByString:@"-"];
+            }
+            BOOL result = [_database executeUpdate:sql,session.sessionID,session.avatar,@(session.sessionType),session.name,@(session.timeInterval),@(session.isShield),users,@(session.unReadMsgCount),session.lastMsg,@(session.lastMsgID)];
+            if (!result)
+            {
+                isRollBack = YES;
+            }
+            
+        }
+        @catch (NSException *exception) {
+            [_database rollback];
+        }
+        @finally {
+            if (isRollBack)
+            {
+                [_database rollback];
+                DDLog(@"insert to database failure content");
+                NSError* error = [NSError errorWithDomain:@"插入最近Session失败" code:0 userInfo:nil];
+                completion(error);
+            }
+            else
+            {
+                [_database commit];
+                completion(nil);
+            }
+        }
+    }];
+}
+
+#pragma session
+- (void)loadSessionsCompletion:(LoadAllSessionsComplection)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        if ([_database tableExists:TABLE_RECENT_SESSION])
+        {
+            [_database setShouldCacheStatements:YES];
+            
+            NSString* sqlString = [NSString stringWithFormat:@"SELECT * FROM %@ order BY updated DESC",TABLE_RECENT_SESSION];
+            FMResultSet* result = [_database executeQuery:sqlString];
+            while ([result next])
+            {
+                ZKSessionEntity* session = [self sessionFromResult:result];
+                [array addObject:session];
+            }
+            //            dispatch_async(dispatch_get_main_queue(), ^{
+            completion(array,nil);
+            //            });
+        }
+    }];
+}
+
+-(ZKSessionEntity *)sessionFromResult:(FMResultSet *)resultSet
+{
+    /*
+     ID text UNIQUE,Avatar text, Type integer, Name text,updated real,isshield integer,Users Text
+     */
+    SessionType type =(SessionType)[resultSet intForColumn:@"type"];
+    ZKSessionEntity* session = [[ZKSessionEntity alloc] initWithSessionID:[resultSet stringForColumn:@"ID"] SessionName:[resultSet stringForColumn:@"name"] type:type];
+    session.avatar=[resultSet stringForColumn:@"avatar"];
+    session.timeInterval=[resultSet longForColumn:@"updated"];
+    session.lastMsg = [resultSet stringForColumn:@"lasMsg"];
+    session.lastMsgID = [resultSet longForColumn:@"lastMsgId"];
+    session.unReadMsgCount = [resultSet longForColumn:@"unreadCount"];
+    return session;
+}
+-(void)removeSession:(NSString *)sessionID
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSString* sql = @"DELETE FROM recentSession WHERE ID = ?";
+        BOOL result = [_database executeUpdate:sql,sessionID];
+        if(result)
+        {
+            NSString* sql = @"DELETE FROM message WHERE sessionId = ?";
+            BOOL result = [_database executeUpdate:sql,sessionID];
+        }
+    }];
+    
+}
 
 @end
