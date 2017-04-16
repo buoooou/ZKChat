@@ -7,7 +7,8 @@
 //
 
 #import "DDGroupModule.h"
-#import "ZKDatabaseUtil+Users.h"
+#import "ZKDatabaseUtil.h"
+#import "NSDictionary+Safe.h"
 
 @implementation DDGroupModule
 - (instancetype)init
@@ -21,23 +22,23 @@
                 if(group.objID)
                 {
                     [self addGroup:group];
-                    GetGroupInfoAPI* request = [[GetGroupInfoAPI alloc] init];
-                    [request requestWithObject:@[@([ZKUtil changeIDToOriginal:group.objID]),@(group.objectVersion)] Completion:^(id response, NSError *error) {
-                        if (!error)
-                        {
-                            if ([response count]) {
-                                ZKGroupEntity* group = (ZKGroupEntity*)response[0];
-                                if (group)
-                                {
-                                    [self addGroup:group];
-                                    [[ZKDatabaseUtil instance] updateRecentGroup:group completion:^(NSError *error) {
-                                        DDLog(@"insert group to database error.");
-                                    }];
-                                }
-                            }
+                   // GetGroupInfoAPI* request = [[GetGroupInfoAPI alloc] init];
+                   // [request requestWithObject:@[@([ZKUtil changeIDToOriginal:group.objID]),@(group.objectVersion)] Completion:^(id response, NSError *error) {
+                    //    if (!error)
+                     //   {
+                      //      if ([response count]) {
+                    //            ZKGroupEntity* group = (ZKGroupEntity*)response[0];
+                     //           if (group)
+                     //           {
+                     //               [self addGroup:group];
+                     //               [[ZKDatabaseUtil instance] updateRecentGroup:group completion:^(NSError *error) {
+                      //                  DDLog(@"insert group to database error.");
+                      //              }];
+                      //          }
+                      //      }
                             
-                        }
-                    }];
+                      //  }
+                   // }];
                     
                 }
             }];
@@ -89,24 +90,24 @@
     if (group) {
         completion(group);
     }else{
-        GetGroupInfoAPI* request = [[GetGroupInfoAPI alloc] init];
-        [request requestWithObject:@[@([MTTUtil changeIDToOriginal:groupID]),@(group.objectVersion)] Completion:^(id response, NSError *error) {
-            if (!error)
-            {
-                if ([response count]) {
-                    ZKGroupEntity* group = (ZKGroupEntity*)response[0];
-                    if (group)
-                    {
-                        [self addGroup:group];
-                        [[ZKDatabaseUtil instance] updateRecentGroup:group completion:^(NSError *error) {
-                            DDLog(@"insert group to database error.");
-                        }];
-                    }
-                    completion(group);
-                }
-                
-            }
-        }];
+//        GetGroupInfoAPI* request = [[GetGroupInfoAPI alloc] init];
+//        [request requestWithObject:@[@([MTTUtil changeIDToOriginal:groupID]),@(group.objectVersion)] Completion:^(id response, NSError *error) {
+//            if (!error)
+//            {
+//                if ([response count]) {
+//                    ZKGroupEntity* group = (ZKGroupEntity*)response[0];
+//                    if (group)
+//                    {
+//                        [self addGroup:group];
+//                        [[ZKDatabaseUtil instance] updateRecentGroup:group completion:^(NSError *error) {
+//                            DDLog(@"insert group to database error.");
+//                        }];
+//                    }
+//                    completion(group);
+//                }
+//
+//            }
+//        }];
     }
     
 }
@@ -119,35 +120,35 @@
 - (void)registerAPI
 {
     
-    DDReceiveGroupAddMemberAPI* addmemberAPI = [[DDReceiveGroupAddMemberAPI alloc] init];
-    [addmemberAPI registerAPIInAPIScheduleReceiveData:^(id object, NSError *error) {
-        if (!error)
-        {
+  //  DDReceiveGroupAddMemberAPI* addmemberAPI = [[DDReceiveGroupAddMemberAPI alloc] init];
+//    [addmemberAPI registerAPIInAPIScheduleReceiveData:^(id object, NSError *error) {
+//        if (!error)
+//        {
             
-            ZKGroupEntity* groupEntity = (ZKGroupEntity*)object;
-            if (!groupEntity)
-            {
-                return;
-            }
-            if ([self getGroupByGId:groupEntity.objID])
-            {
+//            ZKGroupEntity* groupEntity = (ZKGroupEntity*)object;
+//            if (!groupEntity)
+//            {
+//                return;
+//            }
+//            if ([self getGroupByGId:groupEntity.objID])
+//            {
                 //自己本身就在组中
                 
-            }
-            else
-            {
+//            }
+//            else
+//            {
                 //自己被添加进组中
                 
-                groupEntity.lastUpdateTime = [[NSDate date] timeIntervalSince1970];
-                [[DDGroupModule instance] addGroup:groupEntity];
+//                groupEntity.lastUpdateTime = [[NSDate date] timeIntervalSince1970];
+ //               [[DDGroupModule instance] addGroup:groupEntity];
 
-                [[NSNotificationCenter defaultCenter] postNotificationName:DDNotificationRecentContactsUpdate object:nil];
-            }
-        }
-        else
-        {
-            DDLog(@"error:%@",[error domain]);
-        }
-    }];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:DDNotificationRecentContactsUpdate object:nil];
+ //           }
+      //  }
+    //    else
+  //      {
+//            DDLog(@"error:%@",[error domain]);
+     //   }
+   // }];
 }
 @end

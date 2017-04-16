@@ -11,7 +11,9 @@
 #import "ZKUtil.h"
 #import "NSString+DDPath.h"
 #import "RuntimeStatus.h"
-
+#import "ZKUserEntity.h"
+#import "ZKGroupEntity.h"
+#import "NSDictionary+Safe.h"
 
 #define DB_FILE_NAME                    @"tt.sqlite"
 #define TABLE_MESSAGE                   @"message"
@@ -42,7 +44,16 @@
     });
     return zkDataBaseUtil;
 }
-
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        //初始化数据库
+        [self openCurrentUserDB];
+    }
+    return self;
+}
 - (void)openCurrentUserDB
 {
     if (_database)
@@ -139,4 +150,354 @@
     result = [_database executeUpdate:tempSql];
     return result;
 }
+
+- (NSArray*)messageFromSearchResult:(FMResultSet*)resultSet
+{
+    
+    NSString* sessionID = [resultSet stringForColumn:@"sessionId"];
+    NSString* fromUserId = [resultSet stringForColumn:@"fromUserId"];
+    NSString* toUserId = [resultSet stringForColumn:@"toUserId"];
+    NSString* content = [resultSet stringForColumn:@"content"];
+    NSTimeInterval msgTime = [resultSet doubleForColumn:@"msgTime"];
+    MsgType messageType = [resultSet intForColumn:@"messageType"];
+    NSUInteger messageContentType = [resultSet intForColumn:@"messageContentType"];
+    NSUInteger messageID = [resultSet intForColumn:@"messageID"];
+    NSUInteger messageState = [resultSet intForColumn:@"status"];
+    NSUInteger count = [resultSet intForColumn:@"count(*)"];
+    
+    ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:messageID
+                                                                    msgType:messageType
+                                                                    msgTime:msgTime
+                                                                  sessionID:sessionID
+                                                                   senderID:fromUserId
+                                                                 msgContent:content
+                                                                   toUserID:toUserId];
+    messageEntity.state = messageState;
+    messageEntity.msgContentType = messageContentType;
+    NSString* infoString = [resultSet stringForColumn:@"info"];
+    if (infoString)
+    {
+        NSData* infoData = [infoString dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* info = [NSJSONSerialization JSONObjectWithData:infoData options:0 error:nil];
+        NSMutableDictionary* mutalInfo = [NSMutableDictionary dictionaryWithDictionary:info];
+        messageEntity.info = mutalInfo;
+        
+    }
+    return [NSArray arrayWithObjects:@(count),messageEntity, nil];
+}
+
+- (ZKMessageEntity*)messageFromResult:(FMResultSet*)resultSet
+{
+    
+    NSString* sessionID = [resultSet stringForColumn:@"sessionId"];
+    NSString* fromUserId = [resultSet stringForColumn:@"fromUserId"];
+    NSString* toUserId = [resultSet stringForColumn:@"toUserId"];
+    NSString* content = [resultSet stringForColumn:@"content"];
+    NSTimeInterval msgTime = [resultSet doubleForColumn:@"msgTime"];
+    MsgType messageType = [resultSet intForColumn:@"messageType"];
+    NSUInteger messageContentType = [resultSet intForColumn:@"messageContentType"];
+    NSUInteger messageID = [resultSet intForColumn:@"messageID"];
+    NSUInteger messageState = [resultSet intForColumn:@"status"];
+    
+    ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:messageID
+                                                                    msgType:messageType
+                                                                    msgTime:msgTime
+                                                                  sessionID:sessionID
+                                                                   senderID:fromUserId
+                                                                 msgContent:content
+                                                                   toUserID:toUserId];
+    messageEntity.state = messageState;
+    messageEntity.msgContentType = messageContentType;
+    NSString* infoString = [resultSet stringForColumn:@"info"];
+    if (infoString)
+    {
+        NSData* infoData = [infoString dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* info = [NSJSONSerialization JSONObjectWithData:infoData options:0 error:nil];
+        NSMutableDictionary* mutalInfo = [NSMutableDictionary dictionaryWithDictionary:info];
+        messageEntity.info = mutalInfo;
+        
+    }
+    return messageEntity;
+}
+
+- (ZKUserEntity*)userFromResult:(FMResultSet*)resultSet
+{
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic safeSetObject:[resultSet stringForColumn:@"Name"] forKey:@"name"];
+    [dic safeSetObject:[resultSet stringForColumn:@"Nick"] forKey:@"nickName"];
+    [dic safeSetObject:[resultSet stringForColumn:@"ID"] forKey:@"userId"];
+    [dic safeSetObject:[resultSet stringForColumn:@"Department"] forKey:@"department"];
+    [dic safeSetObject:[resultSet stringForColumn:@"Postion"] forKey:@"position"];
+    [dic safeSetObject:[NSNumber numberWithInt:[resultSet intForColumn:@"Sex"]] forKey:@"sex"];
+    [dic safeSetObject:[resultSet stringForColumn:@"DepartID"] forKey:@"departId"];
+    [dic safeSetObject:[resultSet stringForColumn:@"Telphone"] forKey:@"telphone"];
+    [dic safeSetObject:[resultSet stringForColumn:@"Avatar"] forKey:@"avatar"];
+    [dic safeSetObject:[resultSet stringForColumn:@"Email"] forKey:@"email"];
+    [dic safeSetObject:@([resultSet longForColumn:@"updated"]) forKey:@"lastUpdateTime"];
+    [dic safeSetObject:[resultSet stringForColumn:@"pyname"] forKey:@"pyname"];
+    [dic safeSetObject:[resultSet stringForColumn:@"signature"] forKey:@"signature"];
+    ZKUserEntity* user = [ZKUserEntity dicToUserEntity:dic];
+    
+    return user;
+}
+
+-(ZKGroupEntity *)groupFromResult:(FMResultSet *)resultSet
+{
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic safeSetObject:[resultSet stringForColumn:@"Name"] forKey:@"name"];
+    [dic safeSetObject:[resultSet stringForColumn:@"ID"] forKey:@"groupId"];
+    [dic safeSetObject:[resultSet stringForColumn:@"Avatar"] forKey:@"avatar"];
+    [dic safeSetObject:[NSNumber numberWithInt:[resultSet intForColumn:@"GroupType"]] forKey:@"groupType"];
+    [dic safeSetObject:@([resultSet longForColumn:@"updated"]) forKey:@"lastUpdateTime"];
+    [dic safeSetObject:[resultSet stringForColumn:@"CreatID"] forKey:@"creatID"];
+    [dic safeSetObject:[resultSet stringForColumn:@"Users"] forKey:@"Users"];
+    [dic safeSetObject:[resultSet stringForColumn:@"LastMessage"] forKey:@"lastMessage"];
+    [dic safeSetObject:[NSNumber numberWithInt:[resultSet intForColumn:@"isshield"]] forKey:@"isshield"];
+    [dic safeSetObject:[NSNumber numberWithInt:[resultSet intForColumn:@"version"]] forKey:@"version"];
+    ZKGroupEntity* group = [ZKGroupEntity dicToZKGroupEntity:dic];
+    
+    return group;
+}
+
+#pragma mark message
+- (void)loadMessageForSessionID:(NSString*)sessionID pageCount:(int)pagecount index:(NSInteger)index completion:(LoadMessageInSessionCompletion)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        if ([_database tableExists:TABLE_MESSAGE])
+        {
+            [_database setShouldCacheStatements:YES];
+            
+            NSString* sqlString = [NSString stringWithFormat:@"SELECT * FROM message where sessionId=? ORDER BY msgTime DESC limit ?,?"];
+            FMResultSet* result = [_database executeQuery:sqlString,sessionID,[NSNumber numberWithInteger:index],[NSNumber numberWithInteger:pagecount]];
+            while ([result next])
+            {
+                ZKMessageEntity* message = [self messageFromResult:result];
+                [array addObject:message];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                completion(array,nil);
+            });
+        }
+    }];
+}
+
+- (void)loadMessageForSessionID:(NSString*)sessionID afterMessage:(ZKMessageEntity*)message completion:(LoadMessageInSessionCompletion)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        if ([_database tableExists:TABLE_MESSAGE])
+        {
+            [_database setShouldCacheStatements:YES];
+            NSString* sqlString = [NSString stringWithFormat:@"select * from %@ where sessionId = '%@' AND messageID >= ? order by msgTime DESC,messageID DESC",TABLE_MESSAGE,sessionID];
+            FMResultSet* result = [_database executeQuery:sqlString,@(message.msgID)];
+            while ([result next])
+            {
+                ZKMessageEntity* message = [self messageFromResult:result];
+                [array addObject:message];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(array,nil);
+            });
+        }
+    }];
+}
+
+- (void)searchHistory:(NSString *)key completion:(LoadMessageInSessionCompletion)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        if ([_database tableExists:TABLE_MESSAGE])
+        {
+            [_database setShouldCacheStatements:YES];
+            NSString* sqlString = [NSString stringWithFormat:@"select count(*),* from %@ where content like '%%%@%%' and content not like '%%&$#@~^@[{:%%' GROUP BY sessionId",TABLE_MESSAGE,key];
+            FMResultSet* result = [_database executeQuery:sqlString];
+            while ([result next])
+            {
+                NSArray* message = [self messageFromSearchResult:result];
+                [array addObject:message];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(array,nil);
+            });
+        }
+    }];
+}
+
+- (void)searchHistoryBySessionId:(NSString *)key sessionId:(NSString *)sessionId completion:(LoadMessageInSessionCompletion)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSMutableArray* array = [[NSMutableArray alloc] init];
+        if ([_database tableExists:TABLE_MESSAGE])
+        {
+            [_database setShouldCacheStatements:YES];
+            NSString* sqlString = [NSString stringWithFormat:@"select * from %@ where content like '%%%@%%' and sessionId = '%@' and content not like '%%&$#@~^@[{:%%'",TABLE_MESSAGE,key,sessionId];
+            FMResultSet* result = [_database executeQuery:sqlString];
+            while ([result next])
+            {
+                ZKMessageEntity* message = [self messageFromResult:result];
+                [array addObject:message];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(array,nil);
+            });
+        }
+    }];
+}
+
+- (void)getLasetCommodityTypeImageForSession:(NSString*)sessionID completion:(DDGetLastestCommodityMessageCompletion)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        if ([_database tableExists:TABLE_MESSAGE])
+        {
+            [_database setShouldCacheStatements:YES];
+            NSString* sqlString = [NSString stringWithFormat:@"SELECT * from %@ where sessionId=? AND messageType = ? ORDER BY msgTime DESC,rowid DESC limit 0,1",TABLE_MESSAGE];
+            FMResultSet* result = [_database executeQuery:sqlString,sessionID,@(4)];
+            ZKMessageEntity* message = nil;
+            while ([result next])
+            {
+                message = [self messageFromResult:result];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(message);
+            });
+        }
+    }];
+}
+
+- (void)getLastestMessageForSessionID:(NSString*)sessionID completion:(DDDBGetLastestMessageCompletion)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        if ([_database tableExists:TABLE_MESSAGE])
+        {
+            [_database setShouldCacheStatements:YES];
+            
+            NSString* sqlString = [NSString stringWithFormat:@"SELECT * FROM %@ where sessionId=? and status = 2 ORDER BY messageId DESC limit 0,1",TABLE_MESSAGE];
+            
+            FMResultSet* result = [_database executeQuery:sqlString,sessionID];
+            ZKMessageEntity* message = nil;
+            while ([result next])
+            {
+                message = [self messageFromResult:result];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(message,nil);
+                });
+                
+                break;
+            }
+            if(message == nil){
+                completion(message,nil);
+            }
+        }
+    }];
+}
+
+
+
+- (void)getMessagesCountForSessionID:(NSString*)sessionID completion:(MessageCountCompletion)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        if ([_database tableExists:TABLE_MESSAGE])
+        {
+            [_database setShouldCacheStatements:YES];
+            
+            NSString* sqlString = [NSString stringWithFormat:@"SELECT COUNT(*) FROM %@ where sessionId=?",TABLE_MESSAGE];
+            
+            FMResultSet* result = [_database executeQuery:sqlString,sessionID];
+            int count = 0;
+            while ([result next])
+            {
+                count = [result intForColumnIndex:0];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(count);
+            });
+        }
+    }];
+}
+
+- (void)insertMessages:(NSArray*)messages
+               success:(void(^)())success
+               failure:(void(^)(NSString* errorDescripe))failure
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        [_database beginTransaction];
+        __block BOOL isRollBack = NO;
+        @try {
+            [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                ZKMessageEntity* message = (ZKMessageEntity*)obj;
+                NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",TABLE_MESSAGE];
+                
+                NSData* infoJsonData = [NSJSONSerialization dataWithJSONObject:message.info options:NSJSONWritingPrettyPrinted error:nil];
+                NSString* json = [[NSString alloc] initWithData:infoJsonData encoding:NSUTF8StringEncoding];
+                
+                BOOL result = [_database executeUpdate:sql,@(message.msgID),message.sessionId,message.senderId,message.toUserID,message.msgContent,@(message.state),@(message.msgTime),@(1),@(message.msgContentType),@(message.msgType),json,@(0),@""];
+                
+                if (!result)
+                {
+                    isRollBack = YES;
+                    *stop = YES;
+                }
+            }];
+        }
+        @catch (NSException *exception) {
+            [_database rollback];
+            failure(@"插入数据失败");
+        }
+        @finally {
+            if (isRollBack)
+            {
+                [_database rollback];
+                DDLog(@"insert to database failure content");
+                failure(@"插入数据失败");
+            }
+            else
+            {
+                [_database commit];
+                success();
+            }
+        }
+    }];
+}
+
+- (void)deleteMesagesForSession:(NSString*)sessionID completion:(DeleteSessionCompletion)completion
+{
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSString* sql = @"DELETE FROM message WHERE sessionId = ?";
+        BOOL result = [_database executeUpdate:sql,sessionID];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(result);
+        });
+    }];
+}
+
+- (void)deleteMesages:(ZKMessageEntity * )message completion:(DeleteSessionCompletion)completion
+{
+    ;
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSString* sql = @"DELETE FROM message WHERE messageID = ?";
+        BOOL result = [_database executeUpdate:sql,@(message.msgID)];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(result);
+        });
+    }];
+}
+
+- (void)updateMessageForMessage:(ZKMessageEntity*)message completion:(DDUpdateMessageCompletion)completion
+{
+    //(messageID integer,sessionId text,fromUserId text,toUserId text,content text, status integer, msgTime real, sessionType integer,messageType integer,reserve1 integer,reserve2 text)
+    [_dataBaseQueue inDatabase:^(FMDatabase *db) {
+        NSString* sql = [NSString stringWithFormat:@"UPDATE %@ set sessionId = ? , fromUserId = ? , toUserId = ? , content = ? , status = ? , msgTime = ? , sessionType = ? , messageType = ? ,messageContentType = ? , info = ? where messageID = ?",TABLE_MESSAGE];
+        
+        NSData* infoJsonData = [NSJSONSerialization dataWithJSONObject:message.info options:NSJSONWritingPrettyPrinted error:nil];
+        NSString* json = [[NSString alloc] initWithData:infoJsonData encoding:NSUTF8StringEncoding];
+        BOOL result = [_database executeUpdate:sql,message.sessionId,message.senderId,message.toUserID,message.msgContent,@(message.state),@(message.msgTime),@(message.sessionType),@(message.msgType),@(message.msgContentType),json,@(message.msgID)];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(result);
+        });
+    }];
+}
+
+
 @end
