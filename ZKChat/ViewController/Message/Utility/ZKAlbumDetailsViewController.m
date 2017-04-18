@@ -50,9 +50,9 @@
         
         [self.assetsArray addObject:asset];
     }
-
+    
     [self.gridView reloadData];
-  
+    
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(backToRoot)];
     self.navigationItem.rightBarButtonItem=item;
     self.bar = [[ZKAlbumDetailsBottomBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-45, FULL_WIDTH, 45)];
@@ -78,14 +78,14 @@
             weakSelf.photos = [NSMutableArray new];
             for (int i =0; i<[weakSelf.choosePhotosArray count]; i++) {
                 PHAsset *asset = [weakSelf.choosePhotosArray objectAtIndex:i];
-
-                    MWPhoto *photo =[MWPhoto photoWithAsset:asset targetSize:CGSizeMake(asset.pixelHeight, asset.pixelWidth)];
-                    [self.photos addObject:photo];
+                
+                MWPhoto *photo =[MWPhoto photoWithAsset:asset targetSize:CGSizeMake(asset.pixelHeight, asset.pixelWidth)];
+                [self.photos addObject:photo];
                 
                 [self.selections addObject:@(1)];
             }
-
-//            [self.photoBrowser reloadData];
+            
+            //            [self.photoBrowser reloadData];
             UIView *toolView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, FULL_WIDTH, 50)];
             [toolView setBackgroundColor:RGBA(0, 0, 0, 0.7)];
             self.button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -106,7 +106,7 @@
             [self pushViewController:self.photoBrowser animated:YES];
             [self.photoBrowser showNextPhotoAnimated:YES];
             [self.photoBrowser showPreviousPhotoAnimated:YES];
-
+            
             
         }else
         {
@@ -217,12 +217,12 @@
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
     options.resizeMode=PHImageRequestOptionsResizeModeExact;
-
+    
     // 从asset中获得图片
     [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(CGRectGetWidth(cell.frame)*[UIScreen mainScreen].scale, CGRectGetHeight(cell.frame)*[UIScreen mainScreen].scale) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         cell.image = result;
     }];
-
+    
     cell.tag=index;
     if ([self.choosePhotosArray containsObject:asset]) {
         [cell setCellIsToHighlight:YES];
@@ -256,7 +256,7 @@
 {
     return CGSizeMake(75, 80);
 }
--(IBAction)sendPhotos:(id)sender
+-(void)sendPhotos:(id)sender
 {
     UIButton *button =(UIButton *)sender;
     [button setEnabled:NO];

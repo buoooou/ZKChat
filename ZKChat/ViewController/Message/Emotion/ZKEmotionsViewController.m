@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.frame=CGRectMake(0, 0, SCREEN_WIDTH, 216);
-
+    
     self.view.backgroundColor=RGB(244, 244, 246);
     UIView *topLine = [UIView new];
     [topLine setBackgroundColor:RGB(188, 188, 188)];

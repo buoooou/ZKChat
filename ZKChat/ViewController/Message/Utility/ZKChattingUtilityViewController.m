@@ -11,7 +11,7 @@
 #import "ZKConstant.h"
 #import "ZKChattingMainViewController.h"
 #import "ZKAlbumViewController.h"
-#import <Photos/Photos.h> 
+#import <Photos/Photos.h>
 
 @interface ZKChattingUtilityViewController ()
 @property(nonatomic,strong)NSArray *itemsArray;
@@ -129,21 +129,21 @@
 -(void)choosePicture:(id)sender
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-    self.imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
-    if (status == PHAuthorizationStatusRestricted ||
-        status == PHAuthorizationStatusDenied) {
-//        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-//        if ([[UIApplication sharedApplication]canOpenURL:url]) {
-//            [[UIApplication sharedApplication] openURL:url options:nil completionHandler:nil];
-//        }
-    }
-    if(status==PHAuthorizationStatusAuthorized){
-        [self pushViewController:[ZKAlbumViewController new] animated:YES];
-    }
+        self.imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+            self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+        if (status == PHAuthorizationStatusRestricted ||
+            status == PHAuthorizationStatusDenied) {
+            //        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            //        if ([[UIApplication sharedApplication]canOpenURL:url]) {
+            //            [[UIApplication sharedApplication] openURL:url options:nil completionHandler:nil];
+            //        }
+        }
+        if(status==PHAuthorizationStatusAuthorized){
+            [self pushViewController:[ZKAlbumViewController new] animated:YES];
+        }
     });
 }
 -(void)takePicture:(id)sender
@@ -170,7 +170,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-
+    
 }
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker
 {
@@ -180,14 +180,14 @@
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-//    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]){
-
+    //    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]){
+    
     __block UIImage *theImage = nil;
     if ([picker allowsEditing]){
         theImage = [info objectForKey:UIImagePickerControllerEditedImage];
     } else {
         theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-            
+        
     }
     UIImage *image = [self scaleImage:theImage toScale:0.3];
     NSData *imageData = UIImageJPEGRepresentation(image, (CGFloat)1.0);

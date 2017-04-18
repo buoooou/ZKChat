@@ -126,10 +126,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 }
 -(void)notificationCenter
 {
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(n_receiveMessage:)
-//                                                 name:DDNotificationReceiveMessage
-//                                               object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                             selector:@selector(n_receiveMessage:)
+    //                                                 name:DDNotificationReceiveMessage
+    //                                               object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleWillShowKeyboard:)
@@ -140,10 +140,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
                                              selector:@selector(handleWillHideKeyboard:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(reloginSuccess)
-//                                                 name:@"ReloginSuccess"
-//                                               object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                             selector:@selector(reloginSuccess)
+    //                                                 name:@"ReloginSuccess"
+    //                                               object:nil];
 }
 
 - (void)viewDidLoad {
@@ -160,9 +160,9 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self.tableView setTableHeaderView:headView];
     //去分割线
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-   [self scrollToBottomAnimated:NO];
+    [self scrollToBottomAnimated:NO];
     
-  //  [self initScrollView];
+    //  [self initScrollView];
     
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"myprofile"]
                                                              style:UIBarButtonItemStylePlain
@@ -173,10 +173,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
                   forKeyPath:@"showingMessages"
                      options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew
                      context:NULL];
-//    [self.module addObserver:self
-//                  forKeyPath:@"ZKSessionEntity.sessionID"
-//                     options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
-//                     context:NULL];
+    //    [self.module addObserver:self
+    //                  forKeyPath:@"ZKSessionEntity.sessionID"
+    //                     options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+    //                     context:NULL];
     [self.navigationItem.titleView setUserInteractionEnabled:YES];
     self.view.backgroundColor=ZKBG;
     
@@ -190,7 +190,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.isGotoAt = NO;
     self.ifScrollBottom = YES;
-
+    
     
 }
 - (ChattingModule*)module
@@ -239,23 +239,23 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     
     [self.tableView reloadData];
     [self.chatInputView.textView setText:nil];
-//    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-//        DDLog(@"消息插入DB成功");
-//    } failure:^(NSString *errorDescripe) {
-//        DDLog(@"消息插入DB失败");
-//    }];
+    //    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
+    //        DDLog(@"消息插入DB成功");
+    //    } failure:^(NSString *errorDescripe) {
+    //        DDLog(@"消息插入DB失败");
+    //    }];
     [self sendMessage:text messageEntity:message];
 }
 
 -(void)sendMessage:(NSString *)msg messageEntity:(ZKMessageEntity *)message
 {
-         //BOOL isGroup = [self.module.ZKSessionEntity isGroup];
+    //BOOL isGroup = [self.module.ZKSessionEntity isGroup];
     //    [[DDMessageSendManager instance] sendMessage:message isGroup:isGroup Session:self.module.MTTSessionEntity  completion:^(ZKMessageEntity* theMessage,NSError *error) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
+    //            dispatch_async(dispatch_get_main_queue(), ^{
     //            message.state= theMessage.state;
-                [self.tableView reloadData];
+    [self.tableView reloadData];
     [self scrollToBottomAnimated:YES];
-//            });
+    //            });
     //    } Error:^(NSError *error) {
     //        [self.tableView reloadData];
     //    }];
@@ -270,39 +270,39 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self scrollToBottomAnimated:YES];
     NSData *photoData = UIImagePNGRepresentation(image);
     [[ZKPhotosCache sharedPhotoCache] storePhoto:photoData forKey:photo.localPath toDisk:YES];
-  //  [self.chatInputView.textView setText:@""];
-//    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-//        DDLog(@"消息插入DB成功");
-//        
-//    } failure:^(NSString *errorDescripe) {
-//        DDLog(@"消息插入DB失败");
-//    }];
+    //  [self.chatInputView.textView setText:@""];
+    //    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
+    //        DDLog(@"消息插入DB成功");
+    //
+    //    } failure:^(NSString *errorDescripe) {
+    //        DDLog(@"消息插入DB失败");
+    //    }];
     photo=nil;
-//    [[DDSendPhotoMessageAPI sharedPhotoCache] uploadImage:messageContentDic[DD_IMAGE_LOCAL_KEY] success:^(NSString *imageURL) {
-        [self scrollToBottomAnimated:YES];
-        message.state=DDMessageSending;
-        NSDictionary* tempMessageContent = [NSDictionary initWithJsonString:message.msgContent];
-        NSMutableDictionary* mutalMessageContent = [[NSMutableDictionary alloc] initWithDictionary:tempMessageContent];
-//        [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
-//        NSString* messageContent = [mutalMessageContent jsonString];
-//        message.msgContent = messageContent;
-        [self sendMessage:@"" messageEntity:message];
-//        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-//        }];
+    //    [[DDSendPhotoMessageAPI sharedPhotoCache] uploadImage:messageContentDic[DD_IMAGE_LOCAL_KEY] success:^(NSString *imageURL) {
+    [self scrollToBottomAnimated:YES];
+    message.state=DDMessageSending;
+    NSDictionary* tempMessageContent = [NSDictionary initWithJsonString:message.msgContent];
+    NSMutableDictionary* mutalMessageContent = [[NSMutableDictionary alloc] initWithDictionary:tempMessageContent];
+    //        [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
+    //        NSString* messageContent = [mutalMessageContent jsonString];
+    //        message.msgContent = messageContent;
+    [self sendMessage:@"" messageEntity:message];
+    //        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+    //        }];
     
-//    } failure:^(id error) {
-//        message.state = DDMessageSendFailure;
-//        //刷新DB
-//        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-//            if (result)
-//            {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [_tableView reloadData];
-//                });
-//           }
-//          }];
-//        
-//    }];
+    //    } failure:^(id error) {
+    //        message.state = DDMessageSendFailure;
+    //        //刷新DB
+    //        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+    //            if (result)
+    //            {
+    //                dispatch_async(dispatch_get_main_queue(), ^{
+    //                    [_tableView reloadData];
+    //                });
+    //           }
+    //          }];
+    //
+    //    }];
 }
 
 #pragma mark RecordingDelegate
@@ -310,80 +310,80 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 {
     NSMutableData* muData = [[NSMutableData alloc] init];
     NSData* data = [NSData dataWithContentsOfFile:filePath];
-//    int length = [RecorderManager sharedManager].recordedTimeInterval;
-//    if (length < 1 )
-//    {
-//        DDLog(@"录音时间太短");
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [_recordingView setHidden:NO];
-//            [_recordingView setRecordingState:DDShowRecordTimeTooShort];
-//        });
-//        return;
-//    }
-//    else
-//    {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [_recordingView setHidden:YES];
-//        });
-//    }
-//    int8_t ch[4];
-//    for(int32_t i = 0;i<4;i++){
-//        ch[i] = ((length >> ((3 - i)*8)) & 0x0ff);
-//    }
-//    [muData appendBytes:ch length:4];
-//    [muData appendData:data];
-//    DDMessageContentType msgContentType = DDMessageTypeVoice;
-//    ZKMessageEntity* message = [ZKMessageEntity makeMessage:filePath Module:self.module MsgType:msgContentType];
-//    [self.tableView reloadData];
-//    [self scrollToBottomAnimated:YES];
-////    BOOL isGroup = [self.module.ZKMessageEntity isGroup];
-//    if (isGroup) {
-//        message.msgType=MsgTypeMsgTypeGroupAudio;
-//    }else
-//    {
-//        message.msgType = MsgTypeMsgTypeSingleAudio;
-//    }
-//    [message.info setObject:@(length) forKey:VOICE_LENGTH];
-//    [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self scrollToBottomAnimated:YES];
-//        [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-//            NSLog(@"消息插入DB成功");
-//        } failure:^(NSString *errorDescripe) {
-//            NSLog(@"消息插入DB失败");
-//        }];
-//        
-//    });
-//    
-//    [[DDMessageSendManager instance] sendVoiceMessage:muData filePath:filePath forSessionID:self.module.MTTSessionEntity.sessionID isGroup:isGroup Message:message Session:self.module.MTTSessionEntity completion:^(MTTMessageEntity *theMessage, NSError *error) {
-//        if (!error)
-//        {
-//            DDLog(@"发送语音消息成功");
-//            [[PlayerManager sharedManager] playAudioWithFileName:@"msg.caf" playerType:DDSpeaker delegate:self];
-//            message.state = DDmessageSendSuccess;
-//            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-//                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [_tableView reloadData];
-//                });
-//                
-//                
-//            }];
-//        }
-//        else
-//        {
-//            DDLog(@"发送语音消息失败");
-//            message.state = DDMessageSendFailure;
-//            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-//                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [_tableView reloadData];
-//                });
-//                
-//            }];
-//            
-//        }
-//    }];
+    //    int length = [RecorderManager sharedManager].recordedTimeInterval;
+    //    if (length < 1 )
+    //    {
+    //        DDLog(@"录音时间太短");
+    //        dispatch_async(dispatch_get_main_queue(), ^{
+    //            [_recordingView setHidden:NO];
+    //            [_recordingView setRecordingState:DDShowRecordTimeTooShort];
+    //        });
+    //        return;
+    //    }
+    //    else
+    //    {
+    //        dispatch_async(dispatch_get_main_queue(), ^{
+    //            [_recordingView setHidden:YES];
+    //        });
+    //    }
+    //    int8_t ch[4];
+    //    for(int32_t i = 0;i<4;i++){
+    //        ch[i] = ((length >> ((3 - i)*8)) & 0x0ff);
+    //    }
+    //    [muData appendBytes:ch length:4];
+    //    [muData appendData:data];
+    //    DDMessageContentType msgContentType = DDMessageTypeVoice;
+    //    ZKMessageEntity* message = [ZKMessageEntity makeMessage:filePath Module:self.module MsgType:msgContentType];
+    //    [self.tableView reloadData];
+    //    [self scrollToBottomAnimated:YES];
+    ////    BOOL isGroup = [self.module.ZKMessageEntity isGroup];
+    //    if (isGroup) {
+    //        message.msgType=MsgTypeMsgTypeGroupAudio;
+    //    }else
+    //    {
+    //        message.msgType = MsgTypeMsgTypeSingleAudio;
+    //    }
+    //    [message.info setObject:@(length) forKey:VOICE_LENGTH];
+    //    [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    //        [self scrollToBottomAnimated:YES];
+    //        [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
+    //            NSLog(@"消息插入DB成功");
+    //        } failure:^(NSString *errorDescripe) {
+    //            NSLog(@"消息插入DB失败");
+    //        }];
+    //
+    //    });
+    //
+    //    [[DDMessageSendManager instance] sendVoiceMessage:muData filePath:filePath forSessionID:self.module.MTTSessionEntity.sessionID isGroup:isGroup Message:message Session:self.module.MTTSessionEntity completion:^(MTTMessageEntity *theMessage, NSError *error) {
+    //        if (!error)
+    //        {
+    //            DDLog(@"发送语音消息成功");
+    //            [[PlayerManager sharedManager] playAudioWithFileName:@"msg.caf" playerType:DDSpeaker delegate:self];
+    //            message.state = DDmessageSendSuccess;
+    //            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+    //
+    //                dispatch_async(dispatch_get_main_queue(), ^{
+    //                    [_tableView reloadData];
+    //                });
+    //
+    //
+    //            }];
+    //        }
+    //        else
+    //        {
+    //            DDLog(@"发送语音消息失败");
+    //            message.state = DDMessageSendFailure;
+    //            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+    //
+    //                dispatch_async(dispatch_get_main_queue(), ^{
+    //                    [_tableView reloadData];
+    //                });
+    //
+    //            }];
+    //
+    //        }
+    //    }];
 }
 
 - (void)playingStoped
@@ -461,8 +461,8 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self.navigationController.navigationBar setHidden:NO];
     if (self.ddUtility != nil)
     {
-       // NSString *sessionId = self.module.ZKSessionEntity.sessionID;
-//        self.ddUtility.userId = [ZKUserEntity localIDTopb:sessionId];
+        // NSString *sessionId = self.module.ZKSessionEntity.sessionID;
+        //        self.ddUtility.userId = [ZKUserEntity localIDTopb:sessionId];
         self.ddUtility.userId = [ZKUserEntity localIDTopb:@"sdf"];
     }
 }
@@ -606,21 +606,21 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     cell.session =self.module.ZKSessionEntity;
     NSString* myUserID = [RuntimeStatus instance].user.objID;
-//    if ([message.senderId isEqualToString:myUserID])
-//    {
-//        [cell setLocation:DDBubbleRight];
-//    }
-//    else
-//    {
-        [cell setLocation:DDBubbleRight];
-//    }
+    //    if ([message.senderId isEqualToString:myUserID])
+    //    {
+    //        [cell setLocation:DDBubbleRight];
+    //    }
+    //    else
+    //    {
+    [cell setLocation:DDBubbleRight];
+    //    }
     
-//    if (![[UnAckMessageManager instance] isInUnAckQueue:message] && message.state == DDMessageSending && [message isSendBySelf]) {
-//        message.state=DDMessageSendFailure;
-//    }
-//    [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-//        
-//    }];
+    //    if (![[UnAckMessageManager instance] isInUnAckQueue:message] && message.state == DDMessageSending && [message isSendBySelf]) {
+    //        message.state=DDMessageSendFailure;
+    //    }
+    //    [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+    //
+    //    }];
     
     [cell setContent:message];
     __weak DDChatTextCell* weakCell = (DDChatTextCell*)cell;
@@ -654,42 +654,42 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     __weak DDChatVoiceCell* weakCell = (DDChatVoiceCell*)cell;
     [(DDChatVoiceCell*)cell setTapInBubble:^{
         //播放语音
-//        if ([[PlayerManager sharedManager] playingFileName:message.msgContent]) {
-//            [[PlayerManager sharedManager] stopPlaying];
-//        }else{
-//            NSString* fileName = message.msgContent;
-//            [[PlayerManager sharedManager] playAudioWithFileName:fileName delegate:self];
-//            [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
-//            [weakCell showVoicePlayed];
-//            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-//            }];
-//            
-//        }
+        //        if ([[PlayerManager sharedManager] playingFileName:message.msgContent]) {
+        //            [[PlayerManager sharedManager] stopPlaying];
+        //        }else{
+        //            NSString* fileName = message.msgContent;
+        //            [[PlayerManager sharedManager] playAudioWithFileName:fileName delegate:self];
+        //            [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
+        //            [weakCell showVoicePlayed];
+        //            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+        //            }];
+        //
+        //        }
         
     }];
     
     [(DDChatVoiceCell*)cell setEarphonePlay:^{
         //听筒播放
         NSString* fileName = message.msgContent;
-//        [[PlayerManager sharedManager] playAudioWithFileName:fileName playerType:DDEarPhone delegate:self];
-//        [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
-//        [weakCell showVoicePlayed];
-//        
-//        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-//            
-//        }];
+        //        [[PlayerManager sharedManager] playAudioWithFileName:fileName playerType:DDEarPhone delegate:self];
+        //        [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
+        //        [weakCell showVoicePlayed];
+        //
+        //        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+        //
+        //        }];
         
     }];
     
     [(DDChatVoiceCell*)cell setSpeakerPlay:^{
         //扬声器播放
-//        NSString* fileName = message.msgContent;
-//        [[PlayerManager sharedManager] playAudioWithFileName:fileName playerType:DDSpeaker delegate:self];
-//        [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
-//        [weakCell showVoicePlayed];
-//        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-//            
-//        }];
+        //        NSString* fileName = message.msgContent;
+        //        [[PlayerManager sharedManager] playAudioWithFileName:fileName playerType:DDSpeaker delegate:self];
+        //        [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
+        //        [weakCell showVoicePlayed];
+        //        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+        //
+        //        }];
         
     }];
     [(DDChatVoiceCell *)cell setSendAgain:^{
@@ -710,14 +710,14 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     cell.session =self.module.ZKSessionEntity;
     NSString* myUserID =[RuntimeStatus instance].user.objID;
-//    if ([message.senderId isEqualToString:myUserID])
-//    {
-        [cell setLocation:DDBubbleRight];
-//    }
-//    else
-//    {
-//        [cell setLocation:DDBubbleLeft];
-//    }
+    //    if ([message.senderId isEqualToString:myUserID])
+    //    {
+    [cell setLocation:DDBubbleRight];
+    //    }
+    //    else
+    //    {
+    //        [cell setLocation:DDBubbleLeft];
+    //    }
     
     [cell setContent:message];
     __weak DDEmotionCell* weakCell = cell;
@@ -744,18 +744,18 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     cell.session =self.module.ZKSessionEntity;
     NSString* myUserID =[RuntimeStatus instance].user.objID;
-//    if ([message.senderId isEqualToString:myUserID])
-//    {
-        [cell setLocation:DDBubbleRight];
-//    }
-//    else
-//    {
-//        [cell setLocation:DDBubbleLeft];
-//    }
+    //    if ([message.senderId isEqualToString:myUserID])
+    //    {
+    [cell setLocation:DDBubbleRight];
+    //    }
+    //    else
+    //    {
+    //        [cell setLocation:DDBubbleLeft];
+    //    }
     
-   // [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-        
-   // }];
+    // [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+    
+    // }];
     [cell setContent:message];
     __weak DDChatImageCell* weakCell = cell;
     
@@ -799,7 +799,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         }];
         preViewControll.photos=array;
         preViewControll.index=[photos indexOfObject:url];
-          //      [preViewControll addChildViewController:preViewControll];
+        //      [preViewControll addChildViewController:preViewControll];
         
         [self presentViewController:preViewControll animated:YES completion:NULL];
     }];
@@ -818,8 +818,8 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     [_recordingView setHidden:NO];
     [_recordingView setRecordingState:DDShowVolumnState];
-//    [[RecorderManager sharedManager] setDelegate:self];
-//    [[RecorderManager sharedManager] startRecording];
+    //    [[RecorderManager sharedManager] setDelegate:self];
+    //    [[RecorderManager sharedManager] startRecording];
     NSLog(@"record");
 }
 
@@ -843,7 +843,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 {
     [self.chatInputView.recordButton setHighlighted:NO];
     [self.chatInputView.buttonTitle setText:@"按住说话"];
-     [_recordingView setHidden:YES];
+    [_recordingView setHidden:YES];
     //[[RecorderManager sharedManager] stopRecording];
     NSLog(@"send record");
 }
@@ -872,11 +872,11 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     ZKMessageEntity *message = [ZKMessageEntity makeMessage:string Module:self.module MsgType:msgContentType];
     [self.tableView reloadData];
     //[self.chatInputView.textView setText:nil];
-//    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-//        DDLog(@"消息插入DB成功");
-//    } failure:^(NSString *errorDescripe) {
-//        DDLog(@"消息插入DB失败");
-//    }];
+    //    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
+    //        DDLog(@"消息插入DB成功");
+    //    } failure:^(NSString *errorDescripe) {
+    //        DDLog(@"消息插入DB失败");
+    //    }];
     [self sendMessage:string messageEntity:message];
     
 }
@@ -911,11 +911,11 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     
-//    if ([keyPath isEqualToString:@"MTTSessionEntity.sessionID"]) {
-//        if ([change objectForKey:@"new"] !=nil) {
-//            [self setThisViewTitle:self.module.ZKSessionEntity.name];
-//        }
-//    }
+    //    if ([keyPath isEqualToString:@"MTTSessionEntity.sessionID"]) {
+    //        if ([change objectForKey:@"new"] !=nil) {
+    //            [self setThisViewTitle:self.module.ZKSessionEntity.name];
+    //        }
+    //    }
     if ([keyPath isEqualToString:@"showingMessages"]) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -1048,7 +1048,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     if (self.ddUtility == nil)
     {
         self.ddUtility = [ZKChattingUtilityViewController new];
-//        NSString *sessionId = self.module.ZKSessionEntity.sessionID;
+        //        NSString *sessionId = self.module.ZKSessionEntity.sessionID;
         NSString *sessionId =@"zk";
         if(self.module.isGroup){
             self.ddUtility.userId = 0;
@@ -1114,7 +1114,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         self.emotions = [ZKEmotionsViewController new];
         [self.emotions.view setBackgroundColor:[UIColor whiteColor]];
         self.emotions.view.frame=DDCOMPONENT_BOTTOM;
-//        self.emotions.delegate = self;
+        //        self.emotions.delegate = self;
         [self.view addSubview:self.emotions.view];
     }
     if (_bottomShowComponent & DDShowKeyboard)

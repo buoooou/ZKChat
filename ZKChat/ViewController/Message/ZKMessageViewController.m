@@ -53,8 +53,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-     [self.tableView reloadData];
-     self.title=APP_NAME;
+    [self.tableView reloadData];
+    self.title=APP_NAME;
     self.navigationController.navigationBarHidden =NO;
 }
 
@@ -89,12 +89,12 @@
 {
     CGFloat height;
     if(indexPath.section == 0){
-//        if(self.isMacOnline){
-//            height = 45;
-//        }else{
-//            height = 0;
-//        }
-         height = 0;//其他设备登录标示
+        //        if(self.isMacOnline){
+        //            height = 45;
+        //        }else{
+        //            height = 0;
+        //        }
+        height = 0;//其他设备登录标示
     }else{
         height = 65;
     }
@@ -113,23 +113,23 @@
 {
     if(indexPath.section == 0){
         static NSString* cellIdentifier = @"ZKPCStatusCellIdentifier";
-//        ZKPCStatusCell* cell = (MTTPCStatusCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//        if (!cell)
-//        {
-//            cell = [[MTTPCStatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//        }
-//        if(!self.isMacOnline){
-//            [cell setHidden:YES];
-//        }
+        //        ZKPCStatusCell* cell = (MTTPCStatusCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        //        if (!cell)
+        //        {
+        //            cell = [[MTTPCStatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        //        }
+        //        if(!self.isMacOnline){
+        //            [cell setHidden:YES];
+        //        }
         //pc设备登录提示
         ZKNormalCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         cell.backgroundColor=RGB(200, 200, 209);
-
+        
         UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(80, 12, SCREEN_WIDTH, 20)];
         label.text=@"ZKChat已在Mac登录";
         label.textColor=ZKGRAY;
         label.font=systemFont(14);
-
+        
         [cell addSubview:label];
         cell.imageView.image = [UIImage imageNamed:@"mac_logined"];
         [cell setHidden:YES];
@@ -141,22 +141,22 @@
         {
             cell = [[ZKRecentUserCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-//        NSInteger row = [indexPath row];
+        //        NSInteger row = [indexPath row];
         UIView *view = [[UIView alloc] initWithFrame:cell.bounds];
         view.backgroundColor=RGB(229, 229, 229);
-//        MTTSessionEntity *session = self.items[row];
-//        if(session.isFixedTop){
-//            [cell setBackgroundColor:RGB(243, 243, 247)];
-//        }else{
-//            [cell setBackgroundColor:[UIColor whiteColor]];
-//        }
+        //        MTTSessionEntity *session = self.items[row];
+        //        if(session.isFixedTop){
+        //            [cell setBackgroundColor:RGB(243, 243, 247)];
+        //        }else{
+        //            [cell setBackgroundColor:[UIColor whiteColor]];
+        //        }
         cell.selectedBackgroundView=view;
-       // [cell setShowSession:self.dataSource[row]];
-//        [self preLoadMessage:self.dataSource[row]];
+        // [cell setShowSession:self.dataSource[row]];
+        //        [self preLoadMessage:self.dataSource[row]];
         [cell setName:@"张阔"];
         [cell setAvatar:@""];
         [cell setLastMessage:@"大噶死噶手工花开"];
-//        [cell setNameLabel:@"kafeihu"];
+        //        [cell setNameLabel:@"kafeihu"];
         return cell;
     }
     
@@ -169,21 +169,21 @@
         
     }else{
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//        NSInteger row = [indexPath row];
-//        MTTSessionEntity *session = self.items[row];
+        //        NSInteger row = [indexPath row];
+        //        MTTSessionEntity *session = self.items[row];
         [ZKChattingMainViewController shareInstance].title=@"张阔";
-//        [[ZKChattingMainViewController shareInstance] showChattingContentForSession:session];
+        //        [[ZKChattingMainViewController shareInstance] showChattingContentForSession:session];
         [self pushViewController:[ZKChattingMainViewController shareInstance] animated:YES];
     }
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSUInteger row = [indexPath row];
-//    MTTSessionEntity *session = self.items[row];
-//    [[SessionModule instance] removeSessionByServer:session];
-//    [self.items removeObjectAtIndex:row];
-//    [self setToolbarBadge:[[SessionModule instance]getAllUnreadMessageCount]];
-//    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    //    NSUInteger row = [indexPath row];
+    //    MTTSessionEntity *session = self.items[row];
+    //    [[SessionModule instance] removeSessionByServer:session];
+    //    [self.items removeObjectAtIndex:row];
+    //    [self setToolbarBadge:[[SessionModule instance]getAllUnreadMessageCount]];
+    //    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{

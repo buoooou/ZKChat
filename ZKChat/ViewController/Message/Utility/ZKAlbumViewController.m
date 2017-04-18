@@ -34,18 +34,18 @@
 {
     [super viewDidLoad];
     self.dataSource = [NSMutableArray new];
-        
+    
     // 获得所有的自定义相簿
     PHFetchResult<PHAssetCollection *> *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     // 遍历所有的自定义相簿
     for (PHAssetCollection *assetCollection in assetCollections) {
-            [self.dataSource addObject:assetCollection];
+        [self.dataSource addObject:assetCollection];
     }
     
     [self.tableView reloadData];
     
     [self.tableView registerClass:[ZKAlbumCell class] forCellReuseIdentifier:@"DDAlbumsCellIdentifier"];
-
+    
 }
 
 - (void)didReceiveMemoryWarning

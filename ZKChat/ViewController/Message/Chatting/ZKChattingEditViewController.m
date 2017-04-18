@@ -42,7 +42,7 @@
 }
 
 - (void)viewDidLoad {
-
+    
     [super viewDidLoad];
     
     self.title=@"聊天详情";
@@ -59,23 +59,23 @@
     self.delete.avatar =@"delete_user";
     self.delete.position=@"00000";
     self.delete.nick=@"";
-//    [self loadGroupUsers];
+    //    [self loadGroupUsers];
     // 固定群 不能编辑
     // 普通可以加,自建可以编辑
     // 个人只可以加.
-//    if(self.session.isGroup){
-//        if (self.group.groupType == GROUP_TYPE_FIXED) {
-//            self.temp = [[NSMutableArray alloc]init];
-//        }else{
-//            if ([self.group.groupCreatorId isEqual:TheRuntime.user.objID]){
-                self.temp = [NSMutableArray arrayWithArray:@[self.edit,self.delete]];
-//            }else{
-//                self.temp = [NSMutableArray arrayWithArray:@[self.edit]];
-//            }
-//        }
-//    }else{
-//        self.temp = [NSMutableArray arrayWithArray:@[self.edit]];
-//    }
+    //    if(self.session.isGroup){
+    //        if (self.group.groupType == GROUP_TYPE_FIXED) {
+    //            self.temp = [[NSMutableArray alloc]init];
+    //        }else{
+    //            if ([self.group.groupCreatorId isEqual:TheRuntime.user.objID]){
+    self.temp = [NSMutableArray arrayWithArray:@[self.edit,self.delete]];
+    //            }else{
+    //                self.temp = [NSMutableArray arrayWithArray:@[self.edit]];
+    //            }
+    //        }
+    //    }else{
+    //        self.temp = [NSMutableArray arrayWithArray:@[self.edit]];
+    //    }
     
     [self.items addObjectsFromArray:self.temp];
     
@@ -102,7 +102,7 @@
         make.top.mas_equalTo(0);
         make.left.mas_equalTo(0);
     }];
-
+    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
@@ -110,14 +110,14 @@
     
     [self.view setBackgroundColor:ZKBG];
     [self.tableView setBackgroundColor:ZKBG];
-
+    
     
     self.hud = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:self.hud];
     self.hud.dimBackground = YES;
     self.hud.labelText=@"正在删除...";
     
-//    [self addHiddenDelete];
+    //    [self addHiddenDelete];
 }
 #pragma mark - tableview
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -127,11 +127,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (self.session.sessionType == SessionTypeSessionTypeGroup){
-        return 3;
-//    }else{
-//        return 1;
-//    }
+    //    if (self.session.sessionType == SessionTypeSessionTypeGroup){
+    return 3;
+    //    }else{
+    //        return 1;
+    //    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -164,38 +164,38 @@
         cell = [[ZKGroupInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-        if (indexPath.row == 0) {
-            [cell showDesc:@"群聊名称"];
-            [cell showDetail:@"sds"];
-            [cell setUserInteractionEnabled:NO];
-        }
-        if (indexPath.row == 1) {
-            [cell showDesc:@"屏蔽通知"];
-            [cell showSwitch];
-            [cell opSwitch:self.group.isShield];
-            [cell setChangeSwitch:^(BOOL on){
-               // [self switchIsAddShielding:on];
-            }];
-        }
-        if (indexPath.row == 2) {
-            [cell showDesc:@"置顶聊天"];
-            [cell showSwitch];
-//            if([MTTUtil checkFixedTop:self.session.sessionID]){
-//                [cell opSwitch:YES];
-//            }else{
-//                [cell opSwitch:NO];
-//            }
-            [cell setChangeSwitch:^(BOOL on){
-//                if(on){
-//                    [MTTUtil setFixedTop:self.session.sessionID];
-//                }else{
-//                    [MTTUtil removeFixedTop:self.session.sessionID];
-//                }
-//                self.session.isFixedTop = on;
-//                [MTTNotification postNotification:MTTNotificationSessionShieldAndFixed userInfo:nil object:nil];
-            }];
-        }
-
+    if (indexPath.row == 0) {
+        [cell showDesc:@"群聊名称"];
+        [cell showDetail:@"sds"];
+        [cell setUserInteractionEnabled:NO];
+    }
+    if (indexPath.row == 1) {
+        [cell showDesc:@"屏蔽通知"];
+        [cell showSwitch];
+        [cell opSwitch:self.group.isShield];
+        [cell setChangeSwitch:^(BOOL on){
+            // [self switchIsAddShielding:on];
+        }];
+    }
+    if (indexPath.row == 2) {
+        [cell showDesc:@"置顶聊天"];
+        [cell showSwitch];
+        //            if([MTTUtil checkFixedTop:self.session.sessionID]){
+        //                [cell opSwitch:YES];
+        //            }else{
+        //                [cell opSwitch:NO];
+        //            }
+        [cell setChangeSwitch:^(BOOL on){
+            //                if(on){
+            //                    [MTTUtil setFixedTop:self.session.sessionID];
+            //                }else{
+            //                    [MTTUtil removeFixedTop:self.session.sessionID];
+            //                }
+            //                self.session.isFixedTop = on;
+            //                [MTTNotification postNotification:MTTNotificationSessionShieldAndFixed userInfo:nil object:nil];
+        }];
+    }
+    
     customCell =cell;
     //    }
     return customCell;
@@ -230,56 +230,56 @@
     cell.delImg.tag=indexPath.row;
     [cell.delImg addTarget:self action:@selector(clickDeleteUser:) forControlEvents:UIControlEventTouchUpInside];
     
-//    if (![user.position isEqualToString:@"99999"] && ![user.position isEqualToString:@"00000"]) {
-////        if ([user.objID isEqualToString:TheRuntime.user.objID]) {
-////            [cell.delImg setHidden:YES];
-////        }
-//        [cell setContent:@"萨法法" AvatarImage:@""];
-//    }else{
-//        if (self.group.groupType == GROUP_TYPE_FIXED) {
-//            [cell setContent:@"  " AvatarImage:@"  "];
-//            [cell.personIcon setHidden:YES];
-            [cell setUserInteractionEnabled:YES];
-//            [cell.delImg setHidden:YES];
-//        }else
-//        {
-            [cell setContent:@"张阔" AvatarImage:[user getAvatarUrl]];
-            [cell.delImg setHidden:YES];
-//        }
-//    }
-//    
+    //    if (![user.position isEqualToString:@"99999"] && ![user.position isEqualToString:@"00000"]) {
+    ////        if ([user.objID isEqualToString:TheRuntime.user.objID]) {
+    ////            [cell.delImg setHidden:YES];
+    ////        }
+    //        [cell setContent:@"萨法法" AvatarImage:@""];
+    //    }else{
+    //        if (self.group.groupType == GROUP_TYPE_FIXED) {
+    //            [cell setContent:@"  " AvatarImage:@"  "];
+    //            [cell.personIcon setHidden:YES];
+    [cell setUserInteractionEnabled:YES];
+    //            [cell.delImg setHidden:YES];
+    //        }else
+    //        {
+    [cell setContent:@"张阔" AvatarImage:[user getAvatarUrl]];
+    [cell.delImg setHidden:YES];
+    //        }
+    //    }
+    //
     return cell ;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.isShowEdit) {
-//        [self hiddenAlldelete];
+        //        [self hiddenAlldelete];
         return;
     }
     ZKUserEntity *user = self.items[indexPath.row];
     if ([user.position isEqualToString:@"99999"]) {
         //添加联系人
-//        EditGroupViewController *newEdit = [EditGroupViewController new];
-//        newEdit.session=self.session;
-//        newEdit.group=self.group;
-//        newEdit.isCreat=self.group.objID?NO:YES;
-//        newEdit.users=self.items;
-//        newEdit.editControll=self;
-//        [self pushViewController:newEdit animated:YES];
+        //        EditGroupViewController *newEdit = [EditGroupViewController new];
+        //        newEdit.session=self.session;
+        //        newEdit.group=self.group;
+        //        newEdit.isCreat=self.group.objID?NO:YES;
+        //        newEdit.users=self.items;
+        //        newEdit.editControll=self;
+        //        [self pushViewController:newEdit animated:YES];
     }
     else if ([user.position isEqualToString:@"00000"])
     {
         // 删除联系人
-//        if ([self.group.groupCreatorId isEqual:TheRuntime.user.objID]) {
-//            self.isShowEdit=YES;
-//            [self.collectionView reloadData];
-//        }
+        //        if ([self.group.groupCreatorId isEqual:TheRuntime.user.objID]) {
+        //            self.isShowEdit=YES;
+        //            [self.collectionView reloadData];
+        //        }
     }
     else if (user)
     {
         ZKPublicProfileViewController *public = [ZKPublicProfileViewController new];
-//        public.user=user;
+        //        public.user=user;
         [self pushViewController:public animated:YES];
         
     }
@@ -310,55 +310,55 @@
 -(void)loadGroupUsers
 {
     
-//    if([self.items count] > 2)
-//    {
-//        [self.items removeObjectsInRange:NSMakeRange(0, [self.items count]-2)];
-//    }
-//    if (self.session.sessionType == SessionTypeSessionTypeGroup) {
-//        self.group = [[DDGroupModule instance] getGroupByGId:self.session.sessionID];
-//        self.groupName = self.group.name;
-//        if (!self.group)
-//        {
-//            MTTSessionEntity* session = self.session;
-//            [[DDGroupModule instance] getGroupInfogroupID:session.sessionID completion:^(MTTGroupEntity *group) {
-//                self.group =group;
-//                self.groupName = self.group.name;
-//                [self loadUserToView:self.group.groupUserIds];
-//            }];
-//        }else{
-//            [self loadUserToView:self.group.groupUserIds];
-//        }
-//    }else
-//    {
-//        //加载对方的头像上去
-//        [self loadUserToView:@[self.session.sessionID]];
-//    }
+    //    if([self.items count] > 2)
+    //    {
+    //        [self.items removeObjectsInRange:NSMakeRange(0, [self.items count]-2)];
+    //    }
+    //    if (self.session.sessionType == SessionTypeSessionTypeGroup) {
+    //        self.group = [[DDGroupModule instance] getGroupByGId:self.session.sessionID];
+    //        self.groupName = self.group.name;
+    //        if (!self.group)
+    //        {
+    //            MTTSessionEntity* session = self.session;
+    //            [[DDGroupModule instance] getGroupInfogroupID:session.sessionID completion:^(MTTGroupEntity *group) {
+    //                self.group =group;
+    //                self.groupName = self.group.name;
+    //                [self loadUserToView:self.group.groupUserIds];
+    //            }];
+    //        }else{
+    //            [self loadUserToView:self.group.groupUserIds];
+    //        }
+    //    }else
+    //    {
+    //        //加载对方的头像上去
+    //        [self loadUserToView:@[self.session.sessionID]];
+    //    }
     // [self loadUserToView:@[@"sd"]];
-
+    
     [self.collectionView reloadData];
     [self.tableView reloadData];
 }
 
 -(void)loadUserToView:(NSArray *)users
 {
-//    NSMutableArray *tmpArray = [[NSMutableArray alloc]initWithArray:users];
-//    // 对users排序.群主第一个!
-//    if (self.session.sessionType == SessionTypeSessionTypeGroup) {
-//        MTTGroupEntity *tmpGroup = [[DDGroupModule instance] getGroupByGId:self.session.sessionID];
-//        [tmpArray removeObject:tmpGroup.groupCreatorId];
-//        [tmpArray addObject:tmpGroup.groupCreatorId];
-//    }
-//    if ([tmpArray count] >0) {
-//        [tmpArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            NSString *userID = (NSString *)obj;
-//            [[DDUserModule shareInstance] getUserForUserID:userID Block:^(MTTUserEntity *user) {
-//                if (user) {
-//                    [self.items insertObject:user atIndex:0];
-//                }
-//            }];
-//            
-//        }];
-//    }
+    //    NSMutableArray *tmpArray = [[NSMutableArray alloc]initWithArray:users];
+    //    // 对users排序.群主第一个!
+    //    if (self.session.sessionType == SessionTypeSessionTypeGroup) {
+    //        MTTGroupEntity *tmpGroup = [[DDGroupModule instance] getGroupByGId:self.session.sessionID];
+    //        [tmpArray removeObject:tmpGroup.groupCreatorId];
+    //        [tmpArray addObject:tmpGroup.groupCreatorId];
+    //    }
+    //    if ([tmpArray count] >0) {
+    //        [tmpArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    //            NSString *userID = (NSString *)obj;
+    //            [[DDUserModule shareInstance] getUserForUserID:userID Block:^(MTTUserEntity *user) {
+    //                if (user) {
+    //                    [self.items insertObject:user atIndex:0];
+    //                }
+    //            }];
+    //
+    //        }];
+    //    }
 }
 
 -(void)addHiddenDelete
@@ -388,49 +388,49 @@
 
 -(void)clickDeleteUser:(id)sender
 {
-//    [self.hud show:YES];
-//    UIButton *btn = (UIButton *)sender;
-//    MTTUserEntity *user = [self.items objectAtIndex:btn.tag];
-//    DDDeleteMemberFromGroupAPI* deleteMemberAPI = [[DDDeleteMemberFromGroupAPI alloc] init];
-//    [deleteMemberAPI requestWithObject:@[self.session.sessionID, user.objID] Completion:^(MTTGroupEntity *response, NSError *error) {
-//        [self.hud hide:YES afterDelay:1];
-//        if (error) {
-//            [MTTUtil showAlertWithTitle:@" " message:error.domain?error.domain:@"未知错误"];
-//            return ;
-//        }
-//        if (response)
-//        {
-//            [self.items removeObject:user];
-//            [self.collectionView reloadData];
-//            self.group=response;
-//            [[MTTDatabaseUtil instance] updateRecentGroup:response completion:^(NSError *error) {
-//                
-//            }];
-//        }
-//    }];
+    //    [self.hud show:YES];
+    //    UIButton *btn = (UIButton *)sender;
+    //    MTTUserEntity *user = [self.items objectAtIndex:btn.tag];
+    //    DDDeleteMemberFromGroupAPI* deleteMemberAPI = [[DDDeleteMemberFromGroupAPI alloc] init];
+    //    [deleteMemberAPI requestWithObject:@[self.session.sessionID, user.objID] Completion:^(MTTGroupEntity *response, NSError *error) {
+    //        [self.hud hide:YES afterDelay:1];
+    //        if (error) {
+    //            [MTTUtil showAlertWithTitle:@" " message:error.domain?error.domain:@"未知错误"];
+    //            return ;
+    //        }
+    //        if (response)
+    //        {
+    //            [self.items removeObject:user];
+    //            [self.collectionView reloadData];
+    //            self.group=response;
+    //            [[MTTDatabaseUtil instance] updateRecentGroup:response completion:^(NSError *error) {
+    //
+    //            }];
+    //        }
+    //    }];
 }
 
 -(void)switchIsAddShielding:(BOOL)on
 {
-//    ShieldGroupMessageAPI *request = [ShieldGroupMessageAPI new];
-//    NSMutableArray *array = [NSMutableArray new];
-//    [array addObject:self.session.sessionID];
-//    if (on) {
-//        [array addObject:@(1)];
-//    }else
-//    {
-//        [array addObject:@(0)];
-//    }
-//    [request requestWithObject:array Completion:^(id response, NSError *error) {
-//        if (error) {
-//            return ;
-//        }
-//        self.group.isShield=!self.group.isShield;
-//        [MTTNotification postNotification:MTTNotificationSessionShieldAndFixed userInfo:nil object:nil];
-//        [[MTTDatabaseUtil instance] updateRecentGroup:self.group completion:^(NSError *error) {
-//            
-//        }];
-//    }];
+    //    ShieldGroupMessageAPI *request = [ShieldGroupMessageAPI new];
+    //    NSMutableArray *array = [NSMutableArray new];
+    //    [array addObject:self.session.sessionID];
+    //    if (on) {
+    //        [array addObject:@(1)];
+    //    }else
+    //    {
+    //        [array addObject:@(0)];
+    //    }
+    //    [request requestWithObject:array Completion:^(id response, NSError *error) {
+    //        if (error) {
+    //            return ;
+    //        }
+    //        self.group.isShield=!self.group.isShield;
+    //        [MTTNotification postNotification:MTTNotificationSessionShieldAndFixed userInfo:nil object:nil];
+    //        [[MTTDatabaseUtil instance] updateRecentGroup:self.group completion:^(NSError *error) {
+    //            
+    //        }];
+    //    }];
     
 }
 
@@ -438,12 +438,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    MTTUserEntity *user = [self.items lastObject];
-//    
-//    if (![user.position isEqualToString:@"99999"]) {
-//        [self.items removeObject:self.edit];
-//        [self.items addObject:self.edit];
-//    }
+    //    MTTUserEntity *user = [self.items lastObject];
+    //    
+    //    if (![user.position isEqualToString:@"99999"]) {
+    //        [self.items removeObject:self.edit];
+    //        [self.items addObject:self.edit];
+    //    }
     
 }
 - (void)didReceiveMemoryWarning {

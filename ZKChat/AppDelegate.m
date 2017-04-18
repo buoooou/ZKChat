@@ -32,8 +32,8 @@
         UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
-
-    } 
+        
+    }
     
     if( SYSTEM_VERSION >=8 ) {
         [[UINavigationBar appearance] setTranslucent:YES];
@@ -47,7 +47,7 @@
     
     ZKLoginViewController * loginVC=[[ZKLoginViewController alloc]init];
     UINavigationController *navRoot =[[UINavigationController alloc] initWithRootViewController:loginVC];
-
+    
     self.window.rootViewController = navRoot;
     
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
@@ -69,11 +69,11 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
- //   if ([[SessionModule instance]getAllUnreadMessageCount] == 0) {
- //       [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
- //   }else{
-   //     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[[SessionModule instance]getAllUnreadMessageCount]];
-   // }
+    //   if ([[SessionModule instance]getAllUnreadMessageCount] == 0) {
+    //       [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    //   }else{
+    //     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[[SessionModule instance]getAllUnreadMessageCount]];
+    // }
 }
 
 
@@ -136,7 +136,7 @@
                      * The device is out of space.
                      * The store could not be migrated to the current model version.
                      Check the error message to determine what the actual problem was.
-                    */
+                     */
                     NSLog(@"Unresolved error %@, %@", error, error.userInfo);
                     abort();
                 }

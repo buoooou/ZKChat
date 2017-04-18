@@ -27,7 +27,7 @@
         [preview setTitle:@"预览" forState:UIControlStateHighlighted];
         [preview setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [preview setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-//        [preview setBackgroundColor:RGB(34, 157, 254)];
+        //        [preview setBackgroundColor:RGB(34, 157, 254)];
         [preview addTarget:self action:@selector(previewPicture:) forControlEvents:UIControlEventTouchUpInside];
         [preview setClipsToBounds:YES];
         [preview.layer setCornerRadius:3];
@@ -39,7 +39,7 @@
         [self.send setTitle:@"发送" forState:UIControlStateHighlighted];
         [self.send setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [self.send setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//        [self.send setBackgroundColor:RGB(34, 157, 254)];
+        //        [self.send setBackgroundColor:RGB(34, 157, 254)];
         [self.send addTarget:self action:@selector(sendPicture:) forControlEvents:UIControlEventTouchUpInside];
         [self.send setClipsToBounds:YES];
         [self.send.layer setCornerRadius:3];
