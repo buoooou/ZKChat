@@ -485,9 +485,9 @@
                     user.email = @"";
                     user.name=@"";
                 }
-                NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",TABLE_ALL_CONTACTS];
+                NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",TABLE_ALL_CONTACTS];
                 //ID,Name,Nick,Avatar,Role,updated,reserve1,reserve2
-                BOOL result = [_database executeUpdate:sql,user.objID,user.name,user.nick,user.avatar,user.departId,user.email,user.position,user.telphone,@(user.sex),user.lastUpdateTime,user.pyname,user.signature];
+                BOOL result = [_database executeUpdate:sql,user.objID,user.name,user.nick,user.avatar,user.email,user.position,user.telphone,@(user.sex),user.lastUpdateTime,user.pyname,user.signature];
                 
                 if (!result)
                 {

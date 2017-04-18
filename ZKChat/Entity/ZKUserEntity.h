@@ -17,7 +17,6 @@
 @property(nonatomic,strong) NSString *signature;   //个性签名
 @property(strong)NSString *position;
 @property(assign)NSInteger sex;
-@property(strong)NSString *departId;
 @property(strong)NSString *telphone;
 @property(strong)NSString *email;
 @property(strong)NSString *pyname;

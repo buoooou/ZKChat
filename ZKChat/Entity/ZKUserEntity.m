@@ -36,7 +36,6 @@
         self.nick = [aDecoder decodeObjectForKey:@"nickName"];
         
         self.avatar = [aDecoder decodeObjectForKey:@"avatar"];
-        self.departId = [aDecoder decodeObjectForKey:@"departId"];
         self.email = [aDecoder decodeObjectForKey:@"email"];
         self.position = [aDecoder decodeObjectForKey:@"position"];
         self.telphone = [aDecoder decodeObjectForKey:@"telphone"];
@@ -53,7 +52,6 @@
     [dic safeSetObject:user.name forKey:@"name"];
     [dic safeSetObject:user.nick forKey:@"nick"];
     [dic safeSetObject:user.avatar forKey:@"avatar"];
-    [dic safeSetObject:user.departId forKey:@"departId"];
     [dic safeSetObject:user.email forKey:@"email"];
     [dic safeSetObject:user.position forKey:@"position"];
     [dic safeSetObject:user.telphone forKey:@"telphone"];
@@ -68,7 +66,6 @@
     [encoder encodeObject:self.name forKey:@"name"];
     [encoder encodeObject:self.nick forKey:@"nick"];
     [encoder encodeObject:self.avatar forKey:@"avatar"];
-    [encoder encodeObject:self.departId forKey:@"departId"];
     [encoder encodeObject:self.email forKey:@"email"];
     [encoder encodeObject:self.position forKey:@"position"];
     [encoder encodeObject:self.telphone forKey:@"telphone"];
@@ -83,7 +80,6 @@
     user.nick = [dic safeObjectForKey:@"nickName"]?[dic safeObjectForKey:@"nickName"]:user.name;
     
     user.avatar = [dic safeObjectForKey:@"avatar"];
-    user.departId =[dic safeObjectForKey:@"departId"];
     user.email = [dic safeObjectForKey:@"email"];
     user.position = [dic safeObjectForKey:@"position"];
     user.telphone = [dic safeObjectForKey:@"telphone"];
@@ -159,7 +155,6 @@
         self.name  = pbUser.userRealName;
         self.nick  = pbUser.userNickName;
         self.avatar= pbUser.avatarUrl;
-        self.departId = @"";
         self.telphone = pbUser.userTel;
         self.sex =   pbUser.userGender;
         self.email = pbUser.email;
