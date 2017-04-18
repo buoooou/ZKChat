@@ -153,36 +153,8 @@
 
 - (NSArray*)messageFromSearchResult:(FMResultSet*)resultSet
 {
-    
-    NSString* sessionID = [resultSet stringForColumn:@"sessionId"];
-    NSString* fromUserId = [resultSet stringForColumn:@"fromUserId"];
-    NSString* toUserId = [resultSet stringForColumn:@"toUserId"];
-    NSString* content = [resultSet stringForColumn:@"content"];
-    NSTimeInterval msgTime = [resultSet doubleForColumn:@"msgTime"];
-    MsgType messageType = [resultSet intForColumn:@"messageType"];
-    NSUInteger messageContentType = [resultSet intForColumn:@"messageContentType"];
-    NSUInteger messageID = [resultSet intForColumn:@"messageID"];
-    NSUInteger messageState = [resultSet intForColumn:@"status"];
     NSUInteger count = [resultSet intForColumn:@"count(*)"];
-    
-    ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:messageID
-                                                                    msgType:messageType
-                                                                    msgTime:msgTime
-                                                                  sessionID:sessionID
-                                                                   senderID:fromUserId
-                                                                 msgContent:content
-                                                                   toUserID:toUserId];
-    messageEntity.state = messageState;
-    messageEntity.msgContentType = messageContentType;
-    NSString* infoString = [resultSet stringForColumn:@"info"];
-    if (infoString)
-    {
-        NSData* infoData = [infoString dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary* info = [NSJSONSerialization JSONObjectWithData:infoData options:0 error:nil];
-        NSMutableDictionary* mutalInfo = [NSMutableDictionary dictionaryWithDictionary:info];
-        messageEntity.info = mutalInfo;
-        
-    }
+    ZKMessageEntity* messageEntity=[self messageFromResult:resultSet];
     return [NSArray arrayWithObjects:@(count),messageEntity, nil];
 }
 
@@ -237,7 +209,6 @@
     [dic safeSetObject:[resultSet stringForColumn:@"pyname"] forKey:@"pyname"];
     [dic safeSetObject:[resultSet stringForColumn:@"signature"] forKey:@"signature"];
     ZKUserEntity* user = [ZKUserEntity dicToUserEntity:dic];
-    
     return user;
 }
 
