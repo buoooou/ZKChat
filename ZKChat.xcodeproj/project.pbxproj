@@ -23,8 +23,13 @@
 		7E44A99C1EA0FC7800A825B1 /* ZKDatabaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A99B1EA0FC7800A825B1 /* ZKDatabaseUtil.m */; };
 		7E44A9A21EA1003F00A825B1 /* NSString+DDPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9A11EA1003F00A825B1 /* NSString+DDPath.m */; };
 		7E44A9A41EA258C700A825B1 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E44A9A31EA258C700A825B1 /* UserNotifications.framework */; };
-		7E44A9A91EA2631900A825B1 /* DDUserModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9A81EA2631900A825B1 /* DDUserModule.m */; };
-		7E44A9AD1EA318F900A825B1 /* DDGroupModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9AC1EA318F900A825B1 /* DDGroupModule.m */; };
+		7E44A9B31EA64CC900A825B1 /* DDGroupModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9B21EA64CC900A825B1 /* DDGroupModule.m */; };
+		7E44A9B61EA64CDB00A825B1 /* DDUserModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9B51EA64CDB00A825B1 /* DDUserModule.m */; };
+		7E44A9B91EA64CE800A825B1 /* ZKBubbleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9B81EA64CE800A825B1 /* ZKBubbleModule.m */; };
+		7E44A9BC1EA64CFE00A825B1 /* DDDataInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9BB1EA64CFE00A825B1 /* DDDataInputStream.m */; };
+		7E44A9BF1EA64D0E00A825B1 /* ZKPhotosCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9BE1EA64D0E00A825B1 /* ZKPhotosCache.m */; };
+		7E44A9C21EA64D1800A825B1 /* ChattingModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9C11EA64D1800A825B1 /* ChattingModule.m */; };
+		7E44A9C51EA64D2000A825B1 /* EmotionsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9C41EA64D2000A825B1 /* EmotionsModule.m */; };
 		7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */; };
 		7E53D8BD1E86A2410093C912 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AD1E86A2400093C912 /* AQGridView.m */; };
 		7E53D8BE1E86A2410093C912 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8B11E86A2400093C912 /* AQGridViewAnimatorItem.m */; };
@@ -196,11 +201,6 @@
 		7E53DA7E1E86AA3F0093C912 /* ZKChattingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA7B1E86AA3F0093C912 /* ZKChattingMainViewController.m */; };
 		7E53DA811E86AA6E0093C912 /* TouchDownGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA801E86AA6E0093C912 /* TouchDownGestureRecognizer.m */; };
 		7E53DA841E86AA990093C912 /* ZKUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA831E86AA990093C912 /* ZKUtil.m */; };
-		7E53DA871E86AAF00093C912 /* EmotionsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA861E86AAF00093C912 /* EmotionsModule.m */; };
-		7E53DA8A1E86AB090093C912 /* ChattingModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA891E86AB090093C912 /* ChattingModule.m */; };
-		7E53DA8D1E86AB320093C912 /* ZKPhotosCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA8C1E86AB320093C912 /* ZKPhotosCache.m */; };
-		7E53DA901E86AB530093C912 /* DDDataInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA8F1E86AB530093C912 /* DDDataInputStream.m */; };
-		7E53DA931E86AB730093C912 /* ZKBubbleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA921E86AB730093C912 /* ZKBubbleModule.m */; };
 		7E53DA9E1E86ABCE0093C912 /* ZKBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA951E86ABCE0093C912 /* ZKBaseEntity.m */; };
 		7E53DA9F1E86ABCE0093C912 /* ZKGroupEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA971E86ABCE0093C912 /* ZKGroupEntity.m */; };
 		7E53DAA01E86ABCE0093C912 /* ZKMessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53DA991E86ABCE0093C912 /* ZKMessageEntity.m */; };
@@ -282,10 +282,20 @@
 		7E44A9A01EA1003F00A825B1 /* NSString+DDPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+DDPath.h"; path = "CateGory/NSString+DDPath.h"; sourceTree = "<group>"; };
 		7E44A9A11EA1003F00A825B1 /* NSString+DDPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+DDPath.m"; path = "CateGory/NSString+DDPath.m"; sourceTree = "<group>"; };
 		7E44A9A31EA258C700A825B1 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		7E44A9A71EA2631900A825B1 /* DDUserModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDUserModule.h; path = Model/User/DDUserModule.h; sourceTree = "<group>"; };
-		7E44A9A81EA2631900A825B1 /* DDUserModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDUserModule.m; path = Model/User/DDUserModule.m; sourceTree = "<group>"; };
-		7E44A9AB1EA318F900A825B1 /* DDGroupModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDGroupModule.h; path = Model/Group/DDGroupModule.h; sourceTree = "<group>"; };
-		7E44A9AC1EA318F900A825B1 /* DDGroupModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDGroupModule.m; path = Model/Group/DDGroupModule.m; sourceTree = "<group>"; };
+		7E44A9B11EA64CC900A825B1 /* DDGroupModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDGroupModule.h; path = Module/Group/DDGroupModule.h; sourceTree = "<group>"; };
+		7E44A9B21EA64CC900A825B1 /* DDGroupModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDGroupModule.m; path = Module/Group/DDGroupModule.m; sourceTree = "<group>"; };
+		7E44A9B41EA64CDB00A825B1 /* DDUserModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDUserModule.h; path = Module/User/DDUserModule.h; sourceTree = "<group>"; };
+		7E44A9B51EA64CDB00A825B1 /* DDUserModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDUserModule.m; path = Module/User/DDUserModule.m; sourceTree = "<group>"; };
+		7E44A9B71EA64CE800A825B1 /* ZKBubbleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKBubbleModule.h; path = Module/Bubble/ZKBubbleModule.h; sourceTree = "<group>"; };
+		7E44A9B81EA64CE800A825B1 /* ZKBubbleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKBubbleModule.m; path = Module/Bubble/ZKBubbleModule.m; sourceTree = "<group>"; };
+		7E44A9BA1EA64CFE00A825B1 /* DDDataInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDDataInputStream.h; path = Module/TCP/DDDataInputStream.h; sourceTree = "<group>"; };
+		7E44A9BB1EA64CFE00A825B1 /* DDDataInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDDataInputStream.m; path = Module/TCP/DDDataInputStream.m; sourceTree = "<group>"; };
+		7E44A9BD1EA64D0E00A825B1 /* ZKPhotosCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPhotosCache.h; path = Module/Photo/ZKPhotosCache.h; sourceTree = "<group>"; };
+		7E44A9BE1EA64D0E00A825B1 /* ZKPhotosCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPhotosCache.m; path = Module/Photo/ZKPhotosCache.m; sourceTree = "<group>"; };
+		7E44A9C01EA64D1800A825B1 /* ChattingModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChattingModule.h; path = Module/Chatting/ChattingModule.h; sourceTree = "<group>"; };
+		7E44A9C11EA64D1800A825B1 /* ChattingModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChattingModule.m; path = Module/Chatting/ChattingModule.m; sourceTree = "<group>"; };
+		7E44A9C31EA64D2000A825B1 /* EmotionsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmotionsModule.h; path = Module/Emotions/EmotionsModule.h; sourceTree = "<group>"; };
+		7E44A9C41EA64D2000A825B1 /* EmotionsModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmotionsModule.m; path = Module/Emotions/EmotionsModule.m; sourceTree = "<group>"; };
 		7E53D8A91E86A0BE0093C912 /* RuntimeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuntimeStatus.h; path = GlobalData/RuntimeStatus.h; sourceTree = "<group>"; };
 		7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RuntimeStatus.m; path = GlobalData/RuntimeStatus.m; sourceTree = "<group>"; };
 		7E53D8AC1E86A2400093C912 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Exist/AQGridView/AQGridView.h; sourceTree = "<group>"; };
@@ -582,16 +592,6 @@
 		7E53DA801E86AA6E0093C912 /* TouchDownGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchDownGestureRecognizer.m; path = Manager/TouchDownGestureRecognizer.m; sourceTree = "<group>"; };
 		7E53DA821E86AA990093C912 /* ZKUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKUtil.h; path = Util/ZKUtil.h; sourceTree = "<group>"; };
 		7E53DA831E86AA990093C912 /* ZKUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKUtil.m; path = Util/ZKUtil.m; sourceTree = "<group>"; };
-		7E53DA851E86AAF00093C912 /* EmotionsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmotionsModule.h; path = Model/Emotions/EmotionsModule.h; sourceTree = "<group>"; };
-		7E53DA861E86AAF00093C912 /* EmotionsModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmotionsModule.m; path = Model/Emotions/EmotionsModule.m; sourceTree = "<group>"; };
-		7E53DA881E86AB090093C912 /* ChattingModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChattingModule.h; path = Model/Chatting/ChattingModule.h; sourceTree = "<group>"; };
-		7E53DA891E86AB090093C912 /* ChattingModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChattingModule.m; path = Model/Chatting/ChattingModule.m; sourceTree = "<group>"; };
-		7E53DA8B1E86AB320093C912 /* ZKPhotosCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPhotosCache.h; path = Model/Photo/ZKPhotosCache.h; sourceTree = "<group>"; };
-		7E53DA8C1E86AB320093C912 /* ZKPhotosCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPhotosCache.m; path = Model/Photo/ZKPhotosCache.m; sourceTree = "<group>"; };
-		7E53DA8E1E86AB530093C912 /* DDDataInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDDataInputStream.h; path = Model/TCP/DDDataInputStream.h; sourceTree = "<group>"; };
-		7E53DA8F1E86AB530093C912 /* DDDataInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDDataInputStream.m; path = Model/TCP/DDDataInputStream.m; sourceTree = "<group>"; };
-		7E53DA911E86AB730093C912 /* ZKBubbleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKBubbleModule.h; path = Model/Bubble/ZKBubbleModule.h; sourceTree = "<group>"; };
-		7E53DA921E86AB730093C912 /* ZKBubbleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKBubbleModule.m; path = Model/Bubble/ZKBubbleModule.m; sourceTree = "<group>"; };
 		7E53DA941E86ABCE0093C912 /* ZKBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKBaseEntity.h; path = Entity/ZKBaseEntity.h; sourceTree = "<group>"; };
 		7E53DA951E86ABCE0093C912 /* ZKBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKBaseEntity.m; path = Entity/ZKBaseEntity.m; sourceTree = "<group>"; };
 		7E53DA961E86ABCE0093C912 /* ZKGroupEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKGroupEntity.h; path = Entity/ZKGroupEntity.h; sourceTree = "<group>"; };
@@ -839,8 +839,8 @@
 		7E31E3571E69A80700EA69DE /* Emotions */ = {
 			isa = PBXGroup;
 			children = (
-				7E53DA851E86AAF00093C912 /* EmotionsModule.h */,
-				7E53DA861E86AAF00093C912 /* EmotionsModule.m */,
+				7E44A9C31EA64D2000A825B1 /* EmotionsModule.h */,
+				7E44A9C41EA64D2000A825B1 /* EmotionsModule.m */,
 			);
 			name = Emotions;
 			sourceTree = "<group>";
@@ -857,8 +857,8 @@
 		7E31E35E1E6A76C600EA69DE /* Chatting */ = {
 			isa = PBXGroup;
 			children = (
-				7E53DA881E86AB090093C912 /* ChattingModule.h */,
-				7E53DA891E86AB090093C912 /* ChattingModule.m */,
+				7E44A9C01EA64D1800A825B1 /* ChattingModule.h */,
+				7E44A9C11EA64D1800A825B1 /* ChattingModule.m */,
 			);
 			name = Chatting;
 			sourceTree = "<group>";
@@ -883,8 +883,8 @@
 		7E31E37D1E6ADED800EA69DE /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				7E53DA8B1E86AB320093C912 /* ZKPhotosCache.h */,
-				7E53DA8C1E86AB320093C912 /* ZKPhotosCache.m */,
+				7E44A9BD1EA64D0E00A825B1 /* ZKPhotosCache.h */,
+				7E44A9BE1EA64D0E00A825B1 /* ZKPhotosCache.m */,
 			);
 			name = Photo;
 			sourceTree = "<group>";
@@ -905,8 +905,8 @@
 		7E31E3CD1E75911400EA69DE /* TCP */ = {
 			isa = PBXGroup;
 			children = (
-				7E53DA8E1E86AB530093C912 /* DDDataInputStream.h */,
-				7E53DA8F1E86AB530093C912 /* DDDataInputStream.m */,
+				7E44A9BA1EA64CFE00A825B1 /* DDDataInputStream.h */,
+				7E44A9BB1EA64CFE00A825B1 /* DDDataInputStream.m */,
 			);
 			name = TCP;
 			sourceTree = "<group>";
@@ -941,8 +941,8 @@
 		7E44A9A61EA262E100A825B1 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				7E44A9A71EA2631900A825B1 /* DDUserModule.h */,
-				7E44A9A81EA2631900A825B1 /* DDUserModule.m */,
+				7E44A9B41EA64CDB00A825B1 /* DDUserModule.h */,
+				7E44A9B51EA64CDB00A825B1 /* DDUserModule.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -950,8 +950,8 @@
 		7E44A9AA1EA318CF00A825B1 /* Group */ = {
 			isa = PBXGroup;
 			children = (
-				7E44A9AB1EA318F900A825B1 /* DDGroupModule.h */,
-				7E44A9AC1EA318F900A825B1 /* DDGroupModule.m */,
+				7E44A9B11EA64CC900A825B1 /* DDGroupModule.h */,
+				7E44A9B21EA64CC900A825B1 /* DDGroupModule.m */,
 			);
 			name = Group;
 			sourceTree = "<group>";
@@ -1279,7 +1279,7 @@
 				7E6032031E5DD6E9005239C4 /* Config */,
 				7E6031C31E53436E005239C4 /* View */,
 				7E31E3621E6AB10C00EA69DE /* Entity */,
-				7E6031C21E534355005239C4 /* Model */,
+				7E6031C21E534355005239C4 /* Module */,
 				7E6031C11E53434F005239C4 /* Util */,
 				7E53D89D1E8695830093C912 /* Manager */,
 				7E6031C01E53433F005239C4 /* ViewController */,
@@ -1346,7 +1346,7 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
-		7E6031C21E534355005239C4 /* Model */ = {
+		7E6031C21E534355005239C4 /* Module */ = {
 			isa = PBXGroup;
 			children = (
 				7E44A9AA1EA318CF00A825B1 /* Group */,
@@ -1357,7 +1357,7 @@
 				7E31E35E1E6A76C600EA69DE /* Chatting */,
 				7E31E3571E69A80700EA69DE /* Emotions */,
 			);
-			name = Model;
+			name = Module;
 			sourceTree = "<group>";
 		};
 		7E6031C31E53436E005239C4 /* View */ = {
@@ -1539,8 +1539,8 @@
 		7E6981FF1E7ACA800005B29A /* Bubble */ = {
 			isa = PBXGroup;
 			children = (
-				7E53DA911E86AB730093C912 /* ZKBubbleModule.h */,
-				7E53DA921E86AB730093C912 /* ZKBubbleModule.m */,
+				7E44A9B71EA64CE800A825B1 /* ZKBubbleModule.h */,
+				7E44A9B81EA64CE800A825B1 /* ZKBubbleModule.m */,
 			);
 			name = Bubble;
 			sourceTree = "<group>";
@@ -1981,12 +1981,16 @@
 			files = (
 				7E53D9A61E86A49B0093C912 /* MenuImageView.m in Sources */,
 				7E53D9801E86A2BA0093C912 /* RawAudioDataPlayer.m in Sources */,
+				7E44A9B91EA64CE800A825B1 /* ZKBubbleModule.m in Sources */,
 				7E53D9501E86A2BA0093C912 /* cb_search.c in Sources */,
+				7E44A9BF1EA64D0E00A825B1 /* ZKPhotosCache.m in Sources */,
 				7E53D9781E86A2BA0093C912 /* AQRecorder.mm in Sources */,
+				7E44A9B61EA64CDB00A825B1 /* DDUserModule.m in Sources */,
 				7E53D9621E86A2BA0093C912 /* lpc.c in Sources */,
 				7E53D9811E86A2BA0093C912 /* RecorderManager.mm in Sources */,
 				7E53DAC01E86AC4A0093C912 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
 				7E53D97B1E86A2BA0093C912 /* Encapsulator.m in Sources */,
+				7E44A9C51EA64D2000A825B1 /* EmotionsModule.m in Sources */,
 				7E53DAE61E86ACB00093C912 /* ZKPersonEditControllectionCell.m in Sources */,
 				7E53DAC71E86AC4A0093C912 /* UIImage+UIImageAddition.m in Sources */,
 				7E53D8C01E86A2410093C912 /* AQGridViewController.m in Sources */,
@@ -1994,7 +1998,6 @@
 				7E53D9891E86A3B20093C912 /* JSMessageInputView.m in Sources */,
 				7E53DAE31E86ACB00093C912 /* ImageGridViewCell.m in Sources */,
 				7E53D8C11E86A2410093C912 /* AQGridViewData.m in Sources */,
-				7E53DA931E86AB730093C912 /* ZKBubbleModule.m in Sources */,
 				7E53D99F1E86A3E10093C912 /* IMSwitchService.pb.m in Sources */,
 				7E53DA621E86A9880093C912 /* ZKBaseViewController.m in Sources */,
 				7E44A9951E9D1F9500A825B1 /* ZKNotification.m in Sources */,
@@ -2006,6 +2009,7 @@
 				7E53DAC41E86AC4A0093C912 /* UIColor+AQGridView.m in Sources */,
 				7E53D97C1E86A2BA0093C912 /* PlayerManager.m in Sources */,
 				7E53D95A1E86A2BA0093C912 /* gain_table.c in Sources */,
+				7E44A9BC1EA64CFE00A825B1 /* DDDataInputStream.m in Sources */,
 				7E53DAC51E86AC4A0093C912 /* UIColor+JSMessagesView.m in Sources */,
 				7E53D9881E86A3B20093C912 /* JSDismissiveTextView.m in Sources */,
 				7E53DA661E86A9C60093C912 /* ZKMessageViewController.m in Sources */,
@@ -2013,7 +2017,6 @@
 				7E53D96F1E86A2BA0093C912 /* smallft.c in Sources */,
 				7E53DA811E86AA6E0093C912 /* TouchDownGestureRecognizer.m in Sources */,
 				7E53D9711E86A2BA0093C912 /* speex.c in Sources */,
-				7E53DA871E86AAF00093C912 /* EmotionsModule.m in Sources */,
 				7E53D99D1E86A3E10093C912 /* IMMessage.pb.m in Sources */,
 				7E53D9661E86A2BA0093C912 /* mdf.c in Sources */,
 				7E53D9561E86A2BA0093C912 /* exc_8_128_table.c in Sources */,
@@ -2021,7 +2024,6 @@
 				7E53D95B1E86A2BA0093C912 /* gain_table_lbr.c in Sources */,
 				7E53DA421E86A8BA0093C912 /* ZKMyViewController.m in Sources */,
 				7E53DABF1E86AC4A0093C912 /* NSDictionary+Safe.m in Sources */,
-				7E53DA901E86AB530093C912 /* DDDataInputStream.m in Sources */,
 				7E53D96A1E86A2BA0093C912 /* preprocess.c in Sources */,
 				7E53D9761E86A2BA0093C912 /* vq.c in Sources */,
 				7E53D94D1E86A2BA0093C912 /* framing.c in Sources */,
@@ -2078,13 +2080,12 @@
 				7E53DAC11E86AC4A0093C912 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
 				7E60318C1E533AA3005239C4 /* main.m in Sources */,
 				7E53D94F1E86A2BA0093C912 /* buffer.c in Sources */,
-				7E44A9A91EA2631900A825B1 /* DDUserModule.m in Sources */,
 				7E364ABB1E952A6400BD36C1 /* DDChatImageCell.m in Sources */,
 				7E53D96E1E86A2BA0093C912 /* scal.c in Sources */,
 				7E53DA611E86A9880093C912 /* ZKBaseTableViewController.m in Sources */,
 				7E53D99A1E86A3E10093C912 /* IMBuddy.pb.m in Sources */,
 				7E44A9A21EA1003F00A825B1 /* NSString+DDPath.m in Sources */,
-				7E44A9AD1EA318F900A825B1 /* DDGroupModule.m in Sources */,
+				7E44A9B31EA64CC900A825B1 /* DDGroupModule.m in Sources */,
 				7E44A9851E9A53A200A825B1 /* DDEmotionCell.m in Sources */,
 				7E53D9611E86A2BA0093C912 /* kiss_fftr.c in Sources */,
 				7E53D99C1E86A3E10093C912 /* IMLogin.pb.m in Sources */,
@@ -2094,7 +2095,6 @@
 				7E53D8BF1E86A2410093C912 /* AQGridViewCell.m in Sources */,
 				7E53D9641E86A2BA0093C912 /* lsp_tables_nb.c in Sources */,
 				7E53DAE41E86ACB00093C912 /* ZKGroupInfoCell.m in Sources */,
-				7E53DA8A1E86AB090093C912 /* ChattingModule.m in Sources */,
 				7E53D97F1E86A2BA0093C912 /* CAXException.cpp in Sources */,
 				7E53D9991E86A3E10093C912 /* IMBaseDefine.pb.m in Sources */,
 				7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */,
@@ -2115,6 +2115,7 @@
 				7E53D9721E86A2BA0093C912 /* speex_callbacks.c in Sources */,
 				7E53DA751E86AA150093C912 /* ZKChattingUtilityViewController.m in Sources */,
 				7E53DAC61E86AC4A0093C912 /* UIImage+JSMessagesView.m in Sources */,
+				7E44A9C21EA64D1800A825B1 /* ChattingModule.m in Sources */,
 				7E53D9521E86A2BA0093C912 /* exc_10_32_table.c in Sources */,
 				7E53DA491E86A8F10093C912 /* ZKContactResultViewController.m in Sources */,
 				7E53DAE81E86ACB00093C912 /* ZKUserInfoCell.m in Sources */,
@@ -2123,7 +2124,6 @@
 				7E53DAC91E86AC4A0093C912 /* UIView+Addition.m in Sources */,
 				7E53DAA01E86ABCE0093C912 /* ZKMessageEntity.m in Sources */,
 				7E53D95C1E86A2BA0093C912 /* hexc_10_32_table.c in Sources */,
-				7E53DA8D1E86AB320093C912 /* ZKPhotosCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
