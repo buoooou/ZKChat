@@ -30,6 +30,7 @@
 		7E44A9BF1EA64D0E00A825B1 /* ZKPhotosCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9BE1EA64D0E00A825B1 /* ZKPhotosCache.m */; };
 		7E44A9C21EA64D1800A825B1 /* ChattingModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9C11EA64D1800A825B1 /* ChattingModule.m */; };
 		7E44A9C51EA64D2000A825B1 /* EmotionsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9C41EA64D2000A825B1 /* EmotionsModule.m */; };
+		7E44A9CC1EA7A4FF00A825B1 /* LoginModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9CB1EA7A4FF00A825B1 /* LoginModule.m */; };
 		7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */; };
 		7E53D8BD1E86A2410093C912 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AD1E86A2400093C912 /* AQGridView.m */; };
 		7E53D8BE1E86A2410093C912 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8B11E86A2400093C912 /* AQGridViewAnimatorItem.m */; };
@@ -296,6 +297,8 @@
 		7E44A9C11EA64D1800A825B1 /* ChattingModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChattingModule.m; path = Module/Chatting/ChattingModule.m; sourceTree = "<group>"; };
 		7E44A9C31EA64D2000A825B1 /* EmotionsModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmotionsModule.h; path = Module/Emotions/EmotionsModule.h; sourceTree = "<group>"; };
 		7E44A9C41EA64D2000A825B1 /* EmotionsModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmotionsModule.m; path = Module/Emotions/EmotionsModule.m; sourceTree = "<group>"; };
+		7E44A9CA1EA7A4FF00A825B1 /* LoginModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginModule.h; path = Module/Login/LoginModule.h; sourceTree = "<group>"; };
+		7E44A9CB1EA7A4FF00A825B1 /* LoginModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginModule.m; path = Module/Login/LoginModule.m; sourceTree = "<group>"; };
 		7E53D8A91E86A0BE0093C912 /* RuntimeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuntimeStatus.h; path = GlobalData/RuntimeStatus.h; sourceTree = "<group>"; };
 		7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RuntimeStatus.m; path = GlobalData/RuntimeStatus.m; sourceTree = "<group>"; };
 		7E53D8AC1E86A2400093C912 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Exist/AQGridView/AQGridView.h; sourceTree = "<group>"; };
@@ -959,6 +962,8 @@
 		7E44A9C61EA7A05E00A825B1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				7E44A9CA1EA7A4FF00A825B1 /* LoginModule.h */,
+				7E44A9CB1EA7A4FF00A825B1 /* LoginModule.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -2044,6 +2049,7 @@
 				7E53D94C1E86A2BA0093C912 /* bitwise.c in Sources */,
 				7E53D9AD1E86A5440093C912 /* ZKAlbumCell.m in Sources */,
 				7E53D9541E86A2BA0093C912 /* exc_5_256_table.c in Sources */,
+				7E44A9CC1EA7A4FF00A825B1 /* LoginModule.m in Sources */,
 				7E53D96C1E86A2BA0093C912 /* resample.c in Sources */,
 				7E53DA731E86AA150093C912 /* ZKAlbumDetailsViewController.m in Sources */,
 				7E53D9651E86A2BA0093C912 /* ltp.c in Sources */,
