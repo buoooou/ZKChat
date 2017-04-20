@@ -237,6 +237,8 @@
 		7E60319D1E533AA5005239C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E60319B1E533AA5005239C4 /* LaunchScreen.storyboard */; };
 		7E6031A81E533AA7005239C4 /* ZKChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031A71E533AA7005239C4 /* ZKChatTests.m */; };
 		7E6031B31E533AA7005239C4 /* ZKChatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031B21E533AA7005239C4 /* ZKChatUITests.m */; };
+		7EA12BE71EA8F83E009A78CB /* DDHttpServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA12BE61EA8F83E009A78CB /* DDHttpServer.m */; };
+		7EA12BEA1EA8F86E009A78CB /* DDMsgServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA12BE91EA8F86E009A78CB /* DDMsgServer.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -666,6 +668,10 @@
 		7E6031AE1E533AA7005239C4 /* ZKChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZKChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E6031B21E533AA7005239C4 /* ZKChatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKChatUITests.m; sourceTree = "<group>"; };
 		7E6031B41E533AA7005239C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EA12BE51EA8F83E009A78CB /* DDHttpServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHttpServer.h; path = Module/Login/DDHttpServer.h; sourceTree = "<group>"; };
+		7EA12BE61EA8F83E009A78CB /* DDHttpServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHttpServer.m; path = Module/Login/DDHttpServer.m; sourceTree = "<group>"; };
+		7EA12BE81EA8F86E009A78CB /* DDMsgServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDMsgServer.h; path = Module/Login/DDMsgServer.h; sourceTree = "<group>"; };
+		7EA12BE91EA8F86E009A78CB /* DDMsgServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDMsgServer.m; path = Module/Login/DDMsgServer.m; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -964,6 +970,10 @@
 			children = (
 				7E44A9CA1EA7A4FF00A825B1 /* LoginModule.h */,
 				7E44A9CB1EA7A4FF00A825B1 /* LoginModule.m */,
+				7EA12BE51EA8F83E009A78CB /* DDHttpServer.h */,
+				7EA12BE61EA8F83E009A78CB /* DDHttpServer.m */,
+				7EA12BE81EA8F86E009A78CB /* DDMsgServer.h */,
+				7EA12BE91EA8F86E009A78CB /* DDMsgServer.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -2057,6 +2067,7 @@
 				7E53D99E1E86A3E10093C912 /* IMOther.pb.m in Sources */,
 				7E53D9AA1E86A5160093C912 /* ZKRecentUserCell.m in Sources */,
 				7E53D8C21E86A2410093C912 /* AQGridViewUpdateInfo.m in Sources */,
+				7EA12BE71EA8F83E009A78CB /* DDHttpServer.m in Sources */,
 				7E53DA3F1E86A82D0093C912 /* ZKFindViewController.m in Sources */,
 				7E53DA9F1E86ABCE0093C912 /* ZKGroupEntity.m in Sources */,
 				7E53D96B1E86A2BA0093C912 /* quant_lsp.c in Sources */,
@@ -2117,6 +2128,7 @@
 				7E53D9B01E86A5800093C912 /* ZKContactCell.m in Sources */,
 				7E53DA841E86AA990093C912 /* ZKUtil.m in Sources */,
 				7E53D98A1E86A3B20093C912 /* JSMessageTextView.m in Sources */,
+				7EA12BEA1EA8F86E009A78CB /* DDMsgServer.m in Sources */,
 				7E53DAD41E86AC830093C912 /* DDChatTextCell.m in Sources */,
 				7E53DA511E86A9360093C912 /* ZKLoginViewController.m in Sources */,
 				7E53DAC81E86AC4A0093C912 /* UILabel+VerticalAlign.m in Sources */,
