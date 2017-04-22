@@ -75,8 +75,6 @@
         [self removeHUD];
     }];
 
-
-
 }
 
 - (void)didReceiveMemoryWarning {

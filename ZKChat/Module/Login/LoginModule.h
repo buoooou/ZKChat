@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "ZKUserEntity.h"
-
+#import "DDTcpServer.h"
+#import "DDHttpServer.h"
+#import "DDMsgServer.h"
 
 @interface LoginModule : NSObject
-
+{
+    DDHttpServer* _httpServer;
+    DDMsgServer* _msgServer;
+    DDTcpServer* _tcpServer;
+}
 @property (nonatomic,readonly)NSString* token;
 + (instancetype)instance;
 
