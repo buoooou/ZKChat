@@ -10,5 +10,6 @@
 #define ZKConfig_h
 
 #define USER_PRE @"user_"
+#define SERVER_ADDR   @""
 
 #endif /* ZKConfig_h */

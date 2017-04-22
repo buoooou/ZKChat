@@ -10,4 +10,14 @@
 
 @implementation LoginModule
 
++(instancetype) instance{
+    static LoginModule *loginModule;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        loginModule=[[LoginModule alloc]init];
+    });
+    return loginModule;
+}
+
+
 @end

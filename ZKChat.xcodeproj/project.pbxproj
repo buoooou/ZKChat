@@ -26,7 +26,6 @@
 		7E44A9B31EA64CC900A825B1 /* DDGroupModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9B21EA64CC900A825B1 /* DDGroupModule.m */; };
 		7E44A9B61EA64CDB00A825B1 /* DDUserModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9B51EA64CDB00A825B1 /* DDUserModule.m */; };
 		7E44A9B91EA64CE800A825B1 /* ZKBubbleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9B81EA64CE800A825B1 /* ZKBubbleModule.m */; };
-		7E44A9BC1EA64CFE00A825B1 /* DDDataInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9BB1EA64CFE00A825B1 /* DDDataInputStream.m */; };
 		7E44A9BF1EA64D0E00A825B1 /* ZKPhotosCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9BE1EA64D0E00A825B1 /* ZKPhotosCache.m */; };
 		7E44A9C21EA64D1800A825B1 /* ChattingModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9C11EA64D1800A825B1 /* ChattingModule.m */; };
 		7E44A9C51EA64D2000A825B1 /* EmotionsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9C41EA64D2000A825B1 /* EmotionsModule.m */; };
@@ -239,6 +238,11 @@
 		7E6031B31E533AA7005239C4 /* ZKChatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6031B21E533AA7005239C4 /* ZKChatUITests.m */; };
 		7EA12BE71EA8F83E009A78CB /* DDHttpServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA12BE61EA8F83E009A78CB /* DDHttpServer.m */; };
 		7EA12BEA1EA8F86E009A78CB /* DDMsgServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA12BE91EA8F86E009A78CB /* DDMsgServer.m */; };
+		7EC20F6D1EAB900500444B96 /* DDTcpServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F6C1EAB900500444B96 /* DDTcpServer.m */; };
+		7EC20F711EAB91F600444B96 /* DDTcpClientManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F701EAB91F600444B96 /* DDTcpClientManager.m */; };
+		7EC20F751EAB926F00444B96 /* DDSendBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F741EAB926F00444B96 /* DDSendBuffer.m */; };
+		7EC20F811EAB94E200444B96 /* DDDataInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F7E1EAB94E200444B96 /* DDDataInputStream.m */; };
+		7EC20F821EAB94E200444B96 /* NSStream+NSStreamAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F801EAB94E200444B96 /* NSStream+NSStreamAddition.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -291,8 +295,6 @@
 		7E44A9B51EA64CDB00A825B1 /* DDUserModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDUserModule.m; path = Module/User/DDUserModule.m; sourceTree = "<group>"; };
 		7E44A9B71EA64CE800A825B1 /* ZKBubbleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKBubbleModule.h; path = Module/Bubble/ZKBubbleModule.h; sourceTree = "<group>"; };
 		7E44A9B81EA64CE800A825B1 /* ZKBubbleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKBubbleModule.m; path = Module/Bubble/ZKBubbleModule.m; sourceTree = "<group>"; };
-		7E44A9BA1EA64CFE00A825B1 /* DDDataInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDDataInputStream.h; path = Module/TCP/DDDataInputStream.h; sourceTree = "<group>"; };
-		7E44A9BB1EA64CFE00A825B1 /* DDDataInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDDataInputStream.m; path = Module/TCP/DDDataInputStream.m; sourceTree = "<group>"; };
 		7E44A9BD1EA64D0E00A825B1 /* ZKPhotosCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPhotosCache.h; path = Module/Photo/ZKPhotosCache.h; sourceTree = "<group>"; };
 		7E44A9BE1EA64D0E00A825B1 /* ZKPhotosCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPhotosCache.m; path = Module/Photo/ZKPhotosCache.m; sourceTree = "<group>"; };
 		7E44A9C01EA64D1800A825B1 /* ChattingModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChattingModule.h; path = Module/Chatting/ChattingModule.h; sourceTree = "<group>"; };
@@ -672,6 +674,16 @@
 		7EA12BE61EA8F83E009A78CB /* DDHttpServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHttpServer.m; path = Module/Login/DDHttpServer.m; sourceTree = "<group>"; };
 		7EA12BE81EA8F86E009A78CB /* DDMsgServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDMsgServer.h; path = Module/Login/DDMsgServer.h; sourceTree = "<group>"; };
 		7EA12BE91EA8F86E009A78CB /* DDMsgServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDMsgServer.m; path = Module/Login/DDMsgServer.m; sourceTree = "<group>"; };
+		7EC20F6B1EAB900500444B96 /* DDTcpServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDTcpServer.h; path = Module/Login/DDTcpServer.h; sourceTree = "<group>"; };
+		7EC20F6C1EAB900500444B96 /* DDTcpServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDTcpServer.m; path = Module/Login/DDTcpServer.m; sourceTree = "<group>"; };
+		7EC20F6F1EAB91F600444B96 /* DDTcpClientManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDTcpClientManager.h; path = Module/TCP/Manager/DDTcpClientManager.h; sourceTree = "<group>"; };
+		7EC20F701EAB91F600444B96 /* DDTcpClientManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDTcpClientManager.m; path = Module/TCP/Manager/DDTcpClientManager.m; sourceTree = "<group>"; };
+		7EC20F731EAB926F00444B96 /* DDSendBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDSendBuffer.h; path = Module/TCP/Model/DDSendBuffer.h; sourceTree = "<group>"; };
+		7EC20F741EAB926F00444B96 /* DDSendBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDSendBuffer.m; path = Module/TCP/Model/DDSendBuffer.m; sourceTree = "<group>"; };
+		7EC20F7D1EAB94E200444B96 /* DDDataInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDDataInputStream.h; path = Module/TCP/Stream/DDDataInputStream.h; sourceTree = "<group>"; };
+		7EC20F7E1EAB94E200444B96 /* DDDataInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDDataInputStream.m; path = Module/TCP/Stream/DDDataInputStream.m; sourceTree = "<group>"; };
+		7EC20F7F1EAB94E200444B96 /* NSStream+NSStreamAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSStream+NSStreamAddition.h"; path = "Module/TCP/Stream/NSStream+NSStreamAddition.h"; sourceTree = "<group>"; };
+		7EC20F801EAB94E200444B96 /* NSStream+NSStreamAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSStream+NSStreamAddition.m"; path = "Module/TCP/Stream/NSStream+NSStreamAddition.m"; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -914,8 +926,10 @@
 		7E31E3CD1E75911400EA69DE /* TCP */ = {
 			isa = PBXGroup;
 			children = (
-				7E44A9BA1EA64CFE00A825B1 /* DDDataInputStream.h */,
-				7E44A9BB1EA64CFE00A825B1 /* DDDataInputStream.m */,
+				7EC20F761EAB945200444B96 /* Stream */,
+				7EC20F721EAB923700444B96 /* Model */,
+				7EC20F6E1EAB91CC00444B96 /* Manager */,
+				7EC20F6A1EAB8F9900444B96 /* RequestAPI */,
 			);
 			name = TCP;
 			sourceTree = "<group>";
@@ -974,6 +988,8 @@
 				7EA12BE61EA8F83E009A78CB /* DDHttpServer.m */,
 				7EA12BE81EA8F86E009A78CB /* DDMsgServer.h */,
 				7EA12BE91EA8F86E009A78CB /* DDMsgServer.m */,
+				7EC20F6B1EAB900500444B96 /* DDTcpServer.h */,
+				7EC20F6C1EAB900500444B96 /* DDTcpServer.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1577,6 +1593,42 @@
 			name = Base;
 			sourceTree = "<group>";
 		};
+		7EC20F6A1EAB8F9900444B96 /* RequestAPI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = RequestAPI;
+			sourceTree = "<group>";
+		};
+		7EC20F6E1EAB91CC00444B96 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				7EC20F6F1EAB91F600444B96 /* DDTcpClientManager.h */,
+				7EC20F701EAB91F600444B96 /* DDTcpClientManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		7EC20F721EAB923700444B96 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7EC20F731EAB926F00444B96 /* DDSendBuffer.h */,
+				7EC20F741EAB926F00444B96 /* DDSendBuffer.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7EC20F761EAB945200444B96 /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				7EC20F7D1EAB94E200444B96 /* DDDataInputStream.h */,
+				7EC20F7E1EAB94E200444B96 /* DDDataInputStream.m */,
+				7EC20F7F1EAB94E200444B96 /* NSStream+NSStreamAddition.h */,
+				7EC20F801EAB94E200444B96 /* NSStream+NSStreamAddition.m */,
+			);
+			name = Stream;
+			sourceTree = "<group>";
+		};
 		7ED4935E1E6471DD0083BCD4 /* Chatting */ = {
 			isa = PBXGroup;
 			children = (
@@ -2018,6 +2070,7 @@
 				7E53DAC71E86AC4A0093C912 /* UIImage+UIImageAddition.m in Sources */,
 				7E53D8C01E86A2410093C912 /* AQGridViewController.m in Sources */,
 				7E53DA9E1E86ABCE0093C912 /* ZKBaseEntity.m in Sources */,
+				7EC20F811EAB94E200444B96 /* DDDataInputStream.m in Sources */,
 				7E53D9891E86A3B20093C912 /* JSMessageInputView.m in Sources */,
 				7E53DAE31E86ACB00093C912 /* ImageGridViewCell.m in Sources */,
 				7E53D8C11E86A2410093C912 /* AQGridViewData.m in Sources */,
@@ -2032,7 +2085,6 @@
 				7E53DAC41E86AC4A0093C912 /* UIColor+AQGridView.m in Sources */,
 				7E53D97C1E86A2BA0093C912 /* PlayerManager.m in Sources */,
 				7E53D95A1E86A2BA0093C912 /* gain_table.c in Sources */,
-				7E44A9BC1EA64CFE00A825B1 /* DDDataInputStream.m in Sources */,
 				7E53DAC51E86AC4A0093C912 /* UIColor+JSMessagesView.m in Sources */,
 				7E53D9881E86A3B20093C912 /* JSDismissiveTextView.m in Sources */,
 				7E53DA661E86A9C60093C912 /* ZKMessageViewController.m in Sources */,
@@ -2050,6 +2102,7 @@
 				7E53D96A1E86A2BA0093C912 /* preprocess.c in Sources */,
 				7E53D9761E86A2BA0093C912 /* vq.c in Sources */,
 				7E53D94D1E86A2BA0093C912 /* framing.c in Sources */,
+				7EC20F711EAB91F600444B96 /* DDTcpClientManager.m in Sources */,
 				7E53D8BE1E86A2410093C912 /* AQGridViewAnimatorItem.m in Sources */,
 				7E53D8C31E86A2410093C912 /* AQGridViewUpdateItem.m in Sources */,
 				7E53D95D1E86A2BA0093C912 /* hexc_table.c in Sources */,
@@ -2057,6 +2110,7 @@
 				7E44A99C1EA0FC7800A825B1 /* ZKDatabaseUtil.m in Sources */,
 				7E53DA631E86A9880093C912 /* ZKMultipleSectionTableViewController.m in Sources */,
 				7E53D94C1E86A2BA0093C912 /* bitwise.c in Sources */,
+				7EC20F751EAB926F00444B96 /* DDSendBuffer.m in Sources */,
 				7E53D9AD1E86A5440093C912 /* ZKAlbumCell.m in Sources */,
 				7E53D9541E86A2BA0093C912 /* exc_5_256_table.c in Sources */,
 				7E44A9CC1EA7A4FF00A825B1 /* LoginModule.m in Sources */,
@@ -2095,6 +2149,7 @@
 				7E53DA7C1E86AA3F0093C912 /* ZKChattingEditViewController.m in Sources */,
 				7E53DAE51E86ACB00093C912 /* ZKNormalCell.m in Sources */,
 				7E53DAA51E86AC020093C912 /* ZKBaseCell.m in Sources */,
+				7EC20F821EAB94E200444B96 /* NSStream+NSStreamAddition.m in Sources */,
 				7E53D8BD1E86A2410093C912 /* AQGridView.m in Sources */,
 				7E53DAD61E86AC830093C912 /* DDPromptCell.m in Sources */,
 				7E53DAA21E86ABCE0093C912 /* ZKUserEntity.m in Sources */,
@@ -2114,6 +2169,7 @@
 				7E44A9851E9A53A200A825B1 /* DDEmotionCell.m in Sources */,
 				7E53D9611E86A2BA0093C912 /* kiss_fftr.c in Sources */,
 				7E53D99C1E86A3E10093C912 /* IMLogin.pb.m in Sources */,
+				7EC20F6D1EAB900500444B96 /* DDTcpServer.m in Sources */,
 				7E53D9771E86A2BA0093C912 /* window.c in Sources */,
 				7E364ABE1E952BD400BD36C1 /* NSDictionary+JSON.m in Sources */,
 				7E53D9531E86A2BA0093C912 /* exc_20_32_table.c in Sources */,
