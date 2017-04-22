@@ -9,6 +9,10 @@
 #import "ZKLoginViewController.h"
 #import "ZKRootViewController.h"
 #import "ZKAFNetworkingClient.h"
+#import "LoginModule.h"
+#import "RuntimeStatus.h"
+#import "ZKConstant.h"
+
 
 @interface ZKLoginViewController ()
 @property (nonatomic,strong) UIButton *button;
@@ -49,15 +53,30 @@
 -(void)logInButtonPressed{
     
     [self showHUDWithIndeterminateText:@"请稍后..."];
-    //    [ZKAFNetworkingClient jsonFormPOSTRequest:@"http://88.2.3.4/" param:nil success:^(id result){
-    ZKRootViewController *rootController=[[ZKRootViewController alloc]init];
-    [self pushViewController:rootController animated:YES];
-    //    } failure:^(NSError * error){
-    //        NSLog(@" %& ", error);
-    // [self showHUDWithText:@"登录失败"];
-    //    }];
     
-    [self removeHUD];
+    
+    [[LoginModule instance] loginWithUsername:@"" password:@"" success:^(ZKUserEntity *user) {
+        
+            [self removeHUD];
+        
+            TheRuntime.user=user ;
+            [TheRuntime updateData];
+            
+            if (TheRuntime.pushToken) {
+                //SendPushTokenAPI *pushToken = [[SendPushTokenAPI alloc] init];
+               // [pushToken requestWithObject:TheRuntime.pushToken Completion:^(id response, NSError *error) {
+                    
+               // }];
+            }
+            ZKRootViewController *rootController=[[ZKRootViewController alloc]init];
+            [self pushViewController:rootController animated:YES];
+    } failure:^(NSString *error) {
+        
+        [self removeHUD];
+    }];
+
+
+
 }
 
 - (void)didReceiveMemoryWarning {
