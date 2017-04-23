@@ -253,6 +253,7 @@
 		7EC20FA11EACC45000444B96 /* DDDataOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FA01EACC45000444B96 /* DDDataOutputStream.m */; };
 		7EC20FA51EACE16B00444B96 /* DDReceiveMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FA41EACE16B00444B96 /* DDReceiveMessageAPI.m */; };
 		7EC20FA81EACE26300444B96 /* DDReceiveMessageACKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FA71EACE26300444B96 /* DDReceiveMessageACKAPI.m */; };
+		7EC20FAC1EACE5C200444B96 /* GetMessageQueueAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FAB1EACE5C200444B96 /* GetMessageQueueAPI.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -716,6 +717,8 @@
 		7EC20FA41EACE16B00444B96 /* DDReceiveMessageAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDReceiveMessageAPI.m; path = Module/TCP/UnRequestAPI/DDReceiveMessageAPI.m; sourceTree = "<group>"; };
 		7EC20FA61EACE26300444B96 /* DDReceiveMessageACKAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDReceiveMessageACKAPI.h; path = Module/TCP/UnRequestAPI/DDReceiveMessageACKAPI.h; sourceTree = "<group>"; };
 		7EC20FA71EACE26300444B96 /* DDReceiveMessageACKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDReceiveMessageACKAPI.m; path = Module/TCP/UnRequestAPI/DDReceiveMessageACKAPI.m; sourceTree = "<group>"; };
+		7EC20FAA1EACE5C200444B96 /* GetMessageQueueAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetMessageQueueAPI.h; path = Module/TCP/RequestAPI/GetMessageQueueAPI.h; sourceTree = "<group>"; };
+		7EC20FAB1EACE5C200444B96 /* GetMessageQueueAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetMessageQueueAPI.m; path = Module/TCP/RequestAPI/GetMessageQueueAPI.m; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -1639,6 +1642,8 @@
 		7EC20F6A1EAB8F9900444B96 /* RequestAPI */ = {
 			isa = PBXGroup;
 			children = (
+				7EC20FAA1EACE5C200444B96 /* GetMessageQueueAPI.h */,
+				7EC20FAB1EACE5C200444B96 /* GetMessageQueueAPI.m */,
 			);
 			name = RequestAPI;
 			sourceTree = "<group>";
@@ -2237,6 +2242,7 @@
 				7E53DA7E1E86AA3F0093C912 /* ZKChattingMainViewController.m in Sources */,
 				7E53DA5E1E86A9880093C912 /* ZKBaseNavigationController.m in Sources */,
 				7E53DA691E86A9E70093C912 /* ZKEmotionsViewController.m in Sources */,
+				7EC20FAC1EACE5C200444B96 /* GetMessageQueueAPI.m in Sources */,
 				7E53D97D1E86A2BA0093C912 /* CADebugMacros.cpp in Sources */,
 				7E60318F1E533AA3005239C4 /* AppDelegate.m in Sources */,
 				7E53DA4A1E86A8F10093C912 /* ZKContactViewController.m in Sources */,

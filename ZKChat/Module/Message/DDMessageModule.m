@@ -13,6 +13,9 @@
 #import "ZKDatabaseUtil.h"
 #import "DDReceiveMessageAPI.h"
 #import "DDReceiveMessageACKAPI.h"
+#import "DDGroupModule.h"
+#import "GetMessageQueueAPI.h"
+
 @interface DDMessageModule(){
     
     NSMutableDictionary* _unreadMessages;
@@ -111,6 +114,68 @@
         [ZKNotification postNotification:DDNotificationReceiveMessage userInfo:nil object:object];
     }];
     
+}
+-(void)getMessageFromServer:(NSInteger)fromMsgID currentSession:(ZKSessionEntity *)session count:(NSInteger)count Block:(void(^)(NSMutableArray *array, NSError *error))block
+{
+    GetMessageQueueAPI *getMessageQueue = [GetMessageQueueAPI new];
+    [getMessageQueue requestWithObject:@[@(fromMsgID),@(count),@(session.sessionType),session.sessionID] Completion:^(NSMutableArray *response, NSError *error) {
+        block(response,error);
+        
+    }];
+    
+}
+- (NSArray*)p_spliteMessage:(ZKMessageEntity*)message
+{
+    NSMutableArray* messageContentArray = [[NSMutableArray alloc] init];
+    if (message.msgContentType == DDMessageTypeImage || (message.msgContentType == DDMessageTypeText && [message.msgContent rangeOfString:DD_MESSAGE_IMAGE_PREFIX].length > 0))
+    {
+        NSString* messageContent = [message msgContent];
+        NSArray* tempMessageContent = [messageContent componentsSeparatedByString:DD_MESSAGE_IMAGE_PREFIX];
+        [tempMessageContent enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSString* content = (NSString*)obj;
+            if ([content length] > 0)
+            {
+                NSRange suffixRange = [content rangeOfString:DD_MESSAGE_IMAGE_SUFFIX];
+                if (suffixRange.length > 0)
+                {
+                    //是图片,再拆分
+                    NSString* imageContent = [NSString stringWithFormat:@"%@%@",DD_MESSAGE_IMAGE_PREFIX,[content substringToIndex:suffixRange.location + suffixRange.length]];
+                    ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:imageContent toUserID:message.toUserID];
+                    messageEntity.msgContentType = DDMessageTypeImage;
+                    messageEntity.state = DDmessageSendSuccess;
+                    [messageContentArray addObject:messageEntity];
+                    
+                    
+                    NSString* secondComponent = [content substringFromIndex:suffixRange.location + suffixRange.length];
+                    if (secondComponent.length > 0)
+                    {
+                        ZKMessageEntity* secondmessageEntity = [[ZKMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:secondComponent toUserID:message.toUserID];
+                        secondmessageEntity.msgContentType = DDMessageTypeText;
+                        secondmessageEntity.state = DDmessageSendSuccess;
+                        [messageContentArray addObject:secondmessageEntity];
+                    }
+                }
+                else
+                {
+                    
+                    ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:content toUserID:message.toUserID];
+                    messageEntity.msgContentType = DDMessageTypeText;
+                    messageEntity.state = DDmessageSendSuccess;
+                    [messageContentArray addObject:messageEntity];
+                }
+            }
+        }];
+    }
+    if ([messageContentArray count] == 0)
+    {
+        [messageContentArray addObject:message];
+    }
+    return messageContentArray;
+}
+
+-(void)setApplicationUnreadMsgCount
+{
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[self getUnreadMessgeCount]];
 }
 
 @end

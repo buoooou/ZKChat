@@ -13,6 +13,9 @@
 #import "DDChatTextCell.h"
 #import <SDWebImage/SDWebImageManager.h>
 #import "ZKUtil.h"
+#import "DDMessageModule.h"
+#import "ZKDatabaseUtil.h"
+#import "MsgReadACKAPI.h"
 
 static NSUInteger const showPromptGap = 300;
 @interface ChattingModule(privateAPI)
@@ -128,7 +131,7 @@ static NSUInteger const showPromptGap = 300;
 }
 -(void)getNewMsg:(DDChatLoadMoreHistoryCompletion)completion
 {
-    [[DDMessageModule shareInstance] getMessageFromServer:0 currentSession:self.ZKMessageEntity count:20 Block:^(NSMutableArray *response, NSError *error) {
+    [[DDMessageModule shareInstance] getMessageFromServer:0 currentSession:self.ZKSessionEntity count:20 Block:^(NSMutableArray *response, NSError *error) {
         //[self p_addHistoryMessages:response Completion:completion];
         NSUInteger msgID = [[response valueForKeyPath:@"@max.msgID"] integerValue];
         if ( msgID !=0) {
@@ -161,20 +164,20 @@ static NSUInteger const showPromptGap = 300;
 {
     if (self.ZKSessionEntity) {
         if (FromMsgID !=1) {
- //           [[DDMessageModule shareInstance] getMessageFromServer:FromMsgID currentSession:self.ZKSessionEntity count:count Block:^(NSArray *response, NSError *error) {
-                //[self p_addHistoryMessages:response Completion:completion];
-               // NSUInteger msgID = [[response valueForKeyPath:@"@max.msgID"] integerValue];
+            [[DDMessageModule shareInstance] getMessageFromServer:FromMsgID currentSession:self.ZKSessionEntity count:count Block:^(NSArray *response, NSError *error) {
+                [self p_addHistoryMessages:response Completion:completion];
+                NSUInteger msgID = [[response valueForKeyPath:@"@max.msgID"] integerValue];
                 if ( msgID !=0) {
                     if (response) {
                         [[ZKDatabaseUtil instance] insertMessages:response success:^{
                             MsgReadACKAPI* readACK = [[MsgReadACKAPI alloc] init];
-                            [readACK requestWithObject:@[self.MTTSessionEntity.sessionID,@(msgID),@(self.MTTSessionEntity.sessionType)] Completion:nil];
+                            [readACK requestWithObject:@[self.ZKSessionEntity.sessionID,@(msgID),@(self.ZKSessionEntity.sessionType)] Completion:nil];
                             
                         } failure:^(NSString *errorDescripe) {
                             
                         }];
                         NSUInteger count = [self p_getMessageCount];
-                        [[ZKDatabaseUtil instance] loadMessageForSessionID:self.ZKSessionEntity.sessionID pageCount:DD_PAGE_ITEM_COUNT index:count completion:^(NSArray *messages, NSError *error) {
+                        [[ZKDatabaseUtil instance] loadMessageForSessionID:self.ZKSessionEntity.sessionID pageCount:PAGE_ITEM_COUNT index:count completion:^(NSArray *messages, NSError *error) {
                             [self p_addHistoryMessages:messages Completion:completion];
                             completion([response count],error);
                         }];
@@ -183,13 +186,13 @@ static NSUInteger const showPromptGap = 300;
                     
                     
                 }else{
-               //     completion(0,error);
+                    completion(0,error);
                 }
                 
-//            }];
-//        }else{
-//            completion(0,nil);
-//        }
+            }];
+        }else{
+            completion(0,nil);
+        }
         
     }
 }

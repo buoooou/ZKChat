@@ -26,8 +26,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (!self.dataSource.count)
-        [self loadDataSource];
 }
 #pragma mark UItableView DataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
