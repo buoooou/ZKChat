@@ -9,6 +9,9 @@
 #import "MsgReadACKAPI.h"
 #import "IMMessage.pb.h"
 #import "DDTcpProtocolHeader.h"
+#import "DDAPIScheduleProtocol.h"
+#import "ZKUtil.h"
+#import "DDDataOutputStream.h"
 
 @implementation MsgReadACKAPI
 /**
@@ -86,7 +89,7 @@
     {
         IMMsgDataReadAckBuilder *readAck = [IMMsgDataReadAck builder];
         [readAck setUserId:0];
-        [readAck setSessionId:[MTTUtil changeIDToOriginal:object[0]]];
+        [readAck setSessionId:[ZKUtil changeIDToOriginal:object[0]]];
         [readAck setMsgId:[object[1] integerValue]];
         [readAck setSessionType:[object[2] integerValue]];
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];

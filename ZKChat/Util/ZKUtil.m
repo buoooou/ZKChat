@@ -102,5 +102,14 @@ typedef NS_ENUM(SInt32, SessionType) {
     }
     return CGSizeMake(width, height);
 }
+#pragma mark - OriginalID & sessionID
 
++(UInt32)changeIDToOriginal:(NSString *)sessionID
+{
+    NSArray *array = [sessionID componentsSeparatedByString:@"_"];
+    if (array[1]) {
+        return [array[1] unsignedIntValue];
+    }
+    return 0;
+}
 @end

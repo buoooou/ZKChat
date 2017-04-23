@@ -22,4 +22,6 @@
 +(void)setLastDBVersion:(NSInteger)version;
 +(NSInteger)getLastDBVersion;
 
+
++(UInt32)changeIDToOriginal:(NSString *)sessionID;
 @end

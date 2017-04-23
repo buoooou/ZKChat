@@ -8,6 +8,9 @@
 
 #import "DDMessageModule.h"
 #import "ZKConstant.h"
+#import "MsgReadACKAPI.h"
+#import "ZKNotification.h"
+#import "ZKDatabaseUtil.h"
 
 @interface DDMessageModule(){
     
@@ -82,7 +85,7 @@
 - (void)p_registerReceiveMessageAPI
 {
     DDReceiveMessageAPI* receiveMessageAPI = [[DDReceiveMessageAPI alloc] init];
-    [receiveMessageAPI registerAPIInAPIScheduleReceiveData:^(MTTMessageEntity* object, NSError *error) {
+    [receiveMessageAPI registerAPIInAPIScheduleReceiveData:^(ZKMessageEntity* object, NSError *error) {
         object.state=DDmessageSendSuccess;
         DDReceiveMessageACKAPI *rmack = [[DDReceiveMessageACKAPI alloc] init];
         [rmack requestWithObject:@[object.senderId,@(object.msgID),object.sessionId,@(object.sessionType)] Completion:^(id response, NSError *error) {
@@ -93,18 +96,18 @@
         //            [self p_saveReceivedMessage:obj];
         //        }];
         if ([object isGroupMessage]) {
-            MTTGroupEntity *group = [[DDGroupModule instance] getGroupByGId:object.sessionId];
+            ZKGroupEntity *group = [[DDGroupModule instance] getGroupByGId:object.sessionId];
             if (group.isShield == 1) {
                 MsgReadACKAPI* readACK = [[MsgReadACKAPI alloc] init];
                 [readACK requestWithObject:@[object.sessionId,@(object.msgID),@(object.sessionType)] Completion:nil];
             }
         }
-        [[MTTDatabaseUtil instance] insertMessages:@[object] success:^{
+        [[ZKDatabaseUtil instance] insertMessages:@[object] success:^{
             
         } failure:^(NSString *errorDescripe) {
             
         }];
-        [MTTNotification postNotification:DDNotificationReceiveMessage userInfo:nil object:object];
+        [ZKNotification postNotification:DDNotificationReceiveMessage userInfo:nil object:object];
     }];
     
 }

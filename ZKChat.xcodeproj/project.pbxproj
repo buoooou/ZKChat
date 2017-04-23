@@ -249,6 +249,8 @@
 		7EC20F911EACA75100444B96 /* DDAPISchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F901EACA75100444B96 /* DDAPISchedule.m */; };
 		7EC20F981EACB0F600444B96 /* ZKSundriesCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F971EACB0F600444B96 /* ZKSundriesCenter.m */; };
 		7EC20F9B1EACB30700444B96 /* DDUnrequestSuperAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F9A1EACB30700444B96 /* DDUnrequestSuperAPI.m */; };
+		7EC20F9E1EACC24A00444B96 /* DDTcpProtocolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F9D1EACC24A00444B96 /* DDTcpProtocolHeader.m */; };
+		7EC20FA11EACC45000444B96 /* DDDataOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FA01EACC45000444B96 /* DDDataOutputStream.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -704,6 +706,10 @@
 		7EC20F971EACB0F600444B96 /* ZKSundriesCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSundriesCenter.m; path = Util/SundriesCenter/ZKSundriesCenter.m; sourceTree = "<group>"; };
 		7EC20F991EACB30700444B96 /* DDUnrequestSuperAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDUnrequestSuperAPI.h; path = Module/TCP/DDUnrequestSuperAPI.h; sourceTree = "<group>"; };
 		7EC20F9A1EACB30700444B96 /* DDUnrequestSuperAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDUnrequestSuperAPI.m; path = Module/TCP/DDUnrequestSuperAPI.m; sourceTree = "<group>"; };
+		7EC20F9C1EACC24A00444B96 /* DDTcpProtocolHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDTcpProtocolHeader.h; path = Module/TCP/Protocol/DDTcpProtocolHeader.h; sourceTree = "<group>"; };
+		7EC20F9D1EACC24A00444B96 /* DDTcpProtocolHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDTcpProtocolHeader.m; path = Module/TCP/Protocol/DDTcpProtocolHeader.m; sourceTree = "<group>"; };
+		7EC20F9F1EACC45000444B96 /* DDDataOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDDataOutputStream.h; path = Module/TCP/Stream/DDDataOutputStream.h; sourceTree = "<group>"; };
+		7EC20FA01EACC45000444B96 /* DDDataOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDDataOutputStream.m; path = Module/TCP/Stream/DDDataOutputStream.m; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -1655,6 +1661,8 @@
 				7EC20F7E1EAB94E200444B96 /* DDDataInputStream.m */,
 				7EC20F7F1EAB94E200444B96 /* NSStream+NSStreamAddition.h */,
 				7EC20F801EAB94E200444B96 /* NSStream+NSStreamAddition.m */,
+				7EC20F9F1EACC45000444B96 /* DDDataOutputStream.h */,
+				7EC20FA01EACC45000444B96 /* DDDataOutputStream.m */,
 			);
 			name = Stream;
 			sourceTree = "<group>";
@@ -1682,6 +1690,8 @@
 			children = (
 				7EC20F931EACA84800444B96 /* DDAPIScheduleProtocol.h */,
 				7EC20F941EACA8D600444B96 /* DDAPIUnrequestScheduleProtocol.h */,
+				7EC20F9C1EACC24A00444B96 /* DDTcpProtocolHeader.h */,
+				7EC20F9D1EACC24A00444B96 /* DDTcpProtocolHeader.m */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -2226,9 +2236,11 @@
 				7E53DAE71E86ACB00093C912 /* ZKPublicProfileCell.m in Sources */,
 				7E44A98A1E9A81AC00A825B1 /* ZKConstant.m in Sources */,
 				7E53DA7D1E86AA3F0093C912 /* ZKChattingImagePreviewViewController.m in Sources */,
+				7EC20F9E1EACC24A00444B96 /* DDTcpProtocolHeader.m in Sources */,
 				7E53DA4B1E86A8F10093C912 /* ZKPublicProfileViewController.m in Sources */,
 				7E53DAC11E86AC4A0093C912 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
 				7E60318C1E533AA3005239C4 /* main.m in Sources */,
+				7EC20FA11EACC45000444B96 /* DDDataOutputStream.m in Sources */,
 				7E53D94F1E86A2BA0093C912 /* buffer.c in Sources */,
 				7E364ABB1E952A6400BD36C1 /* DDChatImageCell.m in Sources */,
 				7E53D96E1E86A2BA0093C912 /* scal.c in Sources */,

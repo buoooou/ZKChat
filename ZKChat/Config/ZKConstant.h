@@ -13,7 +13,7 @@
 #define APP_NAME @"ZKChat"
 #define ZKChatVerison @"1.0.0"
 
-
+#define IM_PDU_VERSION      13
 
 #define isNull(x)             (!x || [x isKindOfClass:[NSNull class]])
 
