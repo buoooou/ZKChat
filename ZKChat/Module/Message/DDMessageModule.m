@@ -11,7 +11,8 @@
 #import "MsgReadACKAPI.h"
 #import "ZKNotification.h"
 #import "ZKDatabaseUtil.h"
-
+#import "DDReceiveMessageAPI.h"
+#import "DDReceiveMessageACKAPI.h"
 @interface DDMessageModule(){
     
     NSMutableDictionary* _unreadMessages;

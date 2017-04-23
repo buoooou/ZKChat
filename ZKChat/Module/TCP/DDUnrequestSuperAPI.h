@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DDAPIUnrequestScheduleProtocol.h"
+#import "DDTcpProtocolHeader.h"
 
 typedef void(^ReceiveData)(id object,NSError* error);
 

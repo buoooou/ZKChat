@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "DDAPIScheduleProtocol.h"
+#import "DDAPIUnrequestScheduleProtocol.h"
+#import "DDTcpProtocolHeader.h"
 typedef void(^RequestCompletion)(id response,NSError* error);
 /**
  *  这是一个超级类，不能被直接使用

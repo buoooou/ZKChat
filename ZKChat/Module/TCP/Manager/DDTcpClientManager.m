@@ -11,6 +11,8 @@
 #import "NSStream+NSStreamAddition.h"
 #import "ZKNotification.h"
 #import "DDDataInputStream.h"
+#import "DDTcpProtocolHeader.h"
+#import "DDAPISchedule.h"
 
 @interface DDTcpClientManager(PrivateAPI)
 
@@ -35,7 +37,7 @@
 #pragma mark - PublicAPI
 -(void)connect:(NSString *)ipAdr port:(NSInteger)port status:(NSInteger)status
 {
-    DDLog(@"mogujie mtalk client :connect ipAdr:%@ port:%ld",ipAdr,(long)port);
+    DDLog(@" client :connect ipAdr:%@ port:%ld",ipAdr,(long)port);
     cDataLen = 0;
     
     _receiveBuffer = [NSMutableData data];
@@ -64,7 +66,7 @@
 
 -(void)disconnect
 {
-    DDLog(@"MTalk Client:disconnect");
+    DDLog(@"zkTalk Client:disconnect");
     
     cDataLen = 0;
     

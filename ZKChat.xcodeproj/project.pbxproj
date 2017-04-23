@@ -251,6 +251,8 @@
 		7EC20F9B1EACB30700444B96 /* DDUnrequestSuperAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F9A1EACB30700444B96 /* DDUnrequestSuperAPI.m */; };
 		7EC20F9E1EACC24A00444B96 /* DDTcpProtocolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F9D1EACC24A00444B96 /* DDTcpProtocolHeader.m */; };
 		7EC20FA11EACC45000444B96 /* DDDataOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FA01EACC45000444B96 /* DDDataOutputStream.m */; };
+		7EC20FA51EACE16B00444B96 /* DDReceiveMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FA41EACE16B00444B96 /* DDReceiveMessageAPI.m */; };
+		7EC20FA81EACE26300444B96 /* DDReceiveMessageACKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FA71EACE26300444B96 /* DDReceiveMessageACKAPI.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -710,6 +712,10 @@
 		7EC20F9D1EACC24A00444B96 /* DDTcpProtocolHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDTcpProtocolHeader.m; path = Module/TCP/Protocol/DDTcpProtocolHeader.m; sourceTree = "<group>"; };
 		7EC20F9F1EACC45000444B96 /* DDDataOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDDataOutputStream.h; path = Module/TCP/Stream/DDDataOutputStream.h; sourceTree = "<group>"; };
 		7EC20FA01EACC45000444B96 /* DDDataOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDDataOutputStream.m; path = Module/TCP/Stream/DDDataOutputStream.m; sourceTree = "<group>"; };
+		7EC20FA31EACE16B00444B96 /* DDReceiveMessageAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDReceiveMessageAPI.h; path = Module/TCP/UnRequestAPI/DDReceiveMessageAPI.h; sourceTree = "<group>"; };
+		7EC20FA41EACE16B00444B96 /* DDReceiveMessageAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDReceiveMessageAPI.m; path = Module/TCP/UnRequestAPI/DDReceiveMessageAPI.m; sourceTree = "<group>"; };
+		7EC20FA61EACE26300444B96 /* DDReceiveMessageACKAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDReceiveMessageACKAPI.h; path = Module/TCP/UnRequestAPI/DDReceiveMessageACKAPI.h; sourceTree = "<group>"; };
+		7EC20FA71EACE26300444B96 /* DDReceiveMessageACKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDReceiveMessageACKAPI.m; path = Module/TCP/UnRequestAPI/DDReceiveMessageACKAPI.m; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -952,6 +958,7 @@
 		7E31E3CD1E75911400EA69DE /* TCP */ = {
 			isa = PBXGroup;
 			children = (
+				7EC20FA21EACE11F00444B96 /* UnRequestAPI */,
 				7EC20F8E1EACA5CF00444B96 /* Protocol */,
 				7EC20F871EACA30F00444B96 /* Message */,
 				7EC20F761EAB945200444B96 /* Stream */,
@@ -1705,6 +1712,17 @@
 			name = SundriesCenter;
 			sourceTree = "<group>";
 		};
+		7EC20FA21EACE11F00444B96 /* UnRequestAPI */ = {
+			isa = PBXGroup;
+			children = (
+				7EC20FA31EACE16B00444B96 /* DDReceiveMessageAPI.h */,
+				7EC20FA41EACE16B00444B96 /* DDReceiveMessageAPI.m */,
+				7EC20FA61EACE26300444B96 /* DDReceiveMessageACKAPI.h */,
+				7EC20FA71EACE26300444B96 /* DDReceiveMessageACKAPI.m */,
+			);
+			name = UnRequestAPI;
+			sourceTree = "<group>";
+		};
 		7ED4935E1E6471DD0083BCD4 /* Chatting */ = {
 			isa = PBXGroup;
 			children = (
@@ -2140,6 +2158,7 @@
 				7E44A9B61EA64CDB00A825B1 /* DDUserModule.m in Sources */,
 				7E53D9621E86A2BA0093C912 /* lpc.c in Sources */,
 				7E53D9811E86A2BA0093C912 /* RecorderManager.mm in Sources */,
+				7EC20FA81EACE26300444B96 /* DDReceiveMessageACKAPI.m in Sources */,
 				7E53DAC01E86AC4A0093C912 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
 				7E53D97B1E86A2BA0093C912 /* Encapsulator.m in Sources */,
 				7E44A9C51EA64D2000A825B1 /* EmotionsModule.m in Sources */,
@@ -2157,6 +2176,7 @@
 				7E44A9911E9BCF2B00A825B1 /* ZKAFNetworkingClient.m in Sources */,
 				7E53DA4E1E86A9120093C912 /* ZKRootViewController.m in Sources */,
 				7E53DAC21E86AC4A0093C912 /* NSString+Additions.m in Sources */,
+				7EC20FA51EACE16B00444B96 /* DDReceiveMessageAPI.m in Sources */,
 				7E53D9551E86A2BA0093C912 /* exc_5_64_table.c in Sources */,
 				7E53D97A1E86A2BA0093C912 /* Decapsulator.m in Sources */,
 				7E53DAC41E86AC4A0093C912 /* UIColor+AQGridView.m in Sources */,
