@@ -37,9 +37,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)loadDataSource {
-    // subClasse
-}
+
 - (void)dealloc {
     self.dataSource = nil;
     self.tableView.delegate = nil;

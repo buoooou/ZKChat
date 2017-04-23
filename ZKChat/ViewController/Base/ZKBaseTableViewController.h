@@ -22,9 +22,6 @@
  *数据源
  */
 @property (nonatomic,strong)NSMutableArray *dataSource;
-/**
- *  加载本地或者网络数据源
- */
-- (void)loadDataSource;
+
 - (void)setTableViewStyle:(UITableViewStyle)tableViewStyle;
 @end
