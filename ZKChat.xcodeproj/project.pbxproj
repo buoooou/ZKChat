@@ -247,6 +247,8 @@
 		7EC20F8A1EACA34300444B96 /* MsgReadACKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F891EACA34300444B96 /* MsgReadACKAPI.m */; };
 		7EC20F8D1EACA35800444B96 /* DDSuperAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F8C1EACA35800444B96 /* DDSuperAPI.m */; };
 		7EC20F911EACA75100444B96 /* DDAPISchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F901EACA75100444B96 /* DDAPISchedule.m */; };
+		7EC20F981EACB0F600444B96 /* ZKSundriesCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F971EACB0F600444B96 /* ZKSundriesCenter.m */; };
+		7EC20F9B1EACB30700444B96 /* DDUnrequestSuperAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20F9A1EACB30700444B96 /* DDUnrequestSuperAPI.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -698,6 +700,10 @@
 		7EC20F901EACA75100444B96 /* DDAPISchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDAPISchedule.m; path = Module/TCP/DDAPISchedule.m; sourceTree = "<group>"; };
 		7EC20F931EACA84800444B96 /* DDAPIScheduleProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DDAPIScheduleProtocol.h; path = Module/TCP/Protocol/DDAPIScheduleProtocol.h; sourceTree = "<group>"; };
 		7EC20F941EACA8D600444B96 /* DDAPIUnrequestScheduleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAPIUnrequestScheduleProtocol.h; path = Module/TCP/Protocol/DDAPIUnrequestScheduleProtocol.h; sourceTree = "<group>"; };
+		7EC20F961EACB0F600444B96 /* ZKSundriesCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSundriesCenter.h; path = Util/SundriesCenter/ZKSundriesCenter.h; sourceTree = "<group>"; };
+		7EC20F971EACB0F600444B96 /* ZKSundriesCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSundriesCenter.m; path = Util/SundriesCenter/ZKSundriesCenter.m; sourceTree = "<group>"; };
+		7EC20F991EACB30700444B96 /* DDUnrequestSuperAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDUnrequestSuperAPI.h; path = Module/TCP/DDUnrequestSuperAPI.h; sourceTree = "<group>"; };
+		7EC20F9A1EACB30700444B96 /* DDUnrequestSuperAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDUnrequestSuperAPI.m; path = Module/TCP/DDUnrequestSuperAPI.m; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -950,6 +956,8 @@
 				7EC20F8C1EACA35800444B96 /* DDSuperAPI.m */,
 				7EC20F8F1EACA75100444B96 /* DDAPISchedule.h */,
 				7EC20F901EACA75100444B96 /* DDAPISchedule.m */,
+				7EC20F991EACB30700444B96 /* DDUnrequestSuperAPI.h */,
+				7EC20F9A1EACB30700444B96 /* DDUnrequestSuperAPI.m */,
 			);
 			name = TCP;
 			sourceTree = "<group>";
@@ -1395,6 +1403,7 @@
 		7E6031C11E53434F005239C4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				7EC20F951EACB08200444B96 /* SundriesCenter */,
 				7E44A9961EA0FB8B00A825B1 /* DBUtil */,
 				7E44A9921E9D1F3E00A825B1 /* Notification */,
 				7E44A98E1E9BCEFE00A825B1 /* Http */,
@@ -1675,6 +1684,15 @@
 				7EC20F941EACA8D600444B96 /* DDAPIUnrequestScheduleProtocol.h */,
 			);
 			name = Protocol;
+			sourceTree = "<group>";
+		};
+		7EC20F951EACB08200444B96 /* SundriesCenter */ = {
+			isa = PBXGroup;
+			children = (
+				7EC20F961EACB0F600444B96 /* ZKSundriesCenter.h */,
+				7EC20F971EACB0F600444B96 /* ZKSundriesCenter.m */,
+			);
+			name = SundriesCenter;
 			sourceTree = "<group>";
 		};
 		7ED4935E1E6471DD0083BCD4 /* Chatting */ = {
@@ -2198,6 +2216,7 @@
 				7E53D94E1E86A2BA0093C912 /* bits.c in Sources */,
 				7E53D99B1E86A3E10093C912 /* IMGroup.pb.m in Sources */,
 				7E53DA7C1E86AA3F0093C912 /* ZKChattingEditViewController.m in Sources */,
+				7EC20F981EACB0F600444B96 /* ZKSundriesCenter.m in Sources */,
 				7E53DAE51E86ACB00093C912 /* ZKNormalCell.m in Sources */,
 				7E53DAA51E86AC020093C912 /* ZKBaseCell.m in Sources */,
 				7EC20F821EAB94E200444B96 /* NSStream+NSStreamAddition.m in Sources */,
@@ -2252,6 +2271,7 @@
 				7E44A9C21EA64D1800A825B1 /* ChattingModule.m in Sources */,
 				7E53D9521E86A2BA0093C912 /* exc_10_32_table.c in Sources */,
 				7E53DA491E86A8F10093C912 /* ZKContactResultViewController.m in Sources */,
+				7EC20F9B1EACB30700444B96 /* DDUnrequestSuperAPI.m in Sources */,
 				7E53DAE81E86ACB00093C912 /* ZKUserInfoCell.m in Sources */,
 				7E53D9691E86A2BA0093C912 /* nb_celp.c in Sources */,
 				7E53DA721E86AA150093C912 /* ZKAlbumDetailsBottomBar.m in Sources */,
