@@ -254,6 +254,8 @@
 		7EC20FA51EACE16B00444B96 /* DDReceiveMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FA41EACE16B00444B96 /* DDReceiveMessageAPI.m */; };
 		7EC20FA81EACE26300444B96 /* DDReceiveMessageACKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FA71EACE26300444B96 /* DDReceiveMessageACKAPI.m */; };
 		7EC20FAC1EACE5C200444B96 /* GetMessageQueueAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FAB1EACE5C200444B96 /* GetMessageQueueAPI.m */; };
+		7EC20FAF1EACEABD00444B96 /* DDAllUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FAE1EACEABD00444B96 /* DDAllUserAPI.m */; };
+		7EC20FB31EACECDF00444B96 /* SpellLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB21EACECDF00444B96 /* SpellLibrary.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -719,6 +721,10 @@
 		7EC20FA71EACE26300444B96 /* DDReceiveMessageACKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDReceiveMessageACKAPI.m; path = Module/TCP/UnRequestAPI/DDReceiveMessageACKAPI.m; sourceTree = "<group>"; };
 		7EC20FAA1EACE5C200444B96 /* GetMessageQueueAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetMessageQueueAPI.h; path = Module/TCP/RequestAPI/GetMessageQueueAPI.h; sourceTree = "<group>"; };
 		7EC20FAB1EACE5C200444B96 /* GetMessageQueueAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetMessageQueueAPI.m; path = Module/TCP/RequestAPI/GetMessageQueueAPI.m; sourceTree = "<group>"; };
+		7EC20FAD1EACEABD00444B96 /* DDAllUserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAllUserAPI.h; path = Module/TCP/DDAllUserAPI.h; sourceTree = "<group>"; };
+		7EC20FAE1EACEABD00444B96 /* DDAllUserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDAllUserAPI.m; path = Module/TCP/DDAllUserAPI.m; sourceTree = "<group>"; };
+		7EC20FB11EACECDF00444B96 /* SpellLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpellLibrary.h; path = Module/Search/SpellLibrary.h; sourceTree = "<group>"; };
+		7EC20FB21EACECDF00444B96 /* SpellLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpellLibrary.m; path = Module/Search/SpellLibrary.m; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -974,6 +980,8 @@
 				7EC20F901EACA75100444B96 /* DDAPISchedule.m */,
 				7EC20F991EACB30700444B96 /* DDUnrequestSuperAPI.h */,
 				7EC20F9A1EACB30700444B96 /* DDUnrequestSuperAPI.m */,
+				7EC20FAD1EACEABD00444B96 /* DDAllUserAPI.h */,
+				7EC20FAE1EACEABD00444B96 /* DDAllUserAPI.m */,
 			);
 			name = TCP;
 			sourceTree = "<group>";
@@ -1432,6 +1440,7 @@
 		7E6031C21E534355005239C4 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				7EC20FB01EACECB000444B96 /* Search */,
 				7EC20F831EACA0B800444B96 /* Message */,
 				7E44A9C61EA7A05E00A825B1 /* Login */,
 				7E44A9AA1EA318CF00A825B1 /* Group */,
@@ -1726,6 +1735,15 @@
 				7EC20FA71EACE26300444B96 /* DDReceiveMessageACKAPI.m */,
 			);
 			name = UnRequestAPI;
+			sourceTree = "<group>";
+		};
+		7EC20FB01EACECB000444B96 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7EC20FB11EACECDF00444B96 /* SpellLibrary.h */,
+				7EC20FB21EACECDF00444B96 /* SpellLibrary.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 		7ED4935E1E6471DD0083BCD4 /* Chatting */ = {
@@ -2156,6 +2174,7 @@
 				7E53D9A61E86A49B0093C912 /* MenuImageView.m in Sources */,
 				7EC20F911EACA75100444B96 /* DDAPISchedule.m in Sources */,
 				7E53D9801E86A2BA0093C912 /* RawAudioDataPlayer.m in Sources */,
+				7EC20FAF1EACEABD00444B96 /* DDAllUserAPI.m in Sources */,
 				7E44A9B91EA64CE800A825B1 /* ZKBubbleModule.m in Sources */,
 				7E53D9501E86A2BA0093C912 /* cb_search.c in Sources */,
 				7E44A9BF1EA64D0E00A825B1 /* ZKPhotosCache.m in Sources */,
@@ -2235,6 +2254,7 @@
 				7E53D9681E86A2BA0093C912 /* modes_wb.c in Sources */,
 				7E53D9741E86A2BA0093C912 /* stereo.c in Sources */,
 				7E53D9731E86A2BA0093C912 /* speex_header.c in Sources */,
+				7EC20FB31EACECDF00444B96 /* SpellLibrary.m in Sources */,
 				7E53D9511E86A2BA0093C912 /* exc_10_16_table.c in Sources */,
 				7E53D9A71E86A49B0093C912 /* RecordingView.m in Sources */,
 				7E53D9591E86A2BA0093C912 /* filters.c in Sources */,

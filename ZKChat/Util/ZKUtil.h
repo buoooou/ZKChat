@@ -24,4 +24,8 @@
 
 
 +(UInt32)changeIDToOriginal:(NSString *)sessionID;
+
+
++(void)setMsfsUrl:(NSString*)url;
++(NSString*)getMsfsUrl;
 @end
