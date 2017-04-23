@@ -13,7 +13,6 @@
 @interface ZKMessageViewController : ZKBaseSearchTableViewController<UIAlertViewDelegate,UISearchBarDelegate,UIScrollViewDelegate>
 + (instancetype)shareInstance;
 
-@property(nonatomic,strong)UIView* placeholderView;
 @property (nonatomic,assign) UIScrollView *scrollView;
 
 @end

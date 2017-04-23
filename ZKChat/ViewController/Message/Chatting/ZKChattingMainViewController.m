@@ -951,6 +951,12 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     
 }
+-(void)reloginSuccess
+{
+    [self.module getNewMsg:^(NSUInteger addcount, NSError *error) {
+        [self.tableView reloadData];
+    }];
+}
 @end
 
 @implementation ZKChattingMainViewController(ChattingInput)

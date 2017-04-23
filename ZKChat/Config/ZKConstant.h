@@ -13,6 +13,8 @@
 #define APP_NAME @"ZKChat"
 #define ZKChatVerison @"1.0.0"
 
+
+
 #define isNull(x)             (!x || [x isKindOfClass:[NSNull class]])
 
 //快速定义一个weakSelf 用于block
@@ -49,6 +51,9 @@
 #define CONTENT_HEIGHT        (FULL_HEIGHT - NAVBAR_HEIGHT)
 
 #define ZKRefreshViewHeight 10.0f
+
+
+#define LOCAL_MSG_BEGIN_ID 1000000
 
 //chatting
 #define LINK_SPLIT @"!@#$~link~#$@!"
