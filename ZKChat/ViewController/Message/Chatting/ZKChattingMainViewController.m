@@ -29,7 +29,7 @@
 #import "TouchDownGestureRecognizer.h"
 #import "NSDictionary+JSON.h"
 #import "EmotionsModule.h"
-
+#import "ZKDatabaseUtil.h"
 
 typedef NS_ENUM(NSUInteger, DDBottomShowComponent)
 {
@@ -239,18 +239,18 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     
     [self.tableView reloadData];
     [self.chatInputView.textView setText:nil];
-    //    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-    //        DDLog(@"消息插入DB成功");
-    //    } failure:^(NSString *errorDescripe) {
-    //        DDLog(@"消息插入DB失败");
-    //    }];
+        [[ZKDatabaseUtil instance] insertMessages:@[message] success:^{
+            DDLog(@"消息插入DB成功");
+        } failure:^(NSString *errorDescripe) {
+            DDLog(@"消息插入DB失败");
+        }];
     [self sendMessage:text messageEntity:message];
 }
 
 -(void)sendMessage:(NSString *)msg messageEntity:(ZKMessageEntity *)message
 {
-    //BOOL isGroup = [self.module.ZKSessionEntity isGroup];
-    //    [[DDMessageSendManager instance] sendMessage:message isGroup:isGroup Session:self.module.MTTSessionEntity  completion:^(ZKMessageEntity* theMessage,NSError *error) {
+    BOOL isGroup = [self.module.ZKSessionEntity isGroup];
+    //    [[DDMessageSendManager instance] sendMessage:message isGroup:isGroup Session:self.module.ZKSessionEntity  completion:^(ZKMessageEntity* theMessage,NSError *error) {
     //            dispatch_async(dispatch_get_main_queue(), ^{
     //            message.state= theMessage.state;
     [self.tableView reloadData];
