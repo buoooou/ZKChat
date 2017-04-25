@@ -7,12 +7,13 @@
 //
 
 #import "DDTcpClientManager.h"
-#import "ZKConstant.h"
+#import "ZKConfig.h"
 #import "NSStream+NSStreamAddition.h"
 #import "ZKNotification.h"
 #import "DDDataInputStream.h"
 #import "DDTcpProtocolHeader.h"
 #import "DDAPISchedule.h"
+#import "ZKConstant.h"
 
 @interface DDTcpClientManager(PrivateAPI)
 

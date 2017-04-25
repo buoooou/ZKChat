@@ -7,7 +7,7 @@
 //
 
 #import "ZKDatabaseUtil.h"
-#import "ZKConstant.h"
+#import "ZKConfig.h"
 #import "ZKUtil.h"
 #import "NSString+DDPath.h"
 #import "RuntimeStatus.h"

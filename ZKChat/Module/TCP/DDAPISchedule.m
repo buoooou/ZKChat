@@ -8,7 +8,7 @@
 
 #import "DDAPISchedule.h"
 #import "DDSuperAPI.h"
-#import "ZKConstant.h"
+#import "ZKConfig.h"
 #import "ZKSundriesCenter.h"
 #import "DDTcpClientManager.h"
 #import "DDUnrequestSuperAPI.h"

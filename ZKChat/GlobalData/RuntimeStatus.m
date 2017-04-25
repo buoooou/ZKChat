@@ -10,7 +10,9 @@
 #import "ZKUserEntity.h"
 #import "ZKUtil.h"
 #import "ZKAFNetworkingClient.h"
-#import "ZKConstant.h"
+#import "ZKConfig.h"
+#import "DDMessageModule.h"
+#import "DDGroupModule.h"
 
 @implementation RuntimeStatus
 
@@ -80,9 +82,9 @@
 
 -(void)updateData
 {
-//    [DDMessageModule shareInstance];
+    [DDMessageModule shareInstance];
 //    [DDClientStateMaintenanceManager shareInstance];
-//    [DDGroupModule instance];
+    [DDGroupModule instance];
 }
 
 @end

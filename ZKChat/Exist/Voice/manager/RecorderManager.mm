@@ -10,7 +10,7 @@
 #import "AQRecorder.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "ZKConstant.h"
+#import "ZKConfig.h"
 
 @interface RecorderManager()
 

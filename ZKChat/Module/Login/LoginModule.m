@@ -13,9 +13,10 @@
 #import "DDGroupModule.h"
 #import "DDUserModule.h"
 #import "ZKNotification.h"
-#import "ZKConstant.h"
+#import "ZKConfig.h"
 #import "DDAllUserAPI.h"
 #import "SpellLibrary.h"
+#import "ZKConstant.h"
 
 @interface LoginModule(privateAPI)
 

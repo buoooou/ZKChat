@@ -9,6 +9,8 @@
 #import "ZKMessageEntity.h"
 #import "ChattingModule.h"
 #import "RuntimeStatus.h"
+#import "DDMessageModule.h"
+
 
 @implementation ZKMessageEntity
 - (ZKMessageEntity*)initWithMsgID:(NSUInteger )ID msgType:(MsgType)msgType msgTime:(double)msgTime sessionID:(NSString*)sessionID senderID:(NSString*)senderID msgContent:(NSString*)msgContent toUserID:(NSString*)toUserID
@@ -84,14 +86,13 @@
     double msgTime = [[NSDate date] timeIntervalSince1970];
     NSString* senderID = [RuntimeStatus instance].user.objID;
     MsgType msgType;
-//    if (module.ZKMessageEntity.sessionType == SessionTypeSessionTypeSingle ) {
+    if (module.ZKSessionEntity.sessionType == SessionTypeSessionTypeSingle ) {
         msgType =MsgTypeMsgTypeSingleText;
-//    }else
-//    {
-//        msgType =MsgTypeMsgTypeGroupText;
-//    }
-//    ZKMessageEntity* message = [[ZKMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:msgType msgTime:msgTime sessionID:module.ZKSessionEntity.sessionID senderID:senderID msgContent:content toUserID:module.ZKSessionEntity.sessionID];
-     ZKMessageEntity* message = [[ZKMessageEntity alloc] initWithMsgID:@"ss" msgType:msgType msgTime:msgTime sessionID:@"zkzj" senderID:senderID msgContent:content toUserID:@"zkzs"];
+    }else
+    {
+        msgType =MsgTypeMsgTypeGroupText;
+    }
+    ZKMessageEntity* message = [[ZKMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:msgType msgTime:msgTime sessionID:module.ZKSessionEntity.sessionID senderID:senderID msgContent:content toUserID:module.ZKSessionEntity.sessionID];
     message.state = DDMessageSending;
     message.msgContentType=type;
     [module addShowMessage:message];

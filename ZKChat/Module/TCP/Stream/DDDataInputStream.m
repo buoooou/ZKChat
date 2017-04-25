@@ -7,7 +7,7 @@
 //
 
 #import "DDDataInputStream.h"
-#import "ZKConstant.h"
+#import "ZKConfig.h"
 
 @interface DDDataInputStream (PrivateMethods)
 - (int32_t)read;
