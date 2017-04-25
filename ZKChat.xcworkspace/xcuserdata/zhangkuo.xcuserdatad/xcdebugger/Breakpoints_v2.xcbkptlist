@@ -74,28 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZKChat/ViewController/Message/Chatting/ZKChattingMainViewController.m"
-            timestampString = "514817284.091954"
+            timestampString = "514820526.129658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "887"
-            endingLineNumber = "887"
+            startingLineNumber = "921"
+            endingLineNumber = "921"
             landmarkName = "-deleteEmojiFace"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZKChat/Util/DBUtil/ZKDatabaseUtil.m"
-            timestampString = "514211977.271677"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "+dbFilePath"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZKChat/Module/TCP/Manager/DDTcpClientManager.m"
-            timestampString = "514648059.211434"
+            timestampString = "514820526.129658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "-p_handleEventHasBytesAvailableStream:"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,28 +202,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZKChat/ViewController/Message/Chatting/ZKChattingMainViewController.m"
-            timestampString = "514817284.091954"
+            timestampString = "514820526.129658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "563"
-            endingLineNumber = "563"
-            landmarkName = "-scrollViewDidEndDragging:willDecelerate:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZKChat/ViewController/Message/Chatting/ZKChattingMainViewController.m"
-            timestampString = "514817284.091954"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "554"
-            endingLineNumber = "554"
-            landmarkName = "-scrollViewDidScroll:"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "-loadHistoryRecords"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

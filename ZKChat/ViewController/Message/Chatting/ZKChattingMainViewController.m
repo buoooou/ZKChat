@@ -30,6 +30,8 @@
 #import "NSDictionary+JSON.h"
 #import "EmotionsModule.h"
 #import "ZKDatabaseUtil.h"
+#import "UIScrollView+PullToLoadMore.h"
+#import "ZKConfig.h"
 
 typedef NS_ENUM(NSUInteger, DDBottomShowComponent)
 {
@@ -162,7 +164,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self scrollToBottomAnimated:NO];
     
-    //  [self initScrollView];
+    [self initScrollView];
     
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"myprofile"]
                                                              style:UIBarButtonItemStylePlain
@@ -200,6 +202,47 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         _module = [[ChattingModule alloc] init];
     }
     return _module;
+}
+-(void)initScrollView{
+    
+    __weak ZKChattingMainViewController *tmpSelf =self;
+    
+    //下拉加载历史数据
+    [self.tableView setRefreshHandler:^{
+        
+        [tmpSelf loadHistoryRecords];
+    }];
+    
+}
+-(void)loadHistoryRecords{
+    
+    __weak ZKChattingMainViewController *tmpSelf =self;
+    self.hadLoadHistory=YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        CGFloat contentSizeHeightOld =tmpSelf.tableView.contentSize.height;
+        CGFloat contentOffsetYOld =tmpSelf.tableView.contentOffset.y;
+        
+        
+        [tmpSelf.module loadMoreHistoryCompletion:^(NSUInteger addCount,NSError *error) {
+            
+            [tmpSelf.tableView reloadData];
+            
+            CGFloat contentSizeHeightNew =tmpSelf.tableView.contentSize.height;
+            CGFloat contentOffsetYNew =contentSizeHeightNew -contentSizeHeightOld +contentOffsetYOld;
+            
+            if (addCount == 0){
+                tmpSelf.tableView.noMore =YES;
+            }
+            else{
+                [tmpSelf.tableView setContentOffset:CGPointMake(0, contentOffsetYNew)];
+            }
+            
+            [tmpSelf.tableView refreshFinished];
+        }];
+    });
+    
 }
 - (void)textViewChanged
 {
@@ -558,15 +601,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    // 上拉弹出键盘
-        if (scrollView.contentOffset.y < scrollView.contentSize.height -scrollView.frame.size.height +scrollView.contentInset.bottom){
-            [self p_hideBottomComponent];
-        }
-        else if (scrollView.contentOffset.y > scrollView.contentSize.height -scrollView.frame.size.height +scrollView.contentInset.bottom +80) {
-                [self.chatInputView.textView becomeFirstResponder];
-        }
-}
 #pragma mark UIGesture Delegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     if ([gestureRecognizer.view isEqual:self.tableView])

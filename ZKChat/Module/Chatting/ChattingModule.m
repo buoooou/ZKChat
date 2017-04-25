@@ -16,6 +16,7 @@
 #import "DDMessageModule.h"
 #import "ZKDatabaseUtil.h"
 #import "MsgReadACKAPI.h"
+#import "DDUserModule.h"
 
 static NSUInteger const showPromptGap = 300;
 @interface ChattingModule(privateAPI)
@@ -50,85 +51,7 @@ static NSUInteger const showPromptGap = 300;
     self.showingMessages = nil;
     self.showingMessages = [[NSMutableArray alloc] init];
 }
-- (void)addShowMessage:(ZKMessageEntity*)message
-{
-    if (![self.ids containsObject:@(message.msgID)]) {
-        if (message.msgTime - _lastestDate > showPromptGap)
-        {
-            _lastestDate = message.msgTime;
-            DDPromptEntity* prompt = [[DDPromptEntity alloc] init];
-            NSDate* date = [NSDate dateWithTimeIntervalSince1970:message.msgTime];
-            prompt.message = [date promptDateString];
-            [self.showingMessages addObject:prompt];
-            
-        }
-        NSArray *array = [[self class] p_spliteMessage:message];
-        [array enumerateObjectsUsingBlock:^(ZKMessageEntity* obj, NSUInteger idx, BOOL *stop) {
-           
-            [self.showingMessages addObject:obj];
-        //    [[self mutableArrayValueForKeyPath:@"showingMessages"] addObject:obj];
-        }];
-    }
-}
-+ (NSArray*)p_spliteMessage:(ZKMessageEntity*)message
-{
-    message.msgContent = [message.msgContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSMutableArray* messageContentArray = [[NSMutableArray alloc] init];
-    
-    if ( [ message.msgContent rangeOfString:DD_MESSAGE_IMAGE_PREFIX].length > 0)
-    {
-        NSString* messageContent = [message msgContent];
-        if ([messageContent rangeOfString:DD_MESSAGE_IMAGE_PREFIX].length > 0 && [messageContent rangeOfString:DD_IMAGE_LOCAL_KEY].length > 0 && [messageContent rangeOfString:DD_IMAGE_URL_KEY].length > 0) {
-            ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:2 msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:messageContent toUserID:message.toUserID];
-            messageEntity.msgContentType = DDMessageTypeImage;
-            messageEntity.state = DDmessageSendSuccess;
-        }else{
-            
-            NSArray* tempMessageContent = [messageContent componentsSeparatedByString:DD_MESSAGE_IMAGE_PREFIX];
-            [tempMessageContent enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                NSString* content = (NSString*)obj;
-                if ([content length] > 0)
-                {
-                    NSRange suffixRange = [content rangeOfString:DD_MESSAGE_IMAGE_SUFFIX];
-                    if (suffixRange.length > 0)
-                    {
-                        //是图片,再拆分
-                        NSString* imageContent = [NSString stringWithFormat:@"%@%@",DD_MESSAGE_IMAGE_PREFIX,[content substringToIndex:suffixRange.location + suffixRange.length]];
-                        ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:1 msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:imageContent toUserID:message.toUserID];
-                        messageEntity.msgContentType = DDMessageTypeImage;
-                        messageEntity.state = DDmessageSendSuccess;
-                        [messageContentArray addObject:messageEntity];
-                        
-                        
-                        NSString* secondComponent = [content substringFromIndex:suffixRange.location + suffixRange.length];
-                        if (secondComponent.length > 0)
-                        {
-                            ZKMessageEntity* secondmessageEntity = [[ZKMessageEntity alloc] initWithMsgID:3 msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:secondComponent toUserID:message.toUserID];
-                            secondmessageEntity.msgContentType = DDMessageTypeText;
-                            secondmessageEntity.state = DDmessageSendSuccess;
-                            [messageContentArray addObject:secondmessageEntity];
-                        }
-                    }
-                    else
-                    {
-                        
-                        ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:4 msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:content toUserID:message.toUserID];
-                        messageEntity.state = DDmessageSendSuccess;
-                        [messageContentArray addObject:messageEntity];
-                    }
-                }
-            }];
-        }
-    }
-    
-    if ([messageContentArray count] == 0)
-    {
-        [messageContentArray addObject:message];
-    }
-    
-    return messageContentArray;
-    
-}
+
 -(void)getNewMsg:(DDChatLoadMoreHistoryCompletion)completion
 {
     [[DDMessageModule shareInstance] getMessageFromServer:0 currentSession:self.ZKSessionEntity count:20 Block:^(NSMutableArray *response, NSError *error) {
@@ -199,6 +122,77 @@ static NSUInteger const showPromptGap = 300;
 -(void)loadHostoryMessageFromServer:(NSUInteger)FromMsgID Completion:(DDChatLoadMoreHistoryCompletion)completion{
     [self loadHisToryMessageFromServer:FromMsgID loadCount:19 Completion:completion];
 }
+- (void)loadMoreHistoryCompletion:(DDChatLoadMoreHistoryCompletion)completion
+{
+    
+    NSUInteger count = [self p_getMessageCount];
+    
+    [[ZKDatabaseUtil instance] loadMessageForSessionID:self.ZKSessionEntity.sessionID pageCount:PAGE_ITEM_COUNT index:count completion:^(NSArray *messages, NSError *error) {
+        //after loading finish ,then add to messages
+//        if ([DDClientState shareInstance].networkState == DDNetWorkDisconnect) {
+//            [self p_addHistoryMessages:messages Completion:completion];
+//        }else{
+            if ([messages count] !=0) {
+                
+                BOOL isHaveMissMsg = [self p_isHaveMissMsg:messages];
+                if (isHaveMissMsg || ([self getMiniMsgId] - [self getMaxMsgId:messages] !=0)) {
+                    
+                    [self loadHostoryMessageFromServer:[self getMiniMsgId] Completion:^(NSUInteger addcount, NSError *error) {
+                        if (addcount) {
+                            completion(addcount,error);
+                        }else{
+                            [self p_addHistoryMessages:messages Completion:completion];
+                        }
+                    }];
+                }else{
+                    //检查消息是否连续
+                    [self p_addHistoryMessages:messages Completion:completion];
+                    //                [self checkMsgList:^(NSUInteger addcount, NSError *error) {
+                    //                    completion(addcount,error);
+                    //                    if (!addcount) {
+                    //                               [self p_addHistoryMessages:messages Completion:completion];
+                    //                    }
+                    //                }];
+                    
+                }
+                
+            }else{
+                //数据库中已获取不到消息
+                //拿出当前最小的msgid去服务端取
+                [self loadHostoryMessageFromServer:[self getMiniMsgId] Completion:^(NSUInteger addcount, NSError *error) {
+                    completion(addcount,error);
+                }];
+            }
+            
+            
+//        }
+        
+    }];
+}
+- (void)loadAllHistoryCompletion:(ZKMessageEntity*)message Completion:(DDChatLoadMoreHistoryCompletion)completion
+{
+    [[ZKDatabaseUtil instance] loadMessageForSessionID:self.ZKSessionEntity.sessionID afterMessage:message completion:^(NSArray *messages, NSError *error) {
+        [self p_addHistoryMessages:messages Completion:completion];
+    }];
+}
+-(NSUInteger )getMiniMsgId
+{
+    if ([self.showingMessages count] == 0) {
+        return self.ZKSessionEntity.lastMsgID;
+    }
+    __block NSInteger minMsgID =[self getMaxMsgId:self.showingMessages];
+    
+    [self.showingMessages enumerateObjectsUsingBlock:^(ZKMessageEntity * obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[ZKMessageEntity class]]) {
+            if(obj.msgID <minMsgID)
+            {
+                minMsgID = obj.msgID;
+            }
+        }
+    }];
+    return minMsgID;
+}
+
 - (float)messageHeight:(ZKMessageEntity*)message
 {
     
@@ -236,6 +230,233 @@ static NSUInteger const showPromptGap = 300;
         return 135;
     }
     
+}
+- (void)addShowMessage:(ZKMessageEntity*)message
+{
+    if (![self.ids containsObject:@(message.msgID)]) {
+        if (message.msgTime - _lastestDate > showPromptGap)
+        {
+            _lastestDate = message.msgTime;
+            DDPromptEntity* prompt = [[DDPromptEntity alloc] init];
+            NSDate* date = [NSDate dateWithTimeIntervalSince1970:message.msgTime];
+            prompt.message = [date promptDateString];
+            [self.showingMessages addObject:prompt];
+            
+        }
+        NSArray *array = [[self class] p_spliteMessage:message];
+        [array enumerateObjectsUsingBlock:^(ZKMessageEntity* obj, NSUInteger idx, BOOL *stop) {
+            [[self mutableArrayValueForKeyPath:@"showingMessages"] addObject:obj];
+        }];
+    }
+}
+
+- (void)addShowMessages:(NSArray*)messages
+{
+    
+    [[self mutableArrayValueForKeyPath:@"showingMessages"] addObjectsFromArray:messages];
+}
+-(void)getCurrentUser:(void(^)(ZKUserEntity *))block
+{
+    [[DDUserModule shareInstance] getUserForUserID:self.ZKSessionEntity.sessionID  Block:^(ZKUserEntity *user) {
+        block(user);
+    }];
+    
+}
+
+
+- (void)updateSessionUpdateTime:(NSUInteger)time
+{
+    [self.ZKSessionEntity updateUpdateTime:time];
+    _lastestDate = time;
+}
+
+#pragma mark PrivateAPI
+- (NSUInteger)p_getMessageCount
+{
+    __block NSUInteger count = 0;
+    [self.showingMessages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:NSClassFromString(@"MTTMessageEntity")])
+        {
+            count ++;
+        }
+    }];
+    return count;
+}
+
+- (void)p_addHistoryMessages:(NSArray*)messages Completion:(DDChatLoadMoreHistoryCompletion)completion
+{
+    
+    __block NSUInteger tempEarliestDate = [[messages valueForKeyPath:@"@min.msgTime"] integerValue];
+    __block NSUInteger tempLasteestDate = 0;
+    NSUInteger itemCount = [self.showingMessages count];
+    NSMutableArray *tmp = [NSMutableArray arrayWithArray:messages];
+    //    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"msgTime" ascending:YES];
+    //    [tmp sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSMutableArray* tempMessages = [[NSMutableArray alloc] init];
+    for (NSInteger index = [tmp count] - 1; index >= 0;index --)
+    {
+        
+        ZKMessageEntity* message = tmp[index];
+        
+        
+        if ([self.ids containsObject:@(message.msgID)]) {
+            continue;
+        }
+        //            if (index == [tmp count] - 1)
+        //            {
+        //                tempEarliestDate = message.msgTime;
+        //
+        //            }
+        if (message.msgTime - tempLasteestDate > showPromptGap)
+        {
+            DDPromptEntity* prompt = [[DDPromptEntity alloc] init];
+            NSDate* date = [NSDate dateWithTimeIntervalSince1970:message.msgTime];
+            prompt.message = [date promptDateString];
+            [tempMessages addObject:prompt];
+        }
+        tempLasteestDate = message.msgTime;
+        NSArray *array = [[self class] p_spliteMessage:message];
+        [array enumerateObjectsUsingBlock:^(ZKMessageEntity * obj, NSUInteger idx, BOOL *stop) {
+            
+            [self.ids addObject:@(message.msgID)];
+            [tempMessages addObject:obj];
+        }];
+    }
+    
+    if ([self.showingMessages count] == 0)
+    {
+        [[self mutableArrayValueForKeyPath:@"showingMessages"] addObjectsFromArray:tempMessages];
+        _earliestDate = tempEarliestDate;
+        _lastestDate = tempLasteestDate;
+    }
+    else
+    {
+        [self.showingMessages insertObjects:tempMessages atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [tempMessages count])]];
+        _earliestDate = tempEarliestDate;
+    }
+    NSUInteger newItemCount = [self.showingMessages count];
+    completion(newItemCount - itemCount,nil);
+}
+
++ (NSArray*)p_spliteMessage:(ZKMessageEntity*)message
+{
+    message.msgContent = [message.msgContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSMutableArray* messageContentArray = [[NSMutableArray alloc] init];
+    
+    if ( [ message.msgContent rangeOfString:DD_MESSAGE_IMAGE_PREFIX].length > 0)
+    {
+        NSString* messageContent = [message msgContent];
+        if ([messageContent rangeOfString:DD_MESSAGE_IMAGE_PREFIX].length > 0 && [messageContent rangeOfString:DD_IMAGE_LOCAL_KEY].length > 0 && [messageContent rangeOfString:DD_IMAGE_URL_KEY].length > 0) {
+            ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:messageContent toUserID:message.toUserID];
+            messageEntity.msgContentType = DDMessageTypeImage;
+            messageEntity.state = DDmessageSendSuccess;
+        }else{
+            
+            NSArray* tempMessageContent = [messageContent componentsSeparatedByString:DD_MESSAGE_IMAGE_PREFIX];
+            [tempMessageContent enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSString* content = (NSString*)obj;
+                if ([content length] > 0)
+                {
+                    NSRange suffixRange = [content rangeOfString:DD_MESSAGE_IMAGE_SUFFIX];
+                    if (suffixRange.length > 0)
+                    {
+                        //是图片,再拆分
+                        NSString* imageContent = [NSString stringWithFormat:@"%@%@",DD_MESSAGE_IMAGE_PREFIX,[content substringToIndex:suffixRange.location + suffixRange.length]];
+                        ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:imageContent toUserID:message.toUserID];
+                        messageEntity.msgContentType = DDMessageTypeImage;
+                        messageEntity.state = DDmessageSendSuccess;
+                        [messageContentArray addObject:messageEntity];
+                        
+                        
+                        NSString* secondComponent = [content substringFromIndex:suffixRange.location + suffixRange.length];
+                        if (secondComponent.length > 0)
+                        {
+                            ZKMessageEntity* secondmessageEntity = [[ZKMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:secondComponent toUserID:message.toUserID];
+                            secondmessageEntity.msgContentType = DDMessageTypeText;
+                            secondmessageEntity.state = DDmessageSendSuccess;
+                            [messageContentArray addObject:secondmessageEntity];
+                        }
+                    }
+                    else
+                    {
+                        
+                        ZKMessageEntity* messageEntity = [[ZKMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:message.msgType msgTime:message.msgTime sessionID:message.sessionId senderID:message.senderId msgContent:content toUserID:message.toUserID];
+                        messageEntity.state = DDmessageSendSuccess;
+                        [messageContentArray addObject:messageEntity];
+                    }
+                }
+            }];
+        }
+    }
+    
+    if ([messageContentArray count] == 0)
+    {
+        [messageContentArray addObject:message];
+    }
+    
+    return messageContentArray;
+    
+}
+-(NSInteger)getMaxMsgId:(NSArray *)array
+{
+    __block NSInteger maxMsgID =0;
+    [array enumerateObjectsUsingBlock:^(ZKMessageEntity * obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[ZKMessageEntity class]]) {
+            if (obj.msgID > maxMsgID && obj.msgID<LOCAL_MSG_BEGIN_ID) {
+                maxMsgID =obj.msgID;
+            }
+        }
+    }
+     ];
+    return maxMsgID;
+}
+- (BOOL)p_isHaveMissMsg:(NSArray*)messages
+{
+    
+    __block NSInteger maxMsgID =[self getMaxMsgId:messages];
+    __block NSInteger minMsgID =[self getMaxMsgId:messages];;
+    [messages enumerateObjectsUsingBlock:^(ZKMessageEntity * obj, NSUInteger idx, BOOL *stop) {
+        if (obj.msgID > maxMsgID && obj.msgID<LOCAL_MSG_BEGIN_ID) {
+            //maxMsgID =obj.msgID;
+        }else if(obj.msgID <minMsgID)
+        {
+            minMsgID = obj.msgID;
+        }
+    }];
+    
+    NSUInteger diff = maxMsgID - minMsgID;
+    if (diff != 19) {
+        return YES;
+    }
+    return NO;
+}
+
+-(void)checkMsgList:(DDChatLoadMoreHistoryCompletion)completion
+{
+    NSMutableArray *tmp = [NSMutableArray arrayWithArray:self.showingMessages];
+    [tmp enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[DDPromptEntity class]]) {
+            [tmp removeObject:obj];
+        }else{
+            ZKMessageEntity *msg = obj;
+            if (msg.msgID>=LOCAL_MSG_BEGIN_ID) {
+                [tmp removeObject:obj];
+            }
+        }
+        
+    }];
+    
+    [tmp enumerateObjectsUsingBlock:^(ZKMessageEntity *obj, NSUInteger idx, BOOL *stop) {
+        if (idx +1 < [tmp count]) {
+            ZKMessageEntity * msg = [tmp objectAtIndex:idx+1];
+            if (abs(obj.msgID - msg.msgID) !=1) {
+                [self loadHisToryMessageFromServer:MIN(obj.msgID, msg.msgID) loadCount:abs(obj.msgID - msg.msgID) Completion:^(NSUInteger addcount, NSError *error) {
+                    completion(addcount,error);
+                }];
+            }
+        }
+        
+    }];
 }
 @end
 @implementation DDPromptEntity

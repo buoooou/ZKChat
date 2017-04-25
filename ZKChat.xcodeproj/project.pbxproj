@@ -256,6 +256,7 @@
 		7EC20FAC1EACE5C200444B96 /* GetMessageQueueAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FAB1EACE5C200444B96 /* GetMessageQueueAPI.m */; };
 		7EC20FAF1EACEABD00444B96 /* DDAllUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FAE1EACEABD00444B96 /* DDAllUserAPI.m */; };
 		7EC20FB31EACECDF00444B96 /* SpellLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB21EACECDF00444B96 /* SpellLibrary.m */; };
+		7EC20FB61EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB51EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -725,6 +726,8 @@
 		7EC20FAE1EACEABD00444B96 /* DDAllUserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDAllUserAPI.m; path = Module/TCP/DDAllUserAPI.m; sourceTree = "<group>"; };
 		7EC20FB11EACECDF00444B96 /* SpellLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpellLibrary.h; path = Module/Search/SpellLibrary.h; sourceTree = "<group>"; };
 		7EC20FB21EACECDF00444B96 /* SpellLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpellLibrary.m; path = Module/Search/SpellLibrary.m; sourceTree = "<group>"; };
+		7EC20FB41EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+PullToLoadMore.h"; sourceTree = "<group>"; };
+		7EC20FB51EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+PullToLoadMore.m"; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -821,6 +824,8 @@
 		7E290E941E61750C004552F3 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				7EC20FB41EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.h */,
+				7EC20FB51EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m */,
 				7E44A9A01EA1003F00A825B1 /* NSString+DDPath.h */,
 				7E44A9A11EA1003F00A825B1 /* NSString+DDPath.m */,
 				7E53DAA61E86AC4A0093C912 /* NSDate+DDAddition.h */,
@@ -2195,6 +2200,7 @@
 				7E53DAE31E86ACB00093C912 /* ImageGridViewCell.m in Sources */,
 				7E53D8C11E86A2410093C912 /* AQGridViewData.m in Sources */,
 				7E53D99F1E86A3E10093C912 /* IMSwitchService.pb.m in Sources */,
+				7EC20FB61EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m in Sources */,
 				7E53DA621E86A9880093C912 /* ZKBaseViewController.m in Sources */,
 				7E44A9951E9D1F9500A825B1 /* ZKNotification.m in Sources */,
 				7E44A9911E9BCF2B00A825B1 /* ZKAFNetworkingClient.m in Sources */,
