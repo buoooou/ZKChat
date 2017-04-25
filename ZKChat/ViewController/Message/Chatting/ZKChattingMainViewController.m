@@ -270,13 +270,13 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self scrollToBottomAnimated:YES];
     NSData *photoData = UIImagePNGRepresentation(image);
     [[ZKPhotosCache sharedPhotoCache] storePhoto:photoData forKey:photo.localPath toDisk:YES];
-    //  [self.chatInputView.textView setText:@""];
-    //    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-    //        DDLog(@"消息插入DB成功");
-    //
-    //    } failure:^(NSString *errorDescripe) {
-    //        DDLog(@"消息插入DB失败");
-    //    }];
+      [self.chatInputView.textView setText:@""];
+        [[ZKDatabaseUtil instance] insertMessages:@[message] success:^{
+            DDLog(@"消息插入DB成功");
+    
+        } failure:^(NSString *errorDescripe) {
+            DDLog(@"消息插入DB失败");
+        }];
     photo=nil;
     //    [[DDSendPhotoMessageAPI sharedPhotoCache] uploadImage:messageContentDic[DD_IMAGE_LOCAL_KEY] success:^(NSString *imageURL) {
     [self scrollToBottomAnimated:YES];
@@ -287,21 +287,21 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     //        NSString* messageContent = [mutalMessageContent jsonString];
     //        message.msgContent = messageContent;
     [self sendMessage:@"" messageEntity:message];
-    //        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-    //        }];
+            [[ZKDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+            }];
     
-    //    } failure:^(id error) {
-    //        message.state = DDMessageSendFailure;
-    //        //刷新DB
-    //        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-    //            if (result)
-    //            {
-    //                dispatch_async(dispatch_get_main_queue(), ^{
-    //                    [_tableView reloadData];
-    //                });
-    //           }
-    //          }];
-    //
+//        } failure:^(id error) {
+//            message.state = DDMessageSendFailure;
+//            //刷新DB
+//            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+//                if (result)
+//                {
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [_tableView reloadData];
+//                    });
+//               }
+//              }];
+    
     //    }];
 }
 
@@ -548,6 +548,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     return cell;
 }
 
+#pragma scrollview delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     if(scrollView.contentOffset.y + self.tableView.height >= self.tableView.contentSize.height - 100){
@@ -559,12 +560,12 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     // 上拉弹出键盘
-    //    if (scrollView.contentOffset.y < scrollView.contentSize.height -scrollView.frame.size.height +scrollView.contentInset.bottom){
-    //        [self p_hideBottomComponent];
-    //    }
-    //    else if (scrollView.contentOffset.y > scrollView.contentSize.height -scrollView.frame.size.height +scrollView.contentInset.bottom +80) {
-    //            [self.chatInputView.textView becomeFirstResponder];
-    //    }
+        if (scrollView.contentOffset.y < scrollView.contentSize.height -scrollView.frame.size.height +scrollView.contentInset.bottom){
+            [self p_hideBottomComponent];
+        }
+        else if (scrollView.contentOffset.y > scrollView.contentSize.height -scrollView.frame.size.height +scrollView.contentInset.bottom +80) {
+                [self.chatInputView.textView becomeFirstResponder];
+        }
 }
 #pragma mark UIGesture Delegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -606,21 +607,21 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     cell.session =self.module.ZKSessionEntity;
     NSString* myUserID = [RuntimeStatus instance].user.objID;
-    //    if ([message.senderId isEqualToString:myUserID])
-    //    {
-    //        [cell setLocation:DDBubbleRight];
-    //    }
-    //    else
-    //    {
-    [cell setLocation:DDBubbleRight];
-    //    }
+    if ([message.senderId isEqualToString:myUserID])
+    {
+        [cell setLocation:DDBubbleRight];
+    }
+    else
+    {
+        [cell setLocation:DDBubbleRight];
+    }
     
     //    if (![[UnAckMessageManager instance] isInUnAckQueue:message] && message.state == DDMessageSending && [message isSendBySelf]) {
     //        message.state=DDMessageSendFailure;
     //    }
-    //    [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-    //
-    //    }];
+        [[ZKDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+    
+        }];
     
     [cell setContent:message];
     __weak DDChatTextCell* weakCell = (DDChatTextCell*)cell;
@@ -661,7 +662,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         //            [[PlayerManager sharedManager] playAudioWithFileName:fileName delegate:self];
         //            [message.info setObject:@(1) forKey:DDVOICE_PLAYED];
         //            [weakCell showVoicePlayed];
-        //            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+        //            [[ZKDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
         //            }];
         //
         //        }
@@ -710,14 +711,14 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     cell.session =self.module.ZKSessionEntity;
     NSString* myUserID =[RuntimeStatus instance].user.objID;
-    //    if ([message.senderId isEqualToString:myUserID])
-    //    {
+        if ([message.senderId isEqualToString:myUserID])
+        {
     [cell setLocation:DDBubbleRight];
-    //    }
-    //    else
-    //    {
-    //        [cell setLocation:DDBubbleLeft];
-    //    }
+        }
+        else
+        {
+            [cell setLocation:DDBubbleLeft];
+        }
     
     [cell setContent:message];
     __weak DDEmotionCell* weakCell = cell;
@@ -744,18 +745,18 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     cell.session =self.module.ZKSessionEntity;
     NSString* myUserID =[RuntimeStatus instance].user.objID;
-    //    if ([message.senderId isEqualToString:myUserID])
-    //    {
+        if ([message.senderId isEqualToString:myUserID])
+        {
     [cell setLocation:DDBubbleRight];
-    //    }
-    //    else
-    //    {
-    //        [cell setLocation:DDBubbleLeft];
-    //    }
+        }
+        else
+        {
+            [cell setLocation:DDBubbleLeft];
+        }
     
-    // [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
+     [[ZKDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
     
-    // }];
+     }];
     [cell setContent:message];
     __weak DDChatImageCell* weakCell = cell;
     
@@ -872,11 +873,11 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     ZKMessageEntity *message = [ZKMessageEntity makeMessage:string Module:self.module MsgType:msgContentType];
     [self.tableView reloadData];
     //[self.chatInputView.textView setText:nil];
-    //    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-    //        DDLog(@"消息插入DB成功");
-    //    } failure:^(NSString *errorDescripe) {
-    //        DDLog(@"消息插入DB失败");
-    //    }];
+        [[ZKDatabaseUtil instance] insertMessages:@[message] success:^{
+            DDLog(@"消息插入DB成功");
+        } failure:^(NSString *errorDescripe) {
+            DDLog(@"消息插入DB失败");
+        }];
     [self sendMessage:string messageEntity:message];
     
 }
