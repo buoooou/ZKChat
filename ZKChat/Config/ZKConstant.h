@@ -27,11 +27,7 @@
 #define ZKBLUE RGB(1, 175, 244)
 #define ZKCELLGRAY RGB(217, 217, 217)
 
-#if NEED_OUTPUT_LOG
-#define DDLog(xx, ...)                      NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-#else
-#define DDLog(xx, ...)                 nil
-#endif
+
 
 
 // 屏幕高度
