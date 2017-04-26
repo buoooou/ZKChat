@@ -257,6 +257,7 @@
 		7EC20FAF1EACEABD00444B96 /* DDAllUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FAE1EACEABD00444B96 /* DDAllUserAPI.m */; };
 		7EC20FB31EACECDF00444B96 /* SpellLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB21EACECDF00444B96 /* SpellLibrary.m */; };
 		7EC20FB61EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB51EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m */; };
+		7EC20FB91EB0DF6000444B96 /* LoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB81EB0DF6000444B96 /* LoginAPI.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -728,6 +729,8 @@
 		7EC20FB21EACECDF00444B96 /* SpellLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpellLibrary.m; path = Module/Search/SpellLibrary.m; sourceTree = "<group>"; };
 		7EC20FB41EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+PullToLoadMore.h"; sourceTree = "<group>"; };
 		7EC20FB51EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+PullToLoadMore.m"; sourceTree = "<group>"; };
+		7EC20FB71EB0DF6000444B96 /* LoginAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginAPI.h; path = Module/TCP/RequestAPI/LoginAPI.h; sourceTree = "<group>"; };
+		7EC20FB81EB0DF6000444B96 /* LoginAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginAPI.m; path = Module/TCP/RequestAPI/LoginAPI.m; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -972,13 +975,13 @@
 		7E31E3CD1E75911400EA69DE /* TCP */ = {
 			isa = PBXGroup;
 			children = (
-				7EC20FA21EACE11F00444B96 /* UnRequestAPI */,
 				7EC20F8E1EACA5CF00444B96 /* Protocol */,
 				7EC20F871EACA30F00444B96 /* Message */,
 				7EC20F761EAB945200444B96 /* Stream */,
 				7EC20F721EAB923700444B96 /* Model */,
 				7EC20F6E1EAB91CC00444B96 /* Manager */,
 				7EC20F6A1EAB8F9900444B96 /* RequestAPI */,
+				7EC20FA21EACE11F00444B96 /* UnRequestAPI */,
 				7EC20F8B1EACA35800444B96 /* DDSuperAPI.h */,
 				7EC20F8C1EACA35800444B96 /* DDSuperAPI.m */,
 				7EC20F8F1EACA75100444B96 /* DDAPISchedule.h */,
@@ -1658,6 +1661,8 @@
 			children = (
 				7EC20FAA1EACE5C200444B96 /* GetMessageQueueAPI.h */,
 				7EC20FAB1EACE5C200444B96 /* GetMessageQueueAPI.m */,
+				7EC20FB71EB0DF6000444B96 /* LoginAPI.h */,
+				7EC20FB81EB0DF6000444B96 /* LoginAPI.m */,
 			);
 			name = RequestAPI;
 			sourceTree = "<group>";
@@ -2291,6 +2296,7 @@
 				7EC20F9E1EACC24A00444B96 /* DDTcpProtocolHeader.m in Sources */,
 				7E53DA4B1E86A8F10093C912 /* ZKPublicProfileViewController.m in Sources */,
 				7E53DAC11E86AC4A0093C912 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
+				7EC20FB91EB0DF6000444B96 /* LoginAPI.m in Sources */,
 				7E60318C1E533AA3005239C4 /* main.m in Sources */,
 				7EC20FA11EACC45000444B96 /* DDDataOutputStream.m in Sources */,
 				7E53D94F1E86A2BA0093C912 /* buffer.c in Sources */,
