@@ -12,8 +12,9 @@
 #define USER_PRE @"user_"
 #define SERVER_ADDR   @""
 //-------------------打印--------------------
+
 #ifdef DEBUG
-#define NEED_OUTPUT_LOG             0
+#define NEED_OUTPUT_LOG             1
 #define Is_CanSwitchServer          1
 #else
 #define NEED_OUTPUT_LOG             0

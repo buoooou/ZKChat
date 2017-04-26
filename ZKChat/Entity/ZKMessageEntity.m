@@ -96,7 +96,7 @@
     message.state = DDMessageSending;
     message.msgContentType=type;
     [module addShowMessage:message];
-//    [module updateSessionUpdateTime:message.msgTime];
+    [module updateSessionUpdateTime:message.msgTime];
     return message;
 }
 -(BOOL)isGroupMessage

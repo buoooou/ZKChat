@@ -147,12 +147,12 @@ static NSUInteger const showPromptGap = 300;
                 }else{
                     //检查消息是否连续
                     [self p_addHistoryMessages:messages Completion:completion];
-                    //                [self checkMsgList:^(NSUInteger addcount, NSError *error) {
-                    //                    completion(addcount,error);
-                    //                    if (!addcount) {
-                    //                               [self p_addHistoryMessages:messages Completion:completion];
-                    //                    }
-                    //                }];
+                                    [self checkMsgList:^(NSUInteger addcount, NSError *error) {
+                                        completion(addcount,error);
+                                        if (!addcount) {
+                                                   [self p_addHistoryMessages:messages Completion:completion];
+                                        }
+                                    }];
                     
                 }
                 
@@ -275,7 +275,7 @@ static NSUInteger const showPromptGap = 300;
 {
     __block NSUInteger count = 0;
     [self.showingMessages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isKindOfClass:NSClassFromString(@"MTTMessageEntity")])
+        if ([obj isKindOfClass:NSClassFromString(@"ZKMessageEntity")])
         {
             count ++;
         }
@@ -290,8 +290,8 @@ static NSUInteger const showPromptGap = 300;
     __block NSUInteger tempLasteestDate = 0;
     NSUInteger itemCount = [self.showingMessages count];
     NSMutableArray *tmp = [NSMutableArray arrayWithArray:messages];
-    //    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"msgTime" ascending:YES];
-    //    [tmp sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"msgTime" ascending:YES];
+        [tmp sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     NSMutableArray* tempMessages = [[NSMutableArray alloc] init];
     for (NSInteger index = [tmp count] - 1; index >= 0;index --)
     {
@@ -302,11 +302,11 @@ static NSUInteger const showPromptGap = 300;
         if ([self.ids containsObject:@(message.msgID)]) {
             continue;
         }
-        //            if (index == [tmp count] - 1)
-        //            {
-        //                tempEarliestDate = message.msgTime;
-        //
-        //            }
+                    if (index == [tmp count] - 1)
+                    {
+                        tempEarliestDate = message.msgTime;
+        
+                    }
         if (message.msgTime - tempLasteestDate > showPromptGap)
         {
             DDPromptEntity* prompt = [[DDPromptEntity alloc] init];

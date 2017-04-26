@@ -32,6 +32,8 @@
 #import "ZKDatabaseUtil.h"
 #import "UIScrollView+PullToLoadMore.h"
 #import "ZKConfig.h"
+#import "DDMessageModule.h"
+
 
 typedef NS_ENUM(NSUInteger, DDBottomShowComponent)
 {
@@ -128,10 +130,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 }
 -(void)notificationCenter
 {
-    //    [[NSNotificationCenter defaultCenter] addObserver:self
-    //                                             selector:@selector(n_receiveMessage:)
-    //                                                 name:DDNotificationReceiveMessage
-    //                                               object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(n_receiveMessage:)
+                                                     name:DDNotificationReceiveMessage
+                                                   object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleWillShowKeyboard:)
@@ -142,10 +144,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
                                              selector:@selector(handleWillHideKeyboard:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-    //    [[NSNotificationCenter defaultCenter] addObserver:self
-    //                                             selector:@selector(reloginSuccess)
-    //                                                 name:@"ReloginSuccess"
-    //                                               object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(reloginSuccess)
+                                                     name:@"ReloginSuccess"
+                                                   object:nil];
 }
 
 - (void)viewDidLoad {
@@ -175,10 +177,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
                   forKeyPath:@"showingMessages"
                      options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew
                      context:NULL];
-    //    [self.module addObserver:self
-    //                  forKeyPath:@"ZKSessionEntity.sessionID"
-    //                     options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
-    //                     context:NULL];
+    [self.module addObserver:self
+                      forKeyPath:@"ZKSessionEntity.sessionID"
+                         options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+                         context:NULL];
     [self.navigationItem.titleView setUserInteractionEnabled:YES];
     self.view.backgroundColor=ZKBG;
     
@@ -326,7 +328,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     message.state=DDMessageSending;
     NSDictionary* tempMessageContent = [NSDictionary initWithJsonString:message.msgContent];
     NSMutableDictionary* mutalMessageContent = [[NSMutableDictionary alloc] initWithDictionary:tempMessageContent];
-    //        [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
+//            [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
     //        NSString* messageContent = [mutalMessageContent jsonString];
     //        message.msgContent = messageContent;
     [self sendMessage:@"" messageEntity:message];
@@ -1232,6 +1234,42 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     {
         [self p_hideBottomComponent];
     }
+}
+
+- (void)n_receiveMessage:(NSNotification*)notification
+{
+    if (![self.navigationController.topViewController isEqual:self])
+    {
+        //当前不是聊天界面直接返回
+        return;
+    }
+    
+    ZKMessageEntity* message = [notification object];
+    UIApplicationState state =[UIApplication sharedApplication].applicationState;
+    if (state == UIApplicationStateBackground) {
+        if([message.sessionId isEqualToString:self.module.ZKSessionEntity.sessionID])
+        {
+            [self.module addShowMessage:message];
+            [self.module updateSessionUpdateTime:message.msgTime];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self scrollToBottomAnimated:YES];
+            });
+        }
+        return;
+    }
+    //显示消息
+    
+    if([message.sessionId isEqualToString:self.module.ZKSessionEntity.sessionID])
+    {
+        [self.module addShowMessage:message];
+        [self.module updateSessionUpdateTime:message.msgTime];
+        [self.tableView reloadData];
+        [[DDMessageModule shareInstance] sendMsgRead:message];
+        if(self.ifScrollBottom){
+            [self scrollToBottomAnimated:YES];
+        }
+    }
+    
 }
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
