@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZKBaseSearchTableViewController.h"
-
+//#import "SessionModule.h"
 
 @interface ZKMessageViewController : ZKBaseSearchTableViewController<UIAlertViewDelegate,UISearchBarDelegate,UIScrollViewDelegate>
 + (instancetype)shareInstance;

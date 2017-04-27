@@ -107,7 +107,7 @@
             _noDataSent = NO;
             DDLog(@"WRITE - Written directly to outStream len:%li", (long)len);
             if (len < [data length]) {
-                DDLog(@"WRITE - Creating a new buffer for remaining data len:%u", [data length] - len);
+                DDLog(@"WRITE - Creating a new buffer for remaining data len:%lu", [data length] - len);
                 _lastSendBuffer = [DDSendBuffer dataWithNSData:[data subdataWithRange:NSMakeRange([data length]-len, [data length])]];
                 [_sendBuffers addObject:_lastSendBuffer];
                 

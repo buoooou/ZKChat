@@ -17,8 +17,15 @@
 #import "DDMessageModule.h"
 
 @interface ZKMessageViewController ()
-
-@end
+@property(nonatomic,strong)NSMutableDictionary *lastMsgs;
+@property(nonatomic,strong)UISearchBar *searchBar;
+//@property(nonatomic,strong)SearchContentViewController *searchContent;
+@property(nonatomic,assign)NSInteger fixedCount;
+@property(nonatomic,strong)UITableView* searchTableView;
+@property(nonatomic,strong)UIView* searchPlaceholderView;
+@property(nonatomic,assign)BOOL isMacOnline;
+- (void)n_receiveStartLoginNotification:(NSNotification*)notification;
+- (void)n_receiveLoginFailureNotification:(NSNotification*)notification;@end
 
 @implementation ZKMessageViewController
 - (id)init {
@@ -41,12 +48,142 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title=@"消息";
-    
-    self.dataSource=[[NSMutableArray alloc] initWithObjects:
-                     @"华捷新闻，点击查看！",@"华捷新闻，点击查看！",@"华捷新闻，点击查看！",
-                     nil];
+
     [self.tableView registerClass:[ZKBaseCell class] forCellReuseIdentifier:@"ZKPCStatusCellIdentifier"];
     [self.tableView registerClass:[ZKRecentUserCell class] forCellReuseIdentifier:@"ZKRecentUserCellIdentifier"];
+    
+    self.dataSource=[NSMutableArray new];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.tableView setBackgroundColor:ZKBG];
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, FULL_WIDTH, 40)];
+    self.searchBar.placeholder = @"搜索";
+    self.searchBar.delegate = self;
+    self.searchBar.barTintColor = ZKBG;
+    self.searchBar.layer.borderWidth = 0.5;
+    self.searchBar.layer.borderColor = RGB(204, 204, 204).CGColor;
+    self.tableView.tableHeaderView = self.searchBar;
+    
+    self.lastMsgs = [NSMutableDictionary new];
+    self.isMacOnline = 0;
+    
+    [self.dataSource addObjectsFromArray:[[SessionModule instance] getAllSessions]];
+    [self sortItems];
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [[SessionModule instance] getRecentSession:^(NSUInteger count) {
+            
+            [self.data removeAllObjects];
+            [self.items addObjectsFromArray:[[SessionModule instance] getAllSessions]];
+            
+            [self sortItems];
+            
+            //            NSUInteger unreadcount =  [[self.items valueForKeyPath:@"@sum.unReadMsgCount"] integerValue];
+            NSUInteger unreadcount =  [[SessionModule instance]getAllUnreadMessageCount];
+            
+            [self setToolbarBadge:unreadcount];
+            
+        }];
+    });
+    
+    
+    [SessionModule instance].delegate=self;
+    
+    // 初始化searchTableView
+    [self addSearchTableView];
+}
+-(void)addSearchTableView{
+    self.searchTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 105, SCREEN_WIDTH, SCREEN_HEIGHT-105)];
+    [self.view addSubview:self.searchTableView];
+    [self.searchTableView setHidden:YES];
+    [self.searchTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.searchTableView setBackgroundColor:TTBG];
+    self.searchContent = [SearchContentViewController new];
+    self.searchContent.viewController=self;
+    self.searchTableView.delegate = self.searchContent.delegate;
+    self.searchTableView.dataSource = self.searchContent.dataSource;
+    
+    __weak __typeof(self)weakSelf = self;
+    self.searchContent.didScrollViewScrolled = ^(){
+        [weakSelf.view endEditing:YES];
+        [weakSelf enableControlsInView:weakSelf.searchBar];
+    };
+    
+    self.searchPlaceholderView = [[UIView alloc]initWithFrame:CGRectMake(0, 105, SCREEN_WIDTH, SCREEN_HEIGHT-105)];
+    [self.view addSubview:self.searchPlaceholderView];
+    [self.searchPlaceholderView setHidden:YES];
+    [self.searchPlaceholderView setBackgroundColor:[UIColor whiteColor]];
+    
+    // 点击取消
+    self.searchPlaceholderView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(endSearch)];
+    [self.searchPlaceholderView addGestureRecognizer:tapGesture];
+    
+    // 添加其他元素
+    UILabel *searchMore = [[UILabel alloc]initWithFrame:CGRectMake(0, 60, SCREEN_WIDTH, 20)];
+    [self.searchPlaceholderView addSubview:searchMore];
+    [searchMore setTextAlignment:NSTextAlignmentCenter];
+    [searchMore setText:@"搜索更多内容"];
+    [searchMore setFont:systemFont(20)];
+    [searchMore setTextColor:RGB(129, 129, 131)];
+    
+    UILabel *searchMoreLine = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-200)/2, 95, 200, 0.5)];
+    [self.searchPlaceholderView addSubview:searchMoreLine];
+    [searchMoreLine setBackgroundColor:RGB(230, 230, 232)];
+    
+    UIView *searchMoreContent = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-200)/2, 110, 200, 50)];
+    [self.searchPlaceholderView addSubview:searchMoreContent];
+    
+    UIImageView *searchUser = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [searchUser setImage:[UIImage imageNamed:@"search_user"]];
+    [searchMoreContent addSubview:searchUser];
+    
+    UILabel *searchUserLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 35, 25, 25)];
+    [searchUserLabel setText:@"用户"];
+    [searchUserLabel setTextColor:RGB(170, 170, 171)];
+    [searchUserLabel setFont:systemFont(12)];
+    [searchUserLabel setTextAlignment:NSTextAlignmentCenter];
+    [searchMoreContent addSubview:searchUserLabel];
+    
+    UIImageView *searchGroup = [[UIImageView alloc]initWithFrame:CGRectMake(25+33, 0, 25, 25)];
+    [searchGroup setImage:[UIImage imageNamed:@"search_group"]];
+    [searchMoreContent addSubview:searchGroup];
+    
+    UILabel *searchGroupLabel = [[UILabel alloc]initWithFrame:CGRectMake(25+33, 35, 25, 25)];
+    [searchGroupLabel setText:@"群组"];
+    [searchGroupLabel setTextColor:RGB(170, 170, 171)];
+    [searchGroupLabel setFont:systemFont(12)];
+    [searchGroupLabel setTextAlignment:NSTextAlignmentCenter];
+    [searchMoreContent addSubview:searchGroupLabel];
+    
+    UIImageView *searchDepartment = [[UIImageView alloc]initWithFrame:CGRectMake((25+33)*2, 0, 25, 25)];
+    [searchDepartment setImage:[UIImage imageNamed:@"search_department"]];
+    [searchMoreContent addSubview:searchDepartment];
+    
+    UIImageView *searchChat = [[UIImageView alloc]initWithFrame:CGRectMake((25+33)*3, 0, 25, 25)];
+    [searchChat setImage:[UIImage imageNamed:@"search_chat"]];
+    [searchMoreContent addSubview:searchChat];
+    
+    UILabel *searchChatLabel = [[UILabel alloc]initWithFrame:CGRectMake((25+33)*3, 35, 25, 25)];
+    [searchChatLabel setText:@"聊天"];
+    [searchChatLabel setTextColor:RGB(170, 170, 171)];
+    [searchChatLabel setFont:systemFont(12)];
+    [searchChatLabel setTextAlignment:NSTextAlignmentCenter];
+    [searchMoreContent addSubview:searchChatLabel];
+}
+-(void)sortItems
+{
+    [self.dataSource removeAllObjects];
+    
+    [self.dataSource addObjectsFromArray:[[SessionModule instance] getAllSessions]];
+    
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeInterval" ascending:NO];
+    NSSortDescriptor *sortFixed = [[NSSortDescriptor alloc] initWithKey:@"isFixedTop" ascending:NO];
+    [self.dataSource sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    [self.dataSource sortUsingDescriptors:[NSArray arrayWithObject:sortFixed]];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
