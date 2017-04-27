@@ -259,6 +259,8 @@
 		7EC20FB61EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB51EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m */; };
 		7EC20FB91EB0DF6000444B96 /* LoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB81EB0DF6000444B96 /* LoginAPI.m */; };
 		7EC20FBC1EB2337900444B96 /* ZKAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FBB1EB2337900444B96 /* ZKAvatarImageView.m */; };
+		7EC20FBF1EB2346000444B96 /* NSURL+SafeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FBE1EB2346000444B96 /* NSURL+SafeURL.m */; };
+		7EC20FC21EB234B300444B96 /* ZKAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FC11EB234B300444B96 /* ZKAvatarManager.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -734,6 +736,10 @@
 		7EC20FB81EB0DF6000444B96 /* LoginAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginAPI.m; path = Module/TCP/RequestAPI/LoginAPI.m; sourceTree = "<group>"; };
 		7EC20FBA1EB2337900444B96 /* ZKAvatarImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAvatarImageView.h; path = View/Cell/Message/ZKAvatarImageView.h; sourceTree = "<group>"; };
 		7EC20FBB1EB2337900444B96 /* ZKAvatarImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAvatarImageView.m; path = View/Cell/Message/ZKAvatarImageView.m; sourceTree = "<group>"; };
+		7EC20FBD1EB2346000444B96 /* NSURL+SafeURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+SafeURL.h"; sourceTree = "<group>"; };
+		7EC20FBE1EB2346000444B96 /* NSURL+SafeURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SafeURL.m"; sourceTree = "<group>"; };
+		7EC20FC01EB234B300444B96 /* ZKAvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAvatarManager.h; path = Manager/ZKAvatarManager.h; sourceTree = "<group>"; };
+		7EC20FC11EB234B300444B96 /* ZKAvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAvatarManager.m; path = Manager/ZKAvatarManager.m; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -830,6 +836,8 @@
 		7E290E941E61750C004552F3 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				7EC20FBD1EB2346000444B96 /* NSURL+SafeURL.h */,
+				7EC20FBE1EB2346000444B96 /* NSURL+SafeURL.m */,
 				7EC20FB41EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.h */,
 				7EC20FB51EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m */,
 				7E44A9A01EA1003F00A825B1 /* NSString+DDPath.h */,
@@ -1139,6 +1147,8 @@
 			children = (
 				7E53DA7F1E86AA6E0093C912 /* TouchDownGestureRecognizer.h */,
 				7E53DA801E86AA6E0093C912 /* TouchDownGestureRecognizer.m */,
+				7EC20FC01EB234B300444B96 /* ZKAvatarManager.h */,
+				7EC20FC11EB234B300444B96 /* ZKAvatarManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -2289,6 +2299,7 @@
 				7E53D94E1E86A2BA0093C912 /* bits.c in Sources */,
 				7E53D99B1E86A3E10093C912 /* IMGroup.pb.m in Sources */,
 				7E53DA7C1E86AA3F0093C912 /* ZKChattingEditViewController.m in Sources */,
+				7EC20FC21EB234B300444B96 /* ZKAvatarManager.m in Sources */,
 				7EC20F981EACB0F600444B96 /* ZKSundriesCenter.m in Sources */,
 				7E53DAE51E86ACB00093C912 /* ZKNormalCell.m in Sources */,
 				7E53DAA51E86AC020093C912 /* ZKBaseCell.m in Sources */,
@@ -2297,6 +2308,7 @@
 				7E53DAD61E86AC830093C912 /* DDPromptCell.m in Sources */,
 				7E53DAA21E86ABCE0093C912 /* ZKUserEntity.m in Sources */,
 				7E53DAE71E86ACB00093C912 /* ZKPublicProfileCell.m in Sources */,
+				7EC20FBF1EB2346000444B96 /* NSURL+SafeURL.m in Sources */,
 				7E44A98A1E9A81AC00A825B1 /* ZKConstant.m in Sources */,
 				7E53DA7D1E86AA3F0093C912 /* ZKChattingImagePreviewViewController.m in Sources */,
 				7EC20F9E1EACC24A00444B96 /* DDTcpProtocolHeader.m in Sources */,

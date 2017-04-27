@@ -10,7 +10,7 @@
 #import "UIView+Addition.h"
 #import "UIImageView+WebCache.h"
 #import "NSURL+SafeURL.h"
-
+#import "ZKAvatarManager.h"
 @interface ZKAvatarImageView(PrivateAPI)
 
 - (void)p_setGroupAvatar:(NSString*)avatar avatars:(NSArray*)avatarImages;
@@ -85,7 +85,7 @@
     NSArray* frames = [self p_getAvatarLayout:[avatarImages count] forScale:2];
     if (avatar&&[frames count] > 0)
     {
-        [[MTTAvatarManager shareInstance] addKey:avatar Avatar:avatarImages forLayout:frames];
+        [[ZKAvatarManager shareInstance] addKey:avatar Avatar:avatarImages forLayout:frames];
         
     }
     for (NSInteger index = 0; index < [imageViewFrames count]; index ++)
