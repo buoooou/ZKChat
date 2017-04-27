@@ -65,6 +65,7 @@
             if (TheRuntime.pushToken) {
                 //SendPushTokenAPI *pushToken = [[SendPushTokenAPI alloc] init];
                // [pushToken requestWithObject:TheRuntime.pushToken Completion:^(id response, NSError *error) {
+                
                // }];
             }
             ZKRootViewController *rootController=[[ZKRootViewController alloc]init];
