@@ -141,22 +141,18 @@
         {
             cell = [[ZKRecentUserCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        //        NSInteger row = [indexPath row];
+                NSInteger row = [indexPath row];
         UIView *view = [[UIView alloc] initWithFrame:cell.bounds];
         view.backgroundColor=RGB(229, 229, 229);
-        //        MTTSessionEntity *session = self.items[row];
-        //        if(session.isFixedTop){
-        //            [cell setBackgroundColor:RGB(243, 243, 247)];
-        //        }else{
-        //            [cell setBackgroundColor:[UIColor whiteColor]];
-        //        }
+                ZKSessionEntity *session = self.items[row];
+                if(session.isFixedTop){
+                    [cell setBackgroundColor:RGB(243, 243, 247)];
+                }else{
+                    [cell setBackgroundColor:[UIColor whiteColor]];
+                }
         cell.selectedBackgroundView=view;
-        // [cell setShowSession:self.dataSource[row]];
-        //        [self preLoadMessage:self.dataSource[row]];
-        [cell setName:@"张阔"];
-        [cell setAvatar:@""];
-        [cell setLastMessage:@"大噶死噶手工花开"];
-        //        [cell setNameLabel:@"kafeihu"];
+        [cell setShowSession:self.items[row]];
+        [self preLoadMessage:self.items[row]];
         return cell;
     }
     

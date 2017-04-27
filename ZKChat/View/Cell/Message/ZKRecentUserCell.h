@@ -7,6 +7,7 @@
 //
 
 #import "ZKBaseCell.h"
+#import "ZKSessionEntity.h"
 
 @interface ZKRecentUserCell : ZKBaseCell
 
@@ -23,5 +24,5 @@
 - (void)setLastMessage:(NSString*)message;
 - (void)setAvatar:(NSString*)avatar;
 - (void)setUnreadMessageCount:(NSUInteger)messageCount;
-//-(void)setShowSession:(MTTSessionEntity *)session;
+-(void)setShowSession:(ZKSessionEntity *)session;
 @end

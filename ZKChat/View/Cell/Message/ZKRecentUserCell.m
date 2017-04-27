@@ -12,6 +12,9 @@
 #import "NSDate+DDAddition.h"
 #import "UIImageView+WebCache.h"
 #import "UIView+Addition.h"
+#import "ZKGroupEntity.h"
+#import "DDGroupModule.h"
+#import "DDUserModule.h"
 
 @implementation ZKRecentUserCell
 
@@ -180,9 +183,9 @@
 - (void)setAvatar:(NSString*)avatar
 {
     
-//    [[_avatarImageView subviews] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        [(UIView*)obj removeFromSuperview];
-//    }];
+    [[_avatarImageView subviews] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [(UIView*)obj removeFromSuperview];
+    }];
     
     NSURL* avatarURL = [NSURL URLWithString:avatar];
     UIImage* placeholder = [UIImage imageNamed:@"avatar"];
@@ -230,5 +233,107 @@
         [self.unreadMessageCountLabel setCenter:center];
         [self.unreadMessageCountLabel.layer setCornerRadius:8];
     }
+}
+-(void)setShowSession:(ZKSessionEntity *)session
+{
+    [self setName:session.name];
+    if ([session.lastMsg isKindOfClass:[NSString class]]) {
+        if ([session.lastMsg rangeOfString:DD_MESSAGE_IMAGE_PREFIX].location != NSNotFound) {
+            NSArray *array = [session.lastMsg componentsSeparatedByString:DD_MESSAGE_IMAGE_PREFIX];
+            NSString *string = [array lastObject];
+            if ([string rangeOfString:DD_MESSAGE_IMAGE_SUFFIX].location != NSNotFound) {
+                [self setLastMessage:@"[图片]"];
+            }else{
+                [self setLastMessage:string];
+            }
+            
+        }else if ([session.lastMsg hasSuffix:@".spx"])
+        {
+            [self setLastMessage:@"[语音]"];
+        }
+        else{
+            [self setLastMessage:session.lastMsg];
+            
+        }
+    }
+    
+    
+    if (session.sessionType == SessionTypeSessionTypeSingle) {
+        [_avatarImageView setBackgroundColor:[UIColor clearColor]];
+        [[DDUserModule shareInstance] getUserForUserID:session.sessionID Block:^(ZKUserEntity *user) {
+            [[_avatarImageView subviews] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [(UIView*)obj removeFromSuperview];
+            }];
+            [_avatarImageView setImage:nil];
+            [self setAvatar:[user getAvatarUrl]];
+        }];
+    }else{
+        [_avatarImageView setBackgroundColor:RGB(228, 227, 230)];
+        [_avatarImageView setImage:nil];
+        [[_avatarImageView subviews] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [(UIView*)obj removeFromSuperview];
+        }];
+        
+        [self loadGroupIcon:session];
+    }
+    [self.shiledUnreadMessageCountLabel setHidden:YES];
+    [self setUnreadMessageCount:session.unReadMsgCount];
+    [self.shiledImageView setHidden:YES];
+    if(session.isGroup){
+        ZKGroupEntity *group = [[DDGroupModule instance] getGroupByGId:session.sessionID];
+        if (group) {
+            if(group.isShield){
+                if(session.unReadMsgCount){
+                    [self setShiledUnreadMessage];
+                }
+                [self.shiledImageView setHidden:NO];
+            }
+        }
+    }
+    [self setTimeStamp:session.timeInterval];
+    if(session.unReadMsgCount)
+    {
+        //实时获取未读消息从接口
+    }
+}
+
+-(void)loadGroupIcon:(ZKSessionEntity *)session
+{
+    [[DDGroupModule instance] getGroupInfogroupID:session.sessionID completion:^(ZKGroupEntity *group) {
+        [self setName:group.name];
+        NSMutableArray *ids = [[NSMutableArray alloc]init];
+        NSMutableArray *avatars = [[NSMutableArray alloc]init];
+        NSArray* data = [[group.groupUserIds reverseObjectEnumerator] allObjects];
+        if(data.count>=9){
+            for (int i=0; i<9; i++) {
+                [ids addObject:[data objectAtIndex:i]];
+            }
+        }else{
+            for (int i=0;i<data.count;i++) {
+                [ids addObject:[data objectAtIndex:i]];
+            }
+        }
+        [ids enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSString* userID = (NSString*)obj;
+            [[DDUserModule shareInstance] getUserForUserID:userID Block:^(ZKUserEntity *user) {
+                if (user)
+                {
+                    NSString* avatar = [user getAvatarUrl];
+                    [avatars addObject:avatar];
+                }
+            }];
+        }];
+        
+        [_avatarImageView setAvatar:[avatars componentsJoinedByString:@";"] group:1];
+    }];
+}
+
+-(UIImage *)getImageFromView:(UIView *)orgView{
+    CGSize s = orgView.bounds.size;
+    UIGraphicsBeginImageContextWithOptions(s, NO, [UIScreen mainScreen].scale);
+    [orgView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage*image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 @end

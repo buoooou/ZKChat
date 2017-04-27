@@ -51,6 +51,10 @@
 
 #define LOCAL_MSG_BEGIN_ID 1000000
 
+//图片
+#define DD_MESSAGE_IMAGE_PREFIX             @"&$#@~^@[{:"
+#define DD_MESSAGE_IMAGE_SUFFIX             @":}]&$~@#@"
+
 //chatting
 #define LINK_SPLIT @"!@#$~link~#$@!"
 #define NICK_SPLIT @"!@#$~nick~#$@!"

@@ -55,11 +55,11 @@
     [self showHUDWithIndeterminateText:@"请稍后..."];
     
     
-    [[LoginModule instance] loginWithUsername:@"" password:@"" success:^(ZKUserEntity *user) {
+//    [[LoginModule instance] loginWithUsername:@"" password:@"" success:^(ZKUserEntity *user) {
     
             [self removeHUD];
         
-            TheRuntime.user=user ;
+//            TheRuntime.user=user ;
             [TheRuntime updateData];
     
             if (TheRuntime.pushToken) {
@@ -70,10 +70,10 @@
             }
             ZKRootViewController *rootController=[[ZKRootViewController alloc]init];
             [self pushViewController:rootController animated:YES];
-    } failure:^(NSString *error) {
-        
-        [self removeHUD];
-    }];
+//    } failure:^(NSString *error) {
+//        
+//        [self removeHUD];
+//    }];
 
 }
 
