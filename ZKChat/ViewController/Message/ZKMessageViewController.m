@@ -12,6 +12,10 @@
 #import "ZKChattingMainViewController.h"
 #import "ZKNormalCell.h"
 #import "ZKChattingUtilityViewController.h"
+#import "ZKDatabaseUtil.h"
+#import "ZKMessageEntity.h"
+#import "DDMessageModule.h"
+
 @interface ZKMessageViewController ()
 
 @end
@@ -144,15 +148,15 @@
                 NSInteger row = [indexPath row];
         UIView *view = [[UIView alloc] initWithFrame:cell.bounds];
         view.backgroundColor=RGB(229, 229, 229);
-                ZKSessionEntity *session = self.items[row];
+                ZKSessionEntity *session = self.dataSource[row];
                 if(session.isFixedTop){
                     [cell setBackgroundColor:RGB(243, 243, 247)];
                 }else{
                     [cell setBackgroundColor:[UIColor whiteColor]];
                 }
         cell.selectedBackgroundView=view;
-        [cell setShowSession:self.items[row]];
-        [self preLoadMessage:self.items[row]];
+        [cell setShowSession:self.dataSource[row]];
+        [self preLoadMessage:self.dataSource[row]];
         return cell;
     }
     
@@ -192,6 +196,31 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
     return @"删除";
 }
-
+-(void)preLoadMessage:(ZKSessionEntity *)session
+{
+    [[ZKDatabaseUtil instance] getLastestMessageForSessionID:session.sessionID completion:^(ZKMessageEntity *message, NSError *error) {
+        if (message) {
+            if (message.msgID != session.lastMsgID ) {
+                [[DDMessageModule shareInstance] getMessageFromServer:session.lastMsgID currentSession:session count:20 Block:^(NSMutableArray *array, NSError *error) {
+                    [[ZKDatabaseUtil instance] insertMessages:array success:^{
+                        
+                    } failure:^(NSString *errorDescripe) {
+                        
+                    }];
+                }];
+            }
+        }else{
+            if (session.lastMsgID !=0) {
+                [[DDMessageModule shareInstance] getMessageFromServer:session.lastMsgID currentSession:session count:20 Block:^(NSMutableArray *array, NSError *error) {
+                    [[ZKDatabaseUtil instance] insertMessages:array success:^{
+                        
+                    } failure:^(NSString *errorDescripe) {
+                        
+                    }];
+                }];
+            }
+        }
+    }];
+}
 
 @end

@@ -8,10 +8,10 @@
 
 #import "ZKBaseCell.h"
 #import "ZKSessionEntity.h"
-
+#import "ZKAvatarImageView.h"
 @interface ZKRecentUserCell : ZKBaseCell
 
-@property (nonatomic,strong) UIImageView *avatarImageView;
+@property (nonatomic,strong) ZKAvatarImageView *avatarImageView;
 @property (nonatomic,strong) UIImageView* shiledImageView;
 @property (nonatomic,strong) UILabel* nameLabel;
 @property (nonatomic,strong) UILabel* dateLabel;
