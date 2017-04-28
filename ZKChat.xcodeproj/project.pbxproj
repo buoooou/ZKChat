@@ -262,6 +262,7 @@
 		7EC20FBF1EB2346000444B96 /* NSURL+SafeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FBE1EB2346000444B96 /* NSURL+SafeURL.m */; };
 		7EC20FC21EB234B300444B96 /* ZKAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FC11EB234B300444B96 /* ZKAvatarManager.m */; };
 		7EC20FC61EB2392A00444B96 /* SessionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FC51EB2392A00444B96 /* SessionModule.m */; };
+		7EC20FC91EB359EC00444B96 /* MsgReadNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FC81EB359EC00444B96 /* MsgReadNotify.m */; };
 		827887BC9258F7B2E57643A0 /* libPods-ZKChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F31DAC731D6605CCE3B1C48 /* libPods-ZKChatTests.a */; };
 /* End PBXBuildFile section */
 
@@ -743,6 +744,8 @@
 		7EC20FC11EB234B300444B96 /* ZKAvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAvatarManager.m; path = Manager/ZKAvatarManager.m; sourceTree = "<group>"; };
 		7EC20FC41EB2392A00444B96 /* SessionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionModule.h; path = Module/Session/SessionModule.h; sourceTree = "<group>"; };
 		7EC20FC51EB2392A00444B96 /* SessionModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SessionModule.m; path = Module/Session/SessionModule.m; sourceTree = "<group>"; };
+		7EC20FC71EB359EC00444B96 /* MsgReadNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MsgReadNotify.h; path = Module/TCP/UnRequestAPI/MsgReadNotify.h; sourceTree = "<group>"; };
+		7EC20FC81EB359EC00444B96 /* MsgReadNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MsgReadNotify.m; path = Module/TCP/UnRequestAPI/MsgReadNotify.m; sourceTree = "<group>"; };
 		7ED493681E671CCB0083BCD4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		7ED493691E671CCB0083BCD4 /* libDACircularProgress.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDACircularProgress.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/DACircularProgress/libDACircularProgress.a"; sourceTree = "<group>"; };
 		7ED4936A1E671CCB0083BCD4 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../Library/Developer/Xcode/DerivedData/ZKChat-cidzjufrjcqmudhkfycmksgdieii/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
@@ -1762,6 +1765,8 @@
 				7EC20FA41EACE16B00444B96 /* DDReceiveMessageAPI.m */,
 				7EC20FA61EACE26300444B96 /* DDReceiveMessageACKAPI.h */,
 				7EC20FA71EACE26300444B96 /* DDReceiveMessageACKAPI.m */,
+				7EC20FC71EB359EC00444B96 /* MsgReadNotify.h */,
+				7EC20FC81EB359EC00444B96 /* MsgReadNotify.m */,
 			);
 			name = UnRequestAPI;
 			sourceTree = "<group>";
@@ -2295,6 +2300,7 @@
 				7E53D9681E86A2BA0093C912 /* modes_wb.c in Sources */,
 				7E53D9741E86A2BA0093C912 /* stereo.c in Sources */,
 				7E53D9731E86A2BA0093C912 /* speex_header.c in Sources */,
+				7EC20FC91EB359EC00444B96 /* MsgReadNotify.m in Sources */,
 				7EC20FB31EACECDF00444B96 /* SpellLibrary.m in Sources */,
 				7E53D9511E86A2BA0093C912 /* exc_10_16_table.c in Sources */,
 				7E53D9A71E86A49B0093C912 /* RecordingView.m in Sources */,

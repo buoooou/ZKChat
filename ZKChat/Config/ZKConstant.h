@@ -102,5 +102,5 @@ extern NSString* const DDNotificationReceiveP2PInputingMessage;       //收到�
 extern NSString* const DDNotificationReceiveP2PStopInputingMessage;   //收到停止输入消息
 extern NSString *const DDNotificationLoadLocalGroupFinish;             //本地最近联系群加载完成
 extern NSString* const DDNotificationRecentContactsUpdate;              //最近联系人更新
-extern NSString* const MTTNotificationSessionShieldAndFixed;            //最近联系人置顶或者屏蔽
+extern NSString* const ZKNotificationSessionShieldAndFixed;            //最近联系人置顶或者屏蔽
 

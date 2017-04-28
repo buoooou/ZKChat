@@ -15,17 +15,19 @@
 #import "ZKDatabaseUtil.h"
 #import "ZKMessageEntity.h"
 #import "DDMessageModule.h"
+#import "SessionModule.h"
 
 @interface ZKMessageViewController ()
 @property(nonatomic,strong)NSMutableDictionary *lastMsgs;
 @property(nonatomic,strong)UISearchBar *searchBar;
 //@property(nonatomic,strong)SearchContentViewController *searchContent;
 @property(nonatomic,assign)NSInteger fixedCount;
-@property(nonatomic,strong)UITableView* searchTableView;
+//@property(nonatomic,strong)UITableView* searchTableView;
 @property(nonatomic,strong)UIView* searchPlaceholderView;
 @property(nonatomic,assign)BOOL isMacOnline;
 - (void)n_receiveStartLoginNotification:(NSNotification*)notification;
-- (void)n_receiveLoginFailureNotification:(NSNotification*)notification;@end
+- (void)n_receiveLoginFailureNotification:(NSNotification*)notification;
+@end
 
 @implementation ZKMessageViewController
 - (id)init {
@@ -35,6 +37,38 @@
     }
     return self;
 }
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(n_receiveLoginFailureNotification:)
+                                                     name:DDNotificationUserLoginFailure
+                                                   object:nil];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(n_receiveLoginNotification:)
+                                                 name:DDNotificationUserLoginSuccess
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshData)
+                                                 name:@"RefreshRecentData"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(n_receiveReLoginSuccessNotification)
+                                                 name:@"ReloginSuccess"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshData)
+                                                 name:ZKNotificationSessionShieldAndFixed
+                                               object:nil];
+    
+    return self;
+}
+
 + (instancetype)shareInstance
 {
     static ZKMessageViewController* g_recentUsersViewController;
@@ -74,8 +108,8 @@
         
         [[SessionModule instance] getRecentSession:^(NSUInteger count) {
             
-            [self.data removeAllObjects];
-            [self.items addObjectsFromArray:[[SessionModule instance] getAllSessions]];
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:[[SessionModule instance] getAllSessions]];
             
             [self sortItems];
             
@@ -89,89 +123,8 @@
     
     
     [SessionModule instance].delegate=self;
-    
-    // 初始化searchTableView
-    [self addSearchTableView];
 }
--(void)addSearchTableView{
-    self.searchTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 105, SCREEN_WIDTH, SCREEN_HEIGHT-105)];
-    [self.view addSubview:self.searchTableView];
-    [self.searchTableView setHidden:YES];
-    [self.searchTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.searchTableView setBackgroundColor:TTBG];
-    self.searchContent = [SearchContentViewController new];
-    self.searchContent.viewController=self;
-    self.searchTableView.delegate = self.searchContent.delegate;
-    self.searchTableView.dataSource = self.searchContent.dataSource;
-    
-    __weak __typeof(self)weakSelf = self;
-    self.searchContent.didScrollViewScrolled = ^(){
-        [weakSelf.view endEditing:YES];
-        [weakSelf enableControlsInView:weakSelf.searchBar];
-    };
-    
-    self.searchPlaceholderView = [[UIView alloc]initWithFrame:CGRectMake(0, 105, SCREEN_WIDTH, SCREEN_HEIGHT-105)];
-    [self.view addSubview:self.searchPlaceholderView];
-    [self.searchPlaceholderView setHidden:YES];
-    [self.searchPlaceholderView setBackgroundColor:[UIColor whiteColor]];
-    
-    // 点击取消
-    self.searchPlaceholderView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(endSearch)];
-    [self.searchPlaceholderView addGestureRecognizer:tapGesture];
-    
-    // 添加其他元素
-    UILabel *searchMore = [[UILabel alloc]initWithFrame:CGRectMake(0, 60, SCREEN_WIDTH, 20)];
-    [self.searchPlaceholderView addSubview:searchMore];
-    [searchMore setTextAlignment:NSTextAlignmentCenter];
-    [searchMore setText:@"搜索更多内容"];
-    [searchMore setFont:systemFont(20)];
-    [searchMore setTextColor:RGB(129, 129, 131)];
-    
-    UILabel *searchMoreLine = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-200)/2, 95, 200, 0.5)];
-    [self.searchPlaceholderView addSubview:searchMoreLine];
-    [searchMoreLine setBackgroundColor:RGB(230, 230, 232)];
-    
-    UIView *searchMoreContent = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-200)/2, 110, 200, 50)];
-    [self.searchPlaceholderView addSubview:searchMoreContent];
-    
-    UIImageView *searchUser = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [searchUser setImage:[UIImage imageNamed:@"search_user"]];
-    [searchMoreContent addSubview:searchUser];
-    
-    UILabel *searchUserLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 35, 25, 25)];
-    [searchUserLabel setText:@"用户"];
-    [searchUserLabel setTextColor:RGB(170, 170, 171)];
-    [searchUserLabel setFont:systemFont(12)];
-    [searchUserLabel setTextAlignment:NSTextAlignmentCenter];
-    [searchMoreContent addSubview:searchUserLabel];
-    
-    UIImageView *searchGroup = [[UIImageView alloc]initWithFrame:CGRectMake(25+33, 0, 25, 25)];
-    [searchGroup setImage:[UIImage imageNamed:@"search_group"]];
-    [searchMoreContent addSubview:searchGroup];
-    
-    UILabel *searchGroupLabel = [[UILabel alloc]initWithFrame:CGRectMake(25+33, 35, 25, 25)];
-    [searchGroupLabel setText:@"群组"];
-    [searchGroupLabel setTextColor:RGB(170, 170, 171)];
-    [searchGroupLabel setFont:systemFont(12)];
-    [searchGroupLabel setTextAlignment:NSTextAlignmentCenter];
-    [searchMoreContent addSubview:searchGroupLabel];
-    
-    UIImageView *searchDepartment = [[UIImageView alloc]initWithFrame:CGRectMake((25+33)*2, 0, 25, 25)];
-    [searchDepartment setImage:[UIImage imageNamed:@"search_department"]];
-    [searchMoreContent addSubview:searchDepartment];
-    
-    UIImageView *searchChat = [[UIImageView alloc]initWithFrame:CGRectMake((25+33)*3, 0, 25, 25)];
-    [searchChat setImage:[UIImage imageNamed:@"search_chat"]];
-    [searchMoreContent addSubview:searchChat];
-    
-    UILabel *searchChatLabel = [[UILabel alloc]initWithFrame:CGRectMake((25+33)*3, 35, 25, 25)];
-    [searchChatLabel setText:@"聊天"];
-    [searchChatLabel setTextColor:RGB(170, 170, 171)];
-    [searchChatLabel setFont:systemFont(12)];
-    [searchChatLabel setTextAlignment:NSTextAlignmentCenter];
-    [searchMoreContent addSubview:searchChatLabel];
-}
+
 -(void)sortItems
 {
     [self.dataSource removeAllObjects];
@@ -185,7 +138,29 @@
     [self.dataSource sortUsingDescriptors:[NSArray arrayWithObject:sortFixed]];
     [self.tableView reloadData];
 }
-
+-(void)setToolbarBadge:(NSUInteger)count
+{
+    
+    if (count !=0) {
+        if (count > 99)
+        {
+            [self.tabBarItem setBadgeValue:@"99+"];
+        }
+        else
+        {
+            [self.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%ld",count]];
+        }
+    }else
+    {
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+        [self.tabBarItem setBadgeValue:nil];
+    }
+}
+-(void)refreshData
+{
+    [self setToolbarBadge:0];
+    [self sortItems];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -197,12 +172,15 @@
     [self.tableView reloadData];
     self.title=APP_NAME;
     self.navigationController.navigationBarHidden =NO;
+    NSUInteger count = [[SessionModule instance]getAllUnreadMessageCount];
+    [self setToolbarBadge:count];
 }
 
 
 - (void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
+    [ZKChattingMainViewController shareInstance].module.ZKSessionEntity=nil;
     self.tableView.contentInset =UIEdgeInsetsMake(64, 0, 49, 0);
 }
 
@@ -298,6 +276,16 @@
     }
     
 }
+-(void)sessionUpdate:(ZKSessionEntity *)session Action:(SessionAction)action
+{
+    if (![self.dataSource containsObject:session]) {
+        [self.dataSource insertObject:session atIndex:0];
+    }
+    [self sortItems];
+    [self.tableView reloadData];
+    NSUInteger count = [[SessionModule instance]getAllUnreadMessageCount];
+    [self setToolbarBadge:count];
+}
 #pragma mark - UITableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -306,21 +294,21 @@
         
     }else{
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        //        NSInteger row = [indexPath row];
-        //        MTTSessionEntity *session = self.items[row];
-        [ZKChattingMainViewController shareInstance].title=@"张阔";
-        //        [[ZKChattingMainViewController shareInstance] showChattingContentForSession:session];
+                NSInteger row = [indexPath row];
+                ZKSessionEntity *session = self.dataSource[row];
+        [ZKChattingMainViewController shareInstance].title=session.name;
+                [[ZKChattingMainViewController shareInstance] showChattingContentForSession:session];
         [self pushViewController:[ZKChattingMainViewController shareInstance] animated:YES];
     }
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    NSUInteger row = [indexPath row];
-    //    MTTSessionEntity *session = self.items[row];
-    //    [[SessionModule instance] removeSessionByServer:session];
-    //    [self.items removeObjectAtIndex:row];
-    //    [self setToolbarBadge:[[SessionModule instance]getAllUnreadMessageCount]];
-    //    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+        NSUInteger row = [indexPath row];
+        ZKSessionEntity *session = self.dataSource[row];
+        [[SessionModule instance] removeSessionByServer:session];
+        [self.dataSource removeObjectAtIndex:row];
+        [self setToolbarBadge:[[SessionModule instance]getAllUnreadMessageCount]];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -359,5 +347,37 @@
         }
     }];
 }
+#pragma mark -  SNotification
+
+- (void)n_receiveLoginFailureNotification:(NSNotification*)notification
+{
+    self.title = @"未连接";
+}
+
+- (void)n_receiveStartLoginNotification:(NSNotification*)notification
+{
+    self.title = APP_NAME;
+}
+
+- (void)n_receiveLoginNotification:(NSNotification*)notification
+{
+    self.title = APP_NAME;
+}
+
+-(void)n_receiveReLoginSuccessNotification
+{
+    self.title = APP_NAME;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[SessionModule instance] getRecentSession:^(NSUInteger count) {
+            
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:[[SessionModule instance] getAllSessions]];
+            [self sortItems];
+            [self setToolbarBadge:count];
+            
+        }];
+    });
+}
+
 
 @end

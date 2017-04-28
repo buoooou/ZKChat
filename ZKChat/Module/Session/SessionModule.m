@@ -13,6 +13,10 @@
 #import "ZKDatabaseUtil.h"
 #import "ZKChattingMainViewController.h"
 #import "ZKUtil.h"
+#import "RuntimeStatus.h"
+#import "MsgReadNotify.h"
+#import "ZKConstant.h"
+
 
 @interface SessionModule()
 @property(strong)NSMutableDictionary *sessions;
@@ -99,34 +103,34 @@
 }
 -(void)getHadUnreadMessageSession:(void(^)(NSUInteger count))block
 {
-    GetUnreadMessagesAPI *getUnreadMessage = [GetUnreadMessagesAPI new];
-    [getUnreadMessage requestWithObject:TheRuntime.user.objID Completion:^(NSDictionary *dic, NSError *error) {
-        NSInteger m_total_cnt =[dic[@"m_total_cnt"] integerValue];
-        NSArray *localsessions = dic[@"sessions"];
-        [localsessions enumerateObjectsUsingBlock:^(ZKSessionEntity *obj, NSUInteger idx, BOOL *stop){
-            
-            if ([self getSessionById:obj.sessionID]) {
-                
-                ZKSessionEntity *session = [self getSessionById:obj.sessionID];
-                NSInteger lostMsgCount =obj.lastMsgID-session.lastMsgID;
-                obj.lastMsg = session.lastMsg;
-                if ([[ChattingMainViewController shareInstance].module.MTTSessionEntity.sessionID isEqualToString:obj.sessionID]) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChattingSessionUpdate" object:@{@"session":obj,@"count":@(lostMsgCount)}];
-                }
-                session=obj;
-                [self addToSessionModel:obj];
-            }
-            if (self.delegate && [self.delegate respondsToSelector:@selector(sessionUpdate:Action:)]) {
-                [self.delegate sessionUpdate:obj Action:ADD];
-            }
-            
-            
-        }];
-        
-        //[self addSessionsToSessionModel:sessions];
-        block(m_total_cnt);
-        //通知外层sessionmodel发生更新
-    }];
+//    GetUnreadMessagesAPI *getUnreadMessage = [GetUnreadMessagesAPI new];
+//    [getUnreadMessage requestWithObject:TheRuntime.user.objID Completion:^(NSDictionary *dic, NSError *error) {
+//        NSInteger m_total_cnt =[dic[@"m_total_cnt"] integerValue];
+//        NSArray *localsessions = dic[@"sessions"];
+//        [localsessions enumerateObjectsUsingBlock:^(ZKSessionEntity *obj, NSUInteger idx, BOOL *stop){
+//            
+//            if ([self getSessionById:obj.sessionID]) {
+//                
+//                ZKSessionEntity *session = [self getSessionById:obj.sessionID];
+//                NSInteger lostMsgCount =obj.lastMsgID-session.lastMsgID;
+//                obj.lastMsg = session.lastMsg;
+//                if ([[ChattingMainViewController shareInstance].module.MTTSessionEntity.sessionID isEqualToString:obj.sessionID]) {
+//                    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChattingSessionUpdate" object:@{@"session":obj,@"count":@(lostMsgCount)}];
+//                }
+//                session=obj;
+//                [self addToSessionModel:obj];
+//            }
+//            if (self.delegate && [self.delegate respondsToSelector:@selector(sessionUpdate:Action:)]) {
+//                [self.delegate sessionUpdate:obj Action:ADD];
+//            }
+//            
+//            
+//        }];
+//        
+//        //[self addSessionsToSessionModel:sessions];
+//        block(m_total_cnt);
+//        //通知外层sessionmodel发生更新
+//    }];
 }
 
 -(NSUInteger )getMaxTime
@@ -219,7 +223,7 @@
         session.lastMsg=message.msgContent;
         session.lastMsgID = message.msgID;
         session.timeInterval = message.msgTime;
-        if (![message.sessionId isEqualToString:[ChattingMainViewController shareInstance].module.ZKSessionEntity.sessionID]) {
+        if (![message.sessionId isEqualToString:[ZKChattingMainViewController shareInstance].module.ZKSessionEntity.sessionID]) {
             if (![message.senderId isEqualToString:TheRuntime.user.objID]) {
                 session.unReadMsgCount=session.unReadMsgCount+1;
             }

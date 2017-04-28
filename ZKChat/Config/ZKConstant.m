@@ -44,7 +44,7 @@ NSString* const DDNotificationReceiveP2PStopInputingMessage = @"Notification_rec
 NSString* const DDNotificationLoadLocalGroupFinish = @"Notification_local_group";
 
 NSString* const DDNotificationRecentContactsUpdate = @"Notification_RecentContactsUpdate";
-NSString* const MTTNotificationSessionShieldAndFixed = @"Notification_SessionShieldAndFixed";
+NSString* const ZKNotificationSessionShieldAndFixed = @"Notification_SessionShieldAndFixed";
 
 NSString *bundleVerison(){
     NSBundle * bundle=[NSBundle mainBundle];
