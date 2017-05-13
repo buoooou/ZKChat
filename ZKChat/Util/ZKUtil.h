@@ -28,4 +28,6 @@
 
 +(void)setMsfsUrl:(NSString*)url;
 +(NSString*)getMsfsUrl;
+
++(BOOL)checkFixedTop:(NSString *)sessionID;
 @end

@@ -425,13 +425,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ZKChat/ViewController/Message/ZKMessageViewController.m"
-            timestampString = "514996116.053735"
+            filePath = "ZKChat/Module/Session/SessionModule.m"
+            timestampString = "515070859.83152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "-setToolbarBadge:"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "-getHadUnreadMessageSession:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -442,12 +442,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZKChat/Module/Session/SessionModule.m"
-            timestampString = "515070859.83152"
+            timestampString = "516379047.649123"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-getHadUnreadMessageSession:"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "-removeSessionByServer:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

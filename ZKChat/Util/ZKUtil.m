@@ -122,4 +122,9 @@ typedef NS_ENUM(SInt32, SessionType) {
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"msfsurl"];
 }
+
++(BOOL)checkFixedTop:(NSString *)sessionID{
+    NSArray *allUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"fixedTopUsers"];
+    return [allUser containsObject:sessionID];
+}
 @end

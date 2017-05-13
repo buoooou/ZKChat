@@ -112,8 +112,6 @@
             [self.dataSource addObjectsFromArray:[[SessionModule instance] getAllSessions]];
             
             [self sortItems];
-            
-            //            NSUInteger unreadcount =  [[self.items valueForKeyPath:@"@sum.unReadMsgCount"] integerValue];
             NSUInteger unreadcount =  [[SessionModule instance]getAllUnreadMessageCount];
             
             [self setToolbarBadge:unreadcount];

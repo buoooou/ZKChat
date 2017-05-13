@@ -93,7 +93,6 @@
         count += unReadMsgCount;
     }];
     return count;
-    //    return [[[self getAllSessions] valueForKeyPath:@"@sum.unReadMsgCount"] integerValue];
 }
 -(void)addSessionsToSessionModel:(NSArray *)sessionArray
 {
@@ -142,32 +141,35 @@
     }
     return 0;
 }
+/**
+ *  获取当前聊天记录
+ *
+ *  @param block 返回
+ */
 -(void)getRecentSession:(void(^)(NSUInteger count))block
 {
-//    GetRecentSession *getRecentSession = [[GetRecentSession alloc] init];
-//    NSInteger localMaxTime = [self getMaxTime];
-//    [getRecentSession requestWithObject:@[@(localMaxTime)] Completion:^(NSArray *response, NSError *error) {
-//        
-//        NSMutableArray *array = [NSMutableArray arrayWithArray:response];
-//        
-//        [self addSessionsToSessionModel:array];
-//        
-//        [self getHadUnreadMessageSession:^(NSUInteger count) {}];
-//        
-//        [[ZKDatabaseUtil instance] updateRecentSessions:response completion:^(NSError *error) {}];
-//        
-//        block(0);
-//        
-//    }];
+
+    ZKSessionEntity *session1=[[ZKSessionEntity alloc]initWithSessionID:@"1111" type:SessionTypeSessionTypeGroup];
+    ZKSessionEntity *session2=[[ZKSessionEntity alloc]initWithSessionID:@"1112" type:SessionTypeSessionTypeSingle];
+    NSArray *sessionArray=@[session1,session2];
+        NSMutableArray *array = [NSMutableArray arrayWithArray:sessionArray];
+        
+        [self addSessionsToSessionModel:array];
+        
+        [self getHadUnreadMessageSession:^(NSUInteger count) {}];
+        
+        [[ZKDatabaseUtil instance] updateRecentSessions:sessionArray completion:^(NSError *error) {}];
+        
+        block(0);
 }
 
 -(NSArray *)getAllSessions
 {
     NSArray *sessions = [self.sessions allValues];
     [sessions enumerateObjectsUsingBlock:^(ZKSessionEntity *obj, NSUInteger idx, BOOL *stop) {
-//        if([ZKUtil checkFixedTop:obj.sessionID]){
-//            obj.isFixedTop = YES;
-//        }
+        if([ZKUtil checkFixedTop:obj.sessionID]){
+            obj.isFixedTop = YES;
+        }
     }];
     return [self.sessions allValues];
 }
