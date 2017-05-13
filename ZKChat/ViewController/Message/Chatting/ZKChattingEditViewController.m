@@ -250,7 +250,12 @@
     //
     return cell ;
 }
-
+/**
+ *  <#Description#>
+ *
+ *  @param collectionView <#collectionView description#>
+ *  @param indexPath      <#indexPath description#>
+ */
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.isShowEdit) {

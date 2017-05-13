@@ -130,7 +130,7 @@
 //        //[self addSessionsToSessionModel:sessions];
 //        block(m_total_cnt);
 //        //通知外层sessionmodel发生更新
-//    }];
+//    }]; 
 }
 
 -(NSUInteger )getMaxTime
@@ -144,42 +144,42 @@
 }
 -(void)getRecentSession:(void(^)(NSUInteger count))block
 {
-    GetRecentSession *getRecentSession = [[GetRecentSession alloc] init];
-    NSInteger localMaxTime = [self getMaxTime];
-    [getRecentSession requestWithObject:@[@(localMaxTime)] Completion:^(NSArray *response, NSError *error) {
-        
-        NSMutableArray *array = [NSMutableArray arrayWithArray:response];
-        
-        [self addSessionsToSessionModel:array];
-        
-        [self getHadUnreadMessageSession:^(NSUInteger count) {}];
-        
-        [[ZKDatabaseUtil instance] updateRecentSessions:response completion:^(NSError *error) {}];
-        
-        block(0);
-        
-    }];
+//    GetRecentSession *getRecentSession = [[GetRecentSession alloc] init];
+//    NSInteger localMaxTime = [self getMaxTime];
+//    [getRecentSession requestWithObject:@[@(localMaxTime)] Completion:^(NSArray *response, NSError *error) {
+//        
+//        NSMutableArray *array = [NSMutableArray arrayWithArray:response];
+//        
+//        [self addSessionsToSessionModel:array];
+//        
+//        [self getHadUnreadMessageSession:^(NSUInteger count) {}];
+//        
+//        [[ZKDatabaseUtil instance] updateRecentSessions:response completion:^(NSError *error) {}];
+//        
+//        block(0);
+//        
+//    }];
 }
 
 -(NSArray *)getAllSessions
 {
     NSArray *sessions = [self.sessions allValues];
     [sessions enumerateObjectsUsingBlock:^(ZKSessionEntity *obj, NSUInteger idx, BOOL *stop) {
-        if([ZKUtil checkFixedTop:obj.sessionID]){
-            obj.isFixedTop = YES;
-        }
+//        if([ZKUtil checkFixedTop:obj.sessionID]){
+//            obj.isFixedTop = YES;
+//        }
     }];
     return [self.sessions allValues];
 }
 -(void)removeSessionByServer:(ZKSessionEntity *)session
 {
-    [self.sessions removeObjectForKey:session.sessionID];
-    [[ZKDatabaseUtil instance] removeSession:session.sessionID];
-    RemoveSessionAPI *removeSession = [RemoveSessionAPI new];
-    SessionType sessionType = session.sessionType;
-    [removeSession requestWithObject:@[session.sessionID,@(sessionType)] Completion:^(id response, NSError *error) {
-        
-    }];
+//    [self.sessions removeObjectForKey:session.sessionID];
+//    [[ZKDatabaseUtil instance] removeSession:session.sessionID];
+//    RemoveSessionAPI *removeSession = [RemoveSessionAPI new];
+//    SessionType sessionType = session.sessionType;
+//    [removeSession requestWithObject:@[session.sessionID,@(sessionType)] Completion:^(id response, NSError *error) {
+//        
+//    }];
 }
 
 -(void)clearSession{
