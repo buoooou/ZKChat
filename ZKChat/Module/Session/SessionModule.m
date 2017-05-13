@@ -38,13 +38,6 @@
 {
     self = [super init];
     if (self) {
-        self.sessions = [NSMutableDictionary new];
-        //
-        ZKSessionEntity *session=[[ZKSessionEntity alloc]initWithSessionID:@"zk" type:SessionTypeSessionTypeSingle];
-        [session setSessionName:@"zhangkuo"];
-        [self addToSessionModel:session];
-        
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sentMessageSuccessfull:) name:@"SentMessageSuccessfull" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessageReadACK:) name:@"MessageReadACK" object:nil];
         
@@ -102,34 +95,36 @@
 }
 -(void)getHadUnreadMessageSession:(void(^)(NSUInteger count))block
 {
-//    GetUnreadMessagesAPI *getUnreadMessage = [GetUnreadMessagesAPI new];
-//    [getUnreadMessage requestWithObject:TheRuntime.user.objID Completion:^(NSDictionary *dic, NSError *error) {
-//        NSInteger m_total_cnt =[dic[@"m_total_cnt"] integerValue];
-//        NSArray *localsessions = dic[@"sessions"];
-//        [localsessions enumerateObjectsUsingBlock:^(ZKSessionEntity *obj, NSUInteger idx, BOOL *stop){
-//            
-//            if ([self getSessionById:obj.sessionID]) {
-//                
-//                ZKSessionEntity *session = [self getSessionById:obj.sessionID];
-//                NSInteger lostMsgCount =obj.lastMsgID-session.lastMsgID;
-//                obj.lastMsg = session.lastMsg;
-//                if ([[ChattingMainViewController shareInstance].module.MTTSessionEntity.sessionID isEqualToString:obj.sessionID]) {
-//                    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChattingSessionUpdate" object:@{@"session":obj,@"count":@(lostMsgCount)}];
-//                }
-//                session=obj;
-//                [self addToSessionModel:obj];
-//            }
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(sessionUpdate:Action:)]) {
-//                [self.delegate sessionUpdate:obj Action:ADD];
-//            }
-//            
-//            
-//        }];
-//        
-//        //[self addSessionsToSessionModel:sessions];
-//        block(m_total_cnt);
-//        //通知外层sessionmodel发生更新
-//    }]; 
+    NSDictionary *dic=[[NSDictionary alloc]init];
+    [dic setValue:@"1" forKey:@"m_total_cnt"];
+    ZKSessionEntity *session1=[[ZKSessionEntity alloc]initWithSessionID:@"1111" type:SessionTypeSessionTypeGroup];
+    ZKSessionEntity *session2=[[ZKSessionEntity alloc]initWithSessionID:@"1112" type:SessionTypeSessionTypeSingle];
+    NSArray *sessionArray=@[session1,session2];
+    [dic setValue:sessionArray forKey:@"sessions"];
+    
+        NSInteger m_total_cnt =[dic[@"m_total_cnt"] integerValue];
+        NSArray *localsessions = dic[@"sessions"];
+        [localsessions enumerateObjectsUsingBlock:^(ZKSessionEntity *obj, NSUInteger idx, BOOL *stop){
+            
+            if ([self getSessionById:obj.sessionID]) {
+                
+                ZKSessionEntity *session = [self getSessionById:obj.sessionID];
+                NSInteger lostMsgCount =obj.lastMsgID-session.lastMsgID;
+                obj.lastMsg = session.lastMsg;
+                if ([[ZKChattingMainViewController shareInstance].module.ZKSessionEntity.sessionID isEqualToString:obj.sessionID]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChattingSessionUpdate" object:@{@"session":obj,@"count":@(lostMsgCount)}];
+                }
+                session=obj;
+                [self addToSessionModel:obj];
+            }
+            if (self.delegate && [self.delegate respondsToSelector:@selector(sessionUpdate:Action:)]) {
+                [self.delegate sessionUpdate:obj Action:ADD];
+            }
+            
+            
+        }];
+        
+        block(m_total_cnt);
 }
 
 -(NSUInteger )getMaxTime
@@ -149,8 +144,8 @@
 -(void)getRecentSession:(void(^)(NSUInteger count))block
 {
 
-    ZKSessionEntity *session1=[[ZKSessionEntity alloc]initWithSessionID:@"1111" type:SessionTypeSessionTypeGroup];
-    ZKSessionEntity *session2=[[ZKSessionEntity alloc]initWithSessionID:@"1112" type:SessionTypeSessionTypeSingle];
+    ZKSessionEntity *session1=[[ZKSessionEntity alloc]initWithSessionID:@"1111" SessionName:@"zkzj"type:SessionTypeSessionTypeGroup];
+    ZKSessionEntity *session2=[[ZKSessionEntity alloc]initWithSessionID:@"1112" SessionName:@"zkzs" type:SessionTypeSessionTypeSingle];
     NSArray *sessionArray=@[session1,session2];
         NSMutableArray *array = [NSMutableArray arrayWithArray:sessionArray];
         

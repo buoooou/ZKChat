@@ -83,7 +83,7 @@
     // Do any additional setup after loading the view.
     self.title=@"消息";
 
-    [self.tableView registerClass:[ZKBaseCell class] forCellReuseIdentifier:@"ZKPCStatusCellIdentifier"];
+   // [self.tableView registerClass:[ZKBaseCell class] forCellReuseIdentifier:@"ZKPCStatusCellIdentifier"];
     [self.tableView registerClass:[ZKRecentUserCell class] forCellReuseIdentifier:@"ZKRecentUserCellIdentifier"];
     
     self.dataSource=[NSMutableArray new];
