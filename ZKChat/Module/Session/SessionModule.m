@@ -87,18 +87,20 @@
     }];
     return count;
 }
+
 -(void)addSessionsToSessionModel:(NSArray *)sessionArray
 {
     [sessionArray enumerateObjectsUsingBlock:^(ZKSessionEntity *session, NSUInteger idx, BOOL *stop) {
         [self.sessions safeSetObject:session forKey:session.sessionID];
     }];
 }
+
 -(void)getHadUnreadMessageSession:(void(^)(NSUInteger count))block
 {
     NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
     [dic setValue:[NSNumber numberWithInt:1] forKey:@"m_total_cnt"];
-    ZKSessionEntity *session1=[[ZKSessionEntity alloc]initWithSessionID:@"1111" SessionName:@"zkzj" type:SessionTypeSessionTypeGroup];
-    ZKSessionEntity *session2=[[ZKSessionEntity alloc]initWithSessionID:@"1112" SessionName:@"zkzs" type:SessionTypeSessionTypeSingle];
+    ZKSessionEntity *session1=[[ZKSessionEntity alloc]initWithSessionID:@"1113" SessionName:@"zkzj" type:SessionTypeSessionTypeGroup];
+    ZKSessionEntity *session2=[[ZKSessionEntity alloc]initWithSessionID:@"1114" SessionName:@"zkzs" type:SessionTypeSessionTypeSingle];
     NSArray *sessionArray=@[session1,session2];
     [dic setValue:sessionArray forKey:@"sessions"];
     

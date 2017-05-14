@@ -83,7 +83,7 @@
     // Do any additional setup after loading the view.
     self.title=@"消息";
 
-   // [self.tableView registerClass:[ZKBaseCell class] forCellReuseIdentifier:@"ZKPCStatusCellIdentifier"];
+    [self.tableView registerClass:[ZKBaseCell class] forCellReuseIdentifier:@"ZKPCStatusCellIdentifier"];
     [self.tableView registerClass:[ZKRecentUserCell class] forCellReuseIdentifier:@"ZKRecentUserCellIdentifier"];
     
     self.dataSource=[NSMutableArray new];
@@ -112,7 +112,7 @@
             [self.dataSource addObjectsFromArray:[[SessionModule instance] getAllSessions]];
             
             [self sortItems];
-            NSUInteger unreadcount =  [[SessionModule instance]getAllUnreadMessageCount];
+            NSUInteger unreadcount =  [[SessionModule instance] getAllUnreadMessageCount];
             
             [self setToolbarBadge:unreadcount];
             
@@ -281,7 +281,7 @@
     }
     [self sortItems];
     [self.tableView reloadData];
-    NSUInteger count = [[SessionModule instance]getAllUnreadMessageCount];
+    NSUInteger count = [[SessionModule instance] getAllUnreadMessageCount];
     [self setToolbarBadge:count];
 }
 #pragma mark - UITableView Delegate
@@ -293,9 +293,9 @@
     }else{
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
                 NSInteger row = [indexPath row];
-                ZKSessionEntity *session = self.dataSource[row];
+        ZKSessionEntity *session = self.dataSource[row];
         [ZKChattingMainViewController shareInstance].title=session.name;
-                [[ZKChattingMainViewController shareInstance] showChattingContentForSession:session];
+        [[ZKChattingMainViewController shareInstance] showChattingContentForSession:session];
         [self pushViewController:[ZKChattingMainViewController shareInstance] animated:YES];
     }
 }
