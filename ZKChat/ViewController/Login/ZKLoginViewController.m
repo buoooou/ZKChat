@@ -58,8 +58,8 @@
 //    [[LoginModule instance] loginWithUsername:@"" password:@"" success:^(ZKUserEntity *user) {
     
             [self removeHUD];
-        
-//            TheRuntime.user=user ;
+    ZKUserEntity *user=[[ZKUserEntity alloc]initWithUserID:@"12245" name:@"张阔" nick:@"kafeihu" avatar:@"" userUpdated:1];
+            TheRuntime.user=user ;
             [TheRuntime updateData];
     
             if (TheRuntime.pushToken) {
