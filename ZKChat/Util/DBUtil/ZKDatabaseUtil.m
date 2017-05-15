@@ -134,6 +134,7 @@
     NSString *dbPath = [directorPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@",TheRuntime.user.objID,DB_FILE_NAME]];
     return dbPath;
 }
+
 -(BOOL)createTable:(NSString *)sql          //创建表
 {
     BOOL result = NO;
@@ -142,6 +143,7 @@
     result = [_database executeUpdate:tempSql];
     return result;
 }
+
 -(BOOL)clearTable:(NSString *)tableName
 {
     BOOL result = NO;

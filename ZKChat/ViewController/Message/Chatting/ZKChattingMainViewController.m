@@ -33,6 +33,7 @@
 #import "UIScrollView+PullToLoadMore.h"
 #import "ZKConfig.h"
 #import "DDMessageModule.h"
+#import "MsgReadACKAPI.h"
 
 
 typedef NS_ENUM(NSUInteger, DDBottomShowComponent)
@@ -130,7 +131,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 }
 -(void)notificationCenter
 {
-        [[NSNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(n_receiveMessage:)
                                                      name:DDNotificationReceiveMessage
                                                    object:nil];
@@ -144,7 +145,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
                                              selector:@selector(handleWillHideKeyboard:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(reloginSuccess)
                                                      name:@"ReloginSuccess"
                                                    object:nil];
@@ -506,17 +507,15 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self.navigationController.navigationBar setHidden:NO];
     if (self.ddUtility != nil)
     {
-        // NSString *sessionId = self.module.ZKSessionEntity.sessionID;
-        //        self.ddUtility.userId = [ZKUserEntity localIDTopb:sessionId];
-        self.ddUtility.userId = [ZKUserEntity localIDTopb:@"sdf"];
+        NSString *sessionId = self.module.ZKSessionEntity.sessionID;
+        self.ddUtility.userId = [ZKUserEntity localIDTopb:sessionId];
     }
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.module.ids removeAllObjects];
-    
-    //    [[PlayerManager sharedManager] stopPlaying];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -601,6 +600,36 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }else{
         self.ifScrollBottom = NO;
     }
+}
+
+- (void)showChattingContentForSession:(ZKSessionEntity*)session
+{
+    self.module.ZKSessionEntity = nil;
+    self.hadLoadHistory=NO;
+    [self p_unableChatFunction];
+    [self p_enableChatFunction];
+    [self.module.showingMessages removeAllObjects];
+    [self.tableView reloadData];
+    self.module.ZKSessionEntity = session;
+    [self.module loadMoreHistoryCompletion:^(NSUInteger addcount, NSError *error) {
+        [self.tableView reloadData];
+        if (self.hadLoadHistory == NO) {
+            [self scrollToBottomAnimated:NO];
+        }
+        if (session.unReadMsgCount !=0 ) {
+            
+            MsgReadACKAPI* readACK = [[MsgReadACKAPI alloc] init];
+            if(self.module.ZKSessionEntity.sessionID){
+                [readACK requestWithObject:@[self.module.ZKSessionEntity.sessionID,@(self.module.ZKSessionEntity.lastMsgID),@(self.module.ZKSessionEntity.sessionType)] Completion:nil];
+                self.module.ZKSessionEntity.unReadMsgCount=0;
+                [[ZKDatabaseUtil instance] updateRecentSession:self.module.ZKSessionEntity completion:^(NSError *error) {
+                    
+                }];
+            }
+            
+        }
+        
+    }];
 }
 
 #pragma mark UIGesture Delegate
@@ -891,7 +920,15 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [_recordingView setHidden:NO];
     [_recordingView setRecordingState:DDShowVolumnState];
 }
+- (void)p_enableChatFunction
+{
+    [self.chatInputView setUserInteractionEnabled:YES];
+}
 
+- (void)p_unableChatFunction
+{
+    [self.chatInputView setUserInteractionEnabled:NO];
+}
 //#pragma mark DDEmotionViewController Delegate
 //- (void)emotionViewClickSendButton
 //{
@@ -1276,6 +1313,19 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 {
     [self p_tapOnTableView:gestureRecognizer];
     return YES;
+}
+#pragma mark - TTTAttributedLabelDelegate
+
+- (void)attributedLabel:(__unused TTTAttributedLabel *)label
+   didSelectLinkWithURL:(NSURL *)url
+{
+//    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:url];
+//    [self.navigationController pushViewController:webViewController animated:YES];
+}
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber
+{
+    
 }
 
 @end

@@ -147,13 +147,6 @@ static NSUInteger const showPromptGap = 300;
                 }else{
                     //检查消息是否连续
                     [self p_addHistoryMessages:messages Completion:completion];
-                                    [self checkMsgList:^(NSUInteger addcount, NSError *error) {
-                                        completion(addcount,error);
-                                        if (!addcount) {
-                                                   [self p_addHistoryMessages:messages Completion:completion];
-                                        }
-                                    }];
-                    
                 }
                 
             }else{
