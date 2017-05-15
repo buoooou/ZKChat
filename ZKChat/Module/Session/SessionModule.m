@@ -37,7 +37,10 @@
 - (instancetype)init
 {
     self = [super init];
+    
     if (self) {
+        self.sessions = [NSMutableDictionary new];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sentMessageSuccessfull:) name:@"SentMessageSuccessfull" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessageReadACK:) name:@"MessageReadACK" object:nil];
         
