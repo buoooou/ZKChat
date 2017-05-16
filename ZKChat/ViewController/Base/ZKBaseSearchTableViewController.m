@@ -7,6 +7,7 @@
 //
 
 #import "ZKBaseSearchTableViewController.h"
+#import "ZKConstant.h"
 
 @interface ZKBaseSearchTableViewController ()
 
@@ -27,6 +28,10 @@
     
     self.searchController.searchBar.frame= CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 40);
     [self.searchController.searchBar setPlaceholder:@"搜索"];
+    self.searchController.searchBar.barTintColor = ZKBG;
+    self.searchController.searchBar.layer.borderWidth = 0.5;
+    self.searchController.searchBar.layer.borderColor = RGB(204, 204, 204).CGColor;
+    
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.tableView.sectionIndexColor = [UIColor colorWithRed:0.122 green:0.475 blue:0.992 alpha:1.000];
     self.definesPresentationContext=YES;
