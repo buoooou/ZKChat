@@ -12,6 +12,8 @@
 #import "LoginModule.h"
 #import "RuntimeStatus.h"
 #import "ZKConstant.h"
+#import "ZKDatabaseUtil.h"
+#import "SessionModule.h"
 
 
 @interface ZKLoginViewController ()
@@ -55,26 +57,27 @@
     [self showHUDWithIndeterminateText:@"请稍后..."];
     
     
-//    [[LoginModule instance] loginWithUsername:@"" password:@"" success:^(ZKUserEntity *user) {
+    //    [[LoginModule instance] loginWithUsername:@"" password:@"" success:^(ZKUserEntity *user) {
     
-            [self removeHUD];
+    [self removeHUD];
     ZKUserEntity *user=[[ZKUserEntity alloc]initWithUserID:@"12245" name:@"张阔" nick:@"kafeihu" avatar:@"" userUpdated:1];
-            TheRuntime.user=user ;
-            [TheRuntime updateData];
+    TheRuntime.user=user ;
+    [TheRuntime updateData];
+    [[SessionModule instance] loadLocalSession:^(bool isok) {}];
+    [[ZKDatabaseUtil instance] openCurrentUserDB];
+    if (TheRuntime.pushToken) {
+        //SendPushTokenAPI *pushToken = [[SendPushTokenAPI alloc] init];
+        // [pushToken requestWithObject:TheRuntime.pushToken Completion:^(id response, NSError *error) {
+        
+        // }];
+    }
+    ZKRootViewController *rootController=[[ZKRootViewController alloc]init];
+    [self pushViewController:rootController animated:YES];
+    //    } failure:^(NSString *error) {
+    //
+    //        [self removeHUD];
+    //    }];
     
-            if (TheRuntime.pushToken) {
-                //SendPushTokenAPI *pushToken = [[SendPushTokenAPI alloc] init];
-               // [pushToken requestWithObject:TheRuntime.pushToken Completion:^(id response, NSError *error) {
-                
-               // }];
-            }
-            ZKRootViewController *rootController=[[ZKRootViewController alloc]init];
-            [self pushViewController:rootController animated:YES];
-//    } failure:^(NSString *error) {
-//        
-//        [self removeHUD];
-//    }];
-
 }
 
 - (void)didReceiveMemoryWarning {

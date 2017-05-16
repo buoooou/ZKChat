@@ -134,27 +134,27 @@ static NSUInteger const showPromptGap = 300;
 //        }else{
             if ([messages count] !=0) {
                 
-                BOOL isHaveMissMsg = [self p_isHaveMissMsg:messages];
-                if (isHaveMissMsg || ([self getMiniMsgId] - [self getMaxMsgId:messages] !=0)) {
-                    
-                    [self loadHostoryMessageFromServer:[self getMiniMsgId] Completion:^(NSUInteger addcount, NSError *error) {
-                        if (addcount) {
-                            completion(addcount,error);
-                        }else{
-                            [self p_addHistoryMessages:messages Completion:completion];
-                        }
-                    }];
-                }else{
+//                BOOL isHaveMissMsg = [self p_isHaveMissMsg:messages];
+//                if (isHaveMissMsg || ([self getMiniMsgId] - [self getMaxMsgId:messages] !=0)) {
+//                    
+//                    [self loadHostoryMessageFromServer:[self getMiniMsgId] Completion:^(NSUInteger addcount, NSError *error) {
+//                        if (addcount) {
+//                            completion(addcount,error);
+//                        }else{
+//                            [self p_addHistoryMessages:messages Completion:completion];
+//                        }
+//                    }];
+//                }else{
                     //检查消息是否连续
                     [self p_addHistoryMessages:messages Completion:completion];
-                }
+//                }
                 
             }else{
                 //数据库中已获取不到消息
                 //拿出当前最小的msgid去服务端取
-                [self loadHostoryMessageFromServer:[self getMiniMsgId] Completion:^(NSUInteger addcount, NSError *error) {
-                    completion(addcount,error);
-                }];
+//                [self loadHostoryMessageFromServer:[self getMiniMsgId] Completion:^(NSUInteger addcount, NSError *error) {
+//                    completion(addcount,error);
+//                }];
             }
             
             

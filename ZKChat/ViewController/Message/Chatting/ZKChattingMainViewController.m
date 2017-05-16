@@ -929,6 +929,73 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 {
     [self.chatInputView setUserInteractionEnabled:NO];
 }
+- (void)p_clickThRecordButton:(UIButton*)button
+{
+    switch (button.tag) {
+        case DDVoiceInput:
+            //开始录音
+            [self p_hideBottomComponent];
+            [button setImage:[UIImage imageNamed:@"input_normal"] forState:UIControlStateNormal];
+            button.tag = DDTextInput;
+            [self.chatInputView willBeginRecord];
+            [self.chatInputView.textView resignFirstResponder];
+            _currentInputContent = self.chatInputView.textView.text;
+            if ([_currentInputContent length] > 0)
+            {
+                [self.chatInputView.textView setText:nil];
+            }
+            break;
+        case DDTextInput:
+            //开始输入文字
+            [button setImage:[UIImage imageNamed:@"record_normal"] forState:UIControlStateNormal];
+            button.tag = DDVoiceInput;
+            [self.chatInputView willBeginInput];
+            if ([_currentInputContent length] > 0)
+            {
+                [self.chatInputView.textView setText:_currentInputContent];
+            }
+            [self.chatInputView.textView becomeFirstResponder];
+            break;
+    }
+}
+
+
+
+- (void)n_receiveMessage:(NSNotification*)notification
+{
+    if (![self.navigationController.topViewController isEqual:self])
+    {
+        //当前不是聊天界面直接返回
+        return;
+    }
+    
+    ZKMessageEntity* message = [notification object];
+    UIApplicationState state =[UIApplication sharedApplication].applicationState;
+    if (state == UIApplicationStateBackground) {
+        if([message.sessionId isEqualToString:self.module.ZKSessionEntity.sessionID])
+        {
+            [self.module addShowMessage:message];
+            [self.module updateSessionUpdateTime:message.msgTime];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self scrollToBottomAnimated:YES];
+            });
+        }
+        return;
+    }
+    //显示消息
+    
+    if([message.sessionId isEqualToString:self.module.ZKSessionEntity.sessionID])
+    {
+        [self.module addShowMessage:message];
+        [self.module updateSessionUpdateTime:message.msgTime];
+        [self.tableView reloadData];
+        [[DDMessageModule shareInstance] sendMsgRead:message];
+        if(self.ifScrollBottom){
+            [self scrollToBottomAnimated:YES];
+        }
+    }
+    
+}
 //#pragma mark DDEmotionViewController Delegate
 //- (void)emotionViewClickSendButton
 //{
@@ -1083,37 +1150,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [_recordingView setCenter:CGPointMake(FULL_WIDTH/2, self.view.centerY)];
     [self addObserver:self forKeyPath:@"_inputViewY" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
 }
-- (void)p_clickThRecordButton:(UIButton*)button
-{
-    switch (button.tag) {
-        case DDVoiceInput:
-            //开始录音
-            [self p_hideBottomComponent];
-            [button setImage:[UIImage imageNamed:@"input_normal"] forState:UIControlStateNormal];
-            button.tag = DDTextInput;
-            [self.chatInputView willBeginRecord];
-            [self.chatInputView.textView resignFirstResponder];
-            _currentInputContent = self.chatInputView.textView.text;
-            if ([_currentInputContent length] > 0)
-            {
-                [self.chatInputView.textView setText:nil];
-            }
-            break;
-        case DDTextInput:
-            //开始输入文字
-            [button setImage:[UIImage imageNamed:@"record_normal"] forState:UIControlStateNormal];
-            button.tag = DDVoiceInput;
-            [self.chatInputView willBeginInput];
-            if ([_currentInputContent length] > 0)
-            {
-                [self.chatInputView.textView setText:_currentInputContent];
-            }
-            [self.chatInputView.textView becomeFirstResponder];
-            break;
-    }
-}
-
-
 
 -(void)showUtilitys:(id)sender
 {
@@ -1175,10 +1211,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     
 }
 
--(void)removeImage
-{
-    [_preShow removeFromSuperview];
-}
 
 -(void)showEmotions:(id)sender
 {
@@ -1273,41 +1305,6 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
 }
 
-- (void)n_receiveMessage:(NSNotification*)notification
-{
-    if (![self.navigationController.topViewController isEqual:self])
-    {
-        //当前不是聊天界面直接返回
-        return;
-    }
-    
-    ZKMessageEntity* message = [notification object];
-    UIApplicationState state =[UIApplication sharedApplication].applicationState;
-    if (state == UIApplicationStateBackground) {
-        if([message.sessionId isEqualToString:self.module.ZKSessionEntity.sessionID])
-        {
-            [self.module addShowMessage:message];
-            [self.module updateSessionUpdateTime:message.msgTime];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self scrollToBottomAnimated:YES];
-            });
-        }
-        return;
-    }
-    //显示消息
-    
-    if([message.sessionId isEqualToString:self.module.ZKSessionEntity.sessionID])
-    {
-        [self.module addShowMessage:message];
-        [self.module updateSessionUpdateTime:message.msgTime];
-        [self.tableView reloadData];
-        [[DDMessageModule shareInstance] sendMsgRead:message];
-        if(self.ifScrollBottom){
-            [self scrollToBottomAnimated:YES];
-        }
-    }
-    
-}
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
