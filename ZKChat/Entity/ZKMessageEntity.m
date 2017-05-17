@@ -113,4 +113,11 @@
     }
     return NO;
 }
+-(BOOL)isVoiceMessage
+{
+    if (self.msgType == MsgTypeMsgTypeGroupAudio || self.msgType == MsgTypeMsgTypeSingleAudio) {
+        return YES;
+    }
+    return NO;
+}
 @end
