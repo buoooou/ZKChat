@@ -68,7 +68,7 @@ extern "C" {
      *
      *  @return 返回 0-成功; 其他-失败
      */
-    DLL_MODIFIER int DecryptMsg(const char* pInData, uint32_t nInLen, char** pOutData, uint32_t& nOutLen);
+    DLL_MODIFIER int DecryptMsg(const char* pInData, uint32_t nInLen, char** pOutData, uint32_t & nOutLen);
     
     /**
      *  对密码进行加密
