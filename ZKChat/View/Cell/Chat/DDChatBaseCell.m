@@ -14,6 +14,7 @@
 #import "ZKPublicProfileViewController.h"
 #import "ZKChattingMainViewController.h"
 #import "LCActionSheet.h"
+#import "DDUserModule.h"
 
 CGFloat const dd_avatarEdge = 10;                 //头像到边缘的距离
 CGFloat const dd_avatarBubbleGap = 5;             //头像和气泡之间的距离
@@ -139,29 +140,26 @@ CGFloat const dd_bubbleUpDown = 20;                //气泡到上下边缘的距
             break;
     }
     // 设置头像和昵称
-    //self.currentUserID=content.senderId;
-    self.currentUserID=@"zk";
-//    [[DDUserModule shareInstance] getUserForUserID:content.senderId Block:^(MTTUserEntity *user) {
-//        NSURL* avatarURL = [NSURL URLWithString:[user getAvatarUrl]];
-        NSURL* avatarURL = [NSURL URLWithString:@""];
+    self.currentUserID=content.senderId;
+    [[DDUserModule shareInstance] getUserForUserID:content.senderId Block:^(ZKUserEntity *user) {
+        NSURL* avatarURL = [NSURL URLWithString:[user getAvatarUrl]];
         [self.userAvatar sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"avatar"]];
-//        [self.userName setText:user.nick];
-     [self.userName setText:@"sdak"];
-//    }];
+        [self.userName setText:user.nick];
+    }];
     
     //设置昵称是否隐藏
-//    if (self.session.sessionType == SessionTypeSessionTypeSingle || self.location == DDBubbleRight) {
-//        [self.userName mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.height.mas_equalTo(0);
-//        }];
-//        [self.userName setHidden:YES];
-//    }else{
+    if (self.session.sessionType == SessionTypeSessionTypeSingle || self.location == DDBubbleRight) {
+        [self.userName mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+        [self.userName setHidden:YES];
+    }else{
         [self.userName mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(15);
         }];
         [self.userName setHidden:NO];
-//    }
-    
+    }
+
     CGSize size = [cell sizeForContent:content];
     float bubbleheight = [cell contentUpGapWithBubble] + size.height + [cell contentDownGapWithBubble];
     float bubbleWidth = [cell contentLeftGapWithBubble] + size.width + [cell contentRightGapWithBubble];
