@@ -11,7 +11,6 @@
 #import "EmotionsModule.h"
 #import "RuntimeStatus.h"
 #import "NSDictionary+JSON.h"
-#import "security.h"
 
 static uint32_t seqNo = 0;
 
@@ -60,17 +59,14 @@ static uint32_t seqNo = 0;
             newContent=urlPath;
         }
         
-        char* pOut;
-        uint32_t nOutLen;
-        const char *test =[newContent cStringUsingEncoding:NSUTF8StringEncoding];
-        uint32_t nInLen  = strlen(test);
-        EncryptMsg(test, nInLen, &pOut, nOutLen);
-        NSData *data = [[NSString stringWithCString:pOut encoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
-        Free(pOut);
+//        char* pOut='s';
+        //EncryptMsg(test, nInLen, &pOut, nOutLen);
+//        NSData *data = [[NSString stringWithCString:pOut encoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
+//        Free(pOut);
         if(!message.msgID){
             return;
         }
-        NSArray* object = @[TheRuntime.user.objID,session.sessionID,data,@(message.msgType),@(message.msgID)];
+        //NSArray* object = @[TheRuntime.user.objID,session.sessionID,data,@(message.msgType),@(message.msgID)];
         if ([message isImageMessage]) {
             session.lastMsg=@"[图片]";
         }else if ([message isVoiceMessage])
