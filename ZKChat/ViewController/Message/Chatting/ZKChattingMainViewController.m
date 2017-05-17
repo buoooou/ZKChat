@@ -34,6 +34,7 @@
 #import "ZKConfig.h"
 #import "DDMessageModule.h"
 #import "MsgReadACKAPI.h"
+#import "DDMessageSendManager.h"
 
 
 typedef NS_ENUM(NSUInteger, DDBottomShowComponent)
@@ -296,15 +297,15 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 -(void)sendMessage:(NSString *)msg messageEntity:(ZKMessageEntity *)message
 {
     BOOL isGroup = [self.module.ZKSessionEntity isGroup];
-    //    [[DDMessageSendManager instance] sendMessage:message isGroup:isGroup Session:self.module.ZKSessionEntity  completion:^(ZKMessageEntity* theMessage,NSError *error) {
-    //            dispatch_async(dispatch_get_main_queue(), ^{
-    //            message.state= theMessage.state;
+        [[DDMessageSendManager instance] sendMessage:message isGroup:isGroup Session:self.module.ZKSessionEntity  completion:^(ZKMessageEntity* theMessage,NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                message.state= theMessage.state;
     [self.tableView reloadData];
     [self scrollToBottomAnimated:YES];
-    //            });
-    //    } Error:^(NSError *error) {
-    //        [self.tableView reloadData];
-    //    }];
+                });
+        } Error:^(NSError *error) {
+            [self.tableView reloadData];
+        }];
 }
 -(void)sendImageMessage:(ZKPhotoEnity *)photo Image:(UIImage *)image
 {
@@ -495,7 +496,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     }
     self.isGotoAt = NO;
     
-    //self.tableView.noMore =NO;
+    self.tableView.noMore =NO;
 }
 
 -(void)viewDidAppear:(BOOL)animated
