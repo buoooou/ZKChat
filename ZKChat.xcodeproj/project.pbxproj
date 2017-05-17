@@ -32,6 +32,8 @@
 		7E44A9CC1EA7A4FF00A825B1 /* LoginModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9CB1EA7A4FF00A825B1 /* LoginModule.m */; };
 		7E4E4D811ECC8A6B006A289A /* DDMessageSendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E4D801ECC8A6B006A289A /* DDMessageSendManager.m */; };
 		7E4E4D851ECC8CF6006A289A /* libsecurity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4E4D831ECC8CF6006A289A /* libsecurity.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		7E4E4D8A1ECC92E0006A289A /* NSURL+SafeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E4D871ECC92E0006A289A /* NSURL+SafeURL.m */; };
+		7E4E4D8B1ECC92E0006A289A /* UIScrollView+PullToLoadMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E4D891ECC92E0006A289A /* UIScrollView+PullToLoadMore.m */; };
 		7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */; };
 		7E53D8BD1E86A2410093C912 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AD1E86A2400093C912 /* AQGridView.m */; };
 		7E53D8BE1E86A2410093C912 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8B11E86A2400093C912 /* AQGridViewAnimatorItem.m */; };
@@ -258,10 +260,8 @@
 		7EC20FAC1EACE5C200444B96 /* GetMessageQueueAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FAB1EACE5C200444B96 /* GetMessageQueueAPI.m */; };
 		7EC20FAF1EACEABD00444B96 /* DDAllUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FAE1EACEABD00444B96 /* DDAllUserAPI.m */; };
 		7EC20FB31EACECDF00444B96 /* SpellLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB21EACECDF00444B96 /* SpellLibrary.m */; };
-		7EC20FB61EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB51EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m */; };
 		7EC20FB91EB0DF6000444B96 /* LoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FB81EB0DF6000444B96 /* LoginAPI.m */; };
 		7EC20FBC1EB2337900444B96 /* ZKAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FBB1EB2337900444B96 /* ZKAvatarImageView.m */; };
-		7EC20FBF1EB2346000444B96 /* NSURL+SafeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FBE1EB2346000444B96 /* NSURL+SafeURL.m */; };
 		7EC20FC21EB234B300444B96 /* ZKAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FC11EB234B300444B96 /* ZKAvatarManager.m */; };
 		7EC20FC61EB2392A00444B96 /* SessionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FC51EB2392A00444B96 /* SessionModule.m */; };
 		7EC20FC91EB359EC00444B96 /* MsgReadNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC20FC81EB359EC00444B96 /* MsgReadNotify.m */; };
@@ -329,6 +329,10 @@
 		7E4E4D801ECC8A6B006A289A /* DDMessageSendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDMessageSendManager.m; path = Module/Message/DDMessageSendManager.m; sourceTree = "<group>"; };
 		7E4E4D831ECC8CF6006A289A /* libsecurity.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsecurity.a; path = Exist/Security/libsecurity.a; sourceTree = "<group>"; };
 		7E4E4D841ECC8CF6006A289A /* security.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = security.h; path = Exist/Security/security.h; sourceTree = "<group>"; };
+		7E4E4D861ECC92E0006A289A /* NSURL+SafeURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+SafeURL.h"; path = "CateGory/NSURL+SafeURL.h"; sourceTree = "<group>"; };
+		7E4E4D871ECC92E0006A289A /* NSURL+SafeURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+SafeURL.m"; path = "CateGory/NSURL+SafeURL.m"; sourceTree = "<group>"; };
+		7E4E4D881ECC92E0006A289A /* UIScrollView+PullToLoadMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+PullToLoadMore.h"; path = "CateGory/UIScrollView+PullToLoadMore.h"; sourceTree = "<group>"; };
+		7E4E4D891ECC92E0006A289A /* UIScrollView+PullToLoadMore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+PullToLoadMore.m"; path = "CateGory/UIScrollView+PullToLoadMore.m"; sourceTree = "<group>"; };
 		7E53D8A91E86A0BE0093C912 /* RuntimeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuntimeStatus.h; path = GlobalData/RuntimeStatus.h; sourceTree = "<group>"; };
 		7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RuntimeStatus.m; path = GlobalData/RuntimeStatus.m; sourceTree = "<group>"; };
 		7E53D8AC1E86A2400093C912 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQGridView.h; path = Exist/AQGridView/AQGridView.h; sourceTree = "<group>"; };
@@ -738,14 +742,10 @@
 		7EC20FAE1EACEABD00444B96 /* DDAllUserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDAllUserAPI.m; path = Module/TCP/DDAllUserAPI.m; sourceTree = "<group>"; };
 		7EC20FB11EACECDF00444B96 /* SpellLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpellLibrary.h; path = Module/Search/SpellLibrary.h; sourceTree = "<group>"; };
 		7EC20FB21EACECDF00444B96 /* SpellLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpellLibrary.m; path = Module/Search/SpellLibrary.m; sourceTree = "<group>"; };
-		7EC20FB41EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+PullToLoadMore.h"; sourceTree = "<group>"; };
-		7EC20FB51EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+PullToLoadMore.m"; sourceTree = "<group>"; };
 		7EC20FB71EB0DF6000444B96 /* LoginAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginAPI.h; path = Module/TCP/RequestAPI/LoginAPI.h; sourceTree = "<group>"; };
 		7EC20FB81EB0DF6000444B96 /* LoginAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginAPI.m; path = Module/TCP/RequestAPI/LoginAPI.m; sourceTree = "<group>"; };
 		7EC20FBA1EB2337900444B96 /* ZKAvatarImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAvatarImageView.h; path = View/Cell/Message/ZKAvatarImageView.h; sourceTree = "<group>"; };
 		7EC20FBB1EB2337900444B96 /* ZKAvatarImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAvatarImageView.m; path = View/Cell/Message/ZKAvatarImageView.m; sourceTree = "<group>"; };
-		7EC20FBD1EB2346000444B96 /* NSURL+SafeURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+SafeURL.h"; sourceTree = "<group>"; };
-		7EC20FBE1EB2346000444B96 /* NSURL+SafeURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SafeURL.m"; sourceTree = "<group>"; };
 		7EC20FC01EB234B300444B96 /* ZKAvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAvatarManager.h; path = Manager/ZKAvatarManager.h; sourceTree = "<group>"; };
 		7EC20FC11EB234B300444B96 /* ZKAvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAvatarManager.m; path = Manager/ZKAvatarManager.m; sourceTree = "<group>"; };
 		7EC20FC41EB2392A00444B96 /* SessionModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionModule.h; path = Module/Session/SessionModule.h; sourceTree = "<group>"; };
@@ -849,10 +849,10 @@
 		7E290E941E61750C004552F3 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				7EC20FBD1EB2346000444B96 /* NSURL+SafeURL.h */,
-				7EC20FBE1EB2346000444B96 /* NSURL+SafeURL.m */,
-				7EC20FB41EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.h */,
-				7EC20FB51EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m */,
+				7E4E4D861ECC92E0006A289A /* NSURL+SafeURL.h */,
+				7E4E4D871ECC92E0006A289A /* NSURL+SafeURL.m */,
+				7E4E4D881ECC92E0006A289A /* UIScrollView+PullToLoadMore.h */,
+				7E4E4D891ECC92E0006A289A /* UIScrollView+PullToLoadMore.m */,
 				7E44A9A01EA1003F00A825B1 /* NSString+DDPath.h */,
 				7E44A9A11EA1003F00A825B1 /* NSString+DDPath.m */,
 				7E53DAA61E86AC4A0093C912 /* NSDate+DDAddition.h */,
@@ -2258,7 +2258,6 @@
 				7E53DAE31E86ACB00093C912 /* ImageGridViewCell.m in Sources */,
 				7E53D8C11E86A2410093C912 /* AQGridViewData.m in Sources */,
 				7E53D99F1E86A3E10093C912 /* IMSwitchService.pb.m in Sources */,
-				7EC20FB61EAF7E0F00444B96 /* UIScrollView+PullToLoadMore.m in Sources */,
 				7E53DA621E86A9880093C912 /* ZKBaseViewController.m in Sources */,
 				7E44A9951E9D1F9500A825B1 /* ZKNotification.m in Sources */,
 				7E44A9911E9BCF2B00A825B1 /* ZKAFNetworkingClient.m in Sources */,
@@ -2285,6 +2284,7 @@
 				7E53DA5F1E86A9880093C912 /* ZKBaseSearchTableViewController.m in Sources */,
 				7E53D95B1E86A2BA0093C912 /* gain_table_lbr.c in Sources */,
 				7E53DA421E86A8BA0093C912 /* ZKMyViewController.m in Sources */,
+				7E4E4D8B1ECC92E0006A289A /* UIScrollView+PullToLoadMore.m in Sources */,
 				7E53DABF1E86AC4A0093C912 /* NSDictionary+Safe.m in Sources */,
 				7E53D96A1E86A2BA0093C912 /* preprocess.c in Sources */,
 				7E53D9761E86A2BA0093C912 /* vq.c in Sources */,
@@ -2317,6 +2317,7 @@
 				7E53D97E1E86A2BA0093C912 /* CAStreamBasicDescription.cpp in Sources */,
 				7E53DAC31E86AC4A0093C912 /* NSString+JSMessagesView.m in Sources */,
 				7E53DAA11E86ABCE0093C912 /* ZKSessionEntity.m in Sources */,
+				7E4E4D8A1ECC92E0006A289A /* NSURL+SafeURL.m in Sources */,
 				7E53D9681E86A2BA0093C912 /* modes_wb.c in Sources */,
 				7E53D9741E86A2BA0093C912 /* stereo.c in Sources */,
 				7E53D9731E86A2BA0093C912 /* speex_header.c in Sources */,
@@ -2348,7 +2349,6 @@
 				7E53DAD61E86AC830093C912 /* DDPromptCell.m in Sources */,
 				7E53DAA21E86ABCE0093C912 /* ZKUserEntity.m in Sources */,
 				7E53DAE71E86ACB00093C912 /* ZKPublicProfileCell.m in Sources */,
-				7EC20FBF1EB2346000444B96 /* NSURL+SafeURL.m in Sources */,
 				7E44A98A1E9A81AC00A825B1 /* ZKConstant.m in Sources */,
 				7E53DA7D1E86AA3F0093C912 /* ZKChattingImagePreviewViewController.m in Sources */,
 				7EC20F9E1EACC24A00444B96 /* DDTcpProtocolHeader.m in Sources */,
@@ -2546,6 +2546,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9385678HZ3;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/DACircularProgress\"",
+					"\"${PODS_ROOT}/Headers/Public/FMDB\"",
+					"\"${PODS_ROOT}/Headers/Public/HPGrowingTextView\"",
+					"\"${PODS_ROOT}/Headers/Public/LCActionSheet\"",
+					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/MWPhotoBrowser\"",
+					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
+					"\"${PODS_ROOT}/Headers/Public/ProtocolBuffers\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/SVWebViewController\"",
+					"\"${PODS_ROOT}/Headers/Public/TTTAttributedLabel\"",
+					"\"${PODS_ROOT}/Headers/Public/ZXingObjC\"",
+				);
 				INFOPLIST_FILE = ZKChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2569,6 +2586,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9385678HZ3;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/DACircularProgress\"",
+					"\"${PODS_ROOT}/Headers/Public/FMDB\"",
+					"\"${PODS_ROOT}/Headers/Public/HPGrowingTextView\"",
+					"\"${PODS_ROOT}/Headers/Public/LCActionSheet\"",
+					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/MWPhotoBrowser\"",
+					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
+					"\"${PODS_ROOT}/Headers/Public/ProtocolBuffers\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/SVWebViewController\"",
+					"\"${PODS_ROOT}/Headers/Public/TTTAttributedLabel\"",
+					"\"${PODS_ROOT}/Headers/Public/ZXingObjC\"",
+				);
 				INFOPLIST_FILE = ZKChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
