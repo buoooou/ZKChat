@@ -234,7 +234,7 @@
                   moduleName = "ZKChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangkuo/Xcode/ZKChat/ZKChat/Module/Login/DDHttpServer.m"
-                  timestampString = "516724232.992406"
+                  timestampString = "516724488.300664"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "38"
@@ -249,7 +249,7 @@
                   moduleName = "ZKChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangkuo/Xcode/ZKChat/ZKChat/Module/Login/DDHttpServer.m"
-                  timestampString = "516724232.993844"
+                  timestampString = "516724488.302106"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "38"
@@ -378,7 +378,7 @@
                   moduleName = "ZKChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangkuo/Xcode/ZKChat/ZKChat/Module/Chatting/ChattingModule.m"
-                  timestampString = "516724233.014052"
+                  timestampString = "516724488.322049"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
@@ -393,7 +393,7 @@
                   moduleName = "ZKChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangkuo/Xcode/ZKChat/ZKChat/Module/Chatting/ChattingModule.m"
-                  timestampString = "516724233.015438"
+                  timestampString = "516724488.323636"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
@@ -432,6 +432,38 @@
             startingLineNumber = "158"
             endingLineNumber = "158"
             landmarkName = "-refreshData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZKChat/Module/Message/DDMessageSendManager.m"
+            timestampString = "516724319.690644"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "-sendMessage:isGroup:Session:completion:Error:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZKChat/Module/Message/DDMessageSendManager.m"
+            timestampString = "516724340.964566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-sendMessage:isGroup:Session:completion:Error:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

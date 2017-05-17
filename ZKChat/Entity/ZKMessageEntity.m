@@ -106,5 +106,11 @@
     }
     return NO;
 }
-
+-(BOOL)isImageMessage
+{
+    if (self.msgContentType == DDMessageTypeImage) {
+        return YES;
+    }
+    return NO;
+}
 @end
