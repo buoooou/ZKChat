@@ -77,7 +77,7 @@ static uint32_t seqNo = 0;
             session.lastMsg=message.msgContent;
         }
        // [[UnAckMessageManager instance] addMessageToUnAckQueue:message];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"SentMessageSuccessfull" object:session];
+        //[[NSNotificationCenter defaultCenter] postNotificationName:@"SentMessageSuccessfull" object:session];
 //        [sendMessageAPI requestWithObject:object Completion:^(id response, NSError *error) {
 //            if (!error)
 //            {
