@@ -321,27 +321,25 @@
 -(void)preLoadMessage:(ZKSessionEntity *)session
 {
     [[ZKDatabaseUtil instance] getLastestMessageForSessionID:session.sessionID completion:^(ZKMessageEntity *message, NSError *error) {
-        if (message) {
-            if (message.msgID != session.lastMsgID ) {
-                [[DDMessageModule shareInstance] getMessageFromServer:session.lastMsgID currentSession:session count:20 Block:^(NSMutableArray *array, NSError *error) {
-                    [[ZKDatabaseUtil instance] insertMessages:array success:^{
-                        
-                    } failure:^(NSString *errorDescripe) {
-                        
-                    }];
-                }];
-            }
-        }else{
-            if (session.lastMsgID !=0) {
-                [[DDMessageModule shareInstance] getMessageFromServer:session.lastMsgID currentSession:session count:20 Block:^(NSMutableArray *array, NSError *error) {
-                    [[ZKDatabaseUtil instance] insertMessages:array success:^{
-                        
-                    } failure:^(NSString *errorDescripe) {
-                        
-                    }];
-                }];
-            }
-        }
+//        if (message) {
+//            if (message.msgID != session.lastMsgID ) {
+//                [[DDMessageModule shareInstance] getMessageFromServer:session.lastMsgID currentSession:session count:20 Block:^(NSMutableArray *array, NSError *error) {
+
+        
+//                    }];
+//                }];
+//            }
+//        }else{
+//            if (session.lastMsgID !=0) {
+//                [[DDMessageModule shareInstance] getMessageFromServer:session.lastMsgID currentSession:session count:20 Block:^(NSMutableArray *array, NSError *error) {
+//                    [[ZKDatabaseUtil instance] insertMessages:array success:^{
+//                        
+//                    } failure:^(NSString *errorDescripe) {
+//                        
+//                    }];
+//                }];
+//            }
+//        }
     }];
 }
 #pragma mark -  SNotification
