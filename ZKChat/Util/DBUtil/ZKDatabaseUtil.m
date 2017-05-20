@@ -263,7 +263,7 @@
         if ([_database tableExists:TABLE_MESSAGE])
         {
             [_database setShouldCacheStatements:YES];
-            NSString* sqlString = [NSString stringWithFormat:@"select * from %@ where sessionId = '%@' AND messageID >= ? order by msgTime DESC,messageID DESC",TABLE_MESSAGE,sessionID];
+            NSString* sqlString = [NSString stringWithFormat:@"select * from %@ where sessionId = '%@' AND messageID >= ? order by msgTime DESC,messageID ASC",TABLE_MESSAGE,sessionID];
             FMResultSet* result = [_database executeQuery:sqlString,@(message.msgID)];
             while ([result next])
             {
