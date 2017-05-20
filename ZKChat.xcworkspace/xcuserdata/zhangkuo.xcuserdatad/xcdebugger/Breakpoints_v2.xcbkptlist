@@ -234,7 +234,7 @@
                   moduleName = "ZKChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangkuo/Xcode/ZKChat/ZKChat/Module/Login/DDHttpServer.m"
-                  timestampString = "516977351.796386"
+                  timestampString = "516979701.953707"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "38"
@@ -249,7 +249,7 @@
                   moduleName = "ZKChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangkuo/Xcode/ZKChat/ZKChat/Module/Login/DDHttpServer.m"
-                  timestampString = "516977351.797687"
+                  timestampString = "516979701.955043"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "38"
@@ -272,22 +272,6 @@
             startingLineNumber = "178"
             endingLineNumber = "178"
             landmarkName = "-removeSessionByServer:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZKChat/Util/DBUtil/ZKDatabaseUtil.m"
-            timestampString = "516631982.289594"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
-            landmarkName = "-loadMessageForSessionID:afterMessage:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -378,7 +362,7 @@
                   moduleName = "ZKChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangkuo/Xcode/ZKChat/ZKChat/Module/Chatting/ChattingModule.m"
-                  timestampString = "516977351.817019"
+                  timestampString = "516979701.976525"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
@@ -393,7 +377,7 @@
                   moduleName = "ZKChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhangkuo/Xcode/ZKChat/ZKChat/Module/Chatting/ChattingModule.m"
-                  timestampString = "516977351.818312"
+                  timestampString = "516979701.978162"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
@@ -432,6 +416,54 @@
             startingLineNumber = "203"
             endingLineNumber = "203"
             landmarkName = "-n_receiveMessageNotification:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZKChat/Util/DBUtil/ZKDatabaseUtil.m"
+            timestampString = "516978276.583737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "-loadMessageForSessionID:afterMessage:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZKChat/Util/DBUtil/ZKDatabaseUtil.m"
+            timestampString = "516978280.329941"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "-loadMessageForSessionID:pageCount:index:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZKChat/Module/Chatting/ChattingModule.m"
+            timestampString = "516978992.384526"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "-p_addHistoryMessages:Completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

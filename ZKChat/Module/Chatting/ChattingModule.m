@@ -283,8 +283,6 @@ static NSUInteger const showPromptGap = 300;
     __block NSUInteger tempLasteestDate = 0;
     NSUInteger itemCount = [self.showingMessages count];
     NSMutableArray *tmp = [NSMutableArray arrayWithArray:messages];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"msgTime" ascending:YES];
-        [tmp sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     NSMutableArray* tempMessages = [[NSMutableArray alloc] init];
     for (NSInteger index = [tmp count] - 1; index >= 0;index --)
     {
