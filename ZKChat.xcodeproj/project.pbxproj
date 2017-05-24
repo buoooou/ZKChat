@@ -31,7 +31,6 @@
 		7E44A9C51EA64D2000A825B1 /* EmotionsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9C41EA64D2000A825B1 /* EmotionsModule.m */; };
 		7E44A9CC1EA7A4FF00A825B1 /* LoginModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44A9CB1EA7A4FF00A825B1 /* LoginModule.m */; };
 		7E4E4D811ECC8A6B006A289A /* DDMessageSendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E4D801ECC8A6B006A289A /* DDMessageSendManager.m */; };
-		7E4E4D851ECC8CF6006A289A /* libsecurity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4E4D831ECC8CF6006A289A /* libsecurity.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		7E4E4D8A1ECC92E0006A289A /* NSURL+SafeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E4D871ECC92E0006A289A /* NSURL+SafeURL.m */; };
 		7E4E4D8B1ECC92E0006A289A /* UIScrollView+PullToLoadMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E4D891ECC92E0006A289A /* UIScrollView+PullToLoadMore.m */; };
 		7E53D8AB1E86A0BE0093C912 /* RuntimeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E53D8AA1E86A0BE0093C912 /* RuntimeStatus.m */; };
@@ -327,8 +326,6 @@
 		7E44A9CB1EA7A4FF00A825B1 /* LoginModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginModule.m; path = Module/Login/LoginModule.m; sourceTree = "<group>"; };
 		7E4E4D7F1ECC8A6B006A289A /* DDMessageSendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDMessageSendManager.h; path = Module/Message/DDMessageSendManager.h; sourceTree = "<group>"; };
 		7E4E4D801ECC8A6B006A289A /* DDMessageSendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDMessageSendManager.m; path = Module/Message/DDMessageSendManager.m; sourceTree = "<group>"; };
-		7E4E4D831ECC8CF6006A289A /* libsecurity.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsecurity.a; path = Exist/Security/libsecurity.a; sourceTree = "<group>"; };
-		7E4E4D841ECC8CF6006A289A /* security.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = security.h; path = Exist/Security/security.h; sourceTree = "<group>"; };
 		7E4E4D861ECC92E0006A289A /* NSURL+SafeURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+SafeURL.h"; path = "CateGory/NSURL+SafeURL.h"; sourceTree = "<group>"; };
 		7E4E4D871ECC92E0006A289A /* NSURL+SafeURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+SafeURL.m"; path = "CateGory/NSURL+SafeURL.m"; sourceTree = "<group>"; };
 		7E4E4D881ECC92E0006A289A /* UIScrollView+PullToLoadMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+PullToLoadMore.h"; path = "CateGory/UIScrollView+PullToLoadMore.h"; sourceTree = "<group>"; };
@@ -775,7 +772,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E4E4D851ECC8CF6006A289A /* libsecurity.a in Frameworks */,
 				7E44A9A41EA258C700A825B1 /* UserNotifications.framework in Frameworks */,
 				4418E0170666CA2AC439FEDC /* libPods-ZKChat.a in Frameworks */,
 			);
@@ -901,7 +897,6 @@
 		7E290EC11E62FD76004552F3 /* Exist */ = {
 			isa = PBXGroup;
 			children = (
-				7E4E4D821ECC8CA2006A289A /* Security */,
 				7E53D8A11E869C610093C912 /* Voice */,
 				7E53D84E1E816D3E0093C912 /* AQGridView */,
 				7E31E3811E6AE18900EA69DE /* JSMessage */,
@@ -1077,15 +1072,6 @@
 				7EC20F6C1EAB900500444B96 /* DDTcpServer.m */,
 			);
 			name = Login;
-			sourceTree = "<group>";
-		};
-		7E4E4D821ECC8CA2006A289A /* Security */ = {
-			isa = PBXGroup;
-			children = (
-				7E4E4D831ECC8CF6006A289A /* libsecurity.a */,
-				7E4E4D841ECC8CF6006A289A /* security.h */,
-			);
-			name = Security;
 			sourceTree = "<group>";
 		};
 		7E53D8491E816BEB0093C912 /* Utility */ = {
