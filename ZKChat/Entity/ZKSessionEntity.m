@@ -182,8 +182,6 @@
         if (self.sessionType != otherSession.sessionType) {
             return NO;
         }
-        
-        
     }
     return YES;
 }
