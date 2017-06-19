@@ -14,6 +14,8 @@
 #import "ZKPersonEditControllectionCell.h"
 #import "ZKGroupInfoCell.h"
 #import "ZKPublicProfileViewController.h"
+#import "ZKUtil.h"
+#import "ZKNotification.h"
 
 @interface ZKChattingEditViewController ()
 
@@ -127,11 +129,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //    if (self.session.sessionType == SessionTypeSessionTypeGroup){
-    return 3;
-    //    }else{
-    //        return 1;
-    //    }
+    if (self.session.sessionType == SessionTypeSessionTypeGroup){
+        return 3;
+    }else{
+        return 1;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -174,25 +176,25 @@
         [cell showSwitch];
         [cell opSwitch:self.group.isShield];
         [cell setChangeSwitch:^(BOOL on){
-            // [self switchIsAddShielding:on];
+            [self switchIsAddShielding:on];
         }];
     }
     if (indexPath.row == 2) {
         [cell showDesc:@"置顶聊天"];
         [cell showSwitch];
-        //            if([MTTUtil checkFixedTop:self.session.sessionID]){
-        //                [cell opSwitch:YES];
-        //            }else{
-        //                [cell opSwitch:NO];
-        //            }
+        if([ZKUtil checkFixedTop:self.session.sessionID]){
+            [cell opSwitch:YES];
+        }else{
+            [cell opSwitch:NO];
+        }
         [cell setChangeSwitch:^(BOOL on){
-            //                if(on){
-            //                    [MTTUtil setFixedTop:self.session.sessionID];
-            //                }else{
-            //                    [MTTUtil removeFixedTop:self.session.sessionID];
-            //                }
-            //                self.session.isFixedTop = on;
-            //                [MTTNotification postNotification:MTTNotificationSessionShieldAndFixed userInfo:nil object:nil];
+            //                            if(on){
+            //                                [ZKUtil setFixedTop:self.session.sessionID];
+            //                            }else{
+            //                                [ZKUtil removeFixedTop:self.session.sessionID];
+            //                            }
+            self.session.isFixedTop = on;
+            [ZKNotification postNotification:ZKNotificationSessionShieldAndFixed userInfo:nil object:nil];
         }];
     }
     
@@ -284,7 +286,7 @@
     else if (user)
     {
         ZKPublicProfileViewController *public = [ZKPublicProfileViewController new];
-        //        public.user=user;
+        public.user=user;
         [self pushViewController:public animated:YES];
         
     }
@@ -433,7 +435,7 @@
     //        self.group.isShield=!self.group.isShield;
     //        [MTTNotification postNotification:MTTNotificationSessionShieldAndFixed userInfo:nil object:nil];
     //        [[MTTDatabaseUtil instance] updateRecentGroup:self.group completion:^(NSError *error) {
-    //            
+    //
     //        }];
     //    }];
     
@@ -444,7 +446,7 @@
 {
     [super viewWillAppear:animated];
     //    MTTUserEntity *user = [self.items lastObject];
-    //    
+    //
     //    if (![user.position isEqualToString:@"99999"]) {
     //        [self.items removeObject:self.edit];
     //        [self.items addObject:self.edit];
