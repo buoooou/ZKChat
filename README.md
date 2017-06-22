@@ -1,7 +1,7 @@
 # ZKChat
-IM
+IM 即时通讯软件
 ## author
-zhangkuo
+zhangkuo 
 ## fuction
 
 ### 1.chat
