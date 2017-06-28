@@ -45,11 +45,6 @@
     self.window=[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor=[UIColor whiteColor];
     
-    ZKLoginViewController * loginVC=[[ZKLoginViewController alloc]init];
-    UINavigationController *navRoot =[[UINavigationController alloc] initWithRootViewController:loginVC];
-    
-    self.window.rootViewController = navRoot;
-    
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -70,12 +65,17 @@
     [UIView animateWithDuration:3.0f delay:0.0f options:UIViewAnimationOptionTransitionNone animations:^{
         
         welcome.alpha = 1;
-        
     } completion:^(BOOL finished) {
         
         [welcome removeFromSuperview];
         
     }];
+    
+    ZKLoginViewController * loginVC=[[ZKLoginViewController alloc]init];
+    UINavigationController *navRoot =[[UINavigationController alloc] initWithRootViewController:loginVC];
+    
+    self.window.rootViewController = navRoot;
+    
     return YES;
 }
 
