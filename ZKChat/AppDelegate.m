@@ -56,6 +56,26 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     
     [self.window makeKeyAndVisible];
+    
+    UIImageView *welcome = [[UIImageView alloc]initWithFrame:self.window.bounds];
+    
+    [welcome setImage:[UIImage imageNamed:@"chatBg"]];
+    
+    //把背景图放在最上层
+    
+    [self.window addSubview:welcome];
+    
+    [self.window bringSubviewToFront:welcome];
+    
+    [UIView animateWithDuration:3.0f delay:0.0f options:UIViewAnimationOptionTransitionNone animations:^{
+        
+        welcome.alpha = 1;
+        
+    } completion:^(BOOL finished) {
+        
+        [welcome removeFromSuperview];
+        
+    }];
     return YES;
 }
 
