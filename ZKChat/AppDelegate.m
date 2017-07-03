@@ -43,7 +43,7 @@
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
     self.window=[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor=[UIColor whiteColor];
+    self.window.backgroundColor=[UIColor whiteColor];    
     
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
@@ -62,9 +62,12 @@
     
     [self.window bringSubviewToFront:welcome];
     
-    [UIView animateWithDuration:3.0f delay:0.0f options:UIViewAnimationOptionTransitionNone animations:^{
+    welcome.alpha = 0.99;
+    
+    [UIView animateWithDuration:30.0f delay:20.0f options:UIViewAnimationOptionTransitionNone animations:^{
         
         welcome.alpha = 1;
+        
     } completion:^(BOOL finished) {
         
         [welcome removeFromSuperview];
