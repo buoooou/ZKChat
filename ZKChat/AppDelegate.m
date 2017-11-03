@@ -27,6 +27,8 @@
     
     [RuntimeStatus instance];
     // 推送消息的注册方式
+    
+    
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         // for iOS 8
         UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
